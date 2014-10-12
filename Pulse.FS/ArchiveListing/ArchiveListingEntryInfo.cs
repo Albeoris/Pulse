@@ -2,8 +2,8 @@
 {
     public struct ArchiveListingEntryInfo
     {
-        public short Dummy01;
-        public short Dummy02;
+        public short UnknownValue;
+        public short UnknownNumber;
         public short BlockNumber;
         public short Offset;
     }

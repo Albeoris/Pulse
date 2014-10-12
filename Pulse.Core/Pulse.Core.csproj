@@ -79,7 +79,6 @@
     <Compile Include="Framework\XmlDocumentExm.cs" />
     <Compile Include="Framework\XmlElementExm.cs" />
     <Compile Include="Framework\XmlHelper.cs" />
-    <Compile Include="General\FFXFileType.cs" />
     <Compile Include="General\IProgressSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

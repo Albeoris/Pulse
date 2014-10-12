@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Extended\UiContextMenu.cs" />
     <Compile Include="Controls\Extended\UiGrid.cs" />
     <Compile Include="Controls\Extended\UiMenu.cs" />
     <Compile Include="Controls\Extended\UiMenuItem.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Controls\Extended\UiTextBlock.cs" />
     <Compile Include="Controls\Extended\UiTreeView.cs" />
     <Compile Include="Controls\Extended\UiWindow.cs" />
+    <Compile Include="Factories\UiContextMenuFactory.cs" />
     <Compile Include="Factories\UiTreeViewFactory.cs" />
     <Compile Include="Interaction\GamePathProviderValidator.cs" />
     <Compile Include="Interaction\GamePathRegistryProvider.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommander.cs" />
     <Compile Include="Windows\Main\Dockables\UiMainDockable.cs" />
     <Compile Include="Windows\Main\UiMainWindow.cs" />
+    <Compile Include="Windows\UiProgressUnits.cs" />
     <Compile Include="Windows\UiProgressWindow.cs" />
   </ItemGroup>
   <ItemGroup>

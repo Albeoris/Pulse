@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
-using System.Windows.Controls;
+using System.Threading.Tasks;
 using Pulse.FS;
 
 namespace Pulse.UI
@@ -11,7 +10,7 @@ namespace Pulse.UI
     {
         private const string SystemFolder = @"white_data\sys";
 
-        public static UiArchiveTreeViewItem Build(string gamePath)
+        public static UiArchiveTreeViewItem[] Build(string gamePath)
         {
             UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gamePath);
             return builder.Build();
@@ -24,17 +23,21 @@ namespace Pulse.UI
             _gamePath = gamePath;
         }
 
-        public UiArchiveTreeViewItem Build()
+        public UiArchiveTreeViewItem[] Build() 
         {
             string root = Path.Combine(_gamePath, SystemFolder);
             string[] lists = Directory.GetFiles(root, "filelist*.bin");
-            UiArchiveNode rootNode = new UiArchiveNode();
-            foreach (string list in lists)
+            ConcurrentBag<UiArchiveNode> nodes = new ConcurrentBag<UiArchiveNode>();
+            Parallel.ForEach(lists, fileName =>
             {
-                using (FileStream input = new FileStream(list, FileMode.Open, FileAccess.Read, FileShare.Read))
+                UiArchiveNode rootNode = new UiArchiveNode {Name = Path.GetFileName(fileName)};
+                using (FileStream input = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     ArchiveListingReader reader = new ArchiveListingReader(input);
                     ArchiveListing listing = reader.Read();
+                    listing.ListingFile = fileName;
+                    listing.BinaryFile = GetBinaryFilePath(fileName);
+                    rootNode.Entry = listing;
                     foreach (ArchiveListingEntry entry in listing)
                     {
                         UiArchiveNode parent = rootNode;
@@ -51,19 +54,25 @@ namespace Pulse.UI
                         }
 
                         string name = path.Last();
-                        try
-                        {
+                        if (!parent.Childs.ContainsKey(name)) // Несколько файлов оказались в одном архиве дважды
                             parent.Childs.Add(name, new UiArchiveNode {Name = name, Entry = entry});
-                        }
-                        catch
-                        {
-                            Console.WriteLine(entry.Name);
-                        }
                     }
                 }
-            }
+                nodes.Add(rootNode);
+            });
 
-            return rootNode.GetTreeViewItem();
+            return nodes.Select(n => n.GetTreeViewItem()).ToArray();
+        }
+
+        private string GetBinaryFilePath(string filePath)
+        {
+            string directory = Path.GetDirectoryName(filePath);
+            string fileName = Path.GetFileName(filePath);
+
+            if (fileName.StartsWith("filelist_scr", System.StringComparison.InvariantCultureIgnoreCase))
+                return Path.Combine(directory, fileName.Replace("filelist_scr", "white_scr"));
+            
+            return Path.Combine(directory, fileName.Replace("filelist", "white_img"));
         }
     }
 }

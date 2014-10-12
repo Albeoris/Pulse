@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Pulse.UI
 {
     public sealed class InteractionService
     {
+        public static readonly Dispatcher Dispatcher = Application.Current.MainWindow.Dispatcher;
+
         public static string GamePath { get; private set; }
         public static event Action Refreshed;
 

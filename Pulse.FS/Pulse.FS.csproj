@@ -43,12 +43,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveListing.cs" />
-    <Compile Include="ArchiveListingEntry.cs" />
-    <Compile Include="ArchiveListingEntryInfo.cs" />
-    <Compile Include="ArchiveListingHeader.cs" />
-    <Compile Include="ArchiveListingReader.cs" />
-    <Compile Include="ArchiveListingBlockInfo.cs" />
+    <Compile Include="ArchiveExtractor\ArchiveExtractor.cs" />
+    <Compile Include="ArchiveListing\ArchiveListing.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingEntry.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingEntryInfo.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingHeader.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingReader.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZLibHelper.cs" />
   </ItemGroup>

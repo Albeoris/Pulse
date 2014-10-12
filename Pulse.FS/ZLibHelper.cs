@@ -15,6 +15,27 @@ namespace Pulse.FS
             return buff;
         }
 
+        public static void Uncompress(Stream input, Stream output, int uncompressedSize, Action<long> uncompressed = null)
+        {
+            Exceptions.CheckArgumentNull(input, "input");
+            Exceptions.CheckArgumentNull(output, "output");
+            Exceptions.CheckArgumentOutOfRangeException(uncompressedSize, "uncompressedSize", 0, int.MaxValue);
+
+            byte[] buff = new byte[Math.Min(32 * 1024, uncompressedSize)];
+            ZInputStream reader = new ZInputStream(input);
+
+            int readed;
+            while (uncompressedSize > 0 && (readed = reader.read(buff, 0, Math.Min(buff.Length, uncompressedSize))) > 0)
+            {
+                uncompressedSize -= readed;
+                output.Write(buff, 0, readed);
+                uncompressed.NullSafeInvoke(readed);
+            }
+
+            if (uncompressedSize != 0)
+                throw new Exception("Неожиданный конец потока.");
+        }
+
         public static void EnsureRead(this ZInputStream self, byte[] buff, int offset, int size)
         {
             Exceptions.CheckArgumentNull(self, "self");
