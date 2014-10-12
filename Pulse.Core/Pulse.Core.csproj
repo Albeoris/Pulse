@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07C19D4D-35B4-45FB-9EFE-9E2DEB794182}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pulse.Core</RootNamespace>
+    <AssemblyName>Pulse.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\CircularBuffer.cs" />
+    <Compile Include="Components\Invoker.cs" />
+    <Compile Include="Components\Log.cs" />
+    <Compile Include="Components\ProgressArgs.cs" />
+    <Compile Include="Components\StreamSegment.cs" />
+    <Compile Include="Framework\ActionExm.cs" />
+    <Compile Include="Framework\ArgumentEmptyException.cs" />
+    <Compile Include="Framework\ArrayExm.cs" />
+    <Compile Include="Framework\BinaryReaderExm.cs" />
+    <Compile Include="Framework\BinaryWriterExm.cs" />
+    <Compile Include="Framework\ConcurrentDictionaryExm.cs" />
+    <Compile Include="Framework\DisposableAction.cs" />
+    <Compile Include="Framework\DisposableBeginEndActions.cs" />
+    <Compile Include="Framework\DisposableStack.cs" />
+    <Compile Include="Framework\EnumCache.cs" />
+    <Compile Include="Framework\EventHandlerExm.cs" />
+    <Compile Include="Framework\EventWaitHandleExm.cs" />
+    <Compile Include="Framework\Exceptions.cs" />
+    <Compile Include="Framework\FileCommander.cs" />
+    <Compile Include="Framework\FileSegment.cs" />
+    <Compile Include="Framework\HalfByteStream.cs" />
+    <Compile Include="Framework\IDictionaryExm.cs" />
+    <Compile Include="Framework\IDisposableExm.cs" />
+    <Compile Include="Framework\IEnumerableExm.cs" />
+    <Compile Include="Framework\IListExm.cs" />
+    <Compile Include="Framework\IntPtrExm.cs" />
+    <Compile Include="Framework\LambdaComparer.cs" />
+    <Compile Include="Framework\ListExm.cs" />
+    <Compile Include="Framework\PathComparer.cs" />
+    <Compile Include="Framework\PathEx.cs" />
+    <Compile Include="Framework\SafeGCHandle.cs" />
+    <Compile Include="Framework\SafeHGlobalHandle.cs" />
+    <Compile Include="Framework\SDisposable.cs" />
+    <Compile Include="Framework\StreamExm.cs" />
+    <Compile Include="Framework\StringBuilderExm.cs" />
+    <Compile Include="Framework\TypeCache.cs" />
+    <Compile Include="Framework\XmlDocumentExm.cs" />
+    <Compile Include="Framework\XmlElementExm.cs" />
+    <Compile Include="Framework\XmlHelper.cs" />
+    <Compile Include="General\FFXFileType.cs" />
+    <Compile Include="General\IProgressSender.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
