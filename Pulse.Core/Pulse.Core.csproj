@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CircularBuffer.cs" />
+    <Compile Include="Components\Endian.cs" />
     <Compile Include="Components\Invoker.cs" />
     <Compile Include="Components\Log.cs" />
     <Compile Include="Components\ProgressArgs.cs" />

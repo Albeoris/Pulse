@@ -17,6 +17,12 @@ namespace Pulse.Core
             return self.Position >= self.Length;
         }
 
+        public static void SetPosition(this Stream self, long position)
+        {
+            if (self.Position != position)
+                self.Position = position;
+        }
+
         public static void EnsureRead(this Stream self, byte[] buff, int offset, int size)
         {
             Exceptions.CheckArgumentNull(self, "self");
@@ -30,6 +36,13 @@ namespace Pulse.Core
 
             if (size != 0)
                 throw new Exception("Неожиданный конец потока.");
+        }
+
+        public static byte[] EnsureRead(this Stream self, int size)
+        {
+            byte[] buff = new byte[size];
+            EnsureRead(self, buff, 0, size);
+            return buff;
         }
 
         public static void CopyTo(this Stream input, Stream output, int size, byte[] buff, bool flush = true)

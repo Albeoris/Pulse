@@ -1,0 +1,36 @@
+typedef struct
+{
+    int Magic;
+    int Version;
+    int Count01;
+    int Size;
+    int Count02;
+} ZtrFileHeader;
+
+typedef struct
+{
+    byte Source;
+    union {
+        short Short;
+        byte Byte[2];
+    } New;
+} EncodingPattert;
+
+typedef struct
+{
+    uint Size;
+    EncodingPattert Patterns[Size / 3];
+} EncodingBlock;
+
+BigEndian(); 
+
+ZtrFileHeader header;
+
+uint unk_table1[header.Count02];
+uint unk_table2[header.Count01];
+
+EncodingBlock encodingPage01;
+char firstBlock[0x23C];
+
+EncodingBlock encodingPage02;
+char secondBlock[unk_table1[1] - unk_table1[0] - encodingPage02.Size - 4];

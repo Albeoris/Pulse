@@ -52,6 +52,12 @@
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZLibHelper.cs" />
+    <Compile Include="ZTR\ZtrFileEncoding.cs" />
+    <Compile Include="ZTR\ZtrFileHeader.cs" />
+    <Compile Include="ZTR\ZtrFileTagsUnpacker.cs" />
+    <Compile Include="ZTR\ZtrFileTextUnpacker.cs" />
+    <Compile Include="ZTR\ZtrFileType.cs" />
+    <Compile Include="ZTR\ZtrUnpacker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
