@@ -23,21 +23,20 @@ namespace Pulse.UI
             _gamePath = gamePath;
         }
 
-        public UiArchiveTreeViewItem[] Build() 
+        public UiArchiveTreeViewItem[] Build()
         {
             string root = Path.Combine(_gamePath, SystemFolder);
             string[] lists = Directory.GetFiles(root, "filelist*.bin");
             ConcurrentBag<UiArchiveNode> nodes = new ConcurrentBag<UiArchiveNode>();
+
             Parallel.ForEach(lists, fileName =>
             {
-                UiArchiveNode rootNode = new UiArchiveNode {Name = Path.GetFileName(fileName)};
-                using (FileStream input = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                ArchiveAccessor accessor = new ArchiveAccessor(GetBinaryFilePath(fileName), fileName);
+                ArchiveListing[] listings = ArchiveListingReader.Read(InteractionService.GameDataPath, accessor);
+
+                foreach (ArchiveListing listing in listings)
                 {
-                    ArchiveListingReader reader = new ArchiveListingReader(input);
-                    ArchiveListing listing = reader.Read();
-                    listing.ListingFile = fileName;
-                    listing.BinaryFile = GetBinaryFilePath(fileName);
-                    rootNode.Entry = listing;
+                    UiArchiveNode rootNode = new UiArchiveNode {Name = listing.Accessor.ListingEntry.Name, Entry = listing};
                     foreach (ArchiveListingEntry entry in listing)
                     {
                         UiArchiveNode parent = rootNode;
@@ -57,11 +56,11 @@ namespace Pulse.UI
                         if (!parent.Childs.ContainsKey(name)) // Несколько файлов оказались в одном архиве дважды
                             parent.Childs.Add(name, new UiArchiveNode {Name = name, Entry = entry});
                     }
+                    nodes.Add(rootNode);
                 }
-                nodes.Add(rootNode);
             });
 
-            return nodes.Select(n => n.GetTreeViewItem()).ToArray();
+            return nodes.OrderBy(n=>n.Name).Select(n => n.GetTreeViewItem()).ToArray();
         }
 
         private string GetBinaryFilePath(string filePath)
@@ -71,7 +70,7 @@ namespace Pulse.UI
 
             if (fileName.StartsWith("filelist_scr", System.StringComparison.InvariantCultureIgnoreCase))
                 return Path.Combine(directory, fileName.Replace("filelist_scr", "white_scr"));
-            
+
             return Path.Combine(directory, fileName.Replace("filelist", "white_img"));
         }
     }

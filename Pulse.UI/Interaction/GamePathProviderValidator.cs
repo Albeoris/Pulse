@@ -11,8 +11,8 @@ namespace Pulse.UI
             {
                 provider.Provide();
 
-                string gamePath = provider.GamePath;
-                Exceptions.CheckDirectoryNotFoundException(gamePath);
+                Exceptions.CheckDirectoryNotFoundException(provider.GamePath);
+                Exceptions.CheckDirectoryNotFoundException(provider.GameDataPath);
                 
                 error = null;
                 return true;

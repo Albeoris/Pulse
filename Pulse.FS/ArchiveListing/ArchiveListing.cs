@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
-using Pulse.Core;
 
 namespace Pulse.FS
 {
     public sealed class ArchiveListing : List<ArchiveListingEntry>
     {
-        public string ListingFile;
-        public string BinaryFile;
+        public readonly ArchiveAccessor Accessor;
 
-        public ArchiveListing()
+        public ArchiveListing(ArchiveAccessor accessor)
         {
+            Accessor = accessor;
         }
 
-        public ArchiveListing(int entriesCount)
+        public ArchiveListing(ArchiveAccessor accessor, int entriesCount)
             : base(entriesCount)
         {
+            Accessor = accessor;
         }
     }
 }

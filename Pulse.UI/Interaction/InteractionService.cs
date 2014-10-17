@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -9,6 +10,7 @@ namespace Pulse.UI
         public static readonly Dispatcher Dispatcher = Application.Current.MainWindow.Dispatcher;
 
         public static string GamePath { get; private set; }
+        public static string GameDataPath { get; private set; }
         public static event Action Refreshed;
 
         public static void Refresh()
@@ -31,6 +33,7 @@ namespace Pulse.UI
                     continue;
 
                 GamePath = provider.GamePath;
+                GameDataPath = provider.GameDataPath;
                 return;
             }
         }

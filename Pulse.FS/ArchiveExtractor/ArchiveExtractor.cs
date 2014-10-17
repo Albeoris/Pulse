@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.MemoryMappedFiles;
 using System.Threading.Tasks;
 using Pulse.Core;
 
 namespace Pulse.FS
 {
-    public sealed class ArchiveExtractor : IProgressSender, IDisposable
+    public sealed class ArchiveExtractor : IProgressSender
     {
-        private readonly MemoryMappedFile _mmf;
         private readonly ArchiveListing _listing;
         private readonly string _targetDir;
 
@@ -20,12 +18,6 @@ namespace Pulse.FS
         {
             _listing = Exceptions.CheckArgumentNull(listing, "listing");
             _targetDir = Exceptions.CheckDirectoryNotFoundException(targetDir);
-            _mmf = MemoryMappedFile.CreateFromFile(listing.BinaryFile);
-        }
-
-        public void Dispose()
-        {
-            _mmf.NullSafeDispose();
         }
 
         public void Extract()
@@ -48,18 +40,12 @@ namespace Pulse.FS
         private void Extract(ArchiveListingEntry entry)
         {
             string fullPath = Path.Combine(_targetDir, entry.Name);
-            using (MemoryMappedViewStream input = _mmf.CreateViewStream(entry.Offset, entry.Size))
+            using (Stream input = _listing.Accessor.OpenBinary(entry))
             using (FileStream output = File.Create(fullPath, 32768))
             {
-                if (entry.Size == entry.UncompressedSize)
-                {
-                    input.CopyTo(output, 32 * 1024);
-                    ProgressIncrement(entry.UncompressedSize);
-                }
-                else
-                {
-                    ZLibHelper.Uncompress(input, output, (int)entry.UncompressedSize, ProgressIncrement);
-                }
+                ArchiveEntryExtractor entryExtractor = new ArchiveEntryExtractor(entry, input, output);
+                entryExtractor.ProgressIncrement += ProgressIncrement;
+                entryExtractor.Extract();
             }
         }
     }

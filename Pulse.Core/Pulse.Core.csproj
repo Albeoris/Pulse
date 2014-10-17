@@ -41,10 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CircularBuffer.cs" />
+    <Compile Include="Components\PipeStream.cs" />
+    <Compile Include="Components\DisposableStream.cs" />
     <Compile Include="Components\Endian.cs" />
     <Compile Include="Components\Invoker.cs" />
     <Compile Include="Components\Log.cs" />
     <Compile Include="Components\ProgressArgs.cs" />
+    <Compile Include="Components\SharedMemoryMappedFile.cs" />
     <Compile Include="Components\StreamSegment.cs" />
     <Compile Include="Framework\ActionExm.cs" />
     <Compile Include="Framework\ArgumentEmptyException.cs" />

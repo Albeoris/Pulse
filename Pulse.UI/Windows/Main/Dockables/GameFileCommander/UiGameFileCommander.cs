@@ -15,7 +15,7 @@ namespace Pulse.UI
             #region Construct
 
             Header = "Ресурсы игры";
-            
+
             _treeView = UiTreeViewFactory.Create();
             {
                 _treeView.ContextMenu = CreateTreeViewContextMenu();
@@ -94,8 +94,8 @@ namespace Pulse.UI
                     }
 
                     ArchiveListing listing = item.CreateChildListing();
-                    using (ArchiveExtractor extractor = new ArchiveExtractor(listing, targetDir))
-                        UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
+                    ArchiveExtractor extractor = new ArchiveExtractor(listing, targetDir);
+                    UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
                 }
                 catch (Exception ex)
                 {

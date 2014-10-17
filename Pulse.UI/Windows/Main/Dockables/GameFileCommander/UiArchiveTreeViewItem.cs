@@ -33,7 +33,7 @@ namespace Pulse.UI
         public ArchiveListing CreateChildListing()
         {
             ArchiveListing parentListing = GetParentListing();
-            ArchiveListing listing = new ArchiveListing {ListingFile = parentListing.ListingFile, BinaryFile = parentListing.BinaryFile};
+            ArchiveListing listing = new ArchiveListing(parentListing.Accessor);
             foreach (ArchiveListingEntry entry in EnumerateFiles())
                 listing.Add(entry);
             listing.TrimExcess();

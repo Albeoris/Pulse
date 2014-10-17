@@ -43,7 +43,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveExtractor\ArchiveEntryExtractor.cs" />
     <Compile Include="ArchiveExtractor\ArchiveExtractor.cs" />
+    <Compile Include="ArchiveListing\ArchiveAccessor.cs" />
     <Compile Include="ArchiveListing\ArchiveListing.cs" />
     <Compile Include="ArchiveListing\ArchiveListingEntry.cs" />
     <Compile Include="ArchiveListing\ArchiveListingEntryInfo.cs" />
