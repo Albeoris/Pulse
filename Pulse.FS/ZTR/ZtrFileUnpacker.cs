@@ -61,16 +61,30 @@ namespace Pulse.FS
 
         private void ExtractBigEndianUncompressedPair()
         {
-            int keyLength = _br.ReadInt32();
+            int keyOffset = _br.ReadInt32();
             int textOffset = _br.ReadInt32();
 
-            byte[] buff = _input.EnsureRead(keyLength);
-            _output.Write(buff, 0, buff.Length);
+            if (_input.Position != keyOffset)
+                throw new NotImplementedException();
+
+            while (!_input.IsEndOfStream())
+            {
+                int value = _input.ReadByte();
+                _output.WriteByte((byte)value);
+                if (value == 0)
+                    break;
+            }
 
             if (_input.Position != textOffset)
                 throw new NotImplementedException();
 
-            _input.CopyTo(_output);
+            while (!_input.IsEndOfStream())
+            {
+                int value = _input.ReadByte();
+                _output.WriteByte((byte)value);
+                if (value == 0)
+                    break;
+            }
         }
 
         private void ExtractLittleEndianCompressedDictionary()

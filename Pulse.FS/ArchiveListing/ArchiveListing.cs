@@ -6,6 +6,11 @@ namespace Pulse.FS
     {
         public readonly ArchiveAccessor Accessor;
 
+        public string Name
+        {
+            get { return Accessor.ListingEntry.Name; }
+        }
+
         public ArchiveListing(ArchiveAccessor accessor)
         {
             Accessor = accessor;

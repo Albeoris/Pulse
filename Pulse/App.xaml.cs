@@ -19,6 +19,7 @@ namespace Pulse
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //new MainWindow().Show();
             new UiMainWindow().Show();
         }
     }

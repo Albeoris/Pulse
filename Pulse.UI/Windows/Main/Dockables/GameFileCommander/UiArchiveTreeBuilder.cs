@@ -10,7 +10,7 @@ namespace Pulse.UI
     {
         private const string SystemFolder = @"white_data\sys";
 
-        public static UiArchiveTreeViewItem[] Build(string gamePath)
+        public static UiArchiveNode[] Build(string gamePath)
         {
             UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gamePath);
             return builder.Build();
@@ -23,11 +23,11 @@ namespace Pulse.UI
             _gamePath = gamePath;
         }
 
-        public UiArchiveTreeViewItem[] Build()
+        public UiArchiveNode[] Build()
         {
             string root = Path.Combine(_gamePath, SystemFolder);
             string[] lists = Directory.GetFiles(root, "filelist*.bin");
-            ConcurrentBag<UiArchiveNode> nodes = new ConcurrentBag<UiArchiveNode>();
+            ConcurrentBag<UiArchiveBuilderNode> nodes = new ConcurrentBag<UiArchiveBuilderNode>();
 
             Parallel.ForEach(lists, fileName =>
             {
@@ -36,17 +36,17 @@ namespace Pulse.UI
 
                 foreach (ArchiveListing listing in listings)
                 {
-                    UiArchiveNode rootNode = new UiArchiveNode {Name = listing.Accessor.ListingEntry.Name, Entry = listing};
+                    UiArchiveBuilderNode rootNode = new UiArchiveBuilderNode(listing.Name, listing);
                     foreach (ArchiveListingEntry entry in listing)
                     {
-                        UiArchiveNode parent = rootNode;
+                        UiArchiveBuilderNode parent = rootNode;
                         string[] path = entry.Name.ToLowerInvariant().Split(Path.AltDirectorySeparatorChar);
                         for (int i = 0; i < path.Length - 1; i++)
                         {
-                            UiArchiveNode child;
+                            UiArchiveBuilderNode child;
                             if (!parent.Childs.TryGetValue(path[i], out child))
                             {
-                                child = new UiArchiveNode {Name = path[i]};
+                                child = new UiArchiveBuilderNode(path[i]);
                                 parent.Childs.Add(child.Name, child);
                             }
                             parent = child;
@@ -54,13 +54,13 @@ namespace Pulse.UI
 
                         string name = path.Last();
                         if (!parent.Childs.ContainsKey(name)) // Несколько файлов оказались в одном архиве дважды
-                            parent.Childs.Add(name, new UiArchiveNode {Name = name, Entry = entry});
+                            parent.Childs.Add(name, new UiArchiveBuilderNode(name, entry));
                     }
                     nodes.Add(rootNode);
                 }
             });
 
-            return nodes.OrderBy(n=>n.Name).Select(n => n.GetTreeViewItem()).ToArray();
+            return nodes.OrderBy(n => n.Name).Select(n => n.Commit(null)).ToArray();
         }
 
         private string GetBinaryFilePath(string filePath)

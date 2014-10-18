@@ -59,7 +59,7 @@
     <Compile Include="ZTR\ZtrFileTagsUnpacker.cs" />
     <Compile Include="ZTR\ZtrFileTextUnpacker.cs" />
     <Compile Include="ZTR\ZtrFileType.cs" />
-    <Compile Include="ZTR\ZtrUnpacker.cs" />
+    <Compile Include="ZTR\ZtrFileUnpacker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

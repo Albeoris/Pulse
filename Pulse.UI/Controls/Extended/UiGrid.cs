@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pulse.UI
 {
@@ -23,8 +24,34 @@ namespace Pulse.UI
             if (col > 0) uiElement.SetValue(ColumnProperty, col);
             if (rowSpan > 0) uiElement.SetValue(RowSpanProperty, rowSpan);
             if (colSpan > 0) uiElement.SetValue(ColumnSpanProperty, colSpan);
-            
+
             Children.Add(uiElement);
+        }
+
+        public UiGridSplitter AddVerticalSplitter(int col, int row = 0, int rowSpan = 0)
+        {
+            UiGridSplitter splitter = UiGridSplitterFactory.Create();
+            {
+                splitter.VerticalAlignment = VerticalAlignment.Stretch;
+                splitter.HorizontalAlignment = HorizontalAlignment.Center;
+            }
+
+            AddUiElement(splitter, row, col, rowSpan);
+
+            return splitter;
+        }
+
+        public UiGridSplitter AddHorizontalSplitter(int row, int col = 0, int colSpan = 0)
+        {
+            UiGridSplitter splitter = UiGridSplitterFactory.Create();
+            {
+                splitter.HorizontalAlignment = HorizontalAlignment.Stretch;
+                splitter.VerticalAlignment = VerticalAlignment.Center;
+            }
+
+            AddUiElement(splitter, row, col, 0, colSpan);
+
+            return splitter;
         }
     }
 }

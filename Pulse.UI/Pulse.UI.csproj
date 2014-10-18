@@ -40,6 +40,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,39 +48,60 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
       <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapConverter.cs" />
+    <Compile Include="Controls\Extended\UiButton.cs" />
     <Compile Include="Controls\Extended\UiContextMenu.cs" />
     <Compile Include="Controls\Extended\UiGrid.cs" />
+    <Compile Include="Controls\Extended\UiGridSplitter.cs" />
+    <Compile Include="Controls\Extended\UiListView.cs" />
     <Compile Include="Controls\Extended\UiMenu.cs" />
     <Compile Include="Controls\Extended\UiMenuItem.cs" />
     <Compile Include="Controls\Extended\UiProgressBar.cs" />
     <Compile Include="Controls\Extended\UiTextBlock.cs" />
     <Compile Include="Controls\Extended\UiTreeView.cs" />
+    <Compile Include="Controls\Extended\UiWatermarkTextBox.cs" />
     <Compile Include="Controls\Extended\UiWindow.cs" />
+    <Compile Include="Factories\UiButtonFactory.cs" />
     <Compile Include="Factories\UiContextMenuFactory.cs" />
+    <Compile Include="Factories\UiGridSplitterFactory.cs" />
+    <Compile Include="Factories\UiListViewFactory.cs" />
     <Compile Include="Factories\UiTreeViewFactory.cs" />
-    <Compile Include="Interaction\GamePathProviderValidator.cs" />
-    <Compile Include="Interaction\GamePathRegistryProvider.cs" />
-    <Compile Include="Interaction\GamePathUserProvider.cs" />
-    <Compile Include="Interaction\IGamePathProvider.cs" />
+    <Compile Include="Factories\UWatermarkTextBoxFactory.cs" />
+    <Compile Include="FileSystem\ShellHelper.cs" />
+    <Compile Include="Interaction\GamePath\GamePathProviderValidator.cs" />
+    <Compile Include="Interaction\GamePath\GamePathRegistryProvider.cs" />
+    <Compile Include="Interaction\GamePath\GamePathUserProvider.cs" />
+    <Compile Include="Interaction\GamePath\IGamePathProvider.cs" />
     <Compile Include="Interaction\IInfoProvider.cs" />
     <Compile Include="Interaction\InteractionService.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factories\UiGridFactory.cs" />
     <Compile Include="Factories\UiMenuFactory.cs" />
@@ -87,12 +109,15 @@
     <Compile Include="Factories\UiProgressBarFactory.cs" />
     <Compile Include="Factories\UiTextBlockFactory.cs" />
     <Compile Include="Factories\UiWindowFactory.cs" />
+    <Compile Include="Resources\Icons.cs" />
+    <Compile Include="UIHelper.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveBuilderNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveTreeBuilder.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveTreeViewItem.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommander.cs" />
     <Compile Include="Windows\Main\Dockables\UiMainDockable.cs" />
     <Compile Include="Windows\Main\UiMainWindow.cs" />
+    <Compile Include="Windows\UiInputWindow.cs" />
     <Compile Include="Windows\UiProgressUnits.cs" />
     <Compile Include="Windows\UiProgressWindow.cs" />
   </ItemGroup>
@@ -107,6 +132,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
