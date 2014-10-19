@@ -45,6 +45,17 @@ namespace Pulse
             //ArchiveAccessor targetAccessor = new ArchiveAccessor(targetBinary, targetListing);
             //ArchiveListingWriter.Write(listing, targetAccessor);
 
+           //using (FileStream input = File.OpenRead(@"D:\Temp\FFXIII\txtres\event\ev_comn_000\txtres_us.ztr.txt"))
+           //using (FileStream output = File.Create(@"D:\Temp\FFXIII\txtres\event\ev_comn_000\txtres_us.ztr.new"))
+           //{
+           //    string name;
+           //    ZtrTextReader reader = new ZtrTextReader(input);
+           //    ZtrFileEntry[] entries = reader.Read(out name);
+           //    
+           //    ZtrFilePacker packer = new ZtrFilePacker(output);
+           //    packer.Pack(entries);
+           //}
+
             new UiMainWindow().Show();
         }
     }

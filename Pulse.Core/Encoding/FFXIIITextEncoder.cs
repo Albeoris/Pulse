@@ -46,8 +46,11 @@ namespace Pulse.Text
                 }
                 else
                 {
-                    result += Encoding.UTF8.GetBytes(chars, charIndex, 1, bytes, byteIndex);
+                    int bytesWrited = Encoding.UTF8.GetBytes(chars, charIndex, 1, bytes, byteIndex);
+                    byteIndex += bytesWrited;
+                    result += bytesWrited;
                     charCount--;
+                    charIndex++;
                 }
             }
 
