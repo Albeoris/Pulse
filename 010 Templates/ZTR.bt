@@ -18,6 +18,13 @@ typedef struct
 
 typedef struct
 {
+  byte blockNumber;
+  byte replaceOffset;
+  ushort blockOffset;
+} TextEntry;
+
+typedef struct
+{
     uint Size;
     EncodingPattert Patterns[Size / 3];
 } EncodingBlock;
@@ -27,7 +34,7 @@ BigEndian();
 ZtrFileHeader header;
 
 uint unk_table1[header.Count02];
-uint unk_table2[header.Count01];
+TextEntry unk_table2[header.Count01];
 
 EncodingBlock encodingPage01;
 char firstBlock[0x23C];

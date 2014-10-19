@@ -7,6 +7,12 @@ namespace Pulse.Core
 {
     public static class IListExm
     {
+        public static void InitializeElements<T>(this IList<T> list) where T : new()
+        {
+            for (int i = 0; i < list.Count; i++)
+                list[i] = new T();
+        }
+
         public static bool IsNullOrEmpty<T>(this IList<T> list)
         {
             return list == null || list.Count == 0;

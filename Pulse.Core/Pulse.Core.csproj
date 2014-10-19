@@ -50,6 +50,15 @@
     <Compile Include="Components\ProgressArgs.cs" />
     <Compile Include="Components\SharedMemoryMappedFile.cs" />
     <Compile Include="Components\StreamSegment.cs" />
+    <Compile Include="Encoding\FFXIIITextDecoder.cs" />
+    <Compile Include="Encoding\FFXIIITextEncoder.cs" />
+    <Compile Include="Encoding\FFXIIITextEncoding.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTagParam.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTag.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTagCode.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTagText.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTagKey.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextTagIcon.cs" />
     <Compile Include="Framework\ActionExm.cs" />
     <Compile Include="Framework\ArgumentEmptyException.cs" />
     <Compile Include="Framework\ArrayExm.cs" />
@@ -90,6 +99,7 @@
     <Compile Include="WinAPI\ShellFileSystemInfo.cs" />
     <Compile Include="WinAPI\SHGetFileInfoFlags.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

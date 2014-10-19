@@ -19,6 +19,18 @@ namespace Pulse
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //foreach (var file in Directory.GetFiles(@"D:\Temp\FFXIII", "*.ztr", SearchOption.AllDirectories))
+            //{
+            //    using (var input = File.OpenRead(file))
+            //    using (var output = File.Create(file + ".txt"))
+            //    {
+            //        ZtrFileUnpacker unpacker = new ZtrFileUnpacker(input);
+            //        ZtrFileEntry[] entries = unpacker.Unpack();
+            //
+            //        ZtrTextWriter writer = new ZtrTextWriter(output);
+            //        writer.Write(file, entries);
+            //    }
+            //}
             //new MainWindow().Show();
             new UiMainWindow().Show();
         }

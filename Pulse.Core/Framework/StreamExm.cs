@@ -145,23 +145,6 @@ namespace Pulse.Core
             return handle;
         }
 
-        public static string ReadNullTerminatedString(this Stream input, Encoding encoding)
-        {
-            StringBuilder sb = new StringBuilder();
-            using(StreamReader sr = new StreamReader(input, encoding))
-            {
-                int nc;
-                while ((nc = sr.Read()) != -1)
-                {
-                    if (nc == 0)
-                        break;
-
-                    sb.Append((char)nc);
-                }
-            }
-            return sb.ToString();
-        }
-
         public static void Read(this Stream input, SafeHGlobalHandle buffer, long offset, int length)
         {
             try

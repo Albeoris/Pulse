@@ -54,12 +54,17 @@
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZLibHelper.cs" />
+    <Compile Include="ZTR\ZtrTextWriter.cs" />
     <Compile Include="ZTR\ZtrFileEncoding.cs" />
+    <Compile Include="ZTR\ZtrFileEntry.cs" />
     <Compile Include="ZTR\ZtrFileHeader.cs" />
-    <Compile Include="ZTR\ZtrFileTagsUnpacker.cs" />
+    <Compile Include="ZTR\ZtrFileHeaderLineInfo.cs" />
+    <Compile Include="ZTR\ZtrFileHelper.cs" />
+    <Compile Include="ZTR\ZtrFileKeysUnpacker.cs" />
     <Compile Include="ZTR\ZtrFileTextUnpacker.cs" />
     <Compile Include="ZTR\ZtrFileType.cs" />
     <Compile Include="ZTR\ZtrFileUnpacker.cs" />
+    <Compile Include="ZTR\ZtrTextReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

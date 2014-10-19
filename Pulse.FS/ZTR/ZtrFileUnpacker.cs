@@ -1,102 +1,96 @@
 ﻿using System;
 using System.IO;
 using Pulse.Core;
+using Pulse.Text;
 
 namespace Pulse.FS
 {
     public sealed class ZtrFileUnpacker
     {
         private Stream _input;
-        private Stream _output;
         private BinaryReader _br;
 
-        public ZtrFileUnpacker(Stream input, Stream output)
+        public ZtrFileUnpacker(Stream input)
         {
             _input = input;
-            _output = output;
             _br = new BinaryReader(_input);
         }
 
-        public void Unpack()
+        public ZtrFileEntry[] Unpack()
         {
+            if (_input.Length - _input.Position < 5)
+                return new ZtrFileEntry[0];
+
             ZtrFileType type = (ZtrFileType)_br.ReadInt32();
             switch (type)
             {
                 case ZtrFileType.BigEndianUncompressedPair:
-                    ExtractBigEndianUncompressedPair();
-                    break;
+                    return ExtractBigEndianUncompressedPair();
                 case ZtrFileType.LittleEndianCompressedDictionary:
-                    ExtractLittleEndianCompressedDictionary();
-                    break;
+                    return ExtractLittleEndianCompressedDictionary();
                 default:
-                    ExtractBigEndianUncompressedDictionary((int)type);
-                    break;
+                    return ExtractBigEndianUncompressedDictionary((int)type);
             }
         }
 
-        private void ExtractBigEndianUncompressedDictionary(int count)
+        private ZtrFileEntry[] ExtractBigEndianUncompressedDictionary(int count)
         {
             if (count < 0 || count > 2048)
                 throw new ArgumentOutOfRangeException("count", count.ToString());
 
-            count *= 2;
+            ZtrFileEntry[] entries = new ZtrFileEntry[count];
+            entries.InitializeElements();
 
-            int[] offsets = new int[count];
+            int[] offsets = new int[count * 2];
             for (int i = 0; i < count; i++)
                 offsets[i] = _br.ReadInt32();
 
             for (int i = 0; i < count; i++)
             {
                 _input.SetPosition(offsets[i]);
-                //key
-                while (!_input.IsEndOfStream())
-                {
-                    int value = _input.ReadByte();
-                    _output.WriteByte((byte)value);
-                    if (value == 0)
-                        break;
-                }
+                entries[i].Key = ZtrFileHelper.ReadNullTerminatedString(_input);
             }
+
+            for (int i = 0; i < count; i++)
+            {
+                _input.SetPosition(offsets[i + count]);
+                entries[i].Value = ZtrFileHelper.ReadNullTerminatedString(_input);
+            }
+
+            return entries;
         }
 
-        private void ExtractBigEndianUncompressedPair()
+        private ZtrFileEntry[] ExtractBigEndianUncompressedPair()
         {
+            ZtrFileEntry result = new ZtrFileEntry();;
+
             int keyOffset = _br.ReadInt32();
             int textOffset = _br.ReadInt32();
 
-            if (_input.Position != keyOffset)
-                throw new NotImplementedException();
+            _input.SetPosition(keyOffset);
+            result.Key = ZtrFileHelper.ReadNullTerminatedString(_input);
 
-            while (!_input.IsEndOfStream())
-            {
-                int value = _input.ReadByte();
-                _output.WriteByte((byte)value);
-                if (value == 0)
-                    break;
-            }
+            _input.SetPosition(textOffset);
+            result.Value = ZtrFileHelper.ReadNullTerminatedString(_input);
 
-            if (_input.Position != textOffset)
-                throw new NotImplementedException();
-
-            while (!_input.IsEndOfStream())
-            {
-                int value = _input.ReadByte();
-                _output.WriteByte((byte)value);
-                if (value == 0)
-                    break;
-            }
+            return new[] {result};
         }
 
-        private void ExtractLittleEndianCompressedDictionary()
+        private ZtrFileEntry[] ExtractLittleEndianCompressedDictionary()
         {
             ZtrFileHeader header = new ZtrFileHeader();
             header.ReadFromStream(_input);
 
-            ZtrFileTagsUnpacker tagsUnpacker = new ZtrFileTagsUnpacker(_input, _output);
-            tagsUnpacker.Unpack(header.TagsUnpackedSize);
+            ZtrFileEntry[] result = new ZtrFileEntry[header.Count];
+            result.InitializeElements();
 
-            ZtrFileTextUnpacker textUnpacker = new ZtrFileTextUnpacker(_input, _output);
+            ZtrFileKeysUnpacker keysUnpacker = new ZtrFileKeysUnpacker(_input, result);
+            keysUnpacker.Unpack(header.KeysUnpackedSize);
+
+            ZtrFileTextUnpacker textUnpacker = new ZtrFileTextUnpacker(_input, result, header.TextLinesTable);
             textUnpacker.Unpack(header.TextBlockTable[header.TextBlockTable.Length - 1]);
+
+            return result;
         }
     }
 }
