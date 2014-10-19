@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.WindowsAPICodePack.Shell;
 using Pulse.FS;
 
 namespace Pulse
@@ -25,6 +26,8 @@ namespace Pulse
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Browser.NavigationTarget = ShellFolder.FromParsingName(@"D:\Temp\FFXIII");
         }
     }
 }

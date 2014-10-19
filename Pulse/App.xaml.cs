@@ -32,6 +32,19 @@ namespace Pulse
             //    }
             //}
             //new MainWindow().Show();
+
+            //const string sourceListing = @"D:\Steam\SteamApps\common\FINAL FANTASY XIII\white_data\sys\filelistc.win32 - копия.bin";
+            //const string sourceBinary = @"D:\Steam\SteamApps\common\FINAL FANTASY XIII\white_data\sys\white_imgc.win32";
+            //
+            //const string targetListing = @"D:\Steam\SteamApps\common\FINAL FANTASY XIII\white_data\sys\filelistc.win32.bin";
+            //const string targetBinary = @"D:\Steam\SteamApps\common\FINAL FANTASY XIII\white_data\sys\white_imgc.win32.bin";
+            //
+            //ArchiveAccessor sourceAccessor = new ArchiveAccessor(sourceBinary, sourceListing);
+            //ArchiveListing listing = ArchiveListingReader.Read(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII", sourceAccessor).First(l=>l.Name =="filelistc.win32 - копия.bin");
+            //
+            //ArchiveAccessor targetAccessor = new ArchiveAccessor(targetBinary, targetListing);
+            //ArchiveListingWriter.Write(listing, targetAccessor);
+
             new UiMainWindow().Show();
         }
     }

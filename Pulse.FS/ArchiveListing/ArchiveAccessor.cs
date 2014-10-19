@@ -5,6 +5,8 @@ namespace Pulse.FS
 {
     public sealed class ArchiveAccessor
     {
+        private int _level = 0;
+
         private readonly SharedMemoryMappedFile _binaryFile;
         private readonly SharedMemoryMappedFile _listingFile;
         public readonly ArchiveListingEntry ListingEntry;
@@ -27,17 +29,30 @@ namespace Pulse.FS
 
         public ArchiveAccessor CreateChild(ArchiveListingEntry listingEntry)
         {
-            return new ArchiveAccessor(_binaryFile, _binaryFile, listingEntry);
+            ArchiveAccessor result = new ArchiveAccessor(_binaryFile, _binaryFile, listingEntry);
+            result._level++;
+            return result;
         }
 
         public ArchiveAccessor CreateChild(string binaryFile, ArchiveListingEntry listingEntry)
         {
-            return new ArchiveAccessor(new SharedMemoryMappedFile(binaryFile), _binaryFile, listingEntry);
+            ArchiveAccessor result = new ArchiveAccessor(new SharedMemoryMappedFile(binaryFile), _binaryFile, listingEntry);
+            result._level++;
+            return result;
         }
 
         public Stream OpenListing()
         {
             return _listingFile.CreateViewStream(ListingEntry.Offset, ListingEntry.Size);
+        }
+
+        public Stream OpenCapacityListing()
+        {
+            if (_level == 0)
+                return _listingFile.RecreateFile();
+
+            long capacity = ((ListingEntry.Size / 0x800) + 1) * 0x800;
+            return _listingFile.CreateViewStream(ListingEntry.Offset, capacity);
         }
 
         public Stream OpenBinary(ArchiveListingEntry entry)

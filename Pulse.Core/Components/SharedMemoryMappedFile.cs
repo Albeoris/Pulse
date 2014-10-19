@@ -25,6 +25,11 @@ namespace Pulse.Core
             return result;
         }
 
+        public Stream RecreateFile()
+        {
+            return File.Create(_filePath);
+        }
+
         public Stream CreateViewStream(long offset, long size)
         {
             IDisposable context = Acquire();
@@ -47,6 +52,16 @@ namespace Pulse.Core
             {
                 if (Interlocked.Increment(ref _counter) == 1)
                     _mmf = MemoryMappedFile.CreateFromFile(_filePath, FileMode.Open, null, 0, MemoryMappedFileAccess.ReadWrite);
+            }
+            return new DisposableAction(Free);
+        }
+
+        private IDisposable Acquire(int size)
+        {
+            lock (_lock)
+            {
+                if (Interlocked.Increment(ref _counter) == 1)
+                    _mmf = MemoryMappedFile.CreateFromFile(File.Create(_filePath, size), null, size, MemoryMappedFileAccess.ReadWrite, null, HandleInheritability.Inheritable, false);
             }
             return new DisposableAction(Free);
         }

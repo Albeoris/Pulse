@@ -69,8 +69,8 @@ namespace Pulse.FS
                 input.Position = header.BlockOffset;
                 ArchiveListingBlockInfo[] blocks = input.ReadStructs<ArchiveListingBlockInfo>(header.BlocksCount);
 
-                Encoding encoding = Encoding.GetEncoding(1251);
-
+                Encoding encoding = Encoding.GetEncoding(1252);
+                
                 byte[] buff = new byte[0];
                 int blockLength = 0;
 
@@ -106,13 +106,17 @@ namespace Pulse.FS
                     long compressedSize = long.Parse(info[2], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
                     string name = info[3];
 
-                    ArchiveListingEntry entry = new ArchiveListingEntry(name, sector, compressedSize, uncompressedSize);
+                    ArchiveListingEntry entry = new ArchiveListingEntry(name, sector, compressedSize, uncompressedSize)
+                    {
+                        UnknownNumber = entryInfo.UnknownNumber,
+                        UnknownValue = entryInfo.UnknownValue
+                    };
                     result.Add(entry);
 
                     if (name.StartsWith("zone/filelist"))
                     {
-                        string binaryName = Path.Combine(_gameDataPath, String.Format("zone/white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
-                        _accessors.Add(accessor.CreateChild(binaryName, entry));
+                        //string binaryName = Path.Combine(_gameDataPath, String.Format("zone/white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
+                        //_accessors.Add(accessor.CreateChild(binaryName, entry));
                     }
                 }
                 _listings.Add(result);

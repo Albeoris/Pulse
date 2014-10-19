@@ -74,6 +74,7 @@
     <Compile Include="Framework\Exceptions.cs" />
     <Compile Include="Framework\FileCommander.cs" />
     <Compile Include="Framework\FileSegment.cs" />
+    <Compile Include="Framework\FormattingStreamWriter.cs" />
     <Compile Include="Framework\HalfByteStream.cs" />
     <Compile Include="Framework\IDictionaryExm.cs" />
     <Compile Include="Framework\IDisposableExm.cs" />

@@ -52,8 +52,11 @@
     <Compile Include="ArchiveListing\ArchiveListingHeader.cs" />
     <Compile Include="ArchiveListing\ArchiveListingReader.cs" />
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingTextWriter.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZLibHelper.cs" />
+    <Compile Include="ZTR\ZtrFilePacker.cs" />
     <Compile Include="ZTR\ZtrTextWriter.cs" />
     <Compile Include="ZTR\ZtrFileEncoding.cs" />
     <Compile Include="ZTR\ZtrFileEntry.cs" />

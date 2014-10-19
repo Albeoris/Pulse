@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Pulse.Core;
-using Pulse.Text;
 
 namespace Pulse.FS
 {
@@ -35,7 +34,7 @@ namespace Pulse.FS
 
         private ZtrFileEntry[] ExtractBigEndianUncompressedDictionary(int count)
         {
-            if (count < 0 || count > 2048)
+            if (count < 0 || count > 10240)
                 throw new ArgumentOutOfRangeException("count", count.ToString());
 
             ZtrFileEntry[] entries = new ZtrFileEntry[count];
