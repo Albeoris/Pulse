@@ -31,28 +31,27 @@ namespace Pulse.FS
             byte[][] keys = new byte[count][];
             byte[][] values = new byte[count][];
             int[] offsets = new int[count * 2];
+
+            int index = 0;
+            offsets[0] = 4 + count * 2 * 4;
             for (int i = 0; i < count; i++)
             {
                 ZtrFileEntry entry = entries[i];
                 keys[i] = FFXIIITextEncoding.Encoding.GetBytes(entry.Key);
                 values[i] = FFXIIITextEncoding.Encoding.GetBytes(entry.Value);
-                offsets[i + 1] = offsets[i] + keys.Length + 1;
+                offsets[index + 1] = offsets[index++] + keys[i].Length + 1;
+                if (index + 1 < offsets.Length)
+                    offsets[index + 1] = offsets[index++] + values[i].Length + 2;
             }
-            for (int i = 0; i < count; i++)
-            {
-                if (i < count - 1)
-                    offsets[count + i + 1] = offsets[count + i] + values[i].Length + 2;
-            }
+
             _bw.Write(count);
             for (int i = 0; i < count * 2; i++)
-                _bw.Write(4 + count * 2 * 4 + offsets[i]);
+                _bw.Write(offsets[i]);
+
             for (int i = 0; i < count; i++)
             {
                 _bw.Write(keys[i], 0, keys[i].Length);
                 _bw.Write((byte)0);
-            }
-            for (int i = 0; i < count; i++)
-            {
                 _bw.Write(values[i], 0, values[i].Length);
                 _bw.Write((short)0);
             }

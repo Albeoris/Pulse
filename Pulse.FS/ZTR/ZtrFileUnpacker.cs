@@ -41,18 +41,14 @@ namespace Pulse.FS
             entries.InitializeElements();
 
             int[] offsets = new int[count * 2];
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count * 2; i++)
                 offsets[i] = _br.ReadInt32();
 
             for (int i = 0; i < count; i++)
             {
-                _input.SetPosition(offsets[i]);
+                _input.SetPosition(offsets[i * 2]);
                 entries[i].Key = ZtrFileHelper.ReadNullTerminatedString(_input);
-            }
-
-            for (int i = 0; i < count; i++)
-            {
-                _input.SetPosition(offsets[i + count]);
+                _input.SetPosition(offsets[i * 2 + 1]);
                 entries[i].Value = ZtrFileHelper.ReadNullTerminatedString(_input);
             }
 

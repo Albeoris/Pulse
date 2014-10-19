@@ -59,5 +59,11 @@ namespace Pulse.FS
         {
             return _binaryFile.CreateViewStream(entry.Offset, entry.Size);
         }
+
+        public Stream OpenBinaryCapacity(ArchiveListingEntry entry)
+        {
+            long capacity = ((entry.Size / 0x800) + 1) * 0x800;
+            return _binaryFile.CreateViewStream(entry.Offset, capacity);
+        }
     }
 }

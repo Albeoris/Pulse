@@ -6,8 +6,8 @@
 
         public readonly string Name;
         public readonly long Sector;
-        public readonly long Size;
-        public readonly long UncompressedSize;
+        public long Size;
+        public long UncompressedSize;
         public short UnknownNumber, UnknownValue;
 
         public ArchiveListingEntry(string name, long sector, long size, long uncompressedSize)
