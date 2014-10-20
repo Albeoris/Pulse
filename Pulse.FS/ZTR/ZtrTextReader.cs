@@ -24,7 +24,7 @@ namespace Pulse.FS
                 for (int i = 0; i < count; i++)
                 {
                     ZtrFileEntry entry = new ZtrFileEntry();
-                    string[] line = sr.ReadLine().Split(';');
+                    string[] line = sr.ReadLine().Split('|');
                     entry.Key = line[1];
                     entry.Value = line[2];
                     result[int.Parse(line[0], CultureInfo.InvariantCulture)] = entry;

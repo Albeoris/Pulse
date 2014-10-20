@@ -22,7 +22,7 @@ namespace Pulse.FS
                 for (int i = 0; i < entries.Length; i++)
                 {
                     ZtrFileEntry entry = entries[i];
-                    sw.WriteLine("{0};{1};{2}", i.ToString("D4", CultureInfo.InvariantCulture), entry.Key, entry.Value);
+                    sw.WriteLine("{0}|{1}|{2}", i.ToString("D4", CultureInfo.InvariantCulture), entry.Key, entry.Value);
                 }
             }
         }
