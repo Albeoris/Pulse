@@ -5,7 +5,7 @@
         private const int SectorSize = 0x800;
 
         public readonly string Name;
-        public readonly long Sector;
+        public long Sector;
         public long Size;
         public long UncompressedSize;
         public short UnknownNumber, UnknownValue;

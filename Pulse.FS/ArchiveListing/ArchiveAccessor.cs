@@ -5,7 +5,7 @@ namespace Pulse.FS
 {
     public sealed class ArchiveAccessor
     {
-        private int _level = 0;
+        private int _level;
 
         private readonly SharedMemoryMappedFile _binaryFile;
         private readonly SharedMemoryMappedFile _listingFile;
@@ -64,6 +64,25 @@ namespace Pulse.FS
         {
             long capacity = ((entry.Size / 0x800) + 1) * 0x800;
             return _binaryFile.CreateViewStream(entry.Offset, capacity);
+        }
+
+        public Stream OpenOrAppendBinary(ArchiveListingEntry entry, int newSize)
+        {
+            try
+            {
+                long capacity = MathEx.RoundUp(entry.Size, 0x800);
+                if (newSize <= capacity)
+                    return OpenBinaryCapacity(entry);
+
+                long offset;
+                Stream result = _binaryFile.IncreaseSize(MathEx.RoundUp(newSize, 0x800), out offset);
+                entry.Sector = (int)(offset / 0x800);
+                return result;
+            }
+            finally
+            {
+                entry.Size = newSize;
+            }
         }
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="Framework\IntPtrExm.cs" />
     <Compile Include="Framework\LambdaComparer.cs" />
     <Compile Include="Framework\ListExm.cs" />
+    <Compile Include="Framework\MathEx.cs" />
     <Compile Include="Framework\PathComparer.cs" />
     <Compile Include="Framework\PathEx.cs" />
     <Compile Include="Framework\SafeGCHandle.cs" />

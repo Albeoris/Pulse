@@ -9,7 +9,7 @@ namespace Pulse.Core
     {
         private readonly string _filePath;
         private readonly object _lock = new object();
-        private int _counter;
+        private long _counter;
         private MemoryMappedFile _mmf;
 
         public SharedMemoryMappedFile(string filePath)
@@ -27,7 +27,12 @@ namespace Pulse.Core
 
         public Stream RecreateFile()
         {
-            return File.Create(_filePath);
+            lock (_lock)
+            {
+                if (Interlocked.Read(ref _counter) != 0)
+                    throw new NotSupportedException();
+                return File.Create(_filePath);
+            }
         }
 
         public Stream CreateViewStream(long offset, long size)
@@ -56,22 +61,39 @@ namespace Pulse.Core
             return new DisposableAction(Free);
         }
 
-        private IDisposable Acquire(int size)
-        {
-            lock (_lock)
-            {
-                if (Interlocked.Increment(ref _counter) == 1)
-                    _mmf = MemoryMappedFile.CreateFromFile(File.Create(_filePath, size), null, size, MemoryMappedFileAccess.ReadWrite, null, HandleInheritability.Inheritable, false);
-            }
-            return new DisposableAction(Free);
-        }
-
         private void Free()
         {
             lock (_lock)
             {
                 if (Interlocked.Decrement(ref _counter) == 0)
                     _mmf.Dispose();
+            }
+        }
+
+        public Stream IncreaseSize(int value, out long offset)
+        {
+            lock (_lock)
+            {
+                if (Interlocked.Read(ref _counter) != 0)
+                    throw new NotSupportedException();
+
+                FileStream file = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                try
+                {
+                    offset = MathEx.RoundUp(file.Length, 0x800);
+                    file.SetLength(offset + value);
+                    _mmf = MemoryMappedFile.CreateFromFile(file, null, 0, MemoryMappedFileAccess.ReadWrite, null, HandleInheritability.Inheritable, false);
+                }
+                catch
+                {
+                    file.SafeDispose();
+                    throw;
+                }
+
+                Interlocked.Increment(ref _counter);
+                DisposableStream result = new DisposableStream(_mmf.CreateViewStream(offset, value, MemoryMappedFileAccess.ReadWrite));
+                result.AfterDispose.Add(new DisposableAction(Free));
+                return result;
             }
         }
     }

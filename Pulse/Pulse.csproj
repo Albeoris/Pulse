@@ -158,6 +158,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pulse.Core\Pulse.Core.csproj">
+      <Project>{07C19D4D-35B4-45FB-9EFE-9E2DEB794182}</Project>
+      <Name>Pulse.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pulse.FS\Pulse.FS.csproj">
       <Project>{0D15F2D9-F585-4FE8-A85B-6FB8A681F487}</Project>
       <Name>Pulse.FS</Name>
