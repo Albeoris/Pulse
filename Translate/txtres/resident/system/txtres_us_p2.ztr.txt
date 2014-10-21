@@ -1,0 +1,1841 @@
+﻿\txtres\resident\system\txtres_us.ztr
+5837
+3998║$m_res_mn_s2302║The Nascent Throne{End}{Question}
+3999║$m_res_mn_s9800║Park Square{End}{Question}
+4000║$m_res_mn_s9801║Chocobo Corral{End}{Question}
+4001║$m_res_mn_s9802║The Mall{End}{Question}
+4002║$m_res_mn_s9803║The Clock Tower{End}{Question}
+4003║$m_res_mn_s9804║The Fiendlord's Keep{End}{Question}
+4004║$m_res_ms_start║MISSION COMMENCED!{End}{Question}
+4005║$m_res_sel_ccl║Cancel{End}{Question}
+4006║$m_res_sel_save║Save{End}{Question}
+4007║$m_res_sel_shop║Shop{End}{Question}
+4008║$m_res_vb_mes0║POWER{End}{Question}
+4009║$m_res_vb_mes1║{Key Cross} Attack{End}{Question}
+4010║$m_tips00_p1║You possess an advanced digital journal known as a {Color Gold}datalog{Color SkyBlue} that autonomously streams information deemed pertinent.{Text NewLine}{Text NewLine}Whenever the datalog records a new entry, a notice will appear in the upper left corner of{Text NewLine}the screen. To peruse entries, press {Key Triangle} to open the main menu, and then select {Color Gold}Datalog{Color SkyBlue}.{End}{Question}
+4011║$m_tips00_t║The Datalog{End}{Question}
+4012║$m_tips01_p1║All enemies guard areas limited by their fields of vision or other means of detection. Upon entering a guarded area, there is a chance that the enemy or enemies patrolling it will take notice.{Text NewLine}{Text NewLine}If your trespass is observed, a warning icon ({Icon Attention}) will appear over the heads of any enemies alerted to your presence. These foes will then become hostile, taking up defensive positions or rushing forward to attack.{End}{Question}
+4013║$m_tips01_p2║If your party leader comes into contact with an enemy, a battle will begin.{Text NewLine}{Text NewLine}Battles begin normally if the enemy was aware of the party's presence. If the enemy was caught off guard, however, the party will be able to make a preemptive strike.{End}{Question}
+4014║$m_tips01_p3║Certain enemies, like {Color Red}Zwerg scandroids{Color SkyBlue}, have extremely narrow fields of vision and can easily be approached unnoticed. It is always advantageous to do so if possible, as initiating a preemptive strike forces enemies to enter battle with their chain gauges near the staggering threshold.{End}{Question}
+4015║$m_tips01_t║Aggression and Preemptive Strikes{End}{Question}
+4016║$m_tips02_p1║These Herculean combat machines are capable of clearing away enemy hordes with mighty blows, or simply trampling over foes who stand in their path.{Text NewLine}{Text NewLine}Attacking with {Key Cross} consumes power, but breaking through fences will recharge the machine's power reserves.{Text NewLine}{Text NewLine}While piloting an armament, enemies cannot harm the party.{End}{Question}
+4017║$m_tips02_t║Pulse Armaments{End}{Question}
+4018║$m_tips03_p1║{Color Gold}Cie'th Stones{Color SkyBlue} lie scattered about the world of Gran Pulse{Var85 87}the final remains of failed former l'Cie.{Text NewLine}{Text NewLine}Upon touching a Cie'th Stone, you will be given the opportunity to undertake its unfinished Focus as a mission, hunting down whatever terror it had been tasked with slaying.{End}{Question}
+4019║$m_tips03_p2║Finding and defeating the mark will complete the mission, earning you special rewards.{Text NewLine}{Text NewLine}Complete enough missions, and previously dormant Cie'th Stones will begin to awaken, presenting you with new and more rewarding challenges.{End}{Question}
+4020║$m_tips03_p3║It is only possible to accept one mission at a time. Take on a new mission without completing your previous one, and the earlier mission will be abandoned.{Text NewLine}{Text NewLine}You can check the details of your current mission, including the whereabouts of your mark, on the map screen at any time.{End}{Question}
+4021║$m_tips03_t║Cie'th Stones and Missions{End}{Question}
+4022║$m_tips04_p1║These majestic yellow birds allow you to cover greater distances than you could on foot,{Text NewLine}in only a fraction of the time. There are also locations that only chocobos can reach,{Text NewLine}indicated by swirling yellow indicators on the ground.{Text NewLine}{Text NewLine}To mount a chocobo, approach it and press {Key Cross}.{End}{Question}
+4023║$m_tips04_p2║Chocobos are courageous creatures, but even they have their limits. Come into contact with an enemy while riding, and the chocobo will lose one unit of morale.{Text NewLine}{Text NewLine}Should a chocobo lose all of its morale, it will throw its rider and flee. Otherwise, lost morale will gradually return, so long as no more close encounters occur.{End}{Question}
+4024║$m_tips04_p3║Chocobos also possess an uncanny knack for detecting buried treasure. When you pass{Text NewLine}near hidden treasure while riding a chocobo, an icon will appear above the bird's head.{Text NewLine}The closer you come to the treasure, the faster this icon will bounce.{Text NewLine}{Text NewLine}Once you have discerned the treasure's location, press {Key Cross} to dig it up.{End}{Question}
+4025║$m_tips04_t║Chocobos{End}{Question}
+4026║$m_tips05_p1║You can change the composition of your battle team by pressing {Key Triangle} to open the main menu, and then selecting {Color Gold}Paradigms{Color SkyBlue}.{Text NewLine}{Text NewLine}Within the {Color Gold}Paradigms{Color SkyBlue} menu, select {Color Gold}Battle Team{Color SkyBlue} and you will be able to choose the battle team's leader and members.{Text NewLine}{Text NewLine}Changing the members of your battle team will reset the party's paradigm deck. Select {Color Gold}Customize{Color SkyBlue} to check your current paradigm and alter it if desired.{End}{Question}
+4027║$m_tips05_t║Battle Team Formation{End}{Question}
+4028║$m_tips06_p1║You can upgrade weapons and accessories at {Color Gold}Save Stations{Color SkyBlue} using your {Color Gold}Omni-kit{Color SkyBlue} and the various components you collect on your journey.{Text NewLine}{Text NewLine}First, approach a Save Station and press {Key Cross} to access it. Then select {Color Gold}Upgrade{Color SkyBlue} from the Save Station menu to access the workbench.{End}{Question}
+4029║$m_tips06_p2║After choosing {Color Gold}Upgrade{Color SkyBlue}, select the weapon or accessory that you wish to improve.{Text NewLine}{Text NewLine}Next, you will need to select the type of component you wish to use for the upgrade, as well as the quantity. The combined {Color Gold}EXP{Color SkyBlue} value of the chosen components will then be applied to the target piece of equipment.{Text NewLine}{Text NewLine}After enough EXP has been spent on a weapon or accessory, its level will increase, improving its abilities and attributes.{End}{Question}
+4030║$m_tips06_p3║Certain components bestow a bonus to any EXP spent on a piece of equipment. By utilizing these components, you will be able to make more efficient upgrades.{Text NewLine}{Text NewLine}Likewise, some components reduce an item's EXP bonus. Careful consideration is required when deciding which components to employ.{End}{Question}
+4031║$m_tips06_p4║Once a particular piece of equipment has reached its maximum potential, its level will be replaced by a star ({Var81 154}). At this point no further level advancement is possible, but the item can be transformed into an entirely different one by means of specialized components. When this happens, both its name and properties will change.{Text NewLine}{Text NewLine}A newly transformed item may initially seem weaker than it did in its previous form, but unlike its fully upgraded predecessor, it will be eligible for level advancement. Through further upgrades, it can be made even more powerful than its earlier incarnation.{End}{Question}
+4032║$m_tips06_p5║Unwanted equipment can be scrapped for parts by selecting {Color Gold}Dismantle{Color SkyBlue}. The equipment itself will be destroyed, but you will be able to salvage components, some of which can be obtained in no other way.{Text NewLine}{Text NewLine}There exist well over 100 different components. Obtain as many as possible, and experiment with their effects in order to determine the most efficient and effective ways to customize your arsenal.{End}{Question}
+4033║$m_tips06_t║Upgrading Equipment{End}{Question}
+4034║$m_tips07_p1║These open-air pens{Var85 87}designed to restrain experimental bioweapons{Var85 87}are equipped with electromagnetic containment fences linked to a site-wide biorhythmic monitoring system.{Text NewLine}{Text NewLine}Fences deactivate automatically when biorhythms for known high-risk species are no longer detected in their proximity.{End}{Question}
+4035║$m_tips07_t║Wildlife Auto-containment Paddocks{End}{Question}
+4036║$m_tips08_p1║These spheres modulate precipitation levels in the surrounding area.{Text NewLine}{Text NewLine}Certain indigenous fauna exhibit rain-shy behavior, taking cover during storms. However, inducing showers can result in encounters with otherwise elusive hydrophilic wildlife.{End}{Question}
+4037║$m_tips08_t║Climate Control Orbs{End}{Question}
+4038║$m_tips09_p1║Certain Cie'th Stones function as teleporters, or {Color Gold}Waystones{Color SkyBlue}, once you have completed their missions.{Text NewLine}{Text NewLine}Using these stones, you can travel instantly to other Waystones that you have activated previously.{End}{Question}
+4039║$m_tips09_t║Cie'th Waystones{End}{Question}
+4040║$m_tips10_p1║These Cie'th Stone emanations block roads and pathways all across Gran Pulse. Complete the mission of the Cie'th Stone near them, and they will dissipate.{Text NewLine}{Text NewLine}Be warned that the marks for these missions are formidable foes, and you need not slay them all. Should you decide to undertake one of these missions, be prepared for a grievous challenge.{End}{Question}
+4041║$m_tips10_t║Cie'th Palings{End}{Question}
+4042║$m_tips11_p1║The chocobo chick has taken wing! Find where the fugitive fledgling is hiding. It could not have gone far...yet.{End}{Question}
+4043║$m_tips11_t║Flight of the Chocobo{End}{Question}
+4044║$m_tips12_p1║To continue ascending Taejin's Tower, you must accept and complete missions from the three colossal {Color Gold}Menhirrim{Color SkyBlue} on the tower's second tier.{Text NewLine}{Text NewLine}The route to the tower's apex will remain closed until all of the Menhirrim's tasks are done.{End}{Question}
+4045║$m_tips12_t║The Menhirrim{End}{Question}
+4046║$m_tips13_p1║Vanille's robotic pal, {Color Gold}Bhakti{Color SkyBlue}, is in dire need of repair. You should be able to find all 5 of the necessary replacement parts within the village of Oerba.{End}{Question}
+4047║$m_tips13_t║Repairing Bhakti{End}{Question}
+4048║$m_tips15_p1║Many and various enemies stalk the roads that you must travel. Upon entering an enemy's detection radius, the mini-map in the upper right corner of the screen will flash in warning.{Text NewLine}{Text NewLine}Coming into contact with any enemy will initiate a battle.{End}{Question}
+4049║$m_tips15_t║Enemy Encounters{End}{Question}
+4050║$m_tips16_p1║Shrouds are special single-use aerosols that can only be used outside of battle, and grant the party tactical advantages.{Text NewLine}{Text NewLine}{Color Gold}Fortisol{Color SkyBlue} and {Color Gold}Aegisol{Color SkyBlue} bestow their bonuses at the start of battle.{Text NewLine}{Text NewLine}{Color Gold}Deceptisol{Color SkyBlue}, on the other hand, shields the party from enemy detection, eliminating any concerns of being spotted and attacked. It is useful for avoiding combat, and also for launching preemptive strikes.{End}{Question}
+4051║$m_tips16_p2║Enemies like {Color Red}pantherons{Color SkyBlue}, whose fields of vision allow them to monitor wide areas, normally turn hostile and display warning icons ({Icon Attention}) as soon as they are approached. Apply a spray{Text NewLine}of {Color Gold}Deceptisol{Color SkyBlue}, however, and you will have no trouble gaining a preemptive strike.{Text NewLine}{Text NewLine}{Text NewLine}To open the shroud menu, press {Key L1} while exploring. Select a shroud with {Key 95} and then{Text NewLine}press {Key Cross} to use it. To close the menu without using a shroud, press {Key L1} or {Key Circle}.{Text NewLine}{Text NewLine}Shroud effects wear off after a brief duration, so be sure to time their application{Text NewLine}carefully.{End}{Question}
+4052║$m_tips16_t║Shrouds{End}{Question}
+4053║$m_tips17_p1║Hope has access to the {Color WhitePurple}Synergist{Color SkyBlue} role.{Text NewLine}{Text NewLine}Synergists play a supporting role in combat, using their abilities to enhance and strengthen themselves and their allies.{Text NewLine}{Text NewLine}As a Synergist, Hope can learn abilities to improve the party's defensive capabilities.{End}{Question}
+4054║$m_tips17_p2║Currently, Hope can use the {Color Gold}Protect{Color SkyBlue} spell, which raises the target's resistance to physical damage. As he develops in the role of Synergist, Hope will also be able to learn {Color Gold}Shell{Color SkyBlue}, which boosts magic resistance.{Text NewLine}{Text NewLine}With both of these spells at his disposal, Hope will be able to help the party endure a wide variety of attacks. When he has gained adequate {Color Gold}CP{Color SkyBlue}, open the main menu with {Key Triangle} and select {Color Gold}Crystarium{Color SkyBlue} to teach him {Color Gold}Shell{Color SkyBlue} via crystogenesis.{End}{Question}
+4055║$m_tips17_t║Role: Synergist{End}{Question}
+4056║$m_tips18_p1║Sazh has gained access to the {Color WhitePurple}Synergist{Color SkyBlue} role.{Text NewLine}{Text NewLine}Synergists play a supporting role in combat, using their abilities to enhance and strengthen themselves and their allies.{Text NewLine}{Text NewLine}As a Synergist, Sazh can learn abilities to improve the party's offensive capabilities.{End}{Question}
+4057║$m_tips18_p2║Currently, Sazh can use the {Color Gold}Faith{Color SkyBlue} spell, which raises the target's {Color Gold}Magic{Color SkyBlue} attribute, increasing the damage dealt by that target's spells. As he develops in the role of Synergist, Sazh will also be able to learn {Color Gold}Bravery{Color SkyBlue}, which boosts the target's {Color Gold}Strength{Color SkyBlue}.{Text NewLine}{Text NewLine}With both of these spells at his disposal, Sazh will be able to vastly improve the party's effectiveness against a variety of opponents. When he has gained adequate {Color Gold}CP{Color SkyBlue}, open the main menu with {Key Triangle} and select {Color Gold}Crystarium{Color SkyBlue} to teach him {Color Gold}Bravery{Color SkyBlue} via crystogenesis.{End}{Question}
+4058║$m_tips18_t║Role: Synergist{End}{Question}
+4059║$m_tips19_p1║Snow has access to the {Color SandOrange}Sentinel{Color SkyBlue} role.{Text NewLine}{Text NewLine}Sentinels are defense specialists. By drawing enemy attacks and mitigating the damage via defensive abilities, they are able to protect the other members of their battle team.{Text NewLine}{Text NewLine}A Sentinel's abilities are essential when it comes to protecting battle team members with low HP like Hope. Draw enemy aggression away from allies with the {Color Gold}Provoke{Color SkyBlue} ability while defending with {Color Gold}Steelguard{Color SkyBlue} to  minimize damage to weaker party members.{End}{Question}
+4060║$m_tips19_p2║Sentinels cannot use the {Color Gold}Attack{Color SkyBlue} command, but they can still damage enemies. Select the {Color Gold}Vendetta{Color SkyBlue} ability, and the Sentinel will counterattack enemies when attacked.{Text NewLine}{Text NewLine}Sentinels are at their best against numerous opponents, when they can use their defensive abilities to shield allies while dealing damage via counterattacks. They become less effective when only a few enemies remain. At that point, it is best to turn Sentinels into {Color Rose}Commandos{Color SkyBlue} in order to finish off remaining enemies more quickly.{End}{Question}
+4061║$m_tips19_t║Role: Sentinel{End}{Question}
+4062║$m_tips20_p1║A powerful {Color Red}scalebeast{Color SkyBlue} awaits you ahead. It could be a difficult fight for only two people.{Text NewLine}{Text NewLine}However, this enemy is slow on its feet, meaning you can easily {Color Gold}avoid{Color SkyBlue} the encounter if you so desire.{Text NewLine}{Text NewLine}You will face many harrowing challenges as you press on. When you feel your enemies may be too strong, {Color Gold}avoid{Color SkyBlue} them.{End}{Question}
+4063║$m_tips20_t║Avoiding Encounters{End}{Question}
+4064║$m_tips21_p1║At times, you will encounter enemy groups engaged in battle with one another. With their attentions occupied, it becomes easier for you to initiate combat with a preemptive strike.{Text NewLine}{Text NewLine}Coming into contact with a member of either side will initiate a battle against both. However, the enemies may not even notice your presence at first, continuing to fight one another instead. When this occurs, it is most effective to concentrate all of your attacks against the side you expect to have the most trouble defeating.{Text NewLine}{Text NewLine}Once you have defeated the first group of enemies with help from their foes, you can turn and fight the already-weakened second faction. Pick your targets poorly, and you may be left waging a long and bitter battle against overwhelming odds.{End}{Question}
+4065║$m_tips21_t║Three-way Battles{End}{Question}
+4066║$ma_000_00║Ruin
+4067║$ma_000_00h║Deal non-elemental magic damage to target.
+4068║$ma_020_00║Ruinga
+4069║$ma_020_00h║Deal non-elemental magic damage to targets within a wide radius.
+4070║$material_j000║Insulated Cabling{End}{Separator}Insulated Cabling{End}{Article}a length of{End}{ArticleMany}lengths of
+4071║$material_j000h║Cabling protected by a layer of insulation.
+4072║$material_j001║Fiber-optic Cable{End}{Separator}Fiber-optic Cable{End}{Article}a strand of{End}{ArticleMany}lengths of
+4073║$material_j001h║A high-grade cable capable of transmitting data as light.
+4074║$material_j002║Liquid Crystal Lens{End}{Separator}Liquid Crystal Lenses{End}{Article}a
+4075║$material_j002h║A lens with an electrically modulated refractive index.
+4076║$material_j003║Ring Joint{End}{Separator}Ring Joints{End}{Article}a
+4077║$material_j003h║A circular joint crafted for low-friction rotation.
+4078║$material_j004║Epicyclic Gear{End}{Separator}Epicyclic Gears{End}{Article}an
+4079║$material_j004h║A gear train frequently employed in transmissions.
+4080║$material_j005║Crankshaft{End}{Separator}Crankshafts{End}{Article}a
+4081║$material_j005h║An engine part that converts piston motion into rotative force.
+4082║$material_j006║Electrolytic Capacitor{End}{Separator}Electrolytic Capacitors{End}{Article}an
+4083║$material_j006h║An electronic component used in power supply filters.
+4084║$material_j007║Flywheel{End}{Separator}Flywheels{End}{Article}a
+4085║$material_j007h║A device that uses a disc to store rotational energy.
+4086║$material_j008║Sprocket{End}{Separator}Sprockets{End}{Article}a
+4087║$material_j008h║A toothed wheel designed to transmit rotary motion.
+4088║$material_j009║Actuator{End}{Separator}Actuators{End}{Article}an
+4089║$material_j009h║A device that generates motion in response to a control signal.
+4090║$material_j010║Spark Plug{End}{Separator}Spark Plugs{End}{Article}a
+4091║$material_j010h║An inexpensive electrical device for igniting fuel vapors.
+4092║$material_j011║Iridium Plug{End}{Separator}Iridium Plugs{End}{Article}an
+4093║$material_j011h║A miniaturized precision spark plug.
+4094║$material_j012║Needle Valve{End}{Separator}Needle Valves{End}{Article}a
+4095║$material_j012h║A needle-shaped valve for precisely regulating the flow of fluid.
+4096║$material_j013║Butterfly Valve{End}{Separator}Butterfly Valves{End}{Article}a
+4097║$material_j013h║A sophisticated, self-repairing throttling valve.
+4098║$material_j014║Analog Circuit{End}{Separator}Analog Circuits{End}{Article}an
+4099║$material_j014h║A simple but durable analog circuit board.
+4100║$material_j015║Digital Circuit{End}{Separator}Digital Circuits{End}{Article}a
+4101║$material_j015h║An advanced digital integrated circuit.
+4102║$material_j016║Gyroscope{End}{Separator}Gyroscopes{End}{Article}a
+4103║$material_j016h║A rotational sensor commonly used in attitude control systems.
+4104║$material_j017║Electrode{End}{Separator}Electrodes{End}{Article}an
+4105║$material_j017h║A biometric sensor for monitoring brain activity.
+4106║$material_j018║Ceramic Armor{End}{Separator}Ceramic Armor{End}{Article}a tile of{End}{ArticleMany}tiles of
+4107║$material_j018h║Armor made from the firing and resultant hardening of a clay-like putty.
+4108║$material_j019║Chobham Armor{End}{Separator}Chobham Armor{End}{Article}a tile of{End}{ArticleMany}tiles of
+4109║$material_j019h║Composite armor that neutralizes impacts via a process known as crack deflection.
+4110║$material_j020║Radial Bearing{End}{Separator}Radial Bearings{End}{Article}a
+4111║$material_j020h║A lightweight bearing employing balls of composite alloy.
+4112║$material_j021║Thrust Bearing{End}{Separator}Thrust Bearings{End}{Article}a
+4113║$material_j021h║A rotary bearing designed to control axial forces.
+4114║$material_j022║Solenoid{End}{Separator}Solenoids{End}{Article}a
+4115║$material_j022h║A cylindrically wound wire capable of generating a magnetic field.
+4116║$material_j023║Mobius Coil{End}{Separator}Mobius Coils{End}{Article}a
+4117║$material_j023h║A gravitational inhibitor critical to the functions of AMP technology.
+4118║$material_j024║Tungsten Tube{End}{Separator}Tungsten Tubes{End}{Article}a
+4119║$material_j024h║A thin-walled tube made of a durable tungsten alloy.
+4120║$material_j025║Titanium Tube{End}{Separator}Titanium Tubes{End}{Article}a
+4121║$material_j025h║A tube that, although expensive to manufacture, offers peerless durability.
+4122║$material_j026║Passive Detector{End}{Separator}Passive Detectors{End}{Article}a
+4123║$material_j026h║A sensor that uses phase difference measurements to detect targets.
+4124║$material_j027║Active Detector{End}{Separator}Active Detectors{End}{Article}an
+4125║$material_j027h║A sensor that emits directed pulses to track targets with pinpoint precision.
+4126║$material_j028║Transformer{End}{Separator}Transformers{End}{Article}a
+4127║$material_j028h║A device that transfers electricity across circuits via mutual induction.
+4128║$material_j029║Amplifier{End}{Separator}Amplifiers{End}{Article}an
+4129║$material_j029h║A device that magnifies electrical energy.
+4130║$material_j030║Carburetor{End}{Separator}Carburetors{End}{Article}a
+4131║$material_j030h║A device that blends air with liquid fuel to facilitate combustion.
+4132║$material_j031║Supercharger{End}{Separator}Superchargers{End}{Article}a
+4133║$material_j031h║An air compressor that permits sustained amplification of power output.
+4134║$material_j032║Piezoelectric Element{End}{Separator}Piezoelectric Elements{End}{Article}a
+4135║$material_j032h║A device that generates an electric charge through the application of stress.
+4136║$material_j033║Crystal Oscillator{End}{Separator}Crystal Oscillators{End}{Article}a
+4137║$material_j033h║A circuit that produces a signal determined by the resonance of a vibrating crystal.
+4138║$material_j034║Paraffin Oil{End}{Separator}Paraffin Oil{End}{Article}a flask of{End}{ArticleMany}flasks of
+4139║$material_j034h║A flammable lubricant formed of a mixture of heavy alkanes.
+4140║$material_j035║Silicone Oil{End}{Separator}Silicone Oil{End}{Article}a flask of{End}{ArticleMany}flasks of
+4141║$material_j035h║An artificially refined nonflammable lubricant suitable for clinical applications.
+4142║$material_j036║Synthetic Muscle{End}{Separator}Synthetic Muscle{End}{Article}a strand of{End}{ArticleMany}strands of
+4143║$material_j036h║A robotic component composed of synthetic muscle fibers.
+4144║$material_j037║Turboprop{End}{Separator}Turboprops{End}{Article}a
+4145║$material_j037h║A power plant employing a turbine to drive a propeller.
+4146║$material_j038║Turbojet{End}{Separator}Turbojets{End}{Article}a
+4147║$material_j038h║A power plant that uses exhaust as the impetus for its output.
+4148║$material_j039║Tesla Turbine{End}{Separator}Tesla Turbines{End}{Article}a
+4149║$material_j039h║An exceptionally durable power plant invented by a maverick engineer.
+4150║$material_j040║Polymer Emulsion{End}{Separator}Polymer Emulsion{End}{Article}a vial of{End}{ArticleMany}vials of
+4151║$material_j040h║A colloidal dispersion used as a raw material in bioengineering.
+4152║$material_j041║Ferroelectric Film{End}{Separator}Ferroelectric Film{End}{Article}a strip of{End}{ArticleMany}strips of
+4153║$material_j041h║A film with unique properties permitting spontaneous polarization.
+4154║$material_j042║Superconductor{End}{Separator}Superconductors{End}{Article}a
+4155║$material_j042h║A material possessing no electrical resistivity under certain conditions.
+4156║$material_j043║Perfect Conductor{End}{Separator}Perfect Conductors{End}{Article}a
+4157║$material_j043h║A conductor with zero electrical resistance and a fixed internal magnetic field.
+4158║$material_j044║Particle Accelerator{End}{Separator}Particle Accelerators{End}{Article}a
+4159║$material_j044h║A device that smashes ions at high speeds in order to release their intrinsic energy.
+4160║$material_j045║Ultracompact Reactor{End}{Separator}Ultracompact Reactors{End}{Article}an
+4161║$material_j045h║A miniaturized fusion reactor whose reactions produce tremendous energy.
+4162║$material_j046║Credit Chip{End}{Separator}Credit Chips{End}{Article}a
+4163║$material_j046h║Currency used for military remuneration. Can be sold for a premium.
+4164║$material_j047║Incentive Chip{End}{Separator}Incentive Chips{End}{Article}an
+4165║$material_j047h║Bonus credit used for military incentives. Can be sold for a premium.
+4166║$material_j048║Cactuar Doll{End}{Separator}Cactuar Dolls{End}{Article}a
+4167║$material_j048h║A doll with a button-activated needle firing mechanism. Can be sold for a premium.
+4168║$material_j049║Moogle Puppet{End}{Separator}Moogle Puppets{End}{Article}a
+4169║$material_j049h║A toy that says 'Kupo' when its bobble is squeezed. Can be sold for a premium.
+4170║$material_j050║Tonberry Figurine{End}{Separator}Tonberry Figurines{End}{Article}a
+4171║$material_j050h║A figurine said to bear the grudges of former owners. Can be sold for a premium.
+4172║$material_j051║Plush Chocobo{End}{Separator}Plush Chocobos{End}{Article}a
+4173║$material_j051h║A much sought after chocobo doll. Can be sold for a premium.
+4174║$material_lankh║Rank: {VarF7 64}   EXP: {VarF7 65}
+4175║$material_m000║Begrimed Claw{End}{Separator}Begrimed Claws{End}{Article}a
+4176║$material_m000h║A claw caked with dirt and grease.
+4177║$material_m001║Bestial Claw{End}{Separator}Bestial Claws{End}{Article}a
+4178║$material_m001h║The gruesomely sharp claw of some fierce beast.
+4179║$material_m002║Gargantuan Claw{End}{Separator}Gargantuan Claws{End}{Article}a
+4180║$material_m002h║An impressively large but prohibitively heavy claw.
+4181║$material_m003║Hellish Talon{End}{Separator}Hellish Talons{End}{Article}a
+4182║$material_m003h║A fearsome talon that could no doubt shred steel as easily as paper.
+4183║$material_m004║Shattered Bone{End}{Separator}Shattered Bones{End}{Article}a
+4184║$material_m004h║A severely fractured animal bone.
+4185║$material_m005║Sturdy Bone{End}{Separator}Sturdy Bones{End}{Article}a
+4186║$material_m005h║A stout bone that must once have supported a heavy frame.
+4187║$material_m006║Otherworldly Bone{End}{Separator}Otherworldly Bones{End}{Article}an
+4188║$material_m006h║A most peculiar bone that could have come from no earthly creature.
+4189║$material_m007║Ancient Bone{End}{Separator}Ancient Bones{End}{Article}an
+4190║$material_m007h║A battle-scarred bone whose pearly sheen belies its true age.
+4191║$material_m008║Fell Spine{End}{Separator}Fell Spines{End}{Article}a
+4192║$material_m008h║The hideous thorn-covered spine of some foul creature.
+4193║$material_m009║Moistened Scale{End}{Separator}Moistened Scales{End}{Article}a
+4194║$material_m009h║A sodden scale that reeks of the sea and death.
+4195║$material_m010║Seapetal Scale{End}{Separator}Seapetal Scales{End}{Article}a
+4196║$material_m010h║A delicate silver scale with a form reminiscent of a flower petal.
+4197║$material_m011║Abyssal Scale{End}{Separator}Abyssal Scales{End}{Article}an
+4198║$material_m011h║A thick, deep-green scale that looks strong enough to withstand great pressure.
+4199║$material_m012║Seaking's Beard{End}{Separator}Seaking's Beards{End}{Article}a
+4200║$material_m012h║A rare inverted scale that grows from the throat of an elusive sea creature.
+4201║$material_m013║Segmented Carapace{End}{Separator}Segmented Carapaces{End}{Article}a
+4202║$material_m013h║An animal's bony armor. It feels like limestone to the touch.
+4203║$material_m014║Iron Shell{End}{Separator}Iron Shells{End}{Article}an
+4204║$material_m014h║The metal-rich and malleable shell of some beast.
+4205║$material_m015║Armored Shell{End}{Separator}Armored Shells{End}{Article}an
+4206║$material_m015h║A shell composed of metallic crystal, rivaling composite armors in strength.
+4207║$material_m016║Regenerating Carapace{End}{Separator}Regenerating Carapaces{End}{Article}a
+4208║$material_m016h║A resilient carapace capable of repairing its own wounds.
+4209║$material_m017║Chipped Fang{End}{Separator}Chipped Fangs{End}{Article}a
+4210║$material_m017h║A fang missing its tip, perhaps having bitten off more than it could chew.
+4211║$material_m018║Wicked Fang{End}{Separator}Wicked Fangs{End}{Article}a
+4212║$material_m018h║A twisted fang that seems to pulsate with diabolic power.
+4213║$material_m019║Monstrous Fang{End}{Separator}Monstrous Fangs{End}{Article}a
+4214║$material_m019h║A fearsome tri-pronged tooth that must have belonged to an equally fearsome monster.
+4215║$material_m020║Sinister Fang{End}{Separator}Sinister Fangs{End}{Article}a
+4216║$material_m020h║An elongated fang with a wicked, stiletto-sharp tip.
+4217║$material_m021║Severed Wing{End}{Separator}Severed Wings{End}{Article}a
+4218║$material_m021h║A once-proud wing that has been brutally hewn at its base.
+4219║$material_m022║Scaled Wing{End}{Separator}Scaled Wings{End}{Article}a
+4220║$material_m022h║An unusual wing dusted with dark scales.
+4221║$material_m023║Abominable Wing{End}{Separator}Abominable Wings{End}{Article}an
+4222║$material_m023h║A wing marked with a strange spiral pattern that emits a mild phosphorescence.
+4223║$material_m024║Menacing Wings{End}{Separator}Menacing Wings{End}{Article}a pair of{End}{ArticleMany}pairs of
+4224║$material_m024h║A pair of wings that, although featherlight, may as well be wrought of steel.
+4225║$material_m025║Molted Tail{End}{Separator}Molted Tails{End}{Article}a
+4226║$material_m025h║The shed tail of some creature, exceedingly smooth on its inner side.
+4227║$material_m026║Barbed Tail{End}{Separator}Barbed Tails{End}{Article}a
+4228║$material_m026h║A monstrous tail tipped with a barbed stinger.
+4229║$material_m027║Diabolic Tail{End}{Separator}Diabolic Tails{End}{Article}a
+4230║$material_m027h║A whiplike tail that carries the sickening stench of sulfur.
+4231║$material_m028║Entrancing Tail{End}{Separator}Entrancing Tails{End}{Article}an
+4232║$material_m028h║An iridescent tail feather whose dancing hues irresistibly draw the eye.
+4233║$material_m029║Torn Leather{End}{Separator}Torn Leather{End}{Article}a piece of{End}{ArticleMany}pieces of
+4234║$material_m029h║A ragged scrap of leather that could surely be put to use for something.
+4235║$material_m030║Thickened Hide{End}{Separator}Thickened Hides{End}{Article}a
+4236║$material_m030h║A coarse and granitelike hide beyond the working of ordinary tools.
+4237║$material_m031║Smooth Hide{End}{Separator}Smooth Hides{End}{Article}a
+4238║$material_m031h║Thin and supple leather that surpasses even synthetic materials in durability.
+4239║$material_m032║Supple Leather{End}{Separator}Supple Leather{End}{Article}a piece of{End}{ArticleMany}pieces of
+4240║$material_m032h║Leather that shapes itself to the skin as if worked by a master craftsman.
+4241║$material_m033║Gummy Oil{End}{Separator}Gummy Oil{End}{Article}a vial of{End}{ArticleMany}vials of
+4242║$material_m033h║A highly viscous oil corrupted by impurities.
+4243║$material_m034║Fragrant Oil{End}{Separator}Fragrant Oil{End}{Article}a vial of{End}{ArticleMany}vials of
+4244║$material_m034h║A nearly transparent, and marvelously aromatic, essential oil.
+4245║$material_m035║Medicinal Oil{End}{Separator}Medicinal Oil{End}{Article}a vial of{End}{ArticleMany}vials of
+4246║$material_m035h║An oil of complex formulation with a distinctly medicinal odor.
+4247║$material_m036║Esoteric Oil{End}{Separator}Esoteric Oil{End}{Article}a vial of{End}{ArticleMany}vials of
+4248║$material_m036h║A colorless, odorless, tasteless oil that radiates light when placed in darkness.
+4249║$material_m037║Scraggly Wool{End}{Separator}Scraggly Wool{End}{Article}a tuft of{End}{ArticleMany}tufts of
+4250║$material_m037h║Severely torn and knotted wool.
+4251║$material_m038║Rough Wool{End}{Separator}Rough Wool{End}{Article}a tuft of{End}{ArticleMany}tufts of
+4252║$material_m038h║Rough wool that seems durable, albeit unrefined.
+4253║$material_m039║Thick Wool{End}{Separator}Thick Wool{End}{Article}a tuft of{End}{ArticleMany}tufts of
+4254║$material_m039h║Rugged wool that is excellent at trapping and retaining heat.
+4255║$material_m040║Fluffy Wool{End}{Separator}Fluffy Wool{End}{Article}a tuft of{End}{ArticleMany}tufts of
+4256║$material_m040h║Premium-grade wool so soft it nearly begs to be squeezed.
+4257║$material_m041║Bomb Ashes{End}{Separator}Bomb Ashes{End}{Article}a pinch of{End}{ArticleMany}pinches of
+4258║$material_m041h║The stark white ashes of an immolated bomb.
+4259║$material_m042║Bomb Fragment{End}{Separator}Bomb Fragments{End}{Article}a
+4260║$material_m042h║The scorched remains of a detonated bomb.
+4261║$material_m043║Bomb Shell{End}{Separator}Bomb Shells{End}{Article}a
+4262║$material_m043h║The blackened exterior of a bomb that miraculously survived detonation.
+4263║$material_m044║Bomb Core{End}{Separator}Bomb Cores{End}{Article}a
+4264║$material_m044h║The ghostly, inexplicably heatless flame from the heart of a bomb.
+4265║$material_m045║Murky Ooze{End}{Separator}Murky Ooze{End}{Article}a vial of{End}{ArticleMany}vials of
+4266║$material_m045h║An organic mucosal secretion that dissolves when touched by human hands.
+4267║$material_m046║Vibrant Ooze{End}{Separator}Vibrant Ooze{End}{Article}a vial of{End}{ArticleMany}vials of
+4268║$material_m046h║A brightly colored, translucent secretion that actually looks rather appetizing.
+4269║$material_m047║Transparent Ooze{End}{Separator}Transparent Ooze{End}{Article}a vial of{End}{ArticleMany}vials of
+4270║$material_m047h║Wholly transparent slime, visible only due to its shimmering surface.
+4271║$material_m048║Wonder Gel{End}{Separator}Wonder Gel{End}{Article}a block of{End}{ArticleMany}blocks of
+4272║$material_m048h║A cubical mass of transparent gel with a ghostly green glow at its core.
+4273║$material_m049║Fractured Horn{End}{Separator}Fractured Horns{End}{Article}a
+4274║$material_m049h║A beastly horn, shattered along what had been a deep crack.
+4275║$material_m050║Spined Horn{End}{Separator}Spined Horns{End}{Article}a
+4276║$material_m050h║A short, stout horn covered by a carpet of fine thorns.
+4277║$material_m051║Fiendish Horn{End}{Separator}Fiendish Horns{End}{Article}a
+4278║$material_m051h║A horn retaining regenerative capabilities even when shorn from its anchorage.
+4279║$material_m052║Infernal Horn{End}{Separator}Infernal Horns{End}{Article}an
+4280║$material_m052h║A bedeviled horn that, when knocked to the ground, always points northeast.
+4281║$material_m053║Strange Fluid{End}{Separator}Strange Fluid{End}{Article}a vial of{End}{ArticleMany}vials of
+4282║$material_m053h║A putrid liquid whose origins are better left a mystery.
+4283║$material_m054║Enigmatic Fluid{End}{Separator}Enigmatic Fluid{End}{Article}a vial of{End}{ArticleMany}vials of
+4284║$material_m054h║Offensively noxious fluid most assuredly secreted from somewhere unpleasant.
+4285║$material_m055║Mysterious Fluid{End}{Separator}Mysterious Fluid{End}{Article}a vial of{End}{ArticleMany}vials of
+4286║$material_m055h║A sickly sweet substance whose constituents are more palatable for being unknown.
+4287║$material_m056║Ineffable Fluid{End}{Separator}Ineffable Fluid{End}{Article}a vial of{End}{ArticleMany}vials of
+4288║$material_m056h║Frothy fluid of an unsettling purple hue, obtained by means unspeakable.
+4289║$material_m057║Cie'th Tear{End}{Separator}Cie'th Tears{End}{Article}a
+4290║$material_m057h║A pebble-sized shard of crystal gradually crumbling to ashen sand.
+4291║$material_m058║Tear of Frustration{End}{Separator}Tears of Frustration{End}{Article}a
+4292║$material_m058h║A milky white crystal, faintly warm to the touch.
+4293║$material_m059║Tear of Remorse{End}{Separator}Tears of Remorse{End}{Article}a
+4294║$material_m059h║A beautiful, virtually flawless crystal that stirs feelings of regret.
+4295║$material_m060║Tear of Woe{End}{Separator}Tears of Woe{End}{Article}a
+4296║$material_m060h║A crystal of fractal form that burns with a deep, sanguine light.
+4297║$material_m061║Chocobo Plume{End}{Separator}Chocobo Plumes{End}{Article}a
+4298║$material_m061h║A lovely, golden chocobo feather.
+4299║$material_m062║Chocobo Tail Feather{End}{Separator}Chocobo Tail Feathers{End}{Article}a
+4300║$material_m062h║A resplendent, golden feather from a chocobo's tail.
+4301║$material_m063║Green Needle{End}{Separator}Green Needles{End}{Article}a
+4302║$material_m063h║The slender but sturdy needle of a burgeoning cactus.
+4303║$material_m064║Dawnlight Dew{End}{Separator}Dawnlight Dew{End}{Article}a drop of{End}{ArticleMany}drops of
+4304║$material_m064h║A droplet imbued with the chill of the dawn from which it takes its name.
+4305║$material_m065║Dusklight Dew{End}{Separator}Dusklight Dew{End}{Article}a drop of{End}{ArticleMany}drops of
+4306║$material_m065h║A droplet imbued with the darkness of the dusk from which it takes its name.
+4307║$material_m066║Gloomstalk{End}{Separator}Gloomstalks{End}{Article}a
+4308║$material_m066h║The pistil of a carnivorous flower that emits light when pollinated.
+4309║$material_m067║Sunpetal{End}{Separator}Sunpetals{End}{Article}a
+4310║$material_m067h║The petal of a carnivorous flower that lures its prey with a warm, inviting light.
+4311║$material_m068║Red Mycelium{End}{Separator}Red Mycelium{End}{Article}a mat of{End}{ArticleMany}mats of
+4312║$material_m068h║A mat of fungal hyphae that decompose organic contaminants.
+4313║$material_m069║Blue Mycelium{End}{Separator}Blue Mycelium{End}{Article}a mat of{End}{ArticleMany}mats of
+4314║$material_m069h║A mat of symbiotic fungal hyphae that secrete exodermal hardening agents.
+4315║$material_m070║White Mycelium{End}{Separator}White Mycelium{End}{Article}a mat of{End}{ArticleMany}mats of
+4316║$material_m070h║A mat of fungal hyphae resembling cotton that can rapidly consume even metal.
+4317║$material_m071║Black Mycelium{End}{Separator}Black Mycelium{End}{Article}a mat of{End}{ArticleMany}mats of
+4318║$material_m071h║An unsightly mat of fungal hyphae used for the flavorsome fermentation of food.
+4319║$material_m072║Succulent Fruit{End}{Separator}Succulent Fruit{End}{Article}a piece of{End}{ArticleMany}pieces of
+4320║$material_m072h║A mouth-wateringly tart and juicy fruit. Can be sold for a premium.
+4321║$material_m073║Malodorous Fruit{End}{Separator}Malodorous Fruit{End}{Article}a piece of{End}{ArticleMany}pieces of
+4322║$material_m073h║An offensive-smelling, yet highly delectable fruit. Can be sold for a premium.
+4323║$material_m074║Moonblossom Seed{End}{Separator}Moonblossom Seeds{End}{Article}a
+4324║$material_m074h║The seed of an annual wildflower that blooms at twilight. Can be sold for a premium.
+4325║$material_m075║Starblossom Seed{End}{Separator}Starblossom Seeds{End}{Article}a
+4326║$material_m075h║The seed of a flower that emits ghostly bioluminescence at dawn. Can be sold for a premium.
+4327║$material_m076║Perfume{End}{Separator}Perfume{End}{Article}a vial of{End}{ArticleMany}vials of
+4328║$material_m076h║A fragrance that soothes the mind and soul. Can be sold for a premium.
+4329║$material_o000║Millerite{End}{Separator}Millerite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4330║$material_o000h║An aggregate of nickel sulfide. Functions as a transformational catalyst.
+4331║$material_o001║Rhodochrosite{End}{Separator}Rhodochrosite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4332║$material_o001h║A pink manganese carbonate crystal. Functions as a transformational catalyst.
+4333║$material_o002║Cobaltite{End}{Separator}Cobaltite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4334║$material_o002h║A bluish, corrosion-resistant mineral. Functions as a transformational catalyst.
+4335║$material_o003║Perovskite{End}{Separator}Perovskite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4336║$material_o003h║A stone composed of calcium titanate. Functions as a transformational catalyst.
+4337║$material_o004║Uraninite{End}{Separator}Uraninite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4338║$material_o004h║A radioactive mineral rich in uranium. Functions as a transformational catalyst.
+4339║$material_o005║Mnar Stone{End}{Separator}Mnar Stones{End}{Article}a
+4340║$material_o005h║A stone said to grant the holder visions. Functions as a transformational catalyst.
+4341║$material_o006║Scarletite{End}{Separator}Scarletite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4342║$material_o006h║A fiery metal said to be of divine origin. Functions as a transformational catalyst.
+4343║$material_o007║Adamantite{End}{Separator}Adamantite{End}{Article}a nugget of{End}{ArticleMany}nuggets of
+4344║$material_o007h║A mineral boasting diamond-like hardness. Functions as a transformational catalyst.
+4345║$material_o008║Dark Matter{End}{Separator}Dark Matter{End}{Article}a lump of{End}{ArticleMany}lumps of
+4346║$material_o008h║Dark magic in material form. Functions as a transformational catalyst.
+4347║$material_o009║Trapezohedron{End}{Separator}Trapezohedrons{End}{Article}a
+4348║$material_o009h║A prism whose refracted light casts no shadow. Functions as a transformational catalyst.
+4349║$material_o010║Gold Dust{End}{Separator}Gold Dust{End}{Article}a pinch of{End}{ArticleMany}pinches of
+4350║$material_o010h║Sandy grains of gold. Can be sold for a premium.
+4351║$material_o011║Gold Nugget{End}{Separator}Gold Nuggets{End}{Article}a
+4352║$material_o011h║A lump of smelted gold. Can be sold for a premium.
+4353║$material_o012║Platinum Ingot{End}{Separator}Platinum Ingots{End}{Article}a
+4354║$material_o012h║A bar of cast, refined platinum. Can be sold for a premium.
+4355║$mb_000_00║Fire
+4356║$mb_000_00e║Fire+
+4357║$mb_000_00eh║
+4358║$mb_000_00h║Deal fire damage to target.
+4359║$mb_000_10e║Flameblow
+4360║$mb_000_10eh║DELETEDTEXT
+4361║$mb_000_20e║Flamesoul
+4362║$mb_000_20eh║
+4363║$mb_000_30e║Flamewrath
+4364║$mb_000_30eh║DELETEDTEXT
+4365║$mb_000_40e║Flamescourge
+4366║$mb_000_40eh║DELETEDTEXT
+4367║$mb_010_00║Fira
+4368║$mb_010_00e║Fira+
+4369║$mb_010_00eh║
+4370║$mb_010_00h║Deal fire damage to targets in range. Staggered targets take more damage.
+4371║$mb_010_10║Flamestrike
+4372║$mb_010_10h║Physically attack target for fire damage.
+4373║$mb_010_20║Froststrike
+4374║$mb_010_20h║Physically attack target for ice damage.
+4375║$mb_010_30║Sparkstrike
+4376║$mb_010_30h║Physically attack target for lightning damage.
+4377║$mb_010_40║Aquastrike
+4378║$mb_010_40h║Physically attack target for water damage.
+4379║$mb_020_00║Firaga
+4380║$mb_020_00e║Firaga+
+4381║$mb_020_00eh║
+4382║$mb_020_00h║Deal fire damage to targets within a wide radius.
+4383║$mb_100_00║Blizzard
+4384║$mb_100_00e║Blizzard+
+4385║$mb_100_00eh║
+4386║$mb_100_00h║Deal ice damage to target.
+4387║$mb_100_10e║Frostblow
+4388║$mb_100_10eh║DELETEDTEXT
+4389║$mb_100_20e║Frostsoul
+4390║$mb_100_20eh║
+4391║$mb_100_30e║Frostwrath
+4392║$mb_100_30eh║DELETEDTEXT
+4393║$mb_100_40e║Frostscourge
+4394║$mb_100_40eh║DELETEDTEXT
+4395║$mb_110_00║Blizzara
+4396║$mb_110_00e║Blizzara+
+4397║$mb_110_00eh║
+4398║$mb_110_00h║Deal ice damage to targets in range. Staggered targets take more damage.
+4399║$mb_120_00║Blizzaga
+4400║$mb_120_00e║Blizzaga+
+4401║$mb_120_00eh║
+4402║$mb_120_00h║Deal ice damage to targets within a wide radius.
+4403║$mb_200_00║Thunder
+4404║$mb_200_00e║Thunder+
+4405║$mb_200_00eh║
+4406║$mb_200_00h║Deal lightning damage to target.
+4407║$mb_200_10e║Sparkblow
+4408║$mb_200_10eh║DELETEDTEXT
+4409║$mb_200_20e║Sparksoul
+4410║$mb_200_20eh║
+4411║$mb_200_30e║Sparkwrath
+4412║$mb_200_30eh║DELETEDTEXT
+4413║$mb_200_40e║Shockscourge
+4414║$mb_200_40eh║DELETEDTEXT
+4415║$mb_210_00║Thundara
+4416║$mb_210_00e║Thundara+
+4417║$mb_210_00eh║
+4418║$mb_210_00h║Deal lightning damage to targets in range. Staggered targets take more damage.
+4419║$mb_220_00║Thundaga
+4420║$mb_220_00e║Thundaga+
+4421║$mb_220_00eh║
+4422║$mb_220_00h║Deal lightning damage to targets within a wide radius.
+4423║$mb_300_00║Water
+4424║$mb_300_00e║Water+
+4425║$mb_300_00eh║
+4426║$mb_300_00h║Deal water damage to target.
+4427║$mb_300_10e║Aquablow
+4428║$mb_300_10eh║DELETEDTEXT
+4429║$mb_300_20e║Aquasoul
+4430║$mb_300_20eh║
+4431║$mb_300_30e║Aquawrath
+4432║$mb_300_30eh║DELETEDTEXT
+4433║$mb_300_40e║Aquascourge
+4434║$mb_300_40eh║DELETEDTEXT
+4435║$mb_310_00║Watera
+4436║$mb_310_00e║Watera+
+4437║$mb_310_00eh║
+4438║$mb_310_00h║Deal water damage to targets in range. Staggered targets take more damage.
+4439║$mb_320_00║Waterga
+4440║$mb_320_00e║Waterga+
+4441║$mb_320_00eh║
+4442║$mb_320_00h║Deal water damage to targets within a wide radius.
+4443║$mb_400_00║Aero
+4444║$mb_400_00h║Deal wind damage to target and temporarily stun it.
+4445║$mb_410_00║Aerora
+4446║$mb_410_00h║Deal wind damage to targets in range, tossing them up and drawing them in.
+4447║$mb_420_00║Aeroga
+4448║$mb_420_00h║Deal wind damage to targets within a wide radius, drawing them up into a tornado.
+4449║$mb_520_00║Quake
+4450║$mb_520_00h║Deal earth damage to targets in a wide radius and extend their chain bonuses.
+4451║$mb_600_00e║Fire
+4452║$mb_600_00eh║
+4453║$mb_600_30e║Firaga
+4454║$mb_600_30eh║
+4455║$mb_610_10e║Blizzard
+4456║$mb_610_10eh║
+4457║$mb_610_30e║Blizzaga
+4458║$mb_610_30eh║
+4459║$mb_620_10e║Thunder
+4460║$mb_620_10eh║
+4461║$mb_620_30e║Thundaga
+4462║$mb_620_30eh║
+4463║$mb_630_10e║Water
+4464║$mb_630_10eh║
+4465║$mb_630_30e║Waterga
+4466║$mb_630_30eh║
+4467║$mb_800_00║Fearsiphon
+4468║$mb_800_00h║Slightly charge ATB gauge upon attacking staggered target.
+4469║$mb_810_00║Overwhelm
+4470║$mb_810_00h║Boost chain bonus effect of attacks for each ally targeting the same enemy.
+4471║$mb_820_00║Vigor
+4472║$mb_820_00h║Boost chain bonus effect of your attacks when your HP is high.
+4473║$mg_000_00║Deprotect
+4474║$mg_000_00h║Reduce target's physical resistance and deal magic damage.
+4475║$mg_010_00║Deshell
+4476║$mg_010_00h║Reduce target's magic resistance and deal magic damage.
+4477║$mg_020_00║Dispel
+4478║$mg_020_00h║Remove target's most recent status enhancement and deal magic damage.
+4479║$mg_030_00║Imperil
+4480║$mg_030_00h║Reduce target's elemental resistances and deal magic damage.
+4481║$mg_040_00║Slow
+4482║$mg_040_00h║Reduce target's ATB gauge recharge rate and deal magic damage.
+4483║$mg_050_00║Magnet
+4484║$mg_050_00h║Draw enemies around target closer to target.
+4485║$mg_060_00║Poison
+4486║$mg_060_00h║Poison target and deal magic damage.
+4487║$mg_070_00║Daze
+4488║$mg_070_00h║Stun target, rendering it vulnerable, and deal magic damage.
+4489║$mg_080_00║Fog
+4490║$mg_080_00h║Disable target's spell-casting abilities and deal magic damage.
+4491║$mg_090_00║Pain
+4492║$mg_090_00h║Disable target's physical abilities and deal magic damage.
+4493║$mg_100_00║Curse
+4494║$mg_100_00h║Lower target's odds of interrupting actions and avoiding interruption of own.
+4495║$mg_110_00║Deprotega
+4496║$mg_110_00h║Reduce physical resistance and deal magic damage within a wide radius.
+4497║$mg_120_00║Deshellga
+4498║$mg_120_00h║Reduce magic resistance and deal magic damage within a wide radius.
+4499║$mg_130_00║Poisonga
+4500║$mg_130_00h║Poison and deal magic damage to targets within a wide radius.
+4501║$mg_140_00║Imperilga
+4502║$mg_140_00h║Reduce elemental resistances and deal magic damage within a wide radius.
+4503║$mg_150_00║Slowga
+4504║$mg_150_00h║Reduce ATB gauge recharge rate and deal magic damage within a wide radius.
+4505║$mg_160_00║Fogga
+4506║$mg_160_00h║Disable enemy spell casting and deal magic damage within a wide radius.
+4507║$mg_170_00║Painga
+4508║$mg_170_00h║Disable enemy physical abilities and deal magic damage within a wide radius.
+4509║$mg_180_00║Cursega
+4510║$mg_180_00h║Render targets within a wide radius interruption-prone and deal magic damage.
+4511║$mg_190_00║Dazega
+4512║$mg_190_00h║Stun and deal magic damage within a wide radius.
+4513║$mg_200_00║Jinx
+4514║$mg_200_00h║Extend duration of target's existing status ailments upon inflicting new ones.
+4515║$ms_sg_00000║Good Samaritan{End}{Question}
+4516║$ms_sg_00001║Mercifex{End}{Question}
+4517║$ms_sg_00002║Archaeopolitan Idol{End}{Question}
+4518║$ms_sg_00003║Baneslayer{End}{Question}
+4519║$ms_sg_00004║Feathered Friend{End}{Question}
+4520║$ms_sg_00005║Dismantler{End}{Question}
+4521║$ms_sg_00006║Adamantine Knight{End}{Question}
+4522║$ms_sg_00007║Heartstriker{End}{Question}
+4523║$ms_sg_00008║Monumental Ally{End}{Question}
+4524║$ms_sg_00009║Grudge Settler{End}{Question}
+4525║$ms_sg_00010║Curse Lifter{End}{Question}
+4526║$ms_sg_00011║Deus ex Machina{End}{Question}
+4527║$ms_sg_00012║Protean Warrior{End}{Question}
+4528║$ms_sg_00013║Karmic Champion{End}{Question}
+4529║$ms_sg_00014║Walker of the Wheel{End}{Question}
+4530║$ms_sg_00015║Halcyonian Hero{End}{Question}
+4531║$ms_sg_00016║Righteous Avenger{End}{Question}
+4532║$ms_sg_00017║Hand of Wrath{End}{Question}
+4533║$ms_sg_00018║Needleworker{End}{Question}
+4534║$ms_sg_00019║Guardian of Virtue{End}{Question}
+4535║$ms_sg_00020║Deliverer of Souls{End}{Question}
+4536║$ms_sg_00021║Adamantine Crusader{End}{Question}
+4537║$ms_sg_00022║Great Redeemer{End}{Question}
+4538║$nowloading║NOW LOADING...
+4539║$nw_000_00║Cure
+4540║$nw_000_00h║Restore target's HP.
+4541║$nw_010_00║Cura
+4542║$nw_010_00h║Restore HP to targets in range.
+4543║$nw_020_00║Curasa
+4544║$nw_020_00h║Restore HP to target proportional to amount of damage target has taken.
+4545║$nw_030_00║Curaja
+4546║$nw_030_00h║Restore HP to targets in range proportional to amount of damage each has taken.
+4547║$nw_100_00║Raise
+4548║$nw_100_00h║Revive an ally from KO.
+4549║$nw_200_00║Esuna
+4550║$nw_200_00h║Remove target's most recently inflicted status ailment.
+4551║$nw_500_00║Protect
+4552║$nw_500_00h║Raise target's physical resistance.
+4553║$nw_510_00║Shell
+4554║$nw_510_00h║Raise target's magic resistance.
+4555║$nw_520_00║Veil
+4556║$nw_520_00h║Raise target's status ailment resistance.
+4557║$nw_530_00║Barfire
+4558║$nw_530_00h║Raise target's fire resistance.
+4559║$nw_540_00║Barfrost
+4560║$nw_540_00h║Raise target's ice resistance.
+4561║$nw_550_00║Barthunder
+4562║$nw_550_00h║Raise target's lightning resistance.
+4563║$nw_560_00║Barwater
+4564║$nw_560_00h║Raise target's water resistance.
+4565║$nw_580_00║Vigilance
+4566║$nw_580_00h║Boost target's odds of interrupting actions and avoiding interruption of own.
+4567║$nw_590_00║Bravery
+4568║$nw_590_00h║Raise target's Strength.
+4569║$nw_600_00║Faith
+4570║$nw_600_00h║Raise target's Magic.
+4571║$nw_610_00║Haste
+4572║$nw_610_00h║Accelerate target's ATB gauge recharge rate.
+4573║$nw_620_00║Enfire
+4574║$nw_620_00h║Add fire attribute to target's COM, RAV, SEN, or SAB attacks.
+4575║$nw_630_00║Enfrost
+4576║$nw_630_00h║Add ice attribute to target's COM, RAV, SEN, or SAB attacks.
+4577║$nw_640_00║Enthunder
+4578║$nw_640_00h║Add lightning attribute to target's COM, RAV, SEN, or SAB attacks.
+4579║$nw_650_00║Enwater
+4580║$nw_650_00h║Add water attribute to target's COM, RAV, SEN, or SAB attacks.
+4581║$nw_660_00║Bravera
+4582║$nw_660_00h║Significantly raise target's Strength for a short time.
+4583║$nw_670_00║Faithra
+4584║$nw_670_00h║Significantly raise target's Magic for a short time.
+4585║$nw_680_00║Protectra
+4586║$nw_680_00h║Significantly raise target's physical resistance for a short time.
+4587║$nw_690_00║Shellra
+4588║$nw_690_00h║Significantly raise target's magic resistance for a short time.
+4589║$nw_700_00║Boon
+4590║$nw_700_00h║Extend duration of target's existing status enhancements upon bestowing new ones.
+4591║$opt_at║Commando
+4592║$opt_at_at║Double Trouble
+4593║$opt_at_at_at║Cerberus
+4594║$opt_at_at_at_h║Each COM attacks its own target. Effective for picking off weaker enemies.
+4595║$opt_at_at_en║Strike Team
+4596║$opt_at_at_en_h║COMs attack separate targets while SYN supports with enhancements.
+4597║$opt_at_at_h║Each COM attacks its own target.
+4598║$opt_at_at_he║Tireless Charge
+4599║$opt_at_at_he_h║COMs attack separate targets while MED supports with healing.
+4600║$opt_at_at_ja║Devastation
+4601║$opt_at_at_ja_h║COMs attack separate targets while SAB weakens dangerous opponents.
+4602║$opt_at_at_sc║Offensive Screen
+4603║$opt_at_at_sc_h║SEN defends against dangerous attacks while COMs focus on dealing damage.
+4604║$opt_at_at_sw║Aggression
+4605║$opt_at_at_sw_h║RAV and one COM attack a common target while other COM attacks its own.
+4606║$opt_at_en║Supersoldier
+4607║$opt_at_en_at║Strike Team
+4608║$opt_at_en_at_h║COMs attack separate targets while SYN supports with enhancements.
+4609║$opt_at_en_en║All for One
+4610║$opt_at_en_en_h║SYNs strengthen COM, who picks off weaker enemies in the meantime.
+4611║$opt_at_en_h║COM attacks enemies, augmented by SYN's enhancements.
+4612║$opt_at_en_he║Hero's Charge
+4613║$opt_at_en_he_h║COM dispatches targets with healing and support from MED and SYN.
+4614║$opt_at_en_ja║Bully
+4615║$opt_at_en_ja_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4616║$opt_at_en_sc║Strategic Warfare
+4617║$opt_at_en_sc_h║COM attacks and SEN defends while SYN strengthens them.
+4618║$opt_at_en_sw║Decimation
+4619║$opt_at_en_sw_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+4620║$opt_at_h║Attacks enemies with the goal of dealing as much damage as possible.
+4621║$opt_at_he║War & Peace
+4622║$opt_at_he_at║Tireless Charge
+4623║$opt_at_he_at_h║COMs attack separate targets while MED supports with healing.
+4624║$opt_at_he_en║Hero's Charge
+4625║$opt_at_he_en_h║COM dispatches targets with healing and support from MED and SYN.
+4626║$opt_at_he_h║COM attacks enemies while MED concentrates on healing.
+4627║$opt_at_he_he║Discretion
+4628║$opt_at_he_he_h║Both MEDs focus on healing while lone COM attacks enemies.
+4629║$opt_at_he_ja║Scouting Party
+4630║$opt_at_he_ja_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4631║$opt_at_he_sc║Solidarity
+4632║$opt_at_he_sc_h║MED heals and SEN defends while COM attacks enemies.
+4633║$opt_at_he_sw║Diversity
+4634║$opt_at_he_sw_h║COM and RAV coordinate attacks while MED supports with healing.
+4635║$opt_at_ja║Divide & Conquer
+4636║$opt_at_ja_at║Devastation
+4637║$opt_at_ja_at_h║COMs attack separate targets while SAB weakens dangerous opponents.
+4638║$opt_at_ja_en║Bully
+4639║$opt_at_ja_en_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4640║$opt_at_ja_h║SAB debilitates enemies and COM attacks them.
+4641║$opt_at_ja_he║Scouting Party
+4642║$opt_at_ja_he_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4643║$opt_at_ja_ja║Exploitation
+4644║$opt_at_ja_ja_h║COM attacks while SABs attempt to weaken dangerous enemies.
+4645║$opt_at_ja_sc║Dirty Fighting
+4646║$opt_at_ja_sc_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4647║$opt_at_ja_sw║Ruthless
+4648║$opt_at_ja_sw_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+4649║$opt_at_sc║Misdirection
+4650║$opt_at_sc_at║Offensive Screen
+4651║$opt_at_sc_at_h║SEN defends against dangerous attacks while COMs focus on dealing damage.
+4652║$opt_at_sc_en║Strategic Warfare
+4653║$opt_at_sc_en_h║COM attacks and SEN defends while SYN strengthens them.
+4654║$opt_at_sc_h║SEN focuses on drawing enemy aggression while COM attacks.
+4655║$opt_at_sc_he║Solidarity
+4656║$opt_at_sc_he_h║MED heals and SEN defends while COM attacks enemies.
+4657║$opt_at_sc_ja║Dirty Fighting
+4658║$opt_at_sc_ja_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4659║$opt_at_sc_sc║Guarded Assault
+4660║$opt_at_sc_sc_h║SENs defend while the lone COM attacks. Limited in effectiveness.
+4661║$opt_at_sc_sw║Delta Attack
+4662║$opt_at_sc_sw_h║SEN draws enemy aggression while COM and RAV attack a common target.
+4663║$opt_at_sw║Slash & Burn
+4664║$opt_at_sw_at║Aggression
+4665║$opt_at_sw_at_h║RAV and one COM attack a common target while other COM attacks its own.
+4666║$opt_at_sw_en║Decimation
+4667║$opt_at_sw_en_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+4668║$opt_at_sw_h║COM and RAV combine their attacks to take down one enemy at a time.
+4669║$opt_at_sw_he║Diversity
+4670║$opt_at_sw_he_h║COM and RAV coordinate attacks while MED supports with healing.
+4671║$opt_at_sw_ja║Ruthless
+4672║$opt_at_sw_ja_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+4673║$opt_at_sw_sc║Delta Attack
+4674║$opt_at_sw_sc_h║SEN draws enemy aggression while COM and RAV attack a common target.
+4675║$opt_at_sw_sw║Relentless Assault
+4676║$opt_at_sw_sw_h║COM and RAVs focus on taking down one target at a time.
+4677║$opt_en║Synergist
+4678║$opt_en_at║Supersoldier
+4679║$opt_en_at_at║Strike Team
+4680║$opt_en_at_at_h║COMs attack separate targets while SYN supports with enhancements.
+4681║$opt_en_at_en║All for One
+4682║$opt_en_at_en_h║SYNs strengthen COM, who picks off weaker enemies in the meantime.
+4683║$opt_en_at_h║COM attacks enemies, augmented by SYN's enhancements.
+4684║$opt_en_at_he║Hero's Charge
+4685║$opt_en_at_he_h║COM dispatches targets with healing and support from MED and SYN.
+4686║$opt_en_at_ja║Bully
+4687║$opt_en_at_ja_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4688║$opt_en_at_sc║Strategic Warfare
+4689║$opt_en_at_sc_h║COM attacks and SEN defends while SYN strengthens them.
+4690║$opt_en_at_sw║Decimation
+4691║$opt_en_at_sw_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+4692║$opt_en_en║Rally
+4693║$opt_en_en_at║All for One
+4694║$opt_en_en_at_h║SYNs strengthen COM, who picks off weaker enemies in the meantime.
+4695║$opt_en_en_en║Rapid Growth
+4696║$opt_en_en_en_h║All three SYNs focus on strengthening the party to take on powerful enemies.
+4697║$opt_en_en_h║Both SYNs focus on quickly strengthening the party.
+4698║$opt_en_en_he║Recuperation
+4699║$opt_en_en_he_h║MED heals while SYNs focus on strengthening the party.
+4700║$opt_en_en_ja║Superiority
+4701║$opt_en_en_ja_h║SYNs strengthen the party while SAB attempts to weaken enemies.
+4702║$opt_en_en_sc║Prudent Planning
+4703║$opt_en_en_sc_h║SEN protects two SYNs while they strengthen the party.
+4704║$opt_en_en_sw║Supernatural
+4705║$opt_en_en_sw_h║RAV attacks enemies, heavily augmented by two SYNs.
+4706║$opt_en_h║Focuses on augmenting offense and defense, defending when overwhelmed.
+4707║$opt_en_he║Symbiosis
+4708║$opt_en_he_at║Hero's Charge
+4709║$opt_en_he_at_h║COM dispatches targets with healing and support from MED and SYN.
+4710║$opt_en_he_en║Recuperation
+4711║$opt_en_he_en_h║MED heals while SYNs focus on strengthening the party.
+4712║$opt_en_he_h║MED handles healing while SYN focuses on strengthening the party.
+4713║$opt_en_he_he║Convalescence
+4714║$opt_en_he_he_h║Both MEDs concentrate on healing while SYN strengthens the party.
+4715║$opt_en_he_ja║Evened Odds
+4716║$opt_en_he_ja_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4717║$opt_en_he_sc║Protection
+4718║$opt_en_he_sc_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4719║$opt_en_he_sw║Coordination
+4720║$opt_en_he_sw_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+4721║$opt_en_ja║Tide Turner
+4722║$opt_en_ja_at║Bully
+4723║$opt_en_ja_at_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4724║$opt_en_ja_en║Superiority
+4725║$opt_en_ja_en_h║SYNs strengthen the party while SAB attempts to weaken enemies.
+4726║$opt_en_ja_h║SAB weakens opponents while SYN focuses on strengthening the party.
+4727║$opt_en_ja_he║Evened Odds
+4728║$opt_en_ja_he_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4729║$opt_en_ja_ja║Espionage
+4730║$opt_en_ja_ja_h║SABs attempt to weaken enemies while SYN supports with enhancements.
+4731║$opt_en_ja_sc║Premeditation
+4732║$opt_en_ja_sc_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4733║$opt_en_ja_sw║Guerilla
+4734║$opt_en_ja_sw_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+4735║$opt_en_sc║Building Block
+4736║$opt_en_sc_at║Strategic Warfare
+4737║$opt_en_sc_at_h║COM attacks and SEN defends while SYN strengthens them.
+4738║$opt_en_sc_en║Prudent Planning
+4739║$opt_en_sc_en_h║SEN protects two SYNs while they strengthen the party.
+4740║$opt_en_sc_h║SEN protects SYN, who focuses on strengthening the party.
+4741║$opt_en_sc_he║Protection
+4742║$opt_en_sc_he_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4743║$opt_en_sc_ja║Premeditation
+4744║$opt_en_sc_ja_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4745║$opt_en_sc_sc║Conservation
+4746║$opt_en_sc_sc_h║Both SENs defend while SYN strengthens the party. Limited in effectiveness.
+4747║$opt_en_sc_sw║Riot Shield
+4748║$opt_en_sc_sw_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+4749║$opt_en_sw║Archmage
+4750║$opt_en_sw_at║Decimation
+4751║$opt_en_sw_at_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+4752║$opt_en_sw_en║Supernatural
+4753║$opt_en_sw_en_h║RAV attacks enemies, heavily augmented by two SYNs.
+4754║$opt_en_sw_h║RAV attacks enemies, augmented by SYN's enhancements.
+4755║$opt_en_sw_he║Coordination
+4756║$opt_en_sw_he_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+4757║$opt_en_sw_ja║Guerilla
+4758║$opt_en_sw_ja_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+4759║$opt_en_sw_sc║Riot Shield
+4760║$opt_en_sw_sc_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+4761║$opt_en_sw_sw║Malevolence
+4762║$opt_en_sw_sw_h║RAVs coordinate their attacks, augmented by SYN's enhancements.
+4763║$opt_he║Medic
+4764║$opt_he_at║War & Peace
+4765║$opt_he_at_at║Tireless Charge
+4766║$opt_he_at_at_h║COMs attack separate targets while MED supports with healing.
+4767║$opt_he_at_en║Hero's Charge
+4768║$opt_he_at_en_h║COM dispatches targets with healing and support from MED and SYN.
+4769║$opt_he_at_h║COM attacks enemies while MED concentrates on healing.
+4770║$opt_he_at_he║Discretion
+4771║$opt_he_at_he_h║Both MEDs focus on healing while lone COM attacks enemies.
+4772║$opt_he_at_ja║Scouting Party
+4773║$opt_he_at_ja_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4774║$opt_he_at_sc║Solidarity
+4775║$opt_he_at_sc_h║MED heals and SEN defends while COM attacks enemies.
+4776║$opt_he_at_sw║Diversity
+4777║$opt_he_at_sw_h║COM and RAV coordinate attacks while MED supports with healing.
+4778║$opt_he_en║Symbiosis
+4779║$opt_he_en_at║Hero's Charge
+4780║$opt_he_en_at_h║COM dispatches targets with healing and support from MED and SYN.
+4781║$opt_he_en_en║Recuperation
+4782║$opt_he_en_en_h║MED heals while SYNs focus on strengthening the party.
+4783║$opt_he_en_h║MED handles healing while SYN focuses on strengthening the party.
+4784║$opt_he_en_he║Convalescence
+4785║$opt_he_en_he_h║Both MEDs concentrate on healing while SYN strengthens the party.
+4786║$opt_he_en_ja║Evened Odds
+4787║$opt_he_en_ja_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4788║$opt_he_en_sc║Protection
+4789║$opt_he_en_sc_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4790║$opt_he_en_sw║Coordination
+4791║$opt_he_en_sw_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+4792║$opt_he_h║Concentrates on healing and recovery.
+4793║$opt_he_he║Double Dose
+4794║$opt_he_he_at║Discretion
+4795║$opt_he_he_at_h║Both MEDs focus on healing while lone COM attacks enemies.
+4796║$opt_he_he_en║Convalescence
+4797║$opt_he_he_en_h║Both MEDs concentrate on healing while SYN strengthens the party.
+4798║$opt_he_he_h║Both MEDs concentrate on healing.
+4799║$opt_he_he_he║Salvation
+4800║$opt_he_he_he_h║MEDs concentrate on healing, quickly removing numerous status ailments.
+4801║$opt_he_he_ja║Perseverance
+4802║$opt_he_he_ja_h║MEDs concentrate on healing while SAB attempts to weaken enemies.
+4803║$opt_he_he_sc║Combat Clinic
+4804║$opt_he_he_sc_h║SEN protects two MEDs while they concentrate on rapid healing.
+4805║$opt_he_he_sw║Perpetual Magic
+4806║$opt_he_he_sw_h║RAV attacks enemies while MEDs rapidly heal the party.
+4807║$opt_he_ja║Sap & Salve
+4808║$opt_he_ja_at║Scouting Party
+4809║$opt_he_ja_at_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4810║$opt_he_ja_en║Evened Odds
+4811║$opt_he_ja_en_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4812║$opt_he_ja_h║SAB weakens opponents while MED handles healing.
+4813║$opt_he_ja_he║Perseverance
+4814║$opt_he_ja_he_h║MEDs concentrate on healing while SAB attempts to weaken enemies.
+4815║$opt_he_ja_ja║Safe Subversion
+4816║$opt_he_ja_ja_h║SABs attempt to weaken enemies while MED supports with healing.
+4817║$opt_he_ja_sc║Attrition
+4818║$opt_he_ja_sc_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4819║$opt_he_ja_sw║Variety
+4820║$opt_he_ja_sw_h║SAB weakens opponents while RAV attacks and MED heals.
+4821║$opt_he_sc║Lifeguard
+4822║$opt_he_sc_at║Solidarity
+4823║$opt_he_sc_at_h║MED heals and SEN defends while COM attacks enemies.
+4824║$opt_he_sc_en║Protection
+4825║$opt_he_sc_en_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4826║$opt_he_sc_h║SEN protects MED, who concentrates on healing.
+4827║$opt_he_sc_he║Combat Clinic
+4828║$opt_he_sc_he_h║SEN protects two MEDs while they concentrate on rapid healing.
+4829║$opt_he_sc_ja║Attrition
+4830║$opt_he_sc_ja_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4831║$opt_he_sc_sc║Consolidation
+4832║$opt_he_sc_sc_h║Both SENs defend while MED heals the party. Limited in effectiveness.
+4833║$opt_he_sc_sw║Entourage
+4834║$opt_he_sc_sw_h║SEN draws enemy aggression while MED heals and RAV attacks.
+4835║$opt_he_sw║Yin & Yang
+4836║$opt_he_sw_at║Diversity
+4837║$opt_he_sw_at_h║COM and RAV coordinate attacks while MED supports with healing.
+4838║$opt_he_sw_en║Coordination
+4839║$opt_he_sw_en_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+4840║$opt_he_sw_h║MED heals while RAV attacks enemies.
+4841║$opt_he_sw_he║Perpetual Magic
+4842║$opt_he_sw_he_h║RAV attacks enemies while MEDs rapidly heal the party.
+4843║$opt_he_sw_ja║Variety
+4844║$opt_he_sw_ja_h║SAB weakens opponents while RAV attacks and MED heals.
+4845║$opt_he_sw_sc║Entourage
+4846║$opt_he_sw_sc_h║SEN draws enemy aggression while MED heals and RAV attacks.
+4847║$opt_he_sw_sw║Thaumaturgy
+4848║$opt_he_sw_sw_h║MED heals while RAVs combine their attacks against a common target.
+4849║$opt_ja║Saboteur
+4850║$opt_ja_at║Divide & Conquer
+4851║$opt_ja_at_at║Devastation
+4852║$opt_ja_at_at_h║COMs attack separate targets while SAB weakens dangerous opponents.
+4853║$opt_ja_at_en║Bully
+4854║$opt_ja_at_en_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4855║$opt_ja_at_h║SAB debilitates enemies and COM attacks them.
+4856║$opt_ja_at_he║Scouting Party
+4857║$opt_ja_at_he_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4858║$opt_ja_at_ja║Exploitation
+4859║$opt_ja_at_ja_h║COM attacks while SABs attempt to weaken dangerous enemies.
+4860║$opt_ja_at_sc║Dirty Fighting
+4861║$opt_ja_at_sc_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4862║$opt_ja_at_sw║Ruthless
+4863║$opt_ja_at_sw_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+4864║$opt_ja_en║Tide Turner
+4865║$opt_ja_en_at║Bully
+4866║$opt_ja_en_at_h║COM, augmented by SYN's enhancements, attacks enemies weakened by SAB.
+4867║$opt_ja_en_en║Superiority
+4868║$opt_ja_en_en_h║SYNs strengthen the party while SAB attempts to weaken enemies.
+4869║$opt_ja_en_h║SAB weakens opponents while SYN focuses on strengthening the party.
+4870║$opt_ja_en_he║Evened Odds
+4871║$opt_ja_en_he_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4872║$opt_ja_en_ja║Espionage
+4873║$opt_ja_en_ja_h║SABs attempt to weaken enemies while SYN supports with enhancements.
+4874║$opt_ja_en_sc║Premeditation
+4875║$opt_ja_en_sc_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4876║$opt_ja_en_sw║Guerilla
+4877║$opt_ja_en_sw_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+4878║$opt_ja_h║Focuses on weakening opponents, debilitating them when overwhelmed.
+4879║$opt_ja_he║Sap & Salve
+4880║$opt_ja_he_at║Scouting Party
+4881║$opt_ja_he_at_h║SAB weakens opponents while COM attacks them and MED heals the party.
+4882║$opt_ja_he_en║Evened Odds
+4883║$opt_ja_he_en_h║MED heals while SYN strengthens allies and SAB weakens enemies.
+4884║$opt_ja_he_h║SAB weakens opponents while MED handles healing.
+4885║$opt_ja_he_he║Perseverance
+4886║$opt_ja_he_he_h║MEDs concentrate on healing while SAB attempts to weaken enemies.
+4887║$opt_ja_he_ja║Safe Subversion
+4888║$opt_ja_he_ja_h║SABs attempt to weaken enemies while MED supports with healing.
+4889║$opt_ja_he_sc║Attrition
+4890║$opt_ja_he_sc_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4891║$opt_ja_he_sw║Variety
+4892║$opt_ja_he_sw_h║SAB weakens opponents while RAV attacks and MED heals.
+4893║$opt_ja_ja║Havoc
+4894║$opt_ja_ja_at║Exploitation
+4895║$opt_ja_ja_at_h║COM attacks while SABs attempt to weaken dangerous enemies.
+4896║$opt_ja_ja_en║Espionage
+4897║$opt_ja_ja_en_h║SABs attempt to weaken enemies while SYN supports with enhancements.
+4898║$opt_ja_ja_h║Both SABs attempt to quickly weaken and debilitate enemies.
+4899║$opt_ja_ja_he║Safe Subversion
+4900║$opt_ja_ja_he_h║SABs attempt to weaken enemies while MED supports with healing.
+4901║$opt_ja_ja_ja║Infiltration
+4902║$opt_ja_ja_ja_h║SABs attempt to quickly weaken and debilitate even resistant enemies.
+4903║$opt_ja_ja_sc║Countermeasure
+4904║$opt_ja_ja_sc_h║SEN protects SABs while they weaken dangerous enemies.
+4905║$opt_ja_ja_sw║Assassination
+4906║$opt_ja_ja_sw_h║RAV attacks enemies heavily weakened by two SABs.
+4907║$opt_ja_sc║Stumbling Block
+4908║$opt_ja_sc_at║Dirty Fighting
+4909║$opt_ja_sc_at_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4910║$opt_ja_sc_en║Premeditation
+4911║$opt_ja_sc_en_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4912║$opt_ja_sc_h║SEN protects SAB, who attempts to weaken enemies.
+4913║$opt_ja_sc_he║Attrition
+4914║$opt_ja_sc_he_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4915║$opt_ja_sc_ja║Countermeasure
+4916║$opt_ja_sc_ja_h║SEN protects SABs while they weaken dangerous enemies.
+4917║$opt_ja_sc_sc║Overcaution
+4918║$opt_ja_sc_sc_h║SENs protect SAB, who attempts to weaken enemies. Limited in effectiveness.
+4919║$opt_ja_sc_sw║Matador
+4920║$opt_ja_sc_sw_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+4921║$opt_ja_sw║Undermine
+4922║$opt_ja_sw_at║Ruthless
+4923║$opt_ja_sw_at_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+4924║$opt_ja_sw_en║Guerilla
+4925║$opt_ja_sw_en_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+4926║$opt_ja_sw_h║RAV attacks while SAB attempts to weaken enemies.
+4927║$opt_ja_sw_he║Variety
+4928║$opt_ja_sw_he_h║SAB weakens opponents while RAV attacks and MED heals.
+4929║$opt_ja_sw_ja║Assassination
+4930║$opt_ja_sw_ja_h║RAV attacks enemies heavily weakened by two SABs.
+4931║$opt_ja_sw_sc║Matador
+4932║$opt_ja_sw_sc_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+4933║$opt_ja_sw_sw║Smart Bomb
+4934║$opt_ja_sw_sw_h║RAVs combine their attacks while SAB weakens dangerous opponents.
+4935║$opt_sc║Sentinel
+4936║$opt_sc_at║Misdirection
+4937║$opt_sc_at_at║Offensive Screen
+4938║$opt_sc_at_at_h║SEN defends against dangerous attacks while COMs focus on dealing damage.
+4939║$opt_sc_at_en║Strategic Warfare
+4940║$opt_sc_at_en_h║COM attacks and SEN defends while SYN strengthens them.
+4941║$opt_sc_at_h║SEN focuses on drawing enemy aggression while COM attacks.
+4942║$opt_sc_at_he║Solidarity
+4943║$opt_sc_at_he_h║MED heals and SEN defends while COM attacks enemies.
+4944║$opt_sc_at_ja║Dirty Fighting
+4945║$opt_sc_at_ja_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4946║$opt_sc_at_sc║Guarded Assault
+4947║$opt_sc_at_sc_h║SENs defend while the lone COM attacks. Limited in effectiveness.
+4948║$opt_sc_at_sw║Delta Attack
+4949║$opt_sc_at_sw_h║SEN draws enemy aggression while COM and RAV attack a common target.
+4950║$opt_sc_en║Building Block
+4951║$opt_sc_en_at║Strategic Warfare
+4952║$opt_sc_en_at_h║COM attacks and SEN defends while SYN strengthens them.
+4953║$opt_sc_en_en║Prudent Planning
+4954║$opt_sc_en_en_h║SEN protects two SYNs while they strengthen the party.
+4955║$opt_sc_en_h║SEN protects SYN, who focuses on strengthening the party.
+4956║$opt_sc_en_he║Protection
+4957║$opt_sc_en_he_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4958║$opt_sc_en_ja║Premeditation
+4959║$opt_sc_en_ja_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4960║$opt_sc_en_sc║Conservation
+4961║$opt_sc_en_sc_h║Both SENs defend while SYN strengthens the party. Limited in effectiveness.
+4962║$opt_sc_en_sw║Riot Shield
+4963║$opt_sc_en_sw_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+4964║$opt_sc_h║Draws and defends against the attacks of enemies.
+4965║$opt_sc_he║Lifeguard
+4966║$opt_sc_he_at║Solidarity
+4967║$opt_sc_he_at_h║MED heals and SEN defends while COM attacks enemies.
+4968║$opt_sc_he_en║Protection
+4969║$opt_sc_he_en_h║SEN defends while MED heals and SYN focuses on strengthening the party.
+4970║$opt_sc_he_h║SEN protects MED, who concentrates on healing.
+4971║$opt_sc_he_he║Combat Clinic
+4972║$opt_sc_he_he_h║SEN protects two MEDs while they concentrate on rapid healing.
+4973║$opt_sc_he_ja║Attrition
+4974║$opt_sc_he_ja_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4975║$opt_sc_he_sc║Consolidation
+4976║$opt_sc_he_sc_h║Both SENs defend while MED heals the party. Limited in effectiveness.
+4977║$opt_sc_he_sw║Entourage
+4978║$opt_sc_he_sw_h║SEN draws enemy aggression while MED heals and RAV attacks.
+4979║$opt_sc_ja║Stumbling Block
+4980║$opt_sc_ja_at║Dirty Fighting
+4981║$opt_sc_ja_at_h║COM attacks enemies weakened by SAB while SEN defends against them.
+4982║$opt_sc_ja_en║Premeditation
+4983║$opt_sc_ja_en_h║SEN defends while SAB weakens opponents and SYN strengthens the party.
+4984║$opt_sc_ja_h║SEN protects SAB, who attempts to weaken enemies.
+4985║$opt_sc_ja_he║Attrition
+4986║$opt_sc_ja_he_h║MED heals and SEN defends while SAB attempts to weaken enemies.
+4987║$opt_sc_ja_ja║Countermeasure
+4988║$opt_sc_ja_ja_h║SEN protects SABs while they weaken dangerous enemies.
+4989║$opt_sc_ja_sc║Overcaution
+4990║$opt_sc_ja_sc_h║SENs protect SAB, who attempts to weaken enemies. Limited in effectiveness.
+4991║$opt_sc_ja_sw║Matador
+4992║$opt_sc_ja_sw_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+4993║$opt_sc_sc║Twin Shields
+4994║$opt_sc_sc_at║Guarded Assault
+4995║$opt_sc_sc_at_h║SENs defend while the lone COM attacks. Limited in effectiveness.
+4996║$opt_sc_sc_en║Conservation
+4997║$opt_sc_sc_en_h║Both SENs defend while SYN strengthens the party. Limited in effectiveness.
+4998║$opt_sc_sc_h║Both SENs defend against enemy attacks.
+4999║$opt_sc_sc_he║Consolidation
+5000║$opt_sc_sc_he_h║Both SENs defend while MED heals the party. Limited in effectiveness.
+5001║$opt_sc_sc_ja║Overcaution
+5002║$opt_sc_sc_ja_h║SENs protect SAB, who attempts to weaken enemies. Limited in effectiveness.
+5003║$opt_sc_sc_sc║Tortoise
+5004║$opt_sc_sc_sc_h║All three SENs tighten their defenses. Effective for withstanding area attacks.
+5005║$opt_sc_sc_sw║Patient Probing
+5006║$opt_sc_sc_sw_h║SENs defend while the lone RAV attacks. Limited in effectiveness.
+5007║$opt_sc_sw║Arcane Defense
+5008║$opt_sc_sw_at║Delta Attack
+5009║$opt_sc_sw_at_h║SEN draws enemy aggression while COM and RAV attack a common target.
+5010║$opt_sc_sw_en║Riot Shield
+5011║$opt_sc_sw_en_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+5012║$opt_sc_sw_h║SEN draws enemy aggression while RAV attacks.
+5013║$opt_sc_sw_he║Entourage
+5014║$opt_sc_sw_he_h║SEN draws enemy aggression while MED heals and RAV attacks.
+5015║$opt_sc_sw_ja║Matador
+5016║$opt_sc_sw_ja_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+5017║$opt_sc_sw_sc║Patient Probing
+5018║$opt_sc_sw_sc_h║SENs defend while the lone RAV attacks. Limited in effectiveness.
+5019║$opt_sc_sw_sw║Mystic Tower
+5020║$opt_sc_sw_sw_h║RAVs combine their attacks while SEN protects them from dangerous enemies.
+5021║$opt_sw║Ravager
+5022║$opt_sw_at║Slash & Burn
+5023║$opt_sw_at_at║Aggression
+5024║$opt_sw_at_at_h║RAV and one COM attack a common target while other COM attacks its own.
+5025║$opt_sw_at_en║Decimation
+5026║$opt_sw_at_en_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+5027║$opt_sw_at_h║COM and RAV combine their attacks to take down one enemy at a time.
+5028║$opt_sw_at_he║Diversity
+5029║$opt_sw_at_he_h║COM and RAV coordinate attacks while MED supports with healing.
+5030║$opt_sw_at_ja║Ruthless
+5031║$opt_sw_at_ja_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+5032║$opt_sw_at_sc║Delta Attack
+5033║$opt_sw_at_sc_h║SEN draws enemy aggression while COM and RAV attack a common target.
+5034║$opt_sw_at_sw║Relentless Assault
+5035║$opt_sw_at_sw_h║COM and RAVs focus on taking down one target at a time.
+5036║$opt_sw_en║Archmage
+5037║$opt_sw_en_at║Decimation
+5038║$opt_sw_en_at_h║COM and RAV coordinate attacks, augmented by SYN's enhancements.
+5039║$opt_sw_en_en║Supernatural
+5040║$opt_sw_en_en_h║RAV attacks enemies, heavily augmented by two SYNs.
+5041║$opt_sw_en_h║RAV attacks enemies, augmented by SYN's enhancements.
+5042║$opt_sw_en_he║Coordination
+5043║$opt_sw_en_he_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+5044║$opt_sw_en_ja║Guerilla
+5045║$opt_sw_en_ja_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+5046║$opt_sw_en_sc║Riot Shield
+5047║$opt_sw_en_sc_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+5048║$opt_sw_en_sw║Malevolence
+5049║$opt_sw_en_sw_h║RAVs coordinate their attacks, augmented by SYN's enhancements.
+5050║$opt_sw_h║Attacks enemies with the aim of quickly building chains.
+5051║$opt_sw_he║Yin & Yang
+5052║$opt_sw_he_at║Diversity
+5053║$opt_sw_he_at_h║COM and RAV coordinate attacks while MED supports with healing.
+5054║$opt_sw_he_en║Coordination
+5055║$opt_sw_he_en_h║MED heals while RAV attacks enemies, augmented by SYN's enhancements.
+5056║$opt_sw_he_h║MED heals while RAV attacks enemies.
+5057║$opt_sw_he_he║Perpetual Magic
+5058║$opt_sw_he_he_h║RAV attacks enemies while MEDs rapidly heal the party.
+5059║$opt_sw_he_ja║Variety
+5060║$opt_sw_he_ja_h║SAB weakens opponents while RAV attacks and MED heals.
+5061║$opt_sw_he_sc║Entourage
+5062║$opt_sw_he_sc_h║SEN draws enemy aggression while MED heals and RAV attacks.
+5063║$opt_sw_he_sw║Thaumaturgy
+5064║$opt_sw_he_sw_h║MED heals while RAVs combine their attacks against a common target.
+5065║$opt_sw_ja║Undermine
+5066║$opt_sw_ja_at║Ruthless
+5067║$opt_sw_ja_at_h║COM and RAV combine their attacks while SAB attempts to weaken enemies.
+5068║$opt_sw_ja_en║Guerilla
+5069║$opt_sw_ja_en_h║RAV attacks while SAB weakens enemies and SYN strengthens the party.
+5070║$opt_sw_ja_h║RAV attacks while SAB attempts to weaken enemies.
+5071║$opt_sw_ja_he║Variety
+5072║$opt_sw_ja_he_h║SAB weakens opponents while RAV attacks and MED heals.
+5073║$opt_sw_ja_ja║Assassination
+5074║$opt_sw_ja_ja_h║RAV attacks enemies heavily weakened by two SABs.
+5075║$opt_sw_ja_sc║Matador
+5076║$opt_sw_ja_sc_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+5077║$opt_sw_ja_sw║Smart Bomb
+5078║$opt_sw_ja_sw_h║RAVs combine their attacks while SAB weakens dangerous opponents.
+5079║$opt_sw_sc║Arcane Defense
+5080║$opt_sw_sc_at║Delta Attack
+5081║$opt_sw_sc_at_h║SEN draws enemy aggression while COM and RAV attack a common target.
+5082║$opt_sw_sc_en║Riot Shield
+5083║$opt_sw_sc_en_h║SEN defends while RAV attacks, augmented by SYN's enhancements.
+5084║$opt_sw_sc_h║SEN draws enemy aggression while RAV attacks.
+5085║$opt_sw_sc_he║Entourage
+5086║$opt_sw_sc_he_h║SEN draws enemy aggression while MED heals and RAV attacks.
+5087║$opt_sw_sc_ja║Matador
+5088║$opt_sw_sc_ja_h║RAV attacks enemies weakened by SAB while SEN defends against them.
+5089║$opt_sw_sc_sc║Patient Probing
+5090║$opt_sw_sc_sc_h║SENs defend while the lone RAV attacks. Limited in effectiveness.
+5091║$opt_sw_sc_sw║Mystic Tower
+5092║$opt_sw_sc_sw_h║RAVs combine their attacks while SEN protects them from dangerous enemies.
+5093║$opt_sw_sw║Dualcasting
+5094║$opt_sw_sw_at║Relentless Assault
+5095║$opt_sw_sw_at_h║COM and RAVs focus on taking down one target at a time.
+5096║$opt_sw_sw_en║Malevolence
+5097║$opt_sw_sw_en_h║RAVs coordinate their attacks, augmented by SYN's enhancements.
+5098║$opt_sw_sw_h║Both RAVs concentrate their attacks on the same target.
+5099║$opt_sw_sw_he║Thaumaturgy
+5100║$opt_sw_sw_he_h║MED heals while RAVs combine their attacks against a common target.
+5101║$opt_sw_sw_ja║Smart Bomb
+5102║$opt_sw_sw_ja_h║RAVs combine their attacks while SAB weakens dangerous opponents.
+5103║$opt_sw_sw_sc║Mystic Tower
+5104║$opt_sw_sw_sc_h║RAVs combine their attacks while SEN protects them from dangerous enemies.
+5105║$opt_sw_sw_sw║Tri-disaster
+5106║$opt_sw_sw_sw_h║All three RAVs combine their attacks, attempting to quickly fill chain gauges.
+5107║$pause_00║PAUSED
+5108║$pause_01║{Key Start}Resume
+5109║$pause_02║{Key Select}Skip   {Key Start}Resume
+5110║$pause_03║{Key Select}Quit   {Key Start}Resume
+5111║$pause_04║{Key Cross} OK
+5112║$pause_05║{Key Select}Retry   {Key Start}Resume
+5113║$pause_06║{Key Triangle} Delete
+5114║$pc_000║Lightning
+5115║$pc_001║Snow
+5116║$pc_002║Sazh
+5117║$pc_003║Hope
+5118║$pc_004║Vanille
+5119║$pc_005║Fang
+5120║$pc_006║Gadot
+5121║$pc_007║Lebreau
+5122║$pre_attack║
+5123║$pre_mtxt_01║PREEMPTIVE STRIKE!
+5124║$q_ma_000_00║Manadrive Ruin
+5125║$q_ma_020_00║Manadrive Ruinga
+5126║$q_mb_000_00║Manadrive Fire
+5127║$q_mb_010_00║Manadrive Fira
+5128║$q_mb_020_00║Manadrive Firaga
+5129║$q_mb_100_00║Manadrive Blizzard
+5130║$q_mb_110_00║Manadrive Blizzara
+5131║$q_mb_120_00║Manadrive Blizzaga
+5132║$q_mb_200_00║Manadrive Thunder
+5133║$q_mb_210_00║Manadrive Thundara
+5134║$q_mb_220_00║Manadrive Thundaga
+5135║$q_mb_300_00║Manadrive Water
+5136║$q_mb_310_00║Manadrive Watera
+5137║$q_mb_320_00║Manadrive Waterga
+5138║$q_mb_400_00║Manadrive Aero
+5139║$q_mb_410_00║Manadrive Aerora
+5140║$q_mb_420_00║Manadrive Aeroga
+5141║$q_mb_520_00║Manadrive Quake
+5142║$q_mg_000_00║Manadrive Deprotect
+5143║$q_mg_010_00║Manadrive Deshell
+5144║$q_mg_020_00║Manadrive Dispel
+5145║$q_mg_030_00║Manadrive Imperil
+5146║$q_mg_040_00║Manadrive Slow
+5147║$q_mg_050_00║Manadrive Magnet
+5148║$q_mg_060_00║Manadrive Poison
+5149║$q_mg_070_00║Manadrive Daze
+5150║$q_mg_080_00║Manadrive Fog
+5151║$q_mg_090_00║Manadrive Pain
+5152║$q_mg_100_00║Manadrive Curse
+5153║$q_mg_110_00║Manadrive Deprotega
+5154║$q_mg_120_00║Manadrive Deshellga
+5155║$q_mg_130_00║Manadrive Poisonga
+5156║$q_mg_140_00║Manadrive Imperilga
+5157║$q_mg_150_00║Manadrive Slowga
+5158║$q_mg_160_00║Manadrive Fogga
+5159║$q_mg_170_00║Manadrive Painga
+5160║$q_mg_180_00║Manadrive Cursega
+5161║$q_mg_190_00║Manadrive Dazega
+5162║$q_nw_000_00║Manadrive Cure
+5163║$q_nw_010_00║Manadrive Cura
+5164║$q_nw_020_00║Manadrive Curasa
+5165║$q_nw_030_00║Manadrive Curaja
+5166║$q_nw_100_00║Manadrive Raise
+5167║$q_nw_200_00║Manadrive Esuna
+5168║$q_nw_500_00║Manadrive Protect
+5169║$q_nw_510_00║Manadrive Shell
+5170║$q_nw_520_00║Manadrive Veil
+5171║$q_nw_530_00║Manadrive Barfire
+5172║$q_nw_540_00║Manadrive Barfrost
+5173║$q_nw_550_00║Manadrive Barthunder
+5174║$q_nw_560_00║Manadrive Barwater
+5175║$q_nw_580_00║Manadrive Vigilance
+5176║$q_nw_590_00║Manadrive Bravery
+5177║$q_nw_600_00║Manadrive Faith
+5178║$q_nw_610_00║Manadrive Haste
+5179║$q_nw_620_00║Manadrive Enfire
+5180║$q_nw_630_00║Manadrive Enfrost
+5181║$q_nw_640_00║Manadrive Enthunder
+5182║$q_nw_650_00║Manadrive Enwater
+5183║$q_nw_660_00║Manadrive Bravera
+5184║$q_nw_670_00║Manadrive Faithra
+5185║$q_nw_680_00║Manadrive Protectra
+5186║$q_nw_690_00║Manadrive Shellra
+5187║$res_mtxt_00║SHROUDS
+5188║$reserve_00║None
+5189║$reserve_00h║The party has no shrouds.
+5190║$resms_txt00║MISSION COMPLETE!
+5191║$resms_txt01║MISSION RESULTS
+5192║$resms_txt02║Completion Bonus:
+5193║$resms_txt03║
+5194║$resms_txt04║
+5195║$resms_txt05║
+5196║$resms_txt06║
+5197║$resms_txt07║
+5198║$resms_txt08║Your party has earned the rank of {Color Gold}{VarF4 64}{Color SkyBlue}!
+5199║$restart_00║Retry|Quit|Cancel
+5200║$restart_01║Retry|Quit
+5201║$restart_02║{Icon Attention} Are you sure you wish to retry?
+5202║$restart_03║{Icon Attention} Quit playing and exit to the title menu?{Text NewLine}{Text NewLine}All unsaved progress will be lost upon exiting.{Text NewLine}If you wish to continue playing, select 'No.'
+5203║$restart_04║Yes|No
+5204║$result_00║Target Time
+5205║$result_01║Initiative Bonus
+5206║$result_02║Battle Duration
+5207║$result_03║Points Per Second
+5208║$result_but_00║{Key Cross} OK
+5209║$result_easy║EASY MODE
+5210║$result_title00║BATTLE RESULTS
+5211║$result_title01║STATS
+5212║$result_title02║SCORE
+5213║$result_title04║RATING
+5214║$result_title05║CRYSTOGEN POINTS
+5215║$result_title06║TECHNICAL POINTS
+5216║$result_title07║SPOILS
+5217║$role_00║COMMANDO
+5218║$role_00MAX║Permanent Strength Boost: 50%
+5219║$role_00bonus1║Bonus: Augmented Attacks
+5220║$role_00bonus2║Bonus: Augmented Attacks
+5221║$role_00bonus3║Bonus: Augmented Attacks
+5222║$role_00bonus4║Bonus: Augmented Attacks
+5223║$role_00bonus5║Bonus: Augmented Attacks
+5224║$role_01║RAVAGER
+5225║$role_01MAX║Permanent Chaining Bonus: 10%
+5226║$role_01bonus1║Bonus: Improved Chaining
+5227║$role_01bonus2║Bonus: Improved Chaining
+5228║$role_01bonus3║Bonus: Improved Chaining
+5229║$role_01bonus4║Bonus: Improved Chaining
+5230║$role_01bonus5║Bonus: Improved Chaining
+5231║$role_02║SENTINEL
+5232║$role_02MAX║Permanent Damage Reduction: 10%
+5233║$role_02bonus1║Bonus: Damage Reduction
+5234║$role_02bonus2║Bonus: Damage Reduction
+5235║$role_02bonus3║Bonus: Damage Reduction
+5236║$role_02bonus4║Bonus: Damage Reduction
+5237║$role_02bonus5║Bonus: Damage Reduction
+5238║$role_03║SABOTEUR
+5239║$role_03MAX║Permanent Success Boost: 20%
+5240║$role_03bonus1║Bonus: Boosted Success Rates
+5241║$role_03bonus2║Bonus: Boosted Success Rates
+5242║$role_03bonus3║Bonus: Boosted Success Rates
+5243║$role_03bonus4║Bonus: Boosted Success Rates
+5244║$role_03bonus5║Bonus: Boosted Success Rates
+5245║$role_04║SYNERGIST
+5246║$role_04MAX║Permanent Effect Extension: 20%
+5247║$role_04bonus1║Bonus: Extended Enhancements
+5248║$role_04bonus2║Bonus: Extended Enhancements
+5249║$role_04bonus3║Bonus: Extended Enhancements
+5250║$role_04bonus4║Bonus: Extended Enhancements
+5251║$role_04bonus5║Bonus: Extended Enhancements
+5252║$role_05║MEDIC
+5253║$role_05MAX║Permanent Healing Bonus: 50%
+5254║$role_05bonus1║Bonus: Augmented Healing
+5255║$role_05bonus2║Bonus: Augmented Healing
+5256║$role_05bonus3║Bonus: Augmented Healing
+5257║$role_05bonus4║Bonus: Augmented Healing
+5258║$role_05bonus5║Bonus: Augmented Healing
+5259║$role_06║COM
+5260║$role_07║RAV
+5261║$role_08║SEN
+5262║$role_09║SAB
+5263║$role_10║SYN
+5264║$role_11║MED
+5265║$role_12║Commando
+5266║$role_13║Ravager
+5267║$role_14║Sentinel
+5268║$role_15║Saboteur
+5269║$role_16║Synergist
+5270║$role_17║Medic
+5271║$role_atk║Build attack chains more easily with enhanced strength.
+5272║$role_bla║Charge enemy chain gauges with concentrated attacks.
+5273║$role_change║PARADIGM SHIFT
+5274║$role_def║Shield allies from enemy attacks with enhanced defense.
+5275║$role_enh║Support allies with an array of magical enhancements.
+5276║$role_hlr║Focus on restoring HP and removing status ailments.
+5277║$role_jam║Enfeeble enemies while charging their chain gauges.
+5278║$role_lv║LEVEL
+5279║$s101_at010_00║Flourish of Steel
+5280║$s101_at010_00h║Repeatedly deal physical damage to targets in range.
+5281║$s101_at020_00║Skyward Swing
+5282║$s101_at020_00h║Deal physical damage to surrounding targets and launch them into the air.
+5283║$s101_at030_00║Seismic Strike
+5284║$s101_at030_00h║Deal physical damage to targets within a wide radius.
+5285║$s101_at040_00║Crushing Blow
+5286║$s101_at040_00h║Advance and strike target for physical damage.
+5287║$s101_gd700_00║Ullr's Shield
+5288║$s101_gd700_00h║Raise shield and defend while recharging ATB gauge.
+5289║$s101_mb200_00║Thunder
+5290║$s101_mb200_00h║Deal lightning damage to target.
+5291║$s101_mb210_00║Thundara
+5292║$s101_mb210_00h║Deal lightning damage to targets in range.
+5293║$s101_mb220_00║Thundaga
+5294║$s101_mb220_00h║Deal lightning damage to targets within a wide radius.
+5295║$s101_mw000_01║Curaga
+5296║$s101_mw000_01h║Restores a large amount of target's HP.
+5297║$s101_mw100_00║Arise
+5298║$s101_mw100_00h║Revive from KO with full HP and no status ailments.
+5299║$s201_mb100_00║Blizzard
+5300║$s201_mb100_00h║Deal ice damage to target.
+5301║$s201_mb110_00║Blizzara
+5302║$s201_mb110_00h║Deal ice damage to targets in range.
+5303║$s201_mb120_00║Blizzaga
+5304║$s201_mb120_00h║Deal ice damage to targets within a wide radius.
+5305║$s201_mw000_00║Curaga
+5306║$s201_mw000_00h║Restores a large amount of target's HP.
+5307║$s201_mw100_00║Arise
+5308║$s201_mw100_00h║Revive from KO with full HP and no status ailments.
+5309║$s201_mw200_00║Esuna
+5310║$s201_mw200_00h║Remove target's most recently inflicted status ailment.
+5311║$s203_at010_00║Wheel Rap
+5312║$s203_at010_00h║Deal physical damage to target.
+5313║$s203_at020_00║Wheel Rap
+5314║$s203_at020_00h║Deal physical damage to target.
+5315║$s203_at030_00║Flip Kick
+5316║$s203_at030_00h║Deal physical damage to target, launching it into the air if staggered.
+5317║$s203_at200_00║Wheel Grind
+5318║$s203_at200_00h║Strike target repeatedly for physical damage.
+5319║$s203_at520_00║Pirouette
+5320║$s203_at520_00h║Attack surrounding targets repeatedly for physical damage.
+5321║$s203_at700_00║Wheel Toss
+5322║$s203_at700_00h║Attack ranged target for physical damage.
+5323║$s203_gd700_00║ATB Charge
+5324║$s203_gd700_00h║Store power to accelerate ATB gauge recharge.
+5325║$s203_mb110_00║Blizzara
+5326║$s301_at010_00║Slash
+5327║$s301_at010_00h║Deal physical damage to targets in range.
+5328║$s301_at020_00║Slash
+5329║$s301_at020_00h║Deal physical damage to targets in range.
+5330║$s301_at030_00║Valkyrian Scythe
+5331║$s301_at030_00h║Repeatedly deal physical damage to targets in range.
+5332║$s301_at100_00║Gunshot
+5333║$s301_at100_00h║Deal physical damage to target.
+5334║$s301_at700_00║Pyroshot
+5335║$s301_at700_00h║Deal fire damage to targets in range.
+5336║$s301_at700_ic║Cryoshot
+5337║$s301_at700_ich║Deal ice damage to targets in range. Requires Enfrost status.
+5338║$s301_at700_td║Electroshot
+5339║$s301_at700_tdh║Deal lightning damage to targets in range. Requires Enthunder status.
+5340║$s301_at700_wt║Hydroshot
+5341║$s301_at700_wth║Deal water damage to targets in range. Requires Enwater status.
+5342║$s301_at800_00║Pyroburst
+5343║$s301_at800_00h║Attack targets within a wide radius for fire damage.
+5344║$s301_at800_ic║Cryoburst
+5345║$s301_at800_ich║Attack targets within a wide radius for ice damage. Requires Enfrost status.
+5346║$s301_at800_td║Electroburst
+5347║$s301_at800_tdh║Attack targets within a wide radius for lightning damage. Requires Enthunder status.
+5348║$s301_at800_wt║Hydroburst
+5349║$s301_at800_wth║Attack enemies within a wide radius for water damage. Requires Enwater status.
+5350║$s301_gd700_00║ATB Boost
+5351║$s301_gd700_00h║Temporarily extend ATB gauge to deliver a powerful attack.
+5352║$s301_mw000_00║Curaga
+5353║$s301_mw000_00h║Restores a large amount of target's HP.
+5354║$s301_mw100_00║Arise
+5355║$s301_mw100_00h║Revive from KO with full HP and no status ailments.
+5356║$s401_ac100_00║Lofty Challenge
+5357║$s401_ac100_00h║Force enemies in range to attack Eidolon.
+5358║$s401_at010_00║Steelcrusher
+5359║$s401_at010_00h║Deal physical damage to target.
+5360║$s401_at020_00║Steelcrusher
+5361║$s401_at020_00h║Deal physical damage to target.
+5362║$s401_at040_00║Obliterator
+5363║$s401_at040_00h║Deal heavy physical damage to target.
+5364║$s401_at500_00║Soaring Uppercut
+5365║$s401_at500_00h║Deal physical damage to target and launch it into the air.
+5366║$s401_at700_00║Blast Punch
+5367║$s401_at700_00h║Deal physical damage to distant target.
+5368║$s401_at710_00║Explosive Fist
+5369║$s401_at710_00h║Deal physical damage to targets within a wide radius.
+5370║$s401_mw000_00║Curaga
+5371║$s401_mw000_00h║Restores a large amount of target's HP.
+5372║$s401_mw100_00║Arise
+5373║$s401_mw100_00h║Revive from KO with full HP and no status ailments.
+5374║$s501_at010_00║Pummel
+5375║$s501_at010_00h║Repeatedly deal physical damage to targets in range.
+5376║$s501_at020_00║Aerial Tackle
+5377║$s501_at020_00h║Advance and deal physical damage to target.
+5378║$s501_at030_00║Hurricane Kick
+5379║$s501_at030_00h║Deal physical damage to surrounding targets.
+5380║$s501_at040_00║Force Projection
+5381║$s501_at040_00h║Deal physical damage to distant target.
+5382║$s501_at050_00║Counter
+5383║$s501_at050_00h║Occasionally counterattack enemies after evading their attacks.
+5384║$s501_gd700_00║Looming Wrath
+5385║$s501_gd700_00h║Attack any enemy that draws near.
+5386║$s501_mb520_00║Quake
+5387║$s501_mb520_00h║Deal earth damage to targets in range.
+5388║$s501_mw100_00║Arise
+5389║$s501_mw100_00h║Revive from KO with full HP and no status ailments.
+5390║$s601_at010_00║Dragon Claws
+5391║$s601_at010_00h║Deal physical damage to targets in range.
+5392║$s601_at020_00║Dragon Claws
+5393║$s601_at020_00h║Deal physical damage to targets in range.
+5394║$s601_at030_00║Inferno
+5395║$s601_at030_00h║Deal heavy magic damage to target.
+5396║$s601_at040_00║Whirlwind
+5397║$s601_at040_00h║Deal physical damage to surrounding targets and launch them into the air.
+5398║$s601_at050_00║Umbral Vise
+5399║$s601_at050_00h║Deal heavy physical damage to target.
+5400║$s601_mb500_00║Ignis
+5401║$s601_mb500_00h║Deal magic damage to targets within a wide radius.
+5402║$s601_mw000_00║Curaga
+5403║$s601_mw000_00h║Restores a large amount of target's HP.
+5404║$s601_mw100_00║Arise
+5405║$s601_mw100_00h║Revive from KO with full HP and no status ailments.
+5406║$s_101║Odin
+5407║$s_201║Stiria
+5408║$s_201w║Shiva
+5409║$s_203║Nix
+5410║$s_301║Brynhildr
+5411║$s_401║Alexander
+5412║$s_501║Hecatoncheir
+5413║$s_601║Bahamut
+5414║$save_del_xmb00║Do you wish to delete this save data?{End}{Question}
+5415║$save_dtl║{VarF4 67}{Text NewLine}{Text NewLine}{VarF4 64}{Text NewLine}Play Time: {VarF4 65}{End}{Question}
+5416║$save_new║New Save Data{End}{Question}
+5417║$save_subc║Save Data {VarF7 64} UHI{End}{Question}
+5418║$save_subs║System Data{End}{Question}
+5419║$save_ttl║FINAL FANTASY XIII{Text 110}ULTIMATE HITS INTERNATIONAL{End}{Question}
+5420║$shop_00║Buy
+5421║$shop_00h║Select a retail network.
+5422║$shop_01║Sell
+5423║$shop_01h║Purchase items.
+5424║$shop_02║Log out
+5425║$shop_02h║Sell items.
+5426║$shop_03║{Icon Attention} Sell {VarF6 64}?
+5427║$shop_03h║Log out of this network.
+5428║$shop_04║Yes|No
+5429║$shop_04h║Sell consumable items.
+5430║$shop_05║{Icon Attention} Purchase {VarF6 64}?
+5431║$shop_05h║Sell weapons.
+5432║$shop_06║Yes|No
+5433║$shop_06h║Sell accessories.
+5434║$shop_07║{Icon Attention} Sell {VarF6 64}?
+5435║$shop_07h║Sell components.
+5436║$shop_08h║Select the number you wish to purchase.
+5437║$shop_09h║Select the number you wish to sell.
+5438║$shop_mes_00║{Icon Attention} You already own 99. You cannot carry any more.
+5439║$shop_mes_01║{Icon Attention} You cannot carry any more weapons.
+5440║$shop_mes_02║{Icon Attention} You cannot carry any more accessories.
+5441║$shop_mes_03║{Icon Attention} You do not have enough gil.
+5442║$shop_mes_04║{Icon Attention} You cannot sell an equipped weapon.
+5443║$shop_mes_05║{Icon Attention} You cannot sell an equipped accessory.
+5444║$shop_nama00║Unicorn Mart
+5445║$shop_nama00txt║Reliable service from a name you can trust. At Unicorn Mart, your health is our business! Our expert pharmacists are standing by, day and night, to send you whatever you need, wherever you need it.
+5446║$shop_nama01║Eden Pharmaceuticals
+5447║$shop_nama01txt║A Sanctum-affiliated institution in the public sector conducting both academic and industry-sponsored research. {Italic}Let Cocoon's own sciences empower you as you help to fulfill her destiny!{Italic}
+5448║$shop_nama02║Up in Arms
+5449║$shop_nama02txt║If history has taught us anything, it's that everyone dies eventually{Var85 87}but at Up in Arms, we help you to ensure your enemies do so as soon as possible. From classic pieces to cutting-edge upgrades, we've got it all! Edged weapons and {Italic}Up in Firearms{Italic} gun selections fully Sanctum-approved.
+5450║$shop_nama03║Plautus's Workshop
+5451║$shop_nama03txt║Brute force may win the easy battles, but readiness wins them all. Our master craftsmen produce only the finest in specialized weaponry, granting you the edge that separates the best from the rest (in peace). Discerning customers agree: if you want quality, you want Plautus.
+5452║$shop_nama04║DELETED
+5453║$shop_nama04txt║DELETED
+5454║$shop_nama05║Gilgamesh, Inc.
+5455║$shop_nama05txt║No information on this corporation is available to the public.
+5456║$shop_nama06║B&W Outfitters
+5457║$shop_nama06txt║City life getting you down? Answer the call of the wild! With B&W gear to protect you, a trek through the lowlands is a walk in the park. Why not leave the hustle and bustle behind, and return to nature? It could be just the vacation your soul needs!
+5458║$shop_nama07║Magical Moments
+5459║$shop_nama07txt║{Italic}'An enchanting charm, to protect that special someone...'{Italic} Heirloom-quality luxuries, steeped in the powers of antiquity. All accessories legally crafted and certified free of l'Cie magics.
+5460║$shop_nama08║Moogleworks
+5461║$shop_nama08txt║Greetings, Kupoteers! At Moogleworks, you'll find accessories the likes of which you've never imagined. What you do with them{Var85 87}well, that's something your imagination {Italic}can{Italic} help you with, kupo!
+5462║$shop_nama09║Sanctum Labs
+5463║$shop_nama09txt║A Sanctum prototyping laboratory dedicated to the production of next-generation combat gear. {Italic}Your visit to this site will not be detected by the military, l'Cie. Your access trail has been concealed by the fal'Cie from the very start.{Italic}
+5464║$shop_nama10║Creature Comforts
+5465║$shop_nama10txt║If it bleeds, you can kill it. If you can kill it, we most likely carry it! Freshly harvested scientific specimens, bushmeat, and organic materials. When you can't wait for nature to take its course, set course for Creature Comforts!
+5466║$shop_nama11║The Motherlode
+5467║$shop_nama11txt║Celebrating 120 years of mineralogical excellence, made possible by the faithful patronage of our distinguished customers. When it comes to stones and metallurgy, Motherlode knows best!
+5468║$shop_nama12║Lenora's Garage
+5469║$shop_nama12txt║Scrap parts{Var85 87}you name 'em, we got 'em! *n00b manuals not included* With bargains like these, shops IRL are no match for Lenora's!
+5470║$shop_nama13║R&D Depot
+5471║$shop_nama13txt║An experimental military research facility specializing in arms manufacture and bioweapons development. {Italic}Seize the means to fulfill your Focus, l'Cie. Fal'Cie power will see it delivered unto you.{Italic}
+5472║$slimit║
+5473║$slimith║
+5474║$startup_err_01║Could not secure sufficient system memory when booting the game.
+5475║$startup_err_02║Could not secure sufficient VRAM when booting the game.
+5476║$startup_err_03║There is not enough free space on the hard disk drive. 3MB or more of free space is required to create save data.
+5477║$startup_err_04║Please upgrade your version of DirectX to DirectX 9.0C or higher.
+5478║$startup_err_05║DirectX VertexShader 2.0 is not supported.
+5479║$startup_err_06║DirectX PixelShader 2.0 is not supported.
+5480║$startup_err_c0║A fatal system error has occurred.
+5481║$startup_err_c1║A fatal error concerning DirectX has occurred.
+5482║$startup_err_tt║FFXIII Error
+5483║$summon_txt01║{Color Yellow}Snow gained an ATB gauge segment!{Color SkyBlue}
+5484║$summon_txt02║{Color Yellow}Lightning gained an ATB gauge segment!{Color SkyBlue}
+5485║$summon_txt03║{Color Yellow}Sazh gained an ATB gauge segment!{Color SkyBlue}
+5486║$summon_txt04║{Color Yellow}Fang gained an ATB gauge segment!{Color SkyBlue}
+5487║$summon_txt05║{Color Yellow}Hope gained an ATB gauge segment!{Color SkyBlue}
+5488║$summon_txt06║{Color Yellow}Vanille gained an ATB gauge segment!{Color SkyBlue}
+5489║$summonsskip║{Key Select}Skip
+5490║$sys_default║System Default
+5491║$t_dpad_ps║directional buttons
+5492║$t_dpad_xb║directional pad
+5493║$talk_guide00║{Key Cross}Next{End}{Question}
+5494║$talk_guide01║{Key Cross}Close{End}{Question}
+5495║$target║TARGET
+5496║$target_all║All Targets
+5497║$target_eall║All Enemies
+5498║$target_pall║All Allies
+5499║$theme_00h║Theme obtained by unlocking the Instrument of Change trophy.
+5500║$theme_01h║Theme obtained by unlocking the L'Cie Paragon trophy.
+5501║$theme_02h║Theme obtained by unlocking the Treasure Hunter trophy.
+5502║$theme_03h║Theme obtained by unlocking the Loremaster trophy.
+5503║$theme_04h║Theme obtained by unlocking the Superstar trophy.
+5504║$theme_05h║Theme obtained by unlocking the Ultimate Hero trophy.
+5505║$theme_06h║Theme obtained by unlocking the Instrument of Faith trophy.
+5506║$theme_dlg00║Would you like to install this theme?
+5507║$theme_dlg01║Unable to install theme. You do not have enough available disk space.{Text NewLine}At least 1932 KB of free space is required for the installation.
+5508║$theme_dlg02║Installation completed.
+5509║$theme_dlg03║Installation failed.
+5510║$theme_sel_g║Bonus Themes
+5511║$theme_sel_no║No
+5512║$theme_sel_yes║Yes
+5513║$title_anykey║PRESS ANY BUTTON
+5514║$title_config║SETTINGS
+5515║$title_dlc║NEW GAME+
+5516║$title_loadgame║LOAD GAME
+5517║$title_newgame║NEW GAME
+5518║$title_special║EXTRAS
+5519║$title_tgs║PREMIUM SHOWCASE
+5520║$tp_accel║TP Accelerator
+5521║$tp_accelh║Charge ATB gauge by spending TP.
+5522║$tp_cp00_00║Renew
+5523║$tp_cp00_00h║Revive allies from KO and restore their HP.
+5524║$tp_cp00_01║Libra
+5525║$tp_cp00_01h║Reveal partial status information on target.
+5526║$tp_cp00_02║Stopga
+5527║$tp_cp00_02h║Reset all enemy and ally ATB gauges, canceling pending actions.
+5528║$tp_cp00_03║Dispelga
+5529║$tp_cp00_03h║Remove all status ailments and enhancements from all allies and enemies.
+5530║$tp_cp00_04║Ultima
+5531║$tp_cp00_04h║
+5532║$tp_cp00_05║Flare
+5533║$tp_cp00_05h║
+5534║$tp_cp00_06║Meteor
+5535║$tp_cp00_06h║
+5536║$tp_cp00_07║Last Resort
+5537║$tp_cp00_07h║Deal magic damage within a wide radius. Chain bonus effect varies by situation.
+5538║$tp_cp00_08║Death
+5539║$tp_cp00_08h║Slay target instantly, dealing magic damage instead if unsuccessful.
+5540║$tp_fan_00║Highwind
+5541║$tp_fan_00h║Release a catastrophic blast, clearing chain gauges. Damage varies by situation.
+5542║$tp_lig_00║Army of One
+5543║$tp_lig_00h║Unleash a devastating flurry of blows. Chain bonus effect varies by situation.
+5544║$tp_return║DELETEDTEXT
+5545║$tp_returnh║DELETEDTEXT
+5546║$tp_saz_00║Cold Blood
+5547║$tp_saz_00h║Unleash a devastating volley of gunfire. Chain bonus effect varies by situation.
+5548║$tp_sno_00║Sovereign Fist
+5549║$tp_sno_00h║Crush foes with a ruinous blow, clearing chain gauges. Damage varies by situation.
+5550║$tp_summons║Summon
+5551║$tp_summonsh║Summon an Eidolon.
+5552║$trc_mes_00║You have loaded Save Data created by another user. You will not be able to obtain trophies, create new Save Data, or overwrite this Save Data.{End}{Question}
+5553║$trc_mes_01║You cannot save after loading Save Data created by another user.{End}{Question}
+5554║$trc_mes_02║Cancel the Save operation?{End}{Question}
+5555║$trc_mes_03║Installing...{End}{Question}
+5556║$trc_mes_04║Reading data...{End}{Question}
+5557║$trc_mes_05║Select the storage device you would like to use for saving and loading data.{End}{Question}
+5558║$trc_mes_06║Cancel the Save operation?{End}{Question}
+5559║$trc_mes_07║Reading storage device...{End}{Question}
+5560║$trc_mes_08║Unable to save. There is not enough free space on the selected storage device.{End}{Question}
+5561║$trc_mes_09║The selected storage device is unavailable.{Text NewLine}Please confirm that the device is connected.{End}{Question}
+5562║$trc_mes_10║There is insufficient free space on the selected storage{Text NewLine}device to create new save data. You will be able to save{Text NewLine}only by overwriting existing save data. Are you sure you{Text NewLine}wish to proceed? To choose a different device, select 'No.'{End}{Question}
+5563║$tutorial_00║TUTORIAL
+5564║$w_633║Targeting Beacon
+5565║$w_661║Centaurion Blade
+5566║$w_662║Centaurion Blade
+5567║$w_663║Centaurion Blade
+5568║$wea_fan_000║Longinus{End}{Separator}Longinuses{End}{Article}a
+5569║$wea_fan_000h║Fang's dummy weapon.
+5570║$wea_fan_001║Bladed Lance{End}{Separator}Bladed Lances{End}{Article}a
+5571║$wea_fan_001h║This weapon is used for hunting as well as traditional martial arts.
+5572║$wea_fan_002║Glaive{End}{Separator}Glaives{End}{Article}a
+5573║$wea_fan_002h║Designed for practical combat, this weapon scythes through enemies with lethal efficiency.
+5574║$wea_fan_003║Dragoon Lance{End}{Separator}Dragoon Lances{End}{Article}a
+5575║$wea_fan_003h║Modeled after the lance of an ancient dragon-hunting hero, this weapon is built for inflicting massive damage.
+5576║$wea_fan_004║Dragonhorn{End}{Separator}Dragonhorns{End}{Article}a
+5577║$wea_fan_004h║Designed to resemble a dragon's horn, this weapon is powerful enough to pierce steel.
+5578║$wea_fan_005║Partisan{End}{Separator}Partisans{End}{Article}a
+5579║$wea_fan_005h║Often found within Pulse Vestiges, this weapon is thought to have been used by lowerworld soldiers.
+5580║$wea_fan_006║Rhomphaia{End}{Separator}Rhomphaias{End}{Article}a
+5581║$wea_fan_006h║This Pulse weapon has been experimentally enhanced with the addition of AMP technology.
+5582║$wea_fan_007║Shamanic Spear{End}{Separator}Shamanic Spears{End}{Article}a
+5583║$wea_fan_007h║Once the spear of an ancient shaman, this weapon boosts the magical power of the wielder.
+5584║$wea_fan_008║Heretic's Halberd{End}{Separator}Heretic's Halberds{End}{Article}a
+5585║$wea_fan_008h║Brimming with fey energy, the blades of this weapon are said to have been carved from troll talons by a heretic warlock.
+5586║$wea_fan_009║Punisher{End}{Separator}Punishers{End}{Article}a
+5587║$wea_fan_009h║Said to have been constructed for an executioner, this weapon invigorates the wielder whenever an enemy's spirit is broken.
+5588║$wea_fan_010║Banescissor Spear{End}{Separator}Banescissor Spears{End}{Article}a
+5589║$wea_fan_010h║This spear is rumored to be sharp enough to sever the very threads of destiny.
+5590║$wea_fan_011║Pandoran Spear{End}{Separator}Pandoran Spears{End}{Article}a
+5591║$wea_fan_011h║Branded with the name of misfortune, this spear enhances the wielder's debilitating powers.
+5592║$wea_fan_012║Calamity Spear{End}{Separator}Calamity Spears{End}{Article}a
+5593║$wea_fan_012h║A weapon forged in a crucible of malevolent energy, this spear afflicts opponents with catastrophic curses.
+5594║$wea_fan_013║Taming Pole{End}{Separator}Taming Poles{End}{Article}a
+5595║$wea_fan_013h║Merely a replica of a great hunter's weapon, this spear's offensive power is limited.
+5596║$wea_fan_014║Venus Gospel{End}{Separator}Venus Gospels{End}{Article}a
+5597║$wea_fan_014h║A weapon for the gentle of heart, this spear is constructed to prevent excessive damage to an opponent.
+5598║$wea_fan_015║Gae Bolg{End}{Separator}Gae Bolgs{End}{Article}a
+5599║$wea_fan_015h║Once the property of a hero doomed to wade through blood, this well-used weapon almost seems to leap back at attackers of its own accord.
+5600║$wea_fan_016║Gungnir{End}{Separator}Gungnirs{End}{Article}a
+5601║$wea_fan_016h║Touched by the hand of the god of war himself, this enchanted weapon cuts down foes with merciless vengeance.
+5602║$wea_fan_017║Kain's Lance{End}{Separator}Kain's Lances{End}{Article}a
+5603║$wea_fan_017h║This upgraded weapon maintains the properties of the original, while boosting overall power and ATB capacity.
+5604║$wea_hop_000║Rising Sun{End}{Separator}Rising Suns{End}{Article}a
+5605║$wea_hop_000h║Hope's dummy weapon.
+5606║$wea_hop_001║Airwing{End}{Separator}Airwings{End}{Article}an
+5607║$wea_hop_001h║A sport hunting model. Boosts physical and magical resistance when the wielder is severely wounded.
+5608║$wea_hop_002║Skycutter{End}{Separator}Skycutters{End}{Article}a
+5609║$wea_hop_002h║A superior model of boomerang used in competitive hunting. Boosts physical and magical resistance when the wielder is severely wounded.
+5610║$wea_hop_003║Hawkeye{End}{Separator}Hawkeyes{End}{Article}a
+5611║$wea_hop_003h║An official amateur competition model. Utilizes basic AMP technology.
+5612║$wea_hop_004║Eagletalon{End}{Separator}Eagletalons{End}{Article}an
+5613║$wea_hop_004h║An official pro-competition model. Utilizes the highest-grade civilian AMP technology.
+5614║$wea_hop_005║Otshirvani{End}{Separator}Otshirvanis{End}{Article}an
+5615║$wea_hop_005h║Designed for use in time-restricted competitions, this boomerang both enables and encourages constant activity.
+5616║$wea_hop_006║Urubutsin{End}{Separator}Urubutsins{End}{Article}an
+5617║$wea_hop_006h║Used in the unforgiving realm of extreme competition, this boomerang is designed for repeated, rapid throwing.
+5618║$wea_hop_007║Ninurta{End}{Separator}Ninurtas{End}{Article}a
+5619║$wea_hop_007h║Designed with balanced performance in mind, this boomerang deliberately avoids the extreme characteristics of competitor models.
+5620║$wea_hop_008║Jatayu{End}{Separator}Jatayus{End}{Article}a
+5621║$wea_hop_008h║Considered a possible 'silent' weapon for soldiers, the Sanctum army has adopted this model on a trial basis.
+5622║$wea_hop_009║Vidofnir{End}{Separator}Vidofnirs{End}{Article}a
+5623║$wea_hop_009h║Based on a hunting weapon recovered from a Pulse Vestige, this model provides both offensive power and defensive support.
+5624║$wea_hop_010║Hresvelgr{End}{Separator}Hresvelgrs{End}{Article}a
+5625║$wea_hop_010h║Used by Sanctum soldiers during clandestine operations for its silent flight and defensive capabilities.
+5626║$wea_hop_011║Simurgh{End}{Separator}Simurghs{End}{Article}a
+5627║$wea_hop_011h║Designed for heavy impact, this model is often used to hunt big game.
+5628║$wea_hop_012║Tezcatlipoca{End}{Separator}Tezcatlipocas{End}{Article}a
+5629║$wea_hop_012h║Although its sale was banned due to its excessive destructive power, furtive circulation of this model still continues.
+5630║$wea_hop_013║Malphas{End}{Separator}Malphases{End}{Article}a
+5631║$wea_hop_013h║A model with extreme settings that ignore the wielder's safety, this boomerang is suitable only for veterans.
+5632║$wea_hop_014║Naberius{End}{Separator}Naberiuses{End}{Article}a
+5633║$wea_hop_014h║This limited edition model offers overwhelming offensive capabilities at the cost of a significant drop in defense.
+5634║$wea_hop_015║Alicanto{End}{Separator}Alicantos{End}{Article}an
+5635║$wea_hop_015h║This practice model restricts the wielder's offensive potential, preventing serious injury.
+5636║$wea_hop_016║Caladrius{End}{Separator}Caladriuses{End}{Article}a
+5637║$wea_hop_016h║Designed for close-quarters squad-based combat, the offensive power of this model has been deliberately limited.
+5638║$wea_hop_017║Nue{End}{Separator}Nues{End}{Article}a
+5639║$wea_hop_017h║This upgraded model maintains the properties of the original, while boosting overall power and ATB capacity.
+5640║$wea_lig_000║Godslayer{End}{Separator}Godslayers{End}{Article}a
+5641║$wea_lig_000h║Lightning's dummy weapon.
+5642║$wea_lig_001║Blazefire Saber{End}{Separator}Blazefire Sabers{End}{Article}a
+5643║$wea_lig_001h║A weapon new to the Sanctum army, this gunblade is only issued to highly trained soldiers.
+5644║$wea_lig_002║Flamberge{End}{Separator}Flamberges{End}{Article}a
+5645║$wea_lig_002h║The barrel and frame of this weapon have been reinforced, allowing higher velocity bullets to be fired.
+5646║$wea_lig_003║Axis Blade{End}{Separator}Axis Blades{End}{Article}an
+5647║$wea_lig_003h║Designed for ease of movement in the field, this gunblade recharges the ATB gauge each time an enemy is attacked.
+5648║$wea_lig_004║Enkindler{End}{Separator}Enkindlers{End}{Article}an
+5649║$wea_lig_004h║Remodeled to suit the mobility needs of special forces, this gunblade charges the ATB gauge each time an enemy is attacked.
+5650║$wea_lig_005║Edged Carbine{End}{Separator}Edged Carbines{End}{Article}an
+5651║$wea_lig_005h║This gunblade was developed as part of a project aimed at enhancing the magical abilities of Sanctum soldiers.
+5652║$wea_lig_006║Razor Carbine{End}{Separator}Razor Carbines{End}{Article}a
+5653║$wea_lig_006h║A product of research into magically adept bioweapons, this gunblade utilizes AMP technology to increase the magical power of the wielder.
+5654║$wea_lig_007║Lifesaber{End}{Separator}Lifesabers{End}{Article}a
+5655║$wea_lig_007h║An officer's gunblade. Boosts HP restored to allies revived with Raise.
+5656║$wea_lig_008║Peacemaker{End}{Separator}Peacemakers{End}{Article}a
+5657║$wea_lig_008h║A commander's gunblade. Boosts HP restored to allies revived with Raise.
+5658║$wea_lig_009║Gladius{End}{Separator}Gladiuses{End}{Article}a
+5659║$wea_lig_009h║The design of this gunblade is based on that of a weapon excavated from a Pulse Vestige.
+5660║$wea_lig_010║Helter-skelter{End}{Separator}Helter-skelters{End}{Article}a
+5661║$wea_lig_010h║Reverse engineered from an ancient Pulse weapon, this prototype gunblade boasts advanced AMP technology.
+5662║$wea_lig_011║Organyx{End}{Separator}Organyxes{End}{Article}an
+5663║$wea_lig_011h║Manufactured for anti-Pulse operations, this powerful prototype was deemed too heavy for standard military use.
+5664║$wea_lig_012║Apocalypse{End}{Separator}Apocalypses{End}{Article}an
+5665║$wea_lig_012h║Sacrificing mobility for power, this imposing blade was utilized during the War of Transgression.
+5666║$wea_lig_013║Hauteclaire{End}{Separator}Hauteclaires{End}{Article}a
+5667║$wea_lig_013h║Merely a replica of an ancient weapon, this gunblade has limited offensive capabilities.
+5668║$wea_lig_014║Durandal{End}{Separator}Durandals{End}{Article}a
+5669║$wea_lig_014h║A symbol of honor, this ceremonial blade is bestowed on soldiers who distinguish themselves in battle.
+5670║$wea_lig_015║Lionheart{End}{Separator}Lionhearts{End}{Article}a
+5671║$wea_lig_015h║Once the weapon of a l'Cie, this gunblade allows instant staggering of enemies near their stagger threshold.
+5672║$wea_lig_016║Ultima Weapon{End}{Separator}Ultima Weapons{End}{Article}an
+5673║$wea_lig_016h║Used to strike down weakened foes, this gunblade allows instant staggering of enemies near their stagger threshold.
+5674║$wea_lig_017║Omega Weapon{End}{Separator}Omega Weapons{End}{Article}an
+5675║$wea_lig_017h║This upgraded gunblade maintains the properties of the original, while boosting overall power and ATB capacity.
+5676║$wea_saz_000║Death Penalties{End}{Separator}Death Penalties{End}{Article}a pair of{End}{ArticleMany}pairs of
+5677║$wea_saz_000h║Sazh's dummy weapon.
+5678║$wea_saz_001║Vega 42s{End}{Separator}Vega 42s{End}{Article}a pair of{End}{ArticleMany}pairs of
+5679║$wea_saz_001h║These weapons are worn by civilian pilots for the purpose of self-defense in case of emergency landings in the wilderness.
+5680║$wea_saz_002║Altairs{End}{Separator}Altairs{End}{Article}a pair of{End}{ArticleMany}pairs of
+5681║$wea_saz_002h║These weapons are upgraded versions of the standard civilian pistols, boasting superior stopping power.
+5682║$wea_saz_003║Spica Defenders{End}{Separator}Spica Defenders{End}{Article}a pair of{End}{ArticleMany}pairs of
+5683║$wea_saz_003h║These pistols boast functions designed to aid the survival of outdoor enthusiasts.
+5684║$wea_saz_004║Sirius Sidearms{End}{Separator}Sirius Sidearms{End}{Article}a pair of{End}{ArticleMany}pairs of
+5685║$wea_saz_004h║Issued to frontline commanders, these pistols are designed for use in extended conflicts.
+5686║$wea_saz_005║Deneb Duellers{End}{Separator}Deneb Duellers{End}{Article}a pair of{End}{ArticleMany}pairs of
+5687║$wea_saz_005h║Despite their lack of special functions, these weapons are favored by many for their simple and sturdy design.
+5688║$wea_saz_006║Canopus AMPs{End}{Separator}Canopus AMPs{End}{Article}a pair of{End}{ArticleMany}pairs of
+5689║$wea_saz_006h║Fitted with AMP technology, these weapons are issued as officer sidearms.
+5690║$wea_saz_007║Rigels{End}{Separator}Rigels{End}{Article}a pair of{End}{ArticleMany}pairs of
+5691║$wea_saz_007h║Designed for suppressing civilian riots, the killing power of these pistols is artificially limited.
+5692║$wea_saz_008║Polaris Specials{End}{Separator}Polaris Specials{End}{Article}a pair of{End}{ArticleMany}pairs of
+5693║$wea_saz_008h║Popular among hunters, these pistols are designed to prevent excessive damage to trophy game.
+5694║$wea_saz_009║Aldebarans{End}{Separator}Aldebarans{End}{Article}a pair of{End}{ArticleMany}pairs of
+5695║$wea_saz_009h║Fitted with large manadrives, these pistols increase magical power but are bulky and difficult to wield.
+5696║$wea_saz_010║Sadalmeliks{End}{Separator}Sadalmeliks{End}{Article}a pair of{End}{ArticleMany}pairs of
+5697║$wea_saz_010h║These prototype pistols are constructed with solid metal frames that help channel magical power but make them heavy and difficult to wield.
+5698║$wea_saz_011║Pleiades Hi-Powers{End}{Separator}Pleiades Hi-Powers{End}{Article}a pair of{End}{ArticleMany}pairs of
+5699║$wea_saz_011h║The high-velocity rounds used in these pistols increase physical damage but also create a recoil that leaves the wielder vulnerable to attack.
+5700║$wea_saz_012║Hyades Magnums{End}{Separator}Hyades Magnums{End}{Article}a pair of{End}{ArticleMany}pairs of
+5701║$wea_saz_012h║The powerful rounds of these pistols can punch through armor plating, but create a recoil that leaves the wielder vulnerable to attack.
+5702║$wea_saz_013║Antares Deluxes{End}{Separator}Antares Deluxes{End}{Article}a pair of{End}{ArticleMany}pairs of
+5703║$wea_saz_013h║Issued to wilderness patrols, these weapons are well-suited to team-based attack strategies.
+5704║$wea_saz_014║Fomalhaut Elites{End}{Separator}Fomalhaut Elites{End}{Article}a pair of{End}{ArticleMany}pairs of
+5705║$wea_saz_014h║The weapons of choice for special forces units, these pistols are at their best when used as part of a coordinated attack strategy.
+5706║$wea_saz_015║Procyons{End}{Separator}Procyons{End}{Article}a pair of{End}{ArticleMany}pairs of
+5707║$wea_saz_015h║The unusual spin of the bullets fired from these pistols keeps targets off-balance and vulnerable.
+5708║$wea_saz_016║Betelgeuse Customs{End}{Separator}Betelgeuse Customs{End}{Article}a pair of{End}{ArticleMany}pairs of
+5709║$wea_saz_016h║These pistols feature mechanisms that automatically alter a bullet's trajectory in order to keep an enemy unbalanced.
+5710║$wea_saz_017║Total Eclipses{End}{Separator}Total Eclipses{End}{Article}a pair of{End}{ArticleMany}pairs of
+5711║$wea_saz_017h║These upgraded pistols maintain the properties of the originals, while boosting overall power and ATB capacity.
+5712║$wea_sno_000║Omnipotence{End}{Separator}Omnipotences{End}{Article}an
+5713║$wea_sno_000h║Snow's dummy weapon.
+5714║$wea_sno_001║Wild Bear{End}{Separator}Wild Bears{End}{Article}a
+5715║$wea_sno_001h║An army surplus item, this emblem uses AMP technology to boost the wearer's attributes.
+5716║$wea_sno_002║Feral Pride{End}{Separator}Feral Prides{End}{Article}a
+5717║$wea_sno_002h║This emblem boosts the wearer's attributes by drawing on the body's untapped potential.
+5718║$wea_sno_003║Paladin{End}{Separator}Paladins{End}{Article}a
+5719║$wea_sno_003h║Though it utilizes somewhat antiquated military technology, this emblem nevertheless boosts defensive capabilities.
+5720║$wea_sno_004║Winged Saint{End}{Separator}Winged Saints{End}{Article}a
+5721║$wea_sno_004h║Using upgraded military surplus technology, this emblem significantly boosts defensive capabilities.
+5722║$wea_sno_005║Rebel Heart{End}{Separator}Rebel Hearts{End}{Article}a
+5723║$wea_sno_005h║Equipped with a diagnostic system, this emblem boosts magical and physical power when the wearer is severely wounded.
+5724║$wea_sno_006║Warrior's Emblem{End}{Separator}Warrior's Emblems{End}{Article}a
+5725║$wea_sno_006h║This emblem taps into reserve energy to boost magical and physical power when the wearer is severely wounded.
+5726║$wea_sno_007║Power Circle{End}{Separator}Power Circles{End}{Article}a
+5727║$wea_sno_007h║Using the latest in military-grade AMP technology, this emblem boosts the physical power of the wearer.
+5728║$wea_sno_008║Battle Standard{End}{Separator}Battle Standards{End}{Article}a
+5729║$wea_sno_008h║Using an upgraded version of leaked AMP technology, this emblem significantly boosts the physical power of the wearer.
+5730║$wea_sno_009║Feymark{End}{Separator}Feymarks{End}{Article}a
+5731║$wea_sno_009h║The prototype manadrive used in this emblem was developed to enhance the magical power of PSICOM soldiers.
+5732║$wea_sno_010║Soul Blazer{End}{Separator}Soul Blazers{End}{Article}a
+5733║$wea_sno_010h║Featuring military technology supplemented by forbidden magics, this emblem amplifies the wearer's magical power.
+5734║$wea_sno_011║Sacrificial Circle{End}{Separator}Sacrificial Circles{End}{Article}a
+5735║$wea_sno_011h║Designed to convert a soldier's stamina into combat power, the technology used in this emblem was deemed too dangerous for standard military use.
+5736║$wea_sno_012║Indomitus{End}{Separator}Indomituses{End}{Article}an
+5737║$wea_sno_012h║An improved version of a prototype abandoned by the military, the technology used in this emblem converts stamina into combat power.
+5738║$wea_sno_013║Unsetting Sun{End}{Separator}Unsetting Suns{End}{Article}an
+5739║$wea_sno_013h║Using technology originally designed to help the Guardian Corps maintain the peace, this emblem prevents the wearer from inflicting undue harm to opponents.
+5740║$wea_sno_014║Midnight Sun{End}{Separator}Midnight Suns{End}{Article}a
+5741║$wea_sno_014h║Based on the design of a military model, this emblem limits the damage inflicted by the wearer on an opponent, making it perfect for martial arts matches.
+5742║$wea_sno_015║Umbra{End}{Separator}Umbras{End}{Article}an
+5743║$wea_sno_015h║This emblem is designed to improve the defenses of those who place themselves in harm's way to protect others.
+5744║$wea_sno_016║Solaris{End}{Separator}Solarises{End}{Article}a
+5745║$wea_sno_016h║Based on government VIP security equipment and improved with private sector technology, this emblem improves the wearer's defenses.
+5746║$wea_sno_017║Save the Queen{End}{Separator}Save the Queens{End}{Article}a
+5747║$wea_sno_017h║This upgraded emblem maintains the properties of the original, while boosting overall power and ATB capacity.
+5748║$wea_van_000║Faerie Tail{End}{Separator}Faerie Tails{End}{Article}a
+5749║$wea_van_000h║Vanille's dummy weapon.
+5750║$wea_van_001║Binding Rod{End}{Separator}Binding Rods{End}{Article}a
+5751║$wea_van_001h║By casting high-tensile wires, this unusual weapon can be used to attack opponents from a moderate distance.
+5752║$wea_van_002║Hunter's Rod{End}{Separator}Hunter's Rods{End}{Article}a
+5753║$wea_van_002h║Often found within Pulse Vestiges, this weapon is assumed to be some kind of hunting tool.
+5754║$wea_van_003║Tigerclaw{End}{Separator}Tigerclaws{End}{Article}a
+5755║$wea_van_003h║Though it inflicts impressive damage, this weapon is excessively heavy and slows the wielder down in combat.
+5756║$wea_van_004║Wyrmfang{End}{Separator}Wyrmfangs{End}{Article}a
+5757║$wea_van_004h║Despite its weight, this weapon has an altered grip that makes it slightly easier to wield than similar models.
+5758║$wea_van_005║Healer's Staff{End}{Separator}Healer's Staffs{End}{Article}a
+5759║$wea_van_005h║The restorative properties of this staff suggest it was once used by ancient healers.
+5760║$wea_van_006║Physician's Staff{End}{Separator}Physician's Staffs{End}{Article}a
+5761║$wea_van_006h║Its innate curative properties amplified by Cocoon's technology, this staff significantly boosts the healing powers of its wielder.
+5762║$wea_van_007║Pearlwing Staff{End}{Separator}Pearlwing Staffs{End}{Article}a
+5763║$wea_van_007h║Thought once to have been the staff of a monk, this item boosts the spiritual abilities of the wielder.
+5764║$wea_van_008║Brightwing Staff{End}{Separator}Brightwing Staffs{End}{Article}a
+5765║$wea_van_008h║This rainbow-hued staff is said to bestow fey power upon the wielder.
+5766║$wea_van_009║Rod of Thorns{End}{Separator}Rods of Thorns{End}{Article}a
+5767║$wea_van_009h║This weapon is fitted with a set of cruel thorns intended to entangle and distress an opponent.
+5768║$wea_van_010║Orochi Rod{End}{Separator}Orochi Rods{End}{Article}an
+5769║$wea_van_010h║This weapon is modeled after the Orochi, a great serpent known to crush its prey within its coils.
+5770║$wea_van_011║Mistilteinn{End}{Separator}Mistilteinns{End}{Article}a
+5771║$wea_van_011h║This staff boosts the wielder's physical and magical power each time an ally is defeated.
+5772║$wea_van_012║Erinye's Cane{End}{Separator}Erinye's Canes{End}{Article}an
+5773║$wea_van_012h║A weapon used to wreak vengeance on opponents, this staff boosts the wielder's physical and magical power each time an ally is defeated.
+5774║$wea_van_013║Belladonna Wand{End}{Separator}Belladonna Wands{End}{Article}a
+5775║$wea_van_013h║Carved in the image of a poisonous plant, this weapon was once used to tame wild animals.
+5776║$wea_van_014║Malboro Wand{End}{Separator}Malboro Wands{End}{Article}a
+5777║$wea_van_014h║Named after a venomous plant-creature of legend, this weapon is said to harbor the power to cause cataclysms.
+5778║$wea_van_015║Heavenly Axis{End}{Separator}Heavenly Axes{End}{Article}a
+5779║$wea_van_015h║Not strictly a weapon, this divining tool is used to interpret signs from the heavens.
+5780║$wea_van_016║Abraxas{End}{Separator}Abraxases{End}{Article}an
+5781║$wea_van_016h║This weapon was designed to signify its wielder's mastery of astrology and numerology.
+5782║$wea_van_017║Nirvana{End}{Separator}Nirvanas{End}{Article}a
+5783║$wea_van_017h║This upgraded weapon maintains the properties of the original, while boosting overall power and ATB capacity.
+5784║$wnd_end_text║Are you sure you wish to exit the game?
+5785║$wnd_end_title║FINAL FANTASY XIII
+5786║$xdiskchg║Please change discs.
+5787║$xdiskchg_01║Please insert FINAL FANTASY XIII Disc 1.
+5788║$xdiskchg_02║Please insert FINAL FANTASY XIII Disc 2.
+5789║$xdiskchg_03║Please insert FINAL FANTASY XIII Disc 3.
+5790║$xdiskchg_err║The wrong disc has been inserted.\nPlease insert the correct disc.
+5791║$xdiskchg_ok║OK
+5792║$xsave_00║Save{End}{Question}
+5793║$xsave_01║Create new save data?{End}{Question}
+5794║$xsave_02║Overwrite the existing save data?{Text NewLine}The existing data will be permanently lost.{Text NewLine}If you do not wish to overwrite it, select 'No.'{End}{Question}
+5795║$xsave_03║Saving content. Please do not turn off{Text NewLine}your console or remove storage devices.{End}{Question}
+5796║$xsave_04║Save completed.{End}{Question}
+5797║$xsave_05║Save operation failed.{End}{Question}
+5798║$xsave_06║Date Saved:{End}{Question}
+5799║$xsave_07║No save data found.{End}{Question}
+5800║$xsave_08║Save Data {VarF4 66}, Chapter {VarF4 64}, Play Time: {VarF4 65}{End}{Question}
+5801║$xsave_09║Save{End}{Question}
+5802║$xsave_10║Load{End}{Question}
+5803║$xsave_11║Load previously saved data.{End}{Question}
+5804║$xsave_12║Load this data?{End}{Question}
+5805║$xsave_13║Loading...{End}{Question}
+5806║$xsave_14║Data loaded.{End}{Question}
+5807║$xsave_15║Failed to load data.{End}{Question}
+5808║$xsave_16║{Key Triangle} Select device{End}{Question}
+5809║$xsave_17║This save data is corrupted.{End}{Question}
+5810║$xsave_18║Selected Storage Device{End}{Question}
+5811║$xsave_19║Unable to access gamer profile. The storage device containing your gamer profile may be disconnected or lack sufficient free space. If you choose to continue playing, you may be unable to unlock achievements.{End}{Question}
+5812║$xsave_20║Xbox 360 Hard Drive{End}{Question}
+5813║$xsave_21║Xbox 360 120GB Hard Drive{End}{Question}
+5814║$xsave_22║Xbox 360 Memory Unit{End}{Question}
+5815║$xsave_30║Are you sure you want to delete the save data?
+5816║$xsave_31║The save data has now been deleted.
+5817║$xsave_32║Deletion of save data has failed.
+5818║$xsignio_00║Press any button to continue.
+5819║$xsignio_01║If you begin playing without signing in, you will be unable to{Text NewLine}save, load saved data, or unlock achievements. Are you sure{Text NewLine}you would like to begin? If you wish to sign in first, select 'No.'
+5820║$xsignio_02║The player who began this game session has been signed out. You will no longer be able to save, load saved data, or unlock achievements. If you would like to be able to do so, you must first relaunch the game and sign in.
+5821║$xsignio_03║The player who began this game session has been signed out. You can no longer save your progress. If you would like to be able to do so, you must first relaunch the game and sign in.
+5822║$xsignio_04║You have not selected a storage device.{Text NewLine}You will not be able to save your progress. {Text NewLine}Are you sure you would like to proceed? {Text NewLine}If you wish to choose a device, select 'No.'
+5823║$xtheme_00h║Gamer picture obtained by unlocking the Instrument of Change achievement.
+5824║$xtheme_01h║Gamer picture obtained by unlocking the L'Cie Paragon achievement.
+5825║$xtheme_02h║Gamer picture obtained by unlocking the Treasure Hunter achievement.
+5826║$xtheme_03h║Gamer picture obtained by unlocking the Loremaster achievement.
+5827║$xtheme_04h║Gamer picture obtained by unlocking the Superstar achievement.
+5828║$xtheme_05h║Gamer picture obtained by unlocking all achievements.
+5829║$xtheme_06h║Gamer picture obtained by unlocking the Instrument of Faith achievement.
+5830║$xtheme_dlg00║Would you like to install this gamer picture?
+5831║$xtheme_dlg01║There is not enough free disk space for the installation.
+5832║$xtheme_dlg02║Installation completed.
+5833║$xtheme_dlg03║Installation failed.
+5834║$xtheme_sel_g║Gamer Pictures
+5835║$xtheme_sel_no║No
+5836║$xtheme_sel_yes║Yes

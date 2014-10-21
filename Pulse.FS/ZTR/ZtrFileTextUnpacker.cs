@@ -61,9 +61,8 @@ namespace Pulse.FS
                 for (int i = 0; i < _offsets.Length; i++)
                 {
                     io.SetPosition(_offsets[i].UnpackedOffset);
-                    //_output[i].Value = ZtrFileHelper.ReadNullTerminatedString(io);
                     byte[] buff = io.EnsureRead(_offsets[i].UnpackedLength);
-                    _output[i].Value = FFXIIITextEncoding.Encoding.GetString(buff);
+                    _output[i].Value = FFXIIITextEncoding.Encoding.GetString(buff, 0, buff.Length - 2); // {End}{End}
                 }
             }
         }

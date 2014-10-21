@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace Pulse.Text
@@ -54,6 +55,9 @@ namespace Pulse.Text
                 }
                 else
                 {
+                    //if (bytes[byteIndex] != 0x00 && bytes[byteIndex] != 0x09 && (bytes[byteIndex] < 0x20 || bytes[byteIndex] > 0x8B))
+                    //    throw new Exception();
+
                     int charsWrited = 0;
                     int bytesReaded = 1;
                     for (; bytesReaded < 5; bytesReaded++)

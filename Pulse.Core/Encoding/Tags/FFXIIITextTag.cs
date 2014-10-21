@@ -58,18 +58,25 @@ namespace Pulse.Text
                 case FFXIIITextTagCode.End:
                 case FFXIIITextTagCode.Question:
                 case FFXIIITextTagCode.Italic:
-                case FFXIIITextTagCode.Many:
+                case FFXIIITextTagCode.Separator:
                 case FFXIIITextTagCode.Article:
                 case FFXIIITextTagCode.ArticleMany:
                     left++;
                     return new FFXIIITextTag(code);
                 case FFXIIITextTagCode.Icon:
-                case FFXIIITextTagCode.Var:
+                    return new FFXIIITextTag(code, (FFXIIITextTagIcon)bytes[offset++]);
+                case FFXIIITextTagCode.Var81:
+                case FFXIIITextTagCode.Var85:
+                case FFXIIITextTagCode.VarF4:
+                case FFXIIITextTagCode.VarF6:
+                case FFXIIITextTagCode.VarF7:
                     return new FFXIIITextTag(code, (FFXIIITextTagParam)bytes[offset++]);
                 case FFXIIITextTagCode.Text:
                     return new FFXIIITextTag(code, (FFXIIITextTagText)bytes[offset++]);
                 case FFXIIITextTagCode.Key:
                     return new FFXIIITextTag(code, (FFXIIITextTagKey)bytes[offset++]);
+                case FFXIIITextTagCode.Color:
+                    return new FFXIIITextTag(code, (FFXIIITextTagColor)bytes[offset++]);
                 default:
                     left += 2;
                     offset--;
@@ -103,16 +110,25 @@ namespace Pulse.Text
                 case FFXIIITextTagCode.End:
                 case FFXIIITextTagCode.Question:
                 case FFXIIITextTagCode.Italic:
-                case FFXIIITextTagCode.Many:
+                case FFXIIITextTagCode.Separator:
                 case FFXIIITextTagCode.Article:
                 case FFXIIITextTagCode.ArticleMany:
                     return new FFXIIITextTag(code.Value);
-                case FFXIIITextTagCode.Var:
-                case FFXIIITextTagCode.Icon:
+                case FFXIIITextTagCode.Var81:
+                case FFXIIITextTagCode.Var85:
+                case FFXIIITextTagCode.VarF4:
+                case FFXIIITextTagCode.VarF6:
+                case FFXIIITextTagCode.VarF7:
                 {
                     byte numArg;
                     if (byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
                         return new FFXIIITextTag(code.Value, (FFXIIITextTagParam)numArg);
+                    break;
+                }
+                case FFXIIITextTagCode.Icon:
+                {
+                    FFXIIITextTagIcon? arg = EnumCache<FFXIIITextTagIcon>.TryParse(par);
+                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
                 case FFXIIITextTagCode.Text:
@@ -124,6 +140,12 @@ namespace Pulse.Text
                 case FFXIIITextTagCode.Key:
                 {
                     FFXIIITextTagKey? arg = EnumCache<FFXIIITextTagKey>.TryParse(par);
+                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
+                    break;
+                }
+                case FFXIIITextTagCode.Color:
+                {
+                    FFXIIITextTagColor? arg = EnumCache<FFXIIITextTagColor>.TryParse(par);
                     if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
