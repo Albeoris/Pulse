@@ -2,9 +2,9 @@ namespace Pulse.FS
 {
     public enum ZtrFileType
     {
-        LittleEndianCompressedDictionary = 0,
-        BigEndianUncompressedPair = 1,
+        BigEndianCompressedDictionary = 0,
+        LittleEndianUncompressedPair = 1,
         
-        BigEndianUncompressedDictionary // > 1
+        LittleEndianUncompressedDictionary // > 1
     }
 }

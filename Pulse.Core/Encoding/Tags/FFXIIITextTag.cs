@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using Pulse.Core;
 
-namespace Pulse.Text
+namespace Pulse.Core
 {
     public sealed class FFXIIITextTag
     {

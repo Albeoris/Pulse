@@ -8,31 +8,31 @@ namespace Pulse.UI
 {
     public sealed class UiArchiveTreeBuilder
     {
-        private const string SystemFolder = @"white_data\sys";
-
-        public static UiArchiveNode[] Build(string gamePath)
+        public static Task<UiArchiveNode[]> BuildAsync(GameLocationInfo gameLocation)
         {
-            UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gamePath);
-            return builder.Build();
+            return Task.Run(() =>
+            {
+                UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
+                return builder.Build();
+            });
         }
 
-        private readonly string _gamePath;
+        private readonly GameLocationInfo _gameLocation;
 
-        private UiArchiveTreeBuilder(string gamePath)
+        private UiArchiveTreeBuilder(GameLocationInfo gameLocation)
         {
-            _gamePath = gamePath;
+            _gameLocation = gameLocation;
         }
 
         public UiArchiveNode[] Build()
         {
-            string root = Path.Combine(_gamePath, SystemFolder);
-            string[] lists = Directory.GetFiles(root, "filelist*.bin");
+            string[] lists = Directory.GetFiles(_gameLocation.SystemDirectory, "filelist*.bin");
             ConcurrentBag<UiArchiveBuilderNode> nodes = new ConcurrentBag<UiArchiveBuilderNode>();
 
             Parallel.ForEach(lists, fileName =>
             {
                 ArchiveAccessor accessor = new ArchiveAccessor(GetBinaryFilePath(fileName), fileName);
-                ArchiveListing[] listings = ArchiveListingReader.Read(InteractionService.GameDataPath, accessor);
+                ArchiveListing[] listings = ArchiveListingReader.Read(_gameLocation.AreasDirectory, accessor);
 
                 foreach (ArchiveListing listing in listings)
                 {

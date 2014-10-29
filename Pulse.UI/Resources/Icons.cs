@@ -1,11 +1,30 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Brushes = System.Windows.Media.Brushes;
+using ShapePath = System.Windows.Shapes.Path;
 
 namespace Pulse.UI
 {
     public static class Icons
     {
+        public static DrawingImage OkIcon
+        {
+            get { return LazyOkIcon.Value; }
+        }
+
+        public static DrawingImage CrossIcon
+        {
+            get { return LazyCrossIcon.Value; }
+        }
+
+        public static DrawingImage PendingIcon
+        {
+            get { return LazyPendingIcon.Value; }
+        }
+
         public static BitmapSource DiskIcon
         {
             get { return LazyDiskIcon.Value; }
@@ -21,9 +40,46 @@ namespace Pulse.UI
             get { return LazyTxtFileIcon.Value; }
         }
 
+        private static readonly Lazy<DrawingImage> LazyOkIcon = new Lazy<DrawingImage>(CreateGreenOkIcon);
+        private static readonly Lazy<DrawingImage> LazyCrossIcon = new Lazy<DrawingImage>(CreateRedCrossIcon);
+        private static readonly Lazy<DrawingImage> LazyPendingIcon = new Lazy<DrawingImage>(CreatePendingIcon);
+
         private static readonly Lazy<BitmapSource> LazyDiskIcon = new Lazy<BitmapSource>(CreateDiskIcon);
         private static readonly Lazy<BitmapSource> LazyFolderIcon = new Lazy<BitmapSource>(CreateDirectoryIcon);
         private static readonly Lazy<BitmapSource> LazyTxtFileIcon = new Lazy<BitmapSource>(() => CreateFileIcon(".txt"));
+
+        private static DrawingImage CreateGreenOkIcon()
+        {
+            Pen pen = new Pen(Brushes.DarkGreen, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("CheckmarkIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.ForestGreen, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateRedCrossIcon()
+        {
+            Pen pen = new Pen(Brushes.DarkRed, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("CrossIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.Red, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreatePendingIcon()
+        {
+            Pen pen = new Pen(Brushes.DimGray, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("ClockIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.DarkGray, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
 
         private static BitmapSource CreateDiskIcon()
         {

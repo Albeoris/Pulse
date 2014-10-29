@@ -50,9 +50,12 @@
     <Compile Include="Components\ProgressArgs.cs" />
     <Compile Include="Components\SharedMemoryMappedFile.cs" />
     <Compile Include="Components\StreamSegment.cs" />
+    <Compile Include="Encoding\FFXIIICodePage.cs" />
+    <Compile Include="Encoding\FFXIIICodePageHelper.cs" />
     <Compile Include="Encoding\FFXIIITextDecoder.cs" />
     <Compile Include="Encoding\FFXIIITextEncoder.cs" />
     <Compile Include="Encoding\FFXIIITextEncoding.cs" />
+    <Compile Include="Encoding\FFXIIITextEncodingFactory.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTagColor.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTagParam.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTag.cs" />

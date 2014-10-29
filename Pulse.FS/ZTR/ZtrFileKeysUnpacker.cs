@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using Pulse.Text;
+using System.Text;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
@@ -43,7 +44,7 @@ namespace Pulse.FS
                 {
                     if (codeBuff[i] == 0)
                     {
-                        _output[index++].Key = FFXIIITextEncoding.Encoding.GetString(codeBuff, initial, i - initial);
+                        _output[index++].Key = Encoding.ASCII.GetString(codeBuff, initial, i - initial);
                         initial = i + 1;
                     }
                 }

@@ -23,7 +23,7 @@ namespace Pulse.FS
                 int blockNumber = 0, unpackedBlockOffset = 0;
                 entriesInfo = new ArchiveListingEntryInfo[listing.Count];
                 List<ArchiveListingBlockInfo> blocks = new List<ArchiveListingBlockInfo>(128);
-                using (FormattingStreamWriter sw = new FormattingStreamWriter(ms, Encoding.GetEncoding(1252), 4096, true, CultureInfo.InvariantCulture))
+                using (FormattingStreamWriter sw = new FormattingStreamWriter(ms, Encoding.ASCII, 4096, true, CultureInfo.InvariantCulture))
                 {
                     sw.AutoFlush = true;
                     for (int i = 0; i < listing.Count; i++)

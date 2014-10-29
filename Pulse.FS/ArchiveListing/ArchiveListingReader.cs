@@ -11,21 +11,21 @@ namespace Pulse.FS
 {
     public sealed class ArchiveListingReader
     {
-        public static ArchiveListing[] Read(string gameDataPath, ArchiveAccessor accessor)
+        public static ArchiveListing[] Read(string zonesBinaryDirectory, ArchiveAccessor accessor)
         {
-            ArchiveListingReader reader = new ArchiveListingReader(gameDataPath, accessor);
+            ArchiveListingReader reader = new ArchiveListingReader(zonesBinaryDirectory, accessor);
             reader.Read();
             return reader._listings.ToArray();
         }
 
         private readonly ConcurrentBag<ArchiveAccessor> _accessors = new ConcurrentBag<ArchiveAccessor>();
         private readonly ConcurrentBag<ArchiveListing> _listings = new ConcurrentBag<ArchiveListing>();
-        private readonly string _gameDataPath;
+        private readonly string _zonesBinaryDirectory;
         private long _counter;
 
-        private ArchiveListingReader(string gameDataPath, ArchiveAccessor accessor)
+        private ArchiveListingReader(string zonesBinaryDirectory, ArchiveAccessor accessor)
         {
-            _gameDataPath = gameDataPath;
+            _zonesBinaryDirectory = zonesBinaryDirectory;
             _accessors.Add(accessor);
         }
 
@@ -68,9 +68,7 @@ namespace Pulse.FS
 
                 input.Position = header.BlockOffset;
                 ArchiveListingBlockInfo[] blocks = input.ReadStructs<ArchiveListingBlockInfo>(header.BlocksCount);
-
-                Encoding encoding = Encoding.GetEncoding(1252);
-                
+               
                 byte[] buff = new byte[0];
                 int blockLength = 0;
 
@@ -100,7 +98,7 @@ namespace Pulse.FS
                     }
                     infoLength = infoLength - entryInfo.Offset - 1;
 
-                    string[] info = encoding.GetString(buff, entryInfo.Offset, infoLength).Split(':');
+                    string[] info = Encoding.ASCII.GetString(buff, entryInfo.Offset, infoLength).Split(':');
                     long sector = long.Parse(info[0], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
                     long uncompressedSize = long.Parse(info[1], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
                     long compressedSize = long.Parse(info[2], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
@@ -115,8 +113,8 @@ namespace Pulse.FS
 
                     if (name.StartsWith("zone/filelist"))
                     {
-                        //string binaryName = Path.Combine(_gameDataPath, String.Format("zone/white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
-                        //_accessors.Add(accessor.CreateChild(binaryName, entry));
+                        string binaryName = Path.Combine(_zonesBinaryDirectory, String.Format("zone/white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
+                        _accessors.Add(accessor.CreateChild(binaryName, entry));
                     }
                 }
                 _listings.Add(result);

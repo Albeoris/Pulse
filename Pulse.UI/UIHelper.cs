@@ -1,12 +1,11 @@
 using System;
 using System.Text;
 using System.Windows;
-using System.Windows.Data;
 using Pulse.Core;
 
 namespace Pulse.UI
 {
-    public static class UIHelper
+    public static class UiHelper
     {
         public static void ShowError(Exception exception, string formatMessage = null, params object[] args)
         {

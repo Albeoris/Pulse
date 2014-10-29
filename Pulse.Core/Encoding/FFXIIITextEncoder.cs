@@ -1,10 +1,22 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace Pulse.Text
+namespace Pulse.Core
 {
     public sealed class FFXIIITextEncoder
     {
+        private readonly Encoding _encoding;
+        private readonly FFXIIICodePage _codepage;
+
+        public FFXIIITextEncoder(Encoding encoding)
+        {
+            _encoding = Exceptions.CheckArgumentNull(encoding, "encoding");
+        }
+
+        public FFXIIITextEncoder(FFXIIICodePage codepage)
+        {
+            _codepage = Exceptions.CheckArgumentNull(codepage, "codepage");
+        }
+
         public int GetMaxByteCount(int charCount)
         {
             return charCount;
@@ -25,9 +37,18 @@ namespace Pulse.Text
                 }
                 else
                 {
-                    result += Encoding.UTF8.GetByteCount(chars, index, 1);
-                    count--;
-                    index++;
+                    if (_encoding != null)
+                    {
+                        result += _encoding.GetByteCount(chars, index, 1);
+                        count--;
+                        index++;
+                    }
+                    else
+                    {
+                        result++;
+                        index++;
+                        count--;
+                    }
                 }
             }
 
@@ -47,11 +68,20 @@ namespace Pulse.Text
                 }
                 else
                 {
-                    int bytesWrited = Encoding.UTF8.GetBytes(chars, charIndex, 1, bytes, byteIndex);
-                    byteIndex += bytesWrited;
-                    result += bytesWrited;
-                    charCount--;
-                    charIndex++;
+                    if (_encoding != null)
+                    {
+                        int bytesWrited = _encoding.GetBytes(chars, charIndex, 1, bytes, byteIndex);
+                        byteIndex += bytesWrited;
+                        result += bytesWrited;
+                        charCount--;
+                        charIndex++;
+                    }
+                    else
+                    {
+                        bytes[byteIndex++] = _codepage[chars[charIndex++]];
+                        charCount--;
+                        result++;
+                    }
                 }
             }
 

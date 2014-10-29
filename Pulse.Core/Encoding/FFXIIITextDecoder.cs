@@ -1,10 +1,23 @@
 using System;
 using System.Text;
 
-namespace Pulse.Text
+namespace Pulse.Core
 {
     public sealed class FFXIIITextDecoder
     {
+        private readonly Encoding _encoding;
+        private readonly FFXIIICodePage _codepage;
+
+        public FFXIIITextDecoder(Encoding encoding)
+        {
+            _encoding = Exceptions.CheckArgumentNull(encoding, "encoding");
+        }
+
+        public FFXIIITextDecoder(FFXIIICodePage codepage)
+        {
+            _codepage = Exceptions.CheckArgumentNull(codepage, "codepage");
+        }
+
         public int GetMaxCharCount(int byteCount)
         {
             return byteCount * FFXIIITextTag.MaxTagLength;
@@ -25,17 +38,26 @@ namespace Pulse.Text
                 }
                 else
                 {
-                    int charsWrited = 0;
-                    int bytesReaded = 1;
-                    for (; bytesReaded < 5; bytesReaded++)
+                    if (_encoding != null)
                     {
-                        charsWrited = Encoding.UTF8.GetCharCount(bytes, index, bytesReaded);
-                        if (charsWrited > 0)
-                            break;
+                        int charsWrited = 0;
+                        int bytesReaded = 1;
+                        for (; bytesReaded < 5; bytesReaded++)
+                        {
+                            charsWrited = _encoding.GetCharCount(bytes, index, bytesReaded);
+                            if (charsWrited > 0)
+                                break;
+                        }
+                        count -= bytesReaded;
+                        index += bytesReaded;
+                        result += charsWrited;
                     }
-                    count -= bytesReaded;
-                    index += bytesReaded;
-                    result += charsWrited;
+                    else
+                    {
+                        count--;
+                        index++;
+                        result++;
+                    }
                 }
             }
 
@@ -55,21 +77,30 @@ namespace Pulse.Text
                 }
                 else
                 {
-                    //if (bytes[byteIndex] != 0x00 && bytes[byteIndex] != 0x09 && (bytes[byteIndex] < 0x20 || bytes[byteIndex] > 0x8B))
+                    //if (bytes[byteIndex] != 0x00 && bytes[byteIndex] != 0x09 && (bytes[byteIndex] < 0x20 || bytes[byteIndex] >'z'))
                     //    throw new Exception();
 
-                    int charsWrited = 0;
-                    int bytesReaded = 1;
-                    for (; bytesReaded < 5; bytesReaded++)
+                    if (_encoding != null)
                     {
-                        charsWrited = Encoding.UTF8.GetChars(bytes, byteIndex, bytesReaded, chars, charIndex);
-                        if (charsWrited > 0)
-                            break;
+                        int charsWrited = 0;
+                        int bytesReaded = 1;
+                        for (; bytesReaded < 5; bytesReaded++)
+                        {
+                            charsWrited = _encoding.GetChars(bytes, byteIndex, bytesReaded, chars, charIndex);
+                            if (charsWrited > 0)
+                                break;
+                        }
+                        charIndex += charsWrited;
+                        byteIndex += bytesReaded;
+                        byteCount -= bytesReaded;
+                        result += charsWrited;
                     }
-                    charIndex += charsWrited;
-                    byteIndex += bytesReaded;
-                    byteCount -= bytesReaded;
-                    result += charsWrited;
+                    else
+                    {
+                        chars[charIndex++] = _codepage[bytes[byteIndex++]];
+                        byteCount--;
+                        result++;
+                    }
                 }
             }
 

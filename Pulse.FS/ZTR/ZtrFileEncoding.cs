@@ -21,7 +21,7 @@ namespace Pulse.FS
             int blockSize;
             byte[] buff = input.EnsureRead(4);
             fixed (byte* b = &buff[0])
-                blockSize = Endian.ToLittleInt32(b);
+                blockSize = Endian.ToBigInt32(b);
 
             byte[] values = new byte[blockSize / 3];
             byte[,] encoding = new byte[256, 2];

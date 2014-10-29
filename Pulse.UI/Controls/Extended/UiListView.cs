@@ -2,7 +2,7 @@
 
 namespace Pulse.UI
 {
-    public class UiListView : TreeView
+    public class UiListView : ListView
     {
     }
 }

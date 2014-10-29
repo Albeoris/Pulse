@@ -40,12 +40,12 @@ namespace Pulse.Core
             return (ulong)(((SwapUInt32((uint)v) & 0xffffffffL) << 0x20) | (SwapUInt32((uint)(v >> 0x20)) & 0xffffffffL));
         }
 
-        public static unsafe ushort ToLittleUInt16(byte* b)
+        public static unsafe ushort ToBigUInt16(byte* b)
         {
             return (ushort)(*(b + 1) | *b << 8);
         }
 
-        public static unsafe int ToLittleInt32(byte* b)
+        public static unsafe int ToBigInt32(byte* b)
         {
             return *(b + 3) | *(b + 2) << 8 | *(b + 1) << 16 | *b << 24;
         }

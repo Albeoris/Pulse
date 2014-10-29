@@ -95,11 +95,25 @@
     <Compile Include="Factories\UiTreeViewFactory.cs" />
     <Compile Include="Factories\UWatermarkTextBoxFactory.cs" />
     <Compile Include="FileSystem\ShellHelper.cs" />
-    <Compile Include="Interaction\GamePath\GamePathProviderValidator.cs" />
-    <Compile Include="Interaction\GamePath\GamePathRegistryProvider.cs" />
-    <Compile Include="Interaction\GamePath\GamePathUserProvider.cs" />
-    <Compile Include="Interaction\GamePath\IGamePathProvider.cs" />
+    <Compile Include="Interaction\ApplicationConfig\ApplicationConfigFileProvider.cs" />
+    <Compile Include="Interaction\ApplicationConfig\ApplicationConfigNewProvider.cs" />
+    <Compile Include="Interaction\ApplicationConfig\ApplicationConfigProviders.cs" />
+    <Compile Include="Interaction\ApplicationConfig\ApplicationConfigInfo.cs" />
+    <Compile Include="Interaction\TextEncoding\TextEncodingNewProvider.cs" />
+    <Compile Include="Interaction\TextEncoding\TextEncodingProviders.cs" />
+    <Compile Include="Interaction\TextEncoding\TextEncodingConfigurationProvider.cs" />
+    <Compile Include="Interaction\TextEncoding\TextEncodingInfo.cs" />
+    <Compile Include="Interaction\WorkingLocation\WorkingLocationConfigurationProvider.cs" />
+    <Compile Include="Interaction\WorkingLocation\WorkingLocationInfo.cs" />
+    <Compile Include="Interaction\WorkingLocation\WorkingLocationProviders.cs" />
+    <Compile Include="Interaction\WorkingLocation\WorkingLocationUserProvider.cs" />
+    <Compile Include="Interaction\GameLocation\GameLocationConfigurationProvider.cs" />
+    <Compile Include="Interaction\GameLocation\GameLocationProviders.cs" />
+    <Compile Include="Interaction\GameLocation\GameLocationSteamRegistryProvider.cs" />
+    <Compile Include="Interaction\GameLocation\GameLocationUserProvider.cs" />
+    <Compile Include="Interaction\GameLocation\GameLocationInfo.cs" />
     <Compile Include="Interaction\IInfoProvider.cs" />
+    <Compile Include="Interaction\InfoProviderGroup.cs" />
     <Compile Include="Interaction\InteractionService.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,11 +124,15 @@
     <Compile Include="Factories\UiTextBlockFactory.cs" />
     <Compile Include="Factories\UiWindowFactory.cs" />
     <Compile Include="Resources\Icons.cs" />
-    <Compile Include="UIHelper.cs" />
+    <Compile Include="UiHelper.cs" />
+    <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviderNode.cs" />
+    <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviderNodeRefreshCommand.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveBuilderNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveTreeBuilder.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommander.cs" />
+    <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviders.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommanderExtractCommand.cs" />
     <Compile Include="Windows\Main\Dockables\UiMainDockable.cs" />
     <Compile Include="Windows\Main\UiMainWindow.cs" />
     <Compile Include="Windows\UiInputWindow.cs" />
@@ -134,6 +152,16 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="GeneralDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

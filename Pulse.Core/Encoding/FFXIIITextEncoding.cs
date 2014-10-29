@@ -1,18 +1,28 @@
 ﻿using System.Text;
+using System.Xml;
 
-namespace Pulse.Text
+namespace Pulse.Core
 {
     public sealed class FFXIIITextEncoding : Encoding
     {
-        public static readonly FFXIIITextEncoding Encoding = new FFXIIITextEncoding();
+        private readonly Encoding _encoding;
+        private readonly FFXIIICodePage _codepage;
 
         private readonly FFXIIITextEncoder _encoder;
         private readonly FFXIIITextDecoder _decoder;
 
-        public FFXIIITextEncoding()
+        public FFXIIITextEncoding(Encoding encoding)
         {
-            _encoder = new FFXIIITextEncoder();
-            _decoder = new FFXIIITextDecoder();
+            _encoding = encoding;
+            _encoder = new FFXIIITextEncoder(encoding);
+            _decoder = new FFXIIITextDecoder(encoding);
+        }
+
+        public FFXIIITextEncoding(FFXIIICodePage codepage)
+        {
+            _codepage = codepage;
+            _encoder = new FFXIIITextEncoder(codepage);
+            _decoder = new FFXIIITextDecoder(codepage);
         }
 
         public override int GetByteCount(char[] chars, int index, int count)
@@ -43,6 +53,32 @@ namespace Pulse.Text
         public override int GetMaxCharCount(int byteCount)
         {
             return _decoder.GetMaxCharCount(byteCount);
+        }
+
+        public void ToXml(XmlElement node)
+        {
+            if (_encoding != null)
+            {
+                node.SetInt32("CodePage", _encoding.CodePage);
+                return;
+            }
+
+            XmlElement child = node.CreateChildElement("CodePage");
+            FFXIIICodePageHelper.ToXml(_codepage, child);
+        }
+
+        public static FFXIIITextEncoding FromXml(XmlElement node)
+        {
+            int? codePage = node.FindInt32("CodePage");
+            if (codePage != null)
+            {
+                Encoding encoding = GetEncoding(codePage.Value);
+                return new FFXIIITextEncoding(encoding);
+            }
+
+            XmlElement child = node.GetChildElement("CodePage");
+            FFXIIICodePage customCodePage = FFXIIICodePageHelper.FromXml(child);
+            return new FFXIIITextEncoding(customCodePage);
         }
     }
 }

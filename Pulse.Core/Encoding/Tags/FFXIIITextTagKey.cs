@@ -1,4 +1,4 @@
-﻿namespace Pulse.Text
+﻿namespace Pulse.Core
 {
     //0xF1
     public enum FFXIIITextTagKey : byte

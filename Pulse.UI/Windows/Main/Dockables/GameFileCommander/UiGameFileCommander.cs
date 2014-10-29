@@ -1,78 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using Pulse.Core.Components;
-using Pulse.FS;
 
 namespace Pulse.UI
 {
-    public sealed class UiGameFileCommanderExtractCommand : ICommand
-        {
-            private readonly UiTreeView _commandTreeView;
-
-            public UiGameFileCommanderExtractCommand(UiTreeView treeView)
-            {
-                _commandTreeView = treeView;
-                _commandTreeView.SelectedItemChanged += SelectedItemChanged;
-            }
-
-            public bool CanExecute(object parameter)
-            {
-                return _commandTreeView.SelectedItem != null;
-            }
-
-            public void Execute(object parameter)
-            {
-                try
-                {
-                    UiArchiveNode item = _commandTreeView.SelectedItem as UiArchiveNode;
-                    if (item == null)
-                        return;
-
-                    Wildcard wildcard = null;
-                    if (item.Childs.Length > 0)
-                    {
-                        UiInputWindow dlg = new UiInputWindow("Укажите маску поиска...", "*");
-                        if (dlg.ShowDialog() != true)
-                            return;
-
-                        wildcard = new Wildcard(dlg.Answer);
-                    }
-
-                    string targetDir;
-                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog("Выберите каталог..."))
-                    {
-                        dlg.IsFolderPicker = true;
-                        if (dlg.ShowDialog() != CommonFileDialogResult.Ok)
-                            return;
-
-                        targetDir = dlg.FileName;
-                    }
-
-                    ArchiveListing listing = item.CreateChildListing(wildcard);
-                    ArchiveExtractor extractor = new ArchiveExtractor(listing, targetDir);
-                    UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-            {
-                EventHandler h = CanExecuteChanged;
-                if (h != null)
-                    h.Invoke(sender, e);
-            }
-        }
-
     public sealed class UiGameFileCommander : UiMainDockableControl
     {
         private readonly UiGrid _grid;
@@ -144,31 +78,31 @@ namespace Pulse.UI
         private Style CreateTreeViewItemContainerStyle()
         {
             Style style = new Style();
-            style.Setters.Add(new Setter(TreeViewItem.IsSelectedProperty, new Binding("IsSelected"){Mode = BindingMode.TwoWay}));
-            style.Setters.Add(new Setter(TreeViewItem.IsExpandedProperty, new Binding("IsExpanded"){Mode = BindingMode.TwoWay}));
+            style.Setters.Add(new Setter(TreeViewItem.IsSelectedProperty, new Binding("IsSelected") {Mode = BindingMode.TwoWay}));
+            style.Setters.Add(new Setter(TreeViewItem.IsExpandedProperty, new Binding("IsExpanded") {Mode = BindingMode.TwoWay}));
             return style;
         }
 
         private Style CreateListViewItemContainerStyle()
         {
             Style style = new Style();
-            style.Setters.Add(new EventSetter(TreeViewItem.MouseDoubleClickEvent, new MouseButtonEventHandler(OnListViewMouseDoubleClick)));
-            style.Setters.Add(new Setter(TreeViewItem.IsSelectedProperty, new Binding("IsSelected"){Mode = BindingMode.TwoWay}));
+            style.Setters.Add(new EventSetter(MouseDoubleClickEvent, new MouseButtonEventHandler(OnListViewMouseDoubleClick)));
+            style.Setters.Add(new Setter(ListBoxItem.IsSelectedProperty, new Binding("IsSelected") {Mode = BindingMode.TwoWay}));
             return style;
         }
 
         private void OnListViewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TreeViewItem item = sender as TreeViewItem;
+            ListViewItem item = sender as ListViewItem;
             if (item == null)
                 return;
 
-            UiArchiveNode node = (UiArchiveNode)item.Header;
+            UiArchiveNode node = (UiArchiveNode)item.Tag;
             if (node == null || node.Childs.Length < 1)
                 return;
 
             node.IsSelected = true;
-            
+
             while (node != null)
             {
                 node.IsExpanded = true;
@@ -196,12 +130,12 @@ namespace Pulse.UI
 
             FrameworkElementFactory image = new FrameworkElementFactory(typeof(Image));
             image.SetValue(Image.SourceProperty, new Binding("Icon"));
-            image.SetValue(Image.MarginProperty, new Thickness(3));
+            image.SetValue(MarginProperty, new Thickness(3));
             stackPanel.AppendChild(image);
 
             FrameworkElementFactory textBlock = new FrameworkElementFactory(typeof(TextBlock));
             textBlock.SetBinding(TextBlock.TextProperty, new Binding("Name"));
-            image.SetValue(TextBlock.MarginProperty, new Thickness(3));
+            textBlock.SetValue(MarginProperty, new Thickness(3));
             stackPanel.AppendChild(textBlock);
 
             template.VisualTree = stackPanel;
@@ -219,32 +153,73 @@ namespace Pulse.UI
             }
             catch (Exception ex)
             {
-                UIHelper.ShowError(ex);
+                UiHelper.ShowError(ex);
             }
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            InteractionService.Refreshed += Refresh;
-            Refresh();
-        }
-
-        private void Refresh()
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                _treeNodes = UiArchiveTreeBuilder.Build(InteractionService.GamePath);
-                _treeView.ItemsSource = _treeNodes;
+                await RefreshContent(InteractionService.GameLocation.Provide());
+                InteractionService.GameLocation.InfoLost += ClearContent;
+                InteractionService.GameLocation.InfoProvided += async v => await RefreshContent(v);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClearContent();
+                UiHelper.ShowError(ex);
             }
         }
 
-        public override int Index
+        private void ClearContent()
         {
-            get { return 0; }
+            try
+            {
+                if (CheckAccess())
+                {
+                    _treeView.ItemsSource = null;
+                    _listView.ItemsSource = null;
+
+                    IsEnabled = false;
+                }
+                else
+                {
+                    Dispatcher.Invoke(ClearContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                UiHelper.ShowError(ex);
+            }
+        }
+
+        private async Task RefreshContent(GameLocationInfo obj)
+        {
+            try
+            {
+                if (CheckAccess())
+                {
+                    _treeNodes = await UiArchiveTreeBuilder.BuildAsync(obj);
+                    _treeView.ItemsSource = _treeNodes;
+
+                    IsEnabled = true;
+                }
+                else
+                {
+                    await Dispatcher.Invoke(async () => await RefreshContent(obj));
+                }
+            }
+            catch (Exception ex)
+            {
+                ClearContent();
+                UiHelper.ShowError(ex);
+            }
+        }
+
+        protected override int Index
+        {
+            get { return 1; }
         }
 
         private UiContextMenu CreateTreeViewContextMenu()

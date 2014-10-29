@@ -1,16 +1,19 @@
 ﻿using System;
 using System.IO;
-using Pulse.Text;
+using System.Text;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
     public sealed class ZtrFilePacker
     {
-        private Stream _output;
-        private BinaryWriter _bw;
+        private readonly Encoding _encoding;
+        private readonly Stream _output;
+        private readonly BinaryWriter _bw;
 
-        public ZtrFilePacker(Stream output)
+        public ZtrFilePacker(Stream output, Encoding encoding)
         {
+            _encoding = encoding;
             _output = output;
             _bw = new BinaryWriter(_output);
         }
@@ -18,14 +21,14 @@ namespace Pulse.FS
         public void Pack(ZtrFileEntry[] entries)
         {
             if (entries.Length == 0)
-                PackLittleEndianCompressedDictionary(entries);
+                PackBigEndianCompressedDictionary(entries);
             else if (entries.Length == 1)
-                PackBigEndianUncompressedPair(entries[0]);
+                PackLittleEndianUncompressedPair(entries[0]);
             else
-                PackBigEndianUncompressedDictionary(entries);
+                PackLittleEndianUncompressedDictionary(entries);
         }
 
-        private void PackBigEndianUncompressedDictionary(ZtrFileEntry[] entries)
+        private void PackLittleEndianUncompressedDictionary(ZtrFileEntry[] entries)
         {
             int count = entries.Length;
             byte[][] keys = new byte[count][];
@@ -37,8 +40,8 @@ namespace Pulse.FS
             for (int i = 0; i < count; i++)
             {
                 ZtrFileEntry entry = entries[i];
-                keys[i] = FFXIIITextEncoding.Encoding.GetBytes(entry.Key);
-                values[i] = FFXIIITextEncoding.Encoding.GetBytes(entry.Value);
+                keys[i] = Encoding.ASCII.GetBytes(entry.Key);
+                values[i] = _encoding.GetBytes(entry.Value);
                 offsets[index + 1] = offsets[index++] + keys[i].Length + 1;
                 if (index + 1 < offsets.Length)
                     offsets[index + 1] = offsets[index++] + values[i].Length + 2;
@@ -57,12 +60,12 @@ namespace Pulse.FS
             }
         }
 
-        private void PackBigEndianUncompressedPair(ZtrFileEntry entry)
+        private void PackLittleEndianUncompressedPair(ZtrFileEntry entry)
         {
-            _bw.Write((int)ZtrFileType.BigEndianUncompressedPair);
+            _bw.Write((int)ZtrFileType.LittleEndianUncompressedPair);
 
-            byte[] key = FFXIIITextEncoding.Encoding.GetBytes(entry.Key);
-            byte[] value = FFXIIITextEncoding.Encoding.GetBytes(entry.Value);
+            byte[] key = Encoding.ASCII.GetBytes(entry.Key);
+            byte[] value = _encoding.GetBytes(entry.Value);
 
             _bw.Write(4);
             _bw.Write(4 + key.Length + 1);
@@ -73,12 +76,12 @@ namespace Pulse.FS
             _bw.Write((short)0);
         }
 
-        private void PackLittleEndianCompressedDictionary(ZtrFileEntry[] entries)
+        private void PackBigEndianCompressedDictionary(ZtrFileEntry[] entries)
         {
             if (entries.Length > 0)
                 throw new NotImplementedException();
 
-            _bw.Write((int)ZtrFileType.LittleEndianCompressedDictionary);
+            _bw.Write((int)ZtrFileType.BigEndianCompressedDictionary);
         }
     }
 }

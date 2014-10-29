@@ -18,10 +18,10 @@ namespace Pulse.FS
             byte[] buff = input.EnsureRead(0x10);
             fixed (byte* b = &buff[0])
             {
-                Version = Endian.ToLittleInt32(b + 0);
-                Count = Endian.ToLittleInt32(b + 4);
-                KeysUnpackedSize = Endian.ToLittleInt32(b + 8);
-                TextBlocksCount = Endian.ToLittleInt32(b + 12);
+                Version = Endian.ToBigInt32(b + 0);
+                Count = Endian.ToBigInt32(b + 4);
+                KeysUnpackedSize = Endian.ToBigInt32(b + 8);
+                TextBlocksCount = Endian.ToBigInt32(b + 12);
             }
 
             if (Version != 1)
@@ -34,7 +34,7 @@ namespace Pulse.FS
                 fixed (byte* b = &buff[0])
                 {
                     for (int i = 0; i < TextBlocksCount; i++)
-                        TextBlockTable[i] = Endian.ToLittleInt32(b + i * 4);
+                        TextBlockTable[i] = Endian.ToBigInt32(b + i * 4);
                 }
             }
 
@@ -48,7 +48,7 @@ namespace Pulse.FS
                     {
                         TextLinesTable[i].Block = *(b + i * 4);
                         TextLinesTable[i].BlockOffset = *(b + i * 4 + 1);
-                        TextLinesTable[i].PackedOffset = Endian.ToLittleUInt16(b + i * 4 + 2);
+                        TextLinesTable[i].PackedOffset = Endian.ToBigUInt16(b + i * 4 + 2);
                     }
                 }
             }

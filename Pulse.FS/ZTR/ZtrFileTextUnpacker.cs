@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using Pulse.Core;
-using Pulse.Text;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
@@ -11,12 +11,14 @@ namespace Pulse.FS
         private readonly Stream _input;
         private readonly ZtrFileEntry[] _output;
         private readonly ZtrFileHeaderLineInfo[] _offsets;
+        private readonly FFXIIITextEncoding _encoding;
 
-        public ZtrFileTextUnpacker(Stream input, ZtrFileEntry[] output, ZtrFileHeaderLineInfo[] offsets)
+        public ZtrFileTextUnpacker(Stream input, ZtrFileEntry[] output, ZtrFileHeaderLineInfo[] offsets, FFXIIITextEncoding encoding)
         {
             _input = input;
             _output = output;
             _offsets = offsets;
+            _encoding = encoding;
         }
 
         public void Unpack(int compressedSize)
@@ -62,7 +64,7 @@ namespace Pulse.FS
                 {
                     io.SetPosition(_offsets[i].UnpackedOffset);
                     byte[] buff = io.EnsureRead(_offsets[i].UnpackedLength);
-                    _output[i].Value = FFXIIITextEncoding.Encoding.GetString(buff, 0, buff.Length - 2); // {End}{End}
+                    _output[i].Value = _encoding.GetString(buff, 0, buff.Length - 2);
                 }
             }
         }

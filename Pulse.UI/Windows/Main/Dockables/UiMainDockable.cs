@@ -11,10 +11,10 @@ namespace Pulse.UI
 {
     public abstract class UiMainDockableControl : UserControl
     {
-        public abstract int Index { get; }
-        public string Header { get; protected set; }
+        protected abstract int Index { get; }
+        protected string Header { get; set; }
         private DockingManager DockingManager { get; set; }
-        private LayoutAnchorable LayoutAnchorable { get; set; }
+        internal LayoutAnchorable LayoutAnchorable { get; set; }
         private readonly object _lock = new object();
 
         public static UiMainDockableControl[] CreateKnownDockables(DockingManager dockingManager)
@@ -61,7 +61,7 @@ namespace Pulse.UI
                 window.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                 lock (window._lock)
                 {
-                    LayoutAnchorable layout = window.LayoutAnchorable;
+                    LayoutAnchorable layout = window.LayoutAnchorable ?? (window.LayoutAnchorable = window.DockingManager.Layout.Descendents().OfType<LayoutAnchorable>().FirstOrDefault(l => l.Title == window.Header));
                     if (layout == null)
                     {
                         layout = new LayoutAnchorable

@@ -1,11 +1,12 @@
 using System.IO;
-using Pulse.Text;
+using System.Text;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
     public sealed class ZtrFileHelper
     {
-        public static string ReadNullTerminatedString(Stream input)
+        public static string ReadNullTerminatedString(Stream input, Encoding encoding)
         {
             using (MemoryStream ms = new MemoryStream(4096))
             {
@@ -19,7 +20,7 @@ namespace Pulse.FS
                 }
 
                 byte[] array = ms.ToArray();
-                return FFXIIITextEncoding.Encoding.GetString(array, 0, array.Length);
+                return encoding.GetString(array, 0, array.Length);
             }
         }
     }

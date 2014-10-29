@@ -1,9 +1,12 @@
-﻿using System;
+﻿using System.Threading;
 
 namespace Pulse.UI
 {
-    public interface IInfoProvider
+    public interface IInfoProvider<out T> where T : class
     {
-        void Provide();
+        string Title { get; }
+        string Description { get; }
+
+        T Provide();
     }
 }
