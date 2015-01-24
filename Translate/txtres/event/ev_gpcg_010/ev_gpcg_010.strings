@@ -1,0 +1,5 @@
+﻿/*txtres/event/ev_gpcg_010/txtres_us.ztr*/
+/*0003*/
+"0000║$egpcg010_010va" = "{Italic}The Maker created fal'Cie.{Italic}{End}{Escape}";
+"0001║$egpcg010_020va" = "{Italic}And they, in their desperation to be reunited{Text NewLine}with the Maker, created l'Cie.{Italic}{End}{Escape}";
+"0002║$egpcg010_030va" = "{Italic}And l'Cie? I wonder what we'll end up creating.{Italic}{End}{Escape}";

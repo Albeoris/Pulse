@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_vpek_320/txtres_us.ztr*/
+/*0009*/
+"0000║$evpek320_010ho" = "Lightning!";
+"0001║$evpek320_020ho" = "Your brand looks different.{Text NewLine}Was that an Eidolon? Like l'Cie can summon?";
+"0002║$evpek320_030lt" = "Magic and mumbo-jumbo.{Text NewLine}I must've hit my head on that Purge train.";
+"0003║$evpek320_040ho" = "Um...";
+"0004║$evpek320_050ho" = "Am I really in your way?";
+"0005║$evpek320_060ho" = "I'll do better! I'll try harder, I'll—";
+"0006║$evpek320_070lt" = "Hope.";
+"0007║$evpek320_080lt" = "We'll toughen you up.";
+"0008║$evpek320_090lt" = "I'm sorry about before.";

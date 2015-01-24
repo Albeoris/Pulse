@@ -1,0 +1,32 @@
+﻿/*txtres/event/ev_hang_180/txtres_us.ztr*/
+/*0030*/
+"0000║$ehang180_010sn" = "You all okay?";
+"0001║$ehang180_015sn" = "Hey, careful with those.";
+"0002║$ehang180_020sn" = "Don't worry, no one's moving to Pulse today.";
+"0003║$ehang180_030sn" = "We'll clear you a path out of here, so be ready to—";
+"0004║$ehang180_040m1" = "Wait! Let me fight with you!{End}{Escape}Man";
+"0005║$ehang180_050m2" = "Yeah, you can't expect us to just sit here!{End}{Escape}Man";
+"0006║$ehang180_060sn" = "Could help.";
+"0007║$ehang180_062gd" = "Yep.";
+"0008║$ehang180_070m1" = "Please. Let us help.{End}{Escape}Man";
+"0009║$ehang180_080sn" = "Okay then.{Text NewLine}Volunteers front and center.";
+"0010║$ehang180_090ho" = "Mom?";
+"0011║$ehang180_100nr" = "Don't worry.{End}{Escape}Mother";
+"0012║$ehang180_120sn" = "You sure?";
+"0013║$ehang180_122nr" = "Yeah.{End}{Escape}Mother";
+"0014║$ehang180_124sn" = "Right.";
+"0015║$ehang180_130nr" = "Moms are tough.{End}{Escape}Mother";
+"0016║$ehang180_135gd" = "It's the last one, Boss.";
+"0017║$ehang180_140sn" = "All right, last one.{Text NewLine}Somebody take it.";
+"0018║$ehang180_142ho" = "No... I can't.";
+"0019║$ehang180_150va" = "Here!";
+"0020║$ehang180_160sn" = "Push comes to shove, keep 'em safe.";
+"0021║$ehang180_170va" = "{Italic}First impression of Snow?{Text NewLine}All talk.{Italic}{End}{Escape}";
+"0022║$ehang180_180sn" = "All right, lay low and you'll be fine.{Text NewLine}We'll clear out the area.";
+"0023║$ehang180_190lb" = "I'll stay here.";
+"0024║$ehang180_200sn" = "We're going home together!";
+"0025║$ehang180_210lb" = "Come on! Everybody up!";
+"0026║$ehang180_220gd" = "Right. New recruits—on me!";
+"0027║$ehang180_222sn" = "Come on.";
+"0028║$ehang180_224nr" = "Right.{End}{Escape}Mother";
+"0029║$ehang180_230lb" = "Time to go, kiddo.";

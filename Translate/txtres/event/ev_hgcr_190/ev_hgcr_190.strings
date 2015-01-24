@@ -1,0 +1,8 @@
+﻿/*txtres/event/ev_hgcr_190/txtres_us.ztr*/
+/*0006*/
+"0000║$ehgcr190_010nm" = "{Italic}Sweep Team to base.{Italic}{End}{Escape}Captain";
+"0001║$ehgcr190_020nm" = "{Italic}L'Cie spotted. I repeat, l'Cie spotted.{Italic}{End}{Escape}Captain";
+"0002║$ehgcr190_030nm" = "{Italic}Pulse l'Cie. Confirmed.{Italic}{End}{Escape}Captain";
+"0003║$ehgcr190_040sn" = "You gonna lend me a hand, or what?";
+"0004║$ehgcr190_050nm" = "{Italic}Commencing cleanup protocol.{Italic}{End}{Escape}Captain";
+"0005║$ehgcr190_060sn" = "Cleanup?{Text NewLine}Let me help!";

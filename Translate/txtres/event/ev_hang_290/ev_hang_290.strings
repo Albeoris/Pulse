@@ -1,0 +1,27 @@
+﻿/*txtres/event/ev_hang_290/txtres_us.ztr*/
+/*0025*/
+"0000║$ehang290_010va" = "Hm? You okay?";
+"0001║$ehang290_020ho" = "I want to tell him, it's just that—";
+"0002║$ehang290_030va" = "Say...";
+"0003║$ehang290_040va" = "You know how to fly this?";
+"0004║$ehang290_050ho" = "Yeah. I think so.";
+"0005║$ehang290_053va" = "All right!";
+"0006║$ehang290_056va" = "In you go!";
+"0007║$ehang290_060ho" = "";
+"0008║$ehang290_070ho" = "";
+"0009║$ehang290_080va" = "";
+"0010║$ehang290_090va" = "That way!";
+"0011║$ehang290_100ho" = "";
+"0012║$ehang290_110ho" = "If we go in there, that thing could—";
+"0013║$ehang290_115ho" = "No, no...";
+"0014║$ehang290_120ho" = "It could make us l'Cie.";
+"0015║$ehang290_130ho" = "This is... I don't think I can—";
+"0016║$ehang290_140va" = "You {Italic}can{Italic} do it!";
+"0017║$ehang290_150ga" = "What are you two doing?{End}{Escape}Gadot";
+"0018║$ehang290_160ho" = "Here we go!";
+"0019║$ehang290_170ga" = "Uh-oh!{End}{Escape}Gadot";
+"0020║$ehang290_180va" = "";
+"0021║$ehang290_185gd" = "";
+"0022║$ehang290_187gd" = "Get back here! Do you hear me?{Text NewLine}Hey!";
+"0023║$ehang290_190va" = "{Italic}The Pulse fal'Cie.{Italic}{End}{Escape}";
+"0024║$ehang290_200va" = "{Italic}It held our future—and our fate.{Italic}{End}{Escape}";

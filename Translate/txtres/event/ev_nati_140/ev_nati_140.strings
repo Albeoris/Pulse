@@ -1,0 +1,34 @@
+﻿/*txtres/event/ev_nati_140/txtres_us.ztr*/
+/*0032*/
+"0000║$enati140_010va" = "{Italic}Why did I even try to run?{Italic}{End}{Escape}";
+"0001║$enati140_020va" = "{Italic}What was waiting wasn't something I could change.{Italic}{End}{Escape}";
+"0002║$enati140_030sz" = "You are cold-blooded.";
+"0003║$enati140_040sz" = "Lying, so people would trust you.{Text NewLine}Using them as shields.";
+"0004║$enati140_050sz" = "How many you gotta drag down with you?";
+"0005║$enati140_060va" = "I'm—";
+"0006║$enati140_070sz" = "A coward and a killer.";
+"0007║$enati140_080sz" = "The people you used don't get to live.";
+"0008║$enati140_090sz" = "Why should you?";
+"0009║$enati140_100va" = "";
+"0010║$enati140_110sz" = "Tired of living with guilt?{Text NewLine}Then die with it.";
+"0011║$enati140_120sz" = "Vanille.";
+"0012║$enati140_130va" = "My name{Text NewLine}is Oerba Dia Vanille.";
+"0013║$enati140_140va" = "I'm a l'Cie from Gran Pulse.";
+"0014║$enati140_150va" = "And to everyone on Cocoon...";
+"0015║$enati140_160va" = "...evil.";
+"0016║$enati140_170va" = "Shoot me! For your son.";
+"0017║$enati140_180sz" = "Don't you even!";
+"0018║$enati140_190sz" = "You think you die and that's that? You think you{Text NewLine}die and everything will be sugar and rainbows?";
+"0019║$enati140_200va" = "Then what can I do?";
+"0020║$enati140_210va" = "What do you want from me?{Text NewLine}If I can't live or die, what do you want me to do?";
+"0021║$enati140_220va" = "";
+"0022║$enati140_230sz" = "Don't ask me!{Text NewLine}You figure it out.";
+"0023║$enati140_240va" = "I don't know!";
+"0024║$enati140_250sz" = "Neither do I.";
+"0025║$enati140_260sz" = "It's over.{Text NewLine}There's nothing {Italic}to{Italic} do.";
+"0026║$enati140_270sz" = "Shooting you won't help.";
+"0027║$enati140_280sz" = "Neither will living.";
+"0028║$enati140_290sz" = "Do your worst, you freak!";
+"0029║$enati140_300va" = "It's not over.";
+"0030║$enati140_310sz" = "";
+"0031║$enati140_320sz" = "Okay, fine. You want me?{Text NewLine}Come and get me!";

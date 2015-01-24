@@ -1,0 +1,9 @@
+﻿/*txtres/event/ev_eden_050/txtres_us.ztr*/
+/*0007*/
+"0000║$eeden050_000m1" = "An army of creatures is attacking the city.{Text NewLine}It's a Pulse invasion force.{End}{Escape}Soldier";
+"0001║$eeden050_010m1" = "Your Eminence, we must evacuate!{End}{Escape}Soldier";
+"0002║$eeden050_020lg" = "So, Raines—is this the Cocoon you dreamed of?{End}{Escape}Rygdea";
+"0003║$eeden050_030ra" = "My dream is but a fal'Cie's fancy now.{End}{Escape}Raines";
+"0004║$eeden050_035ra" = "End it.{End}{Escape}Raines";
+"0005║$eeden050_040lg" = "Damn idealism!{End}{Escape}Rygdea";
+"0006║$eeden050_050lg" = "Ya feed it blood, and it howls for more!{End}{Escape}Rygdea";

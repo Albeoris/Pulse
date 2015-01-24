@@ -1,0 +1,26 @@
+﻿/*txtres/event/ev_hang_210/txtres_us.ztr*/
+/*0024*/
+"0000║$ehang210_010sz" = "It's an out-and-out massacre.";
+"0001║$ehang210_020sz" = "Those people won't even live long enough{Text NewLine}to die on Pulse.";
+"0002║$ehang210_030lt" = "That was the idea.";
+"0003║$ehang210_040sz" = "What?";
+"0004║$ehang210_050lt" = "Sanctum logic.{Text NewLine}They conjured up the Purge to eliminate a threat.";
+"0005║$ehang210_060lt" = "I mean—why carry the danger all the way to Pulse?";
+"0006║$ehang210_070lt" = "Why not just stamp it out here?";
+"0007║$ehang210_080lt" = "Execution masquerading as exile.";
+"0008║$ehang210_090lt" = "That's all the Purge ever was.";
+"0009║$ehang210_100sz" = "'Relocation to Pulse.' How does a government{Text NewLine}get away with pulling crap like that?";
+"0010║$ehang210_110sz" = "And you—you knew this was gonna happen?";
+"0011║$ehang210_120lt" = "The Purge was PSICOM.";
+"0012║$ehang210_130lt" = "Private Sanctum troops, not the Guardian Corps.";
+"0013║$ehang210_140sz" = "PSICOM, Guardian Corps...";
+"0014║$ehang210_150sz" = "Soldiers are soldiers, aren't they?";
+"0015║$ehang210_160sz" = "Pulse fal'Cie, and their l'Cie, are enemies of the state.";
+"0016║$ehang210_170sz" = "Tell a soldier to kill an enemy...";
+"0017║$ehang210_180sz" = "...and you really think it's gonna matter{Text NewLine}what uniform he's wearing?";
+"0018║$ehang210_190lt" = "Might have mattered to that one.{Text NewLine}Couldn't shoot, got himself shot instead.";
+"0019║$ehang210_200sz" = "How about you?";
+"0020║$ehang210_210sz" = "Orders say shoot, you pull the trigger?";
+"0021║$ehang210_220sz" = "Fine. Forget I asked.";
+"0022║$ehang210_222lt" = "Wait... What—";
+"0023║$ehang210_224lt" = "{End}{Escape}";

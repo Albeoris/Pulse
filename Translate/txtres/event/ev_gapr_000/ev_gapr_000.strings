@@ -1,0 +1,16 @@
+﻿/*txtres/event/ev_gapr_000/txtres_us.ztr*/
+/*0014*/
+"0000║$egapr000_010ho" = "Can't believe we made it.";
+"0001║$egapr000_020lt" = "That'll slow down pursuit.";
+"0002║$egapr000_030ho" = "But aren't there troops on this side?";
+"0003║$egapr000_040ho" = "We can't relax just yet.";
+"0004║$egapr000_050lt" = "Right.";
+"0005║$egapr000_060lt" = "We press on.";
+"0006║$egapr000_070lt" = "I'll take point. You watch our backs.";
+"0007║$egapr000_080ho" = "Actually...";
+"0008║$egapr000_090ho" = "Why don't you let me take point?";
+"0009║$egapr000_100lt" = "Can you handle it?";
+"0010║$egapr000_110ho" = "It's not a question of can or can't.";
+"0011║$egapr000_120lt" = "Now you're learning.";
+"0012║$egapr000_130lt" = "Keep your eyes front.{Text NewLine}I'll watch the rear.";
+"0013║$egapr000_140ho" = "Got it.";

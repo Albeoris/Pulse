@@ -1,0 +1,23 @@
+﻿/*txtres/event/ev_lasd_310/txtres_us.ztr*/
+/*0021*/
+"0000║$elasd310_000lt" = "It's done.";
+"0001║$elasd310_002sn" = "All right!";
+"0002║$elasd310_004va" = "Fang!";
+"0003║$elasd310_005dy" = "Release... At last, release!{End}{Escape}Barthandelus";
+"0004║$elasd310_006fa" = "";
+"0005║$elasd310_007sn" = "We did it, huh?";
+"0006║$elasd310_007sz" = "Hey! Put a lid on it!";
+"0007║$elasd310_008ho" = "Yep.";
+"0008║$elasd310_009ho" = "It's that bird again!";
+"0009║$elasd310_010op" = "A haven, yea.{End}{Escape}Being";
+"0010║$elasd310_012op" = "Yet it must fall ere we be saved.{End}{Escape}Being";
+"0011║$elasd310_020op" = "Too frail a shell, and humans should not thrive.{End}{Escape}Being";
+"0012║$elasd310_025op" = "Too stout a shell, and they would not die.{End}{Escape}Being";
+"0013║$elasd310_030op" = "Slaughter and salvation!{End}{Escape}Being";
+"0014║$elasd310_032op" = "Two irreconcilable Focuses we bore.{End}{Escape}Being";
+"0015║$elasd310_034op" = "Yet bound were we in a cocoon prison{Text NewLine}impervious to our power.{End}{Escape}Being";
+"0016║$elasd310_040op" = "And so we thank you,{Text NewLine}for granting us our longed-for birth.{End}{Escape}Being";
+"0017║$elasd310_050sn" = "Dysley?";
+"0018║$elasd310_060sz" = "No. Not anymore.";
+"0019║$elasd310_070op" = "We are the Abandoned One, born but now to die.{End}{Escape}Being";
+"0020║$elasd310_080op" = "Our name is Orphan.{Text NewLine}By our hand, the world shall know redemption.{End}{Escape}Being";

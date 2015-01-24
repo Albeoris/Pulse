@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_hang_100/txtres_us.ztr*/
+/*0011*/
+"0000║$ehang100_020sz" = "Do we turn back?";
+"0001║$ehang100_030lt" = "There's no time.";
+"0002║$ehang100_040sz" = "Then what do you suggest we do?";
+"0003║$ehang100_050lt" = "Quiet!";
+"0004║$ehang100_060sz" = "Hey!";
+"0005║$ehang100_070sz" = "Wait! No, no, don't leave me!";
+"0006║$ehang100_080lt" = "Let go!";
+"0007║$ehang100_090sz" = "Hell no, you're my only way out of here!";
+"0008║$ehang100_130sz" = "Hey, that might get us across!{Text NewLine}Right there!";
+"0009║$ehang100_135sz" = "Right?";
+"0010║$ehang100_140lt" = "Looks that way.";

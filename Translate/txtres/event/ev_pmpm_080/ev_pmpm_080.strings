@@ -1,0 +1,14 @@
+﻿/*txtres/event/ev_pmpm_080/txtres_us.ztr*/
+/*0012*/
+"0000║$epmpm080_010sn" = "What's up?";
+"0001║$epmpm080_020ho" = "Where have you been?";
+"0002║$epmpm080_030sn" = "I got taken in.";
+"0003║$epmpm080_040ho" = "Wait—what?";
+"0004║$epmpm080_050sn" = "Not by enemies.";
+"0005║$epmpm080_060sn" = "It was the Cavalry, not PSICOM.";
+"0006║$epmpm080_070sn" = "Leader's name is Raines.{Text NewLine}He said he'd lend us l'Cie a hand.";
+"0007║$epmpm080_080sn" = "So now, your hero is back!";
+"0008║$epmpm080_090ho" = "Why would the army help us?{Text NewLine}That doesn't make sense.";
+"0009║$epmpm080_100sn" = "Military's got all kinds.{Text NewLine}Not all of 'em like the Sanctum.";
+"0010║$epmpm080_110sn" = "Don't worry. I'll handle the bad guys.";
+"0011║$epmpm080_120sn" = "Come on.";

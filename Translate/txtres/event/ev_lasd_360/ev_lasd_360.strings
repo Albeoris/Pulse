@@ -1,0 +1,5 @@
+﻿/*txtres/event/ev_lasd_360/txtres_us.ztr*/
+/*0003*/
+"0000║$elasd360_000fa" = "{Italic}Listen, you're not alone anymore.{Italic}";
+"0001║$elasd360_010va" = "{Italic}We have a new family now.{Text NewLine}We stick together, you hear me?{Italic}{End}{Escape}Fang";
+"0002║$elasd360_020va" = "{Italic}Yes. I promise.{Italic}{End}{Escape}";

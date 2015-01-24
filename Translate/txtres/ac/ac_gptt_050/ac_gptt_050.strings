@@ -1,0 +1,26 @@
+﻿/*txtres/ac/ac_gptt_050/txtres_us.ztr*/
+/*0024*/
+"0000║$agptt050_010lt" = "What's that?";
+"0001║$agptt050_020lt" = "Waiting for us, huh?";
+"0002║$agptt050_030lt" = "Get back!";
+"0003║$agptt050_040lt" = "What's this? Some kind of trap?";
+"0004║$agptt050_050sn" = "";
+"0005║$agptt050_060sn" = "Guess he missed us.";
+"0006║$agptt050_070sn" = "Run!";
+"0007║$agptt050_080sn" = "Well look at that! A new route.";
+"0008║$agptt050_090sz" = "What the—?";
+"0009║$agptt050_100sz" = "You again, huh?";
+"0010║$agptt050_110sz" = "Retreat!";
+"0011║$agptt050_120sz" = "That thing packs a punch.";
+"0012║$agptt050_130ho" = "Oh great!";
+"0013║$agptt050_140ho" = "What's this thing want?";
+"0014║$agptt050_150ho" = "Run!";
+"0015║$agptt050_160ho" = "Wonder what's through that hole?";
+"0016║$agptt050_170va" = "";
+"0017║$agptt050_180va" = "Hi...hi there!";
+"0018║$agptt050_190va" = "Run away! Run away!";
+"0019║$agptt050_200va" = "Hmm. I wonder what's through there?";
+"0020║$agptt050_210fa" = "";
+"0021║$agptt050_220fa" = "Are you toying with us?";
+"0022║$agptt050_230fa" = "Move!";
+"0023║$agptt050_240fa" = "Looks like somebody's got a temper.";

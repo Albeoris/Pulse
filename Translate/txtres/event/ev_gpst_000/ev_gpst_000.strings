@@ -1,0 +1,21 @@
+﻿/*txtres/event/ev_gpst_000/txtres_us.ztr*/
+/*0019*/
+"0000║$egpst000_010fa" = "You know, I've got to say...this is weird.";
+"0001║$egpst000_020fa" = "When we were young, we were always taught that{Text NewLine}someday we'd be attacked by the demons of Cocoon.";
+"0002║$egpst000_030fa" = "And looks at us now, waltzing back into Oerba, with the{Text NewLine}very people we were chosen to take up arms against.";
+"0003║$egpst000_040va" = "Yeah. Back then, we never would have helped you guys.";
+"0004║$egpst000_050sz" = "Well, right.{Text NewLine}Back then is when you got your first Focus, so.";
+"0005║$egpst000_060va" = "We already talked a bit about that, huh?";
+"0006║$egpst000_070va" = "Must have been centuries ago now, when{Text NewLine}me and Fang joined the battle against Cocoon.";
+"0007║$egpst000_080va" = "During the fight, I became Ragnarok...";
+"0008║$egpst000_090va" = "...and cracked Cocoon's shell.";
+"0009║$egpst000_100sn" = "That, uh...that must have been hard on you,{Text NewLine}going through that.";
+"0010║$egpst000_110va" = "The memories—they're all pretty fuzzy.";
+"0011║$egpst000_120ho" = "Cocoon's version of the War of Transgression{Text NewLine}must have been built up around what you two did.";
+"0012║$egpst000_130fa" = "I didn't do anything.";
+"0013║$egpst000_140fa" = "I just got turned to crystal,{Text NewLine}and I can't even remember why {Italic}that{Italic} happened.";
+"0014║$egpst000_150fa" = "Don't even have the memories to show for it.";
+"0015║$egpst000_160va" = "It's all my fault!{Text NewLine}So many people died because of me.";
+"0016║$egpst000_170lt" = "It's over. Those souls can rest.";
+"0017║$egpst000_180va" = "Right.";
+"0018║$egpst000_190sz" = "Little bit.";

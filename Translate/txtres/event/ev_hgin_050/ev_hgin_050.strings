@@ -1,0 +1,18 @@
+﻿/*txtres/event/ev_hgin_050/txtres_us.ztr*/
+/*0016*/
+"0000║$ehgin050_010sz" = "Still won't budge?";
+"0001║$ehgin050_020sz" = "I think the door is winning.";
+"0002║$ehgin050_030lt" = "Why didn't I listen?";
+"0003║$ehgin050_040sz" = "Uh, beg your pardon?";
+"0004║$ehgin050_050lt" = "It was me.";
+"0005║$ehgin050_051lt" = "This is my fault.";
+"0006║$ehgin050_053sz" = "Beg your pardon?";
+"0007║$ehgin050_060lt" = "Cover your ears.";
+"0008║$ehgin050_070sz" = "Oh, blast charge?{Text NewLine}Hold on, hold on!";
+"0009║$ehgin050_080lt" = "I'm so sorry.";
+"0010║$ehgin050_080sz" = "All right, go for it!{Text NewLine}Make it happen!";
+"0011║$ehgin050_090lt" = "Please let me in.";
+"0012║$ehgin050_100lt" = "Please?";
+"0013║$ehgin050_110sz" = "What the—hey!";
+"0014║$ehgin050_120sz" = "What did—how'd you open it?";
+"0015║$ehgin050_130sz" = "After you.";

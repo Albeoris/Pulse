@@ -1,0 +1,13 @@
+﻿/*txtres/ac/ac_gpst_012/txtres_us.ztr*/
+/*0011*/
+"0000║$agpst012_010sn" = "You've got to be ready to drop by now.{Text NewLine}Don't overdo it.";
+"0001║$agpst012_020ho" = "I won't. I know my limits, unlike some people.";
+"0002║$agpst012_030sn" = "Oh-ho-ho!{Text NewLine}Now who's the tough guy?";
+"0003║$agpst012_040sn" = "What was that?";
+"0004║$agpst012_050fa" = "A Gran Pulse fal'Cie.";
+"0005║$agpst012_060fa" = "Used to see it flying around all the time.";
+"0006║$agpst012_070va" = "And they said it had a home, somewhere near Oerba.";
+"0007║$agpst012_080ho" = "So, that's good news, right?";
+"0008║$agpst012_090ho" = "If we stay on its tail, we should{Text NewLine}end up in your village.";
+"0009║$agpst012_100ho" = "Let's follow it!";
+"0010║$agpst012_110sn" = "Right!";

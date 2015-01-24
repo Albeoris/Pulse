@@ -1,0 +1,31 @@
+﻿/*txtres/event/ev_hgcr_100/txtres_us.ztr*/
+/*0029*/
+"0000║$ehgcr100_000lt" = "Serah.";
+"0001║$ehgcr100_010sn" = "Serah!";
+"0002║$ehgcr100_020sn" = "Serah!";
+"0003║$ehgcr100_030sn" = "I'll get you out of there!";
+"0004║$ehgcr100_040va" = "I'll help you.";
+"0005║$ehgcr100_050sn" = "Thanks!";
+"0006║$ehgcr100_060lt" = "This is good-bye.";
+"0007║$ehgcr100_070lt" = "Lightning?{End}{Escape}Snow";
+"0008║$ehgcr100_080sn" = "You're just gonna leave her?";
+"0009║$ehgcr100_090lt" = "PSICOM will be here soon.";
+"0010║$ehgcr100_100lt" = "If they find us, we're all dead.";
+"0011║$ehgcr100_110lt" = "You think Serah would want that?";
+"0012║$ehgcr100_120lt" = "You think you know how she feels?";
+"0013║$ehgcr100_130sn" = "If I leave her, then I'll never know.";
+"0014║$ehgcr100_140sn" = "We'll be fine.{Text NewLine}I can handle anything they throw at us.";
+"0015║$ehgcr100_150sn" = "No one will die.";
+"0016║$ehgcr100_160sn" = "I'll protect Serah.";
+"0017║$ehgcr100_170sn" = "And Cocoon!";
+"0018║$ehgcr100_180lt" = "Does she look protected to you?";
+"0019║$ehgcr100_190sn" = "I can save her!";
+"0020║$ehgcr100_200lt" = "What can you possibly do?";
+"0021║$ehgcr100_210sn" = "Whatever it takes!";
+"0022║$ehgcr100_220sz" = "You two are hopeless.";
+"0023║$ehgcr100_230sz" = "You just can't admit it.";
+"0024║$ehgcr100_240sz" = "You want to stay as much as he does.";
+"0025║$ehgcr100_250sz" = "";
+"0026║$ehgcr100_255sz" = "Whoa, whoa!";
+"0027║$ehgcr100_260sz" = "No... No!{Text NewLine}No, no, no, not now!";
+"0028║$ehgcr100_280sn" = "Stand back!";

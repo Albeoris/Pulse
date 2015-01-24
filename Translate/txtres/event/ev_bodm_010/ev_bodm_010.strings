@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_bodm_010/txtres_us.ztr*/
+/*0017*/
+"0000║$ebodm010_003w1" = "{End}{Escape}Woman";
+"0001║$ebodm010_004w2" = "{End}{Escape}Woman";
+"0002║$ebodm010_005w1" = "{End}{Escape}Woman";
+"0003║$ebodm010_006w2" = "{End}{Escape}Woman";
+"0004║$ebodm010_007w1" = "{End}{Escape}Woman";
+"0005║$ebodm010_008w2" = "{End}{Escape}Woman";
+"0006║$ebodm010_010m1" = "";
+"0007║$ebodm010_015sn" = "Whoa! Excuse me!";
+"0008║$ebodm010_017w1" = "{End}{Escape}Woman";
+"0009║$ebodm010_018w2" = "{End}{Escape}Woman";
+"0010║$ebodm010_019w2" = "{End}{Escape}Woman";
+"0011║$ebodm010_020lb" = "Oh, you just missed her.";
+"0012║$ebodm010_030lb" = "She said she'd be at the 'usual' place.";
+"0013║$ebodm010_040sn" = "Thanks.";
+"0014║$ebodm010_050lb" = "Sorry about that.";
+"0015║$ebodm010_060lb" = "Now, who'd you say you were looking for?";
+"0016║$ebodm010_070sn" = "Here goes!";

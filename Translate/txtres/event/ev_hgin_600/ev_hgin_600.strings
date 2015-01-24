@@ -1,0 +1,16 @@
+﻿/*txtres/event/ev_hgin_600/txtres_us.ztr*/
+/*0014*/
+"0000║$ehgin600_010va" = "Fang!";
+"0001║$ehgin600_01m1" = "";
+"0002║$ehgin600_020va" = "{Italic}We woke up...on Cocoon,{Text NewLine}to the start of a new Focus.{Italic}{End}{Escape}";
+"0003║$ehgin600_030va" = "{End}{Escape}";
+"0004║$ehgin600_040va" = "{Italic}Fang, she'd forgotten everything.{Italic}{End}{Escape}";
+"0005║$ehgin600_050va" = "";
+"0006║$ehgin600_060va" = "{Italic}And for me—{Italic}{End}{Escape}";
+"0007║$ehgin600_070va" = "{Italic}Just the thought of hurting people again...{Italic}{End}{Escape}";
+"0008║$ehgin600_080va" = "{Italic}It was too much.{Italic}{End}{Escape}";
+"0009║$ehgin600_090va" = "{Italic}So I lied.{Italic}{End}{Escape}";
+"0010║$ehgin600_0kari" = "";
+"0011║$ehgin600_100va" = "{Italic}I played dumb, said I'd lost my memory.{Italic}{End}{Escape}";
+"0012║$ehgin600_110va" = "{Italic}I wanted to escape my fate as a l'Cie.{Italic}{End}{Escape}";
+"0013║$ehgin600_120va" = "{Italic}And ever since then,{Text NewLine}I've been running away from it.{Italic}{End}{Escape}";

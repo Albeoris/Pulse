@@ -1,0 +1,27 @@
+﻿/*txtres/event/ev_bodm_480/txtres_us.ztr*/
+/*0025*/
+"0000║$ebodm480_001sz" = "{Italic}He said he wanted to see a fal'Cie.{Italic}{End}{Escape}";
+"0001║$ebodm480_003sz" = "{Italic}So, I took him to go on a tour of the Euride Gorge plant.{Italic}{End}{Escape}";
+"0002║$ebodm480_005sz" = "{Italic}Thought I'd surprise him with a chocobo chick{Text NewLine}to take home, but the second I turned my back...{Italic}{End}{Escape}";
+"0003║$ebodm480_007sz" = "{Italic}...into the energy plant he went.{Italic}{End}{Escape}";
+"0004║$ebodm480_008sz" = "Dajh! Dajh, come out here!";
+"0005║$ebodm480_009sz" = "Dajh! I know you're in here!";
+"0006║$ebodm480_010sz" = "Dajh! Where are you?{Text NewLine}Say something!";
+"0007║$ebodm480_020sz" = "Dajh!";
+"0008║$ebodm480_025sz" = "Hey! What's wrong? Dajh!";
+"0009║$ebodm480_030dg" = "Daddy!{End}{Escape}Dajh";
+"0010║$ebodm480_040sz" = "It's all right!";
+"0011║$ebodm480_045sz" = "You okay? You're not hurt, are you?";
+"0012║$ebodm480_050sz" = "What's that?";
+"0013║$ebodm480_060sz" = "";
+"0014║$ebodm480_070sz" = "{Italic}Apparently, those Pulse l'Cie had snuck in{Text NewLine}and tried to attack the Sanctum fal'Cie.{Italic}{End}{Escape}";
+"0015║$ebodm480_080sz" = "{Italic}It did the only thing it could,{Text NewLine}and made Dajh a l'Cie to protect it.{Italic}{End}{Escape}";
+"0016║$ebodm480_090sz" = "{Italic}My son, he got picked by a Sanctum fal'Cie.{Text NewLine}He's a hero.{Italic}{End}{Escape}";
+"0017║$ebodm480_100sz" = "{Italic}But we're Pulse l'Cie—Dajh's enemies.{Italic}{End}{Escape}";
+"0018║$ebodm480_170sz" = "{Italic}PSICOM showed up right after that{Text NewLine}to take custody of him.{Italic}{End}{Escape}";
+"0019║$ebodm480_180sz" = "{Italic}And then, it was one test after another.{Italic}{End}{Escape}";
+"0020║$ebodm480_190sz" = "{Italic}Even then they couldn't figure out his Focus.{Italic}{End}{Escape}";
+"0021║$ebodm480_200sz" = "{Italic}Maybe it was look for Pulse l'Cie,{Text NewLine}maybe it was kill 'em.{Italic}{End}{Escape}";
+"0022║$ebodm480_210sz" = "{Italic}Either way...{Italic}{End}{Escape}";
+"0023║$ebodm480_220sz" = "{Italic}...how could a kid that young even stand a chance?{Italic}{End}{Escape}";
+"0024║$ebodm480_500m1" = "";

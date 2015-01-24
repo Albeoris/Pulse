@@ -1,0 +1,14 @@
+﻿/*txtres/event/ev_pmpm_130/txtres_us.ztr*/
+/*0012*/
+"0000║$epmpm130_010lt" = "Who are you?";
+"0001║$epmpm130_020fa" = "Where do I start?";
+"0002║$epmpm130_030fa" = "I've got a few screws loose,{Text NewLine}but I'm a l'Cie, same as you.";
+"0003║$epmpm130_040fa" = "Difference being...";
+"0004║$epmpm130_050fa" = "...I wasn't born on Cocoon.";
+"0005║$epmpm130_060fa" = "I'm from Gran Pulse.";
+"0006║$epmpm130_070fa" = "The 'world below' you all hate so much.";
+"0007║$epmpm130_080fa" = "My partner and I'd turned to crystal{Text NewLine}there and gone to sleep.";
+"0008║$epmpm130_090fa" = "But when we came around, here we were.";
+"0009║$epmpm130_100fa" = "The reason Cocoon's in such an uproar{Text NewLine}is the same reason you're here now.";
+"0010║$epmpm130_110fa" = "";
+"0011║$epmpm130_120fa" = "Vanille and I woke up.";

@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_gpcg_000/txtres_us.ztr*/
+/*0011*/
+"0000║$m_gpcg000_010va" = "{Italic}A world wild and fragile, vibrant and untamed.{Italic}{End}{Escape}";
+"0001║$m_gpcg000_020va" = "{Italic}Gran Pulse.{Italic}{End}{Escape}";
+"0002║$m_gpcg000_030va" = "{Italic}It's a place ruled by the brutal struggle for survival,{Text NewLine}and the callous and uncaring whim of the fal'Cie.{Italic}{End}{Escape}";
+"0003║$m_gpcg000_040va" = "{Italic}There is no such thing as mercy...{Italic}{End}{Escape}";
+"0004║$m_gpcg000_050va" = "{Italic}...only a never-ending string of trials that{Text NewLine}weed out the weak, and leave only the strong.{Italic}{End}{Escape}";
+"0005║$m_gpcg000_060va" = "{Italic}Raines knew the truth...{Italic}{End}{Escape}";
+"0006║$m_gpcg000_070va" = "{Italic}...the purpose lying at the heart{Text NewLine}of all the fal'Cie's actions.{Italic}{End}{Escape}";
+"0007║$m_gpcg000_080va" = "{Italic}'Recalling their lost deity{Text NewLine}and returning the world to its former glory.'{Italic}{End}{Escape}";
+"0008║$m_gpcg000_090va" = "{Italic}People were never anything more than sacrifices.{Italic}{End}{Escape}";
+"0009║$m_gpcg000_100va" = "{Italic}And Cocoon's destruction?{Text NewLine}It's just a way to wake a sleeping god.{Italic}{End}{Escape}";
+"0010║$m_gpcg000_110va" = "{Italic}But would bringing the Maker back{Text NewLine}into this world really lead to our salvation?{Italic}{End}{Escape}";

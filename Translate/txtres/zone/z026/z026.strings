@@ -1,0 +1,29 @@
+﻿/*D:\Temp\FFXIII\txtres\zone\z026\txtres_us.ztr*/
+/*0027*/
+"0000║$m_z016fl_canc" = "Cancel{End}{Escape}";
+"0001║$m_z016fl_elvT0" = "You are currently on the ground tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0002║$m_z016fl_elvT1" = "You are currently on the second tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0003║$m_z016fl_elvT2" = "You are currently on the third tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0004║$m_z016fl_elvT3" = "You are currently on the fourth tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0005║$m_z016fl_elvT4" = "You are currently on the fifth tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0006║$m_z016fl_elvT5" = "You are currently on the sixth tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0007║$m_z016fl_elvT6" = "You are currently on the seventh tier.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0008║$m_z016fl_elvT7" = "You are currently at the apex.{Text NewLine}Where would you like to go?{End}{Escape}";
+"0009║$m_z016fl_flr0" = "Ground tier{End}{Escape}";
+"0010║$m_z016fl_flr1" = "Second tier{End}{Escape}";
+"0011║$m_z016fl_flr2" = "Third tier{End}{Escape}";
+"0012║$m_z016fl_flr3" = "Fourth tier{End}{Escape}";
+"0013║$m_z016fl_flr4" = "Fifth tier{End}{Escape}";
+"0014║$m_z016fl_flr5" = "Sixth tier{End}{Escape}";
+"0015║$m_z016fl_flr6" = "Seventh tier{End}{Escape}";
+"0016║$m_z016fl_flr7" = "Apex{End}{Escape}";
+"0017║$m_z016fl_k002" = "The central elevator can now reach the {Color BlizzardBlue}fourth tier{Color SkyBlue}.{End}{Escape}";
+"0018║$m_z016fl_k004" = "The central elevator can now reach the {Color BlizzardBlue}sixth tier{Color SkyBlue}.{End}{Escape}";
+"0019║$m_z016fl_k005" = "You can now access a {Color BlizzardBlue}new room{Color SkyBlue} in the tower.{End}{Escape}";
+"0020║$m_z016fl_k006" = "The central elevator can now reach {Color BlizzardBlue}all tiers{Color SkyBlue}.{End}{Escape}";
+"0021║$m_z026fl_ac000" = "BOARD{End}{Escape}";
+"0022║$m_z026fl_sl000" = "Board the elevator?{End}{Escape}";
+"0023║$m_z026fl_sl001" = "Yes{End}{Escape}";
+"0024║$m_z026fl_sl002" = "No{End}{Escape}";
+"0025║$m_z026fl_tg000" = "ACTIVATE{End}{Escape}";
+"0026║$m_z026fl_tg001" = "EXAMINE{End}{Escape}";

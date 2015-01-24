@@ -1,0 +1,22 @@
+﻿/*txtres/event/ev_vpek_110/txtres_us.ztr*/
+/*0020*/
+"0000║$evpek110_010ho" = "They forced us onto the train with everyone else.";
+"0001║$evpek110_020ho" = "My mom, she was frantic.";
+"0002║$evpek110_030ho" = "She wanted to get us home,{Text NewLine}so she tried to fight.";
+"0003║$evpek110_040ho" = "She got tricked, by Snow.";
+"0004║$evpek110_050ho" = "He used her!";
+"0005║$evpek110_060va" = "Let's get you home, okay?";
+"0006║$evpek110_070va" = "Your dad's got to be worried!";
+"0007║$evpek110_080ho" = "Let him worry.";
+"0008║$evpek110_090ho" = "Why should I care?{Text NewLine}He doesn't.";
+"0009║$evpek110_100sz" = "Any father cares.";
+"0010║$evpek110_110va" = "Sazh?";
+"0011║$evpek110_120sz" = "It's nothing, forget it.";
+"0012║$evpek110_130sz" = "Come with me, okay?{End}{Escape}Vanille";
+"0013║$evpek110_140sz" = "This ought to do it.";
+"0014║$evpek110_150sz" = "";
+"0015║$evpek110_160va" = "";
+"0016║$evpek110_170ho" = "";
+"0017║$evpek110_180sz" = "We've got time.";
+"0018║$evpek110_190sz" = "We'll get you back home.";
+"0019║$evpek110_200sz" = "Your dad will be happy to see you.";

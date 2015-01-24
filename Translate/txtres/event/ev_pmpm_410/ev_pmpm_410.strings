@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_pmpm_410/txtres_us.ztr*/
+/*0009*/
+"0000║$epmpm410_010fa" = "Again? There's no end to these guys!";
+"0001║$epmpm410_020fa" = "";
+"0002║$epmpm410_030lg" = "Heya, Fang.{End}{Escape}Rygdea";
+"0003║$epmpm410_040lg" = "Need a ride?{End}{Escape}Rygdea";
+"0004║$epmpm410_050fa" = "Don't get cute.";
+"0005║$epmpm410_060fa" = "Right, let's move it.";
+"0006║$epmpm410_070ho" = "Take care, Dad.";
+"0007║$epmpm410_080va" = "{Italic}When it comes to home and family,{Text NewLine}we never keep either as close as we should.{Italic}{End}{Escape}";
+"0008║$epmpm410_090va" = "{Italic}Who ever stops to think{Text NewLine}that this time could be the last?{Italic}{End}{Escape}";

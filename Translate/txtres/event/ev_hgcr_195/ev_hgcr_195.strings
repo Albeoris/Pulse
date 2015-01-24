@@ -1,0 +1,6 @@
+﻿/*txtres/event/ev_hgcr_195/txtres_us.ztr*/
+/*0004*/
+"0000║$ehgcr195_002m1" = "What's he doing?{End}{Escape}Soldier";
+"0001║$ehgcr195_004m1" = "Watch yourself!{End}{Escape}Soldier";
+"0002║$ehgcr195_006m1" = "Stay alert!{End}{Escape}Soldier";
+"0003║$ehgcr195_010sn" = "What's happening?";

@@ -1,0 +1,22 @@
+﻿/*txtres/event/ev_gptk_015/txtres_us.ztr*/
+/*0020*/
+"0000║$egptk015_010sn" = "How's Serah?{End}{Escape}Lightning";
+"0001║$egptk015_020sn" = "Same as we left her.";
+"0002║$egptk015_030sn" = "Serah says she wants to talk.";
+"0003║$egptk015_040sn" = "She'd probably prefer if you skipped the lectures.";
+"0004║$egptk015_050lt" = "Once we're home, what's your plan?{Text NewLine}You're getting married, right?";
+"0005║$egptk015_060sn" = "What's that?";
+"0006║$egptk015_070lt" = "Serah wants to know.";
+"0007║$egptk015_080lt" = "You are getting married, aren't you?{Text NewLine}Don't you let her down, you hear me?";
+"0008║$egptk015_090sn" = "Don't worry. This tear will be her last.{Text NewLine}I'll make sure of that.";
+"0009║$egptk015_100sn" = "That's all I need to know.{End}{Escape}Lightning";
+"0010║$egptk015_110sn" = "We will see her, right?";
+"0011║$egptk015_120lt" = "Don't go there.";
+"0012║$egptk015_130lt" = "No room for doubt.";
+"0013║$egptk015_140sn" = "You're right.";
+"0014║$egptk015_150lt" = "We'll see her again. And soon.{Text NewLine}You convinced me of that. So stay strong.";
+"0015║$egptk015_160sn" = "Don't worry.";
+"0016║$egptk015_170sn" = "We'll finish this, and go see her together.";
+"0017║$egptk015_180sn" = "Feels so far away now.";
+"0018║$egptk015_190sn" = "Don't scare me like that.";
+"0019║$egptk015_200sn" = "Hey!";

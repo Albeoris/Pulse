@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_hang_260/txtres_us.ztr*/
+/*0013*/
+"0000║$ehang260_010gd" = "That's a sad sound.";
+"0001║$ehang260_020gd" = "Where's the soul?";
+"0002║$ehang260_030sn" = "Hey, Gadot...";
+"0003║$ehang260_032gd" = "Yeah?";
+"0004║$ehang260_040sn" = "If you don't know who you've got to save,{Text NewLine}you just protect them all, right?";
+"0005║$ehang260_050sn" = "";
+"0006║$ehang260_060gd" = "Something on your mind?";
+"0007║$ehang260_070gd" = "You got plenty of time for thinking on the way...";
+"0008║$ehang260_080gd" = "";
+"0009║$ehang260_090gd" = "...Hero.";
+"0010║$ehang260_092sn" = "Yeah.";
+"0011║$ehang260_100gd" = "Ready...";
+"0012║$ehang260_110sn" = "Go!";

@@ -1,0 +1,19 @@
+﻿/*D:\Temp\FFXIII\txtres\zone\z022\txtres_us.ztr*/
+/*0017*/
+"0000║$m_z022fl_011lt" = "There's one thing we don't want to make an enemy of.";
+"0001║$m_z022fl_012ho" = "Another fal'Cie trying to lead us somewhere?";
+"0002║$m_z022fl_012sn" = "Ah, nothing like a little white noise!";
+"0003║$m_z022fl_013ho" = "You figure he's looking for something?";
+"0004║$m_z022fl_013lt" = "I guess even fal'Cie have a Focus to follow.";
+"0005║$m_z022fl_013sn" = "What's got that thing so bent on boring holes?";
+"0006║$m_z022fl_014sz" = "Hey, that thing sure gets around, doesn't it?";
+"0007║$m_z022fl_015fg" = "One noisy fal'Cie, that one.{End}{Escape}Fang";
+"0008║$m_z022fl_015sz" = "What's that thing run on anyway?{Text NewLine}I've got to get some!";
+"0009║$m_z022fl_015va" = "Is it ever gonna stop?";
+"0010║$m_z022fl_016fg" = "Relax. You don't need to be afraid of him.{End}{Escape}Fang";
+"0011║$m_z022fl_016va" = "What's gonna happen when he's all done digging, anyway?";
+"0012║$m_z022fl_yu001" = "BOARD{End}{Escape}";
+"0013║$m_z022fl_yu002" = "Board Atomos?{End}{Escape}";
+"0014║$m_z022fl_yu003" = "Yes{End}{Escape}";
+"0015║$m_z022fl_yu004" = "No{End}{Escape}";
+"0016║$m_z022fl_yu005" = "EXAMINE{End}{Escape}";

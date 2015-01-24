@@ -1,0 +1,20 @@
+﻿/*txtres/event/ev_vpek_120/txtres_us.ztr*/
+/*0018*/
+"0000║$evpek120_010va" = "Isn't that a—?";
+"0001║$evpek120_011sz" = "A warship from Pulse.";
+"0002║$evpek120_020va" = "You mean, they made it this far?";
+"0003║$evpek120_030sz" = "Of course not.";
+"0004║$evpek120_040sz" = "Not during the war, not since.";
+"0005║$evpek120_050sz" = "They might have tried.{Text NewLine}But none of their forces made it into Cocoon.";
+"0006║$evpek120_060sz" = "They only damaged the outer rim.{Text NewLine}Then the Sanctum's fal'Cie pushed them back.";
+"0007║$evpek120_070sz" = "What, did you sleep through History?";
+"0008║$evpek120_080va" = "More or less.";
+"0009║$evpek120_090va" = "So, what's a ship from Pulse doing here?";
+"0010║$evpek120_100ho" = "Once the war was over,{Text NewLine}people couldn't live near the rim anymore.";
+"0011║$evpek120_110ho" = "In places like the Hanging Edge.";
+"0012║$evpek120_120ho" = "So the fal'Cie, they gathered up scrap from Pulse,{Text NewLine}and used it for rebuilding here.";
+"0013║$evpek120_130ho" = "";
+"0014║$evpek120_140ho" = "This is what was left: a bunch of garbage.";
+"0015║$evpek120_150sz" = "Who'da thunk? A Pulse fal'Cie and who-knows-what,{Text NewLine}mixed in with all the trash?";
+"0016║$evpek120_160sz" = "";
+"0017║$evpek120_170va" = "Who'da thunk...";

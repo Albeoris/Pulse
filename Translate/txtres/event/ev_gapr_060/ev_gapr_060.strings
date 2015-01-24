@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_gapr_060/txtres_us.ztr*/
+/*0009*/
+"0000║$egapr060_010lt" = "What is it?";
+"0001║$egapr060_020ho" = "We need to hide!";
+"0002║$egapr060_030ho" = "They don't seem like they're even looking for us.{Text NewLine}I mean, we're l'Cie and we're on the loose.";
+"0003║$egapr060_040lt" = "PSICOM's keeping it all under wraps.";
+"0004║$egapr060_050lt" = "They don't want their failure publicized.";
+"0005║$egapr060_060lt" = "Better to lose us than lose their pride.";
+"0006║$egapr060_070ho" = "So the other soldiers don't know about us. Right?";
+"0007║$egapr060_080lt" = "Right. They don't know {Italic}anything{Italic} about any fugitives.";
+"0008║$egapr060_090lt" = "";

@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_vpek_180/txtres_us.ztr*/
+/*0009*/
+"0000║$evpek180_010sz" = "Pulse is crawling with things like that, isn't it?";
+"0001║$evpek180_020lt" = "Got me.{Text NewLine}Not even the Corps has access to intel on Pulse.";
+"0002║$evpek180_030lt" = "Soldiers in the field fight blind.";
+"0003║$evpek180_040sz" = "Yeah, I noticed that. But don't you need to know{Text NewLine}exactly what you're up against?";
+"0004║$evpek180_050lt" = "Target's a target.";
+"0005║$evpek180_060sz" = "You like to keep it simple, don't you?";
+"0006║$evpek180_070lt" = "I stick to my goal.";
+"0007║$evpek180_080ho" = "As long as you have a goal, you can fight?";
+"0008║$evpek180_090lt" = "You can stay alive.";

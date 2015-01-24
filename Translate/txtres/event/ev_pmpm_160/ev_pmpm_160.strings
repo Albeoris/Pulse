@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_pmpm_160/txtres_us.ztr*/
+/*0009*/
+"0000║$epmpm160_010sn" = "Not good.";
+"0001║$epmpm160_020mn" = "Is there a problem?{End}{Escape}Soldier";
+"0002║$epmpm160_030mn" = "Now why don’t you just calm dow—{End}{Escape}Soldier";
+"0003║$epmpm160_040sn" = "I am a Pulse l'Cie!";
+"0004║$epmpm160_050sn" = "I'm here to kill you all!";
+"0005║$epmpm160_060ho" = "What are you doing?";
+"0006║$epmpm160_070sn" = "Clearing the area.";
+"0007║$epmpm160_080sn" = "They'll open fire on a crowd.";
+"0008║$epmpm160_090sn" = "Doesn't matter who dies.{Text NewLine}Just wipe 'em all out!";

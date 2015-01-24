@@ -1,0 +1,25 @@
+﻿/*txtres/event/ev_bodm_200/txtres_us.ztr*/
+/*0023*/
+"0000║$ebodm200_010m1" = "";
+"0001║$ebodm200_020m1" = "You look dreamy, Farron.{End}{Escape}Lt. Amodar";
+"0002║$ebodm200_030m1" = "Wishing on fireworks, were you?{Text NewLine}And you call yourself a soldier!{End}{Escape}Lt. Amodar";
+"0003║$ebodm200_040lt" = "Sorry, Lieutenant.{Text NewLine}But I really don't think guard duty is my calling, sir.";
+"0004║$ebodm200_050m1" = "Well, lucky for you, your shift just ended.{Text NewLine}Pack it up and go home.{End}{Escape}Lt. Amodar";
+"0005║$ebodm200_055lt" = "But—sir?";
+"0006║$ebodm200_060m1" = "PSICOM found something in the Vestige nearby.{End}{Escape}Lt. Amodar";
+"0007║$ebodm200_070m1" = "They don't want the Guardian Corps here{Text NewLine}stepping on their toes.{End}{Escape}Lt. Amodar";
+"0008║$ebodm200_080m1" = "I'm sure you heard about the accident{Text NewLine}at the Euride Gorge energy plant...{End}{Escape}Lt. Amodar";
+"0009║$ebodm200_090m1" = "...and how it has the PSICOM lads in a tizzy.{End}{Escape}Lt. Amodar";
+"0010║$ebodm200_100lt" = "Yeah, more 'incident' than accident.";
+"0011║$ebodm200_105lt" = "Something Pulse-related?";
+"0012║$ebodm200_110m1" = "You're taking tomorrow off?{End}{Escape}Lt. Amodar";
+"0013║$ebodm200_120lt" = "Sir, for my birthday, sir.{Text NewLine}My sister, she insisted on it.";
+"0014║$ebodm200_130m1" = "Twenty-one, huh?{End}{Escape}Lt. Amodar";
+"0015║$ebodm200_140m1" = "Maybe it's a good time to send off that letter{Text NewLine}of recommendation for officer training.{End}{Escape}Lt. Amodar";
+"0016║$ebodm200_150lt" = "Lieutenant...";
+"0017║$ebodm200_160m1" = "You're past due for a promotion, Farron.{Text NewLine}Think of your sister, and your future.{End}{Escape}Lt. Amodar";
+"0018║$ebodm200_170m1" = "And, uh, keep your nose out of trouble.{End}{Escape}Lt. Amodar";
+"0019║$ebodm200_180lt" = "Out of PSICOM business, you mean.";
+"0020║$ebodm200_190m1" = "Yeah. Nothing good will come of it.{Text NewLine}Nothing but grief.{End}{Escape}Lt. Amodar";
+"0021║$ebodm200_195m1" = "Whoa, look at that one!{End}{Escape}Lt. Amodar";
+"0022║$ebodm200_200lt" = "{Italic}How right you were, Lieutenant.{Italic}{End}{Escape}";

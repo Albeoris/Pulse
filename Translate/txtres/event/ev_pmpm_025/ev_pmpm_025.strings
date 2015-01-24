@@ -1,0 +1,9 @@
+﻿/*txtres/event/ev_pmpm_025/txtres_us.ztr*/
+/*0007*/
+"0000║$epmpm025_010ho" = "That's the city's food-production fal'Cie.";
+"0001║$epmpm025_020ho" = "Name's Carbuncle.";
+"0002║$epmpm025_030ho" = "That's one of our enemies, being Sanctum and all.";
+"0003║$epmpm025_040lt" = "So...";
+"0004║$epmpm025_050lt" = "Kill him, and cut off the food supply.{Text NewLine}That'll make us popular.";
+"0005║$epmpm025_060ho" = "I think people have enough reason to hate us,{Text NewLine}don't you?";
+"0006║$epmpm025_070lt" = "Yeah, you're probably right.{Text NewLine}Hungry people make for angry people.";

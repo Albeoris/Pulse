@@ -1,0 +1,18 @@
+﻿/*txtres/event/ev_fark_100/txtres_us.ztr*/
+/*0016*/
+"0000║$efark100_010lt" = "Raines...";
+"0001║$efark100_020ra" = "Ironic, isn't it?{End}{Escape}Raines";
+"0002║$efark100_030ra" = "The only thing I wanted was a moment of triumph.{End}{Escape}Raines";
+"0003║$efark100_040ra" = "How it ends isn't important.{End}{Escape}Raines";
+"0004║$efark100_050ra" = "Just do what you know is right.{End}{Escape}Raines";
+"0005║$efark100_060ra" = "Trust yourselves.{End}{Escape}Raines";
+"0006║$efark100_070sz" = "What? Did he complete his Focus?";
+"0007║$efark100_080sn" = "I don't think so.";
+"0008║$efark100_090sn" = "All Raines did was try to save Cocoon in his own way.";
+"0009║$efark100_100sn" = "His own way!";
+"0010║$efark100_103sz" = "Hey!";
+"0011║$efark100_106lt" = "Where are you—?";
+"0012║$efark100_110va" = "Snow!";
+"0013║$efark100_120va" = "{Italic}I think Raines was searching—searching for{Text NewLine}a way to make us understand.{Italic}{End}{Escape}";
+"0014║$efark100_130va" = "{Italic}To understand the frustration of being{Text NewLine}a l'Cie—a l'Cie bound to a Focus.{Italic}{End}{Escape}";
+"0015║$efark100_140va" = "{Italic}And maybe...what it meant to be human.{Italic}{End}{Escape}";

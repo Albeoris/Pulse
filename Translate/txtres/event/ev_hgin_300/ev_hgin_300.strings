@@ -1,0 +1,21 @@
+﻿/*txtres/event/ev_hgin_300/txtres_us.ztr*/
+/*0019*/
+"0000║$ehgin300_020va" = "What's happening?";
+"0001║$ehgin300_030sz" = "Must be a Sanctum strike.";
+"0002║$ehgin300_040sz" = "Bring down the Vestige{Text NewLine}and the fal'Cie right with it!";
+"0003║$ehgin300_050va" = "Aren't they taking it back to Pulse?";
+"0004║$ehgin300_060va" = "That's what the Purge was, right?";
+"0005║$ehgin300_070sz" = "All they care about is getting everything{Text NewLine}from Pulse off Cocoon.";
+"0006║$ehgin300_080sz" = "Dead or alive, it's all the same.";
+"0007║$ehgin300_090ho" = "We can't stay here!{Text NewLine}They'll kill us!";
+"0008║$ehgin300_100sn" = "I'll be right back.{Text NewLine}Hold on.";
+"0009║$ehgin300_110sz" = "Trench Coat.{Text NewLine}Where you going?";
+"0010║$ehgin300_120sn" = "Date with the fal'Cie.";
+"0011║$ehgin300_130sn" = "Got some things to talk about.";
+"0012║$ehgin300_140sz" = "What?";
+"0013║$ehgin300_150sz" = "You're gonna ask {Italic}it{Italic} to help her?{Text NewLine}Are you out of your mind, kid?";
+"0014║$ehgin300_160sz" = "That thing wants to chew us up{Text NewLine}and spit us out!";
+"0015║$ehgin300_170sn" = "Well, what do you want me to do?";
+"0016║$ehgin300_180sz" = "";
+"0017║$ehgin300_190sn" = "Lightning?";
+"0018║$ehgin300_195sz" = "Here we go.";

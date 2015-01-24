@@ -1,0 +1,9 @@
+﻿/*txtres/event/ev_hgcr_200/txtres_us.ztr*/
+/*0007*/
+"0000║$ehgcr200_000fa" = "The Twin Sisters.{End}{Escape}Woman";
+"0001║$ehgcr200_005fa" = "I've got to hand it to you for taking 'em down,{Text NewLine}but don't gloat just yet.{End}{Escape}Woman";
+"0002║$ehgcr200_010fa" = "Might come a time you wish you'd let 'em end it,{Text NewLine}and made things easy.{End}{Escape}Woman";
+"0003║$ehgcr200_020sn" = "More of you, huh?";
+"0004║$ehgcr200_030fa" = "He's a l'Cie. Take him.{End}{Escape}Woman";
+"0005║$ehgcr200_040sn" = "Back off!";
+"0006║$ehgcr200_050fa" = "You want to keep breathing?{Text NewLine}Shut up and come quiet.{End}{Escape}Woman";

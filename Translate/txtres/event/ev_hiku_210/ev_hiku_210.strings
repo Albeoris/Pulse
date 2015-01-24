@@ -1,0 +1,10 @@
+﻿/*txtres/event/ev_hiku_210/txtres_us.ztr*/
+/*0008*/
+"0000║$ehiku210_010fa" = "Believe in Lady Luck now?";
+"0001║$ehiku210_020sn" = "Time to Purge a Primarch!";
+"0002║$ehiku210_020sz" = "Yeah—Lady {Italic}Bad{Italic} Luck!";
+"0003║$ehiku210_030fa" = "You got it!";
+"0004║$ehiku210_033fa" = "Ya!";
+"0005║$ehiku210_036lt" = "Jump!";
+"0006║$ehiku210_040va" = "{Italic}I had my doubts.{Italic}{End}{Escape}";
+"0007║$ehiku210_050va" = "{Italic}But I also believed that if we stuck together,{Text NewLine}somehow we could change our fate.{Italic}{End}{Escape}";

@@ -1,0 +1,22 @@
+﻿/*txtres/event/ev_nati_010/txtres_us.ztr*/
+/*0020*/
+"0000║$enati010_010sz" = "Not a lot of security here.";
+"0001║$enati010_020sz" = "";
+"0002║$enati010_030sz" = "";
+"0003║$enati010_040sz" = "For these people, the l'Cie panic{Text NewLine}must still seem like a world away.";
+"0004║$enati010_050sz" = "";
+"0005║$enati010_060sz" = "Oh, hey. Looks like they're putting Eidolons on parade.{Text NewLine}It's starting soon.";
+"0006║$enati010_070sz" = "What do you say?{Text NewLine}Let's go check it out.";
+"0007║$enati010_080va" = "Sure.";
+"0008║$enati010_090" = "{Italic}We interrupt this program{Text NewLine}to bring you a breaking news update.{Italic}{End}{Escape}Reporter";
+"0009║$enati010_100" = "{Italic}The l'Cie who surfaced in Palumpolum{Text NewLine}and attacked the city's citizens...{Italic}{End}{Escape}Reporter";
+"0010║$enati010_110" = "{Italic}...are still on the run from authorities.{Italic}{End}{Escape}Reporter";
+"0011║$enati010_120" = "{Italic}Sanctum soldiers are tracking their location,{Text NewLine}but have yet to engage the fugitives.{Italic}{End}{Escape}Reporter";
+"0012║$enati010_130" = "{Italic}The presence of hostages has been confirmed.{Italic}{End}{Escape}Reporter";
+"0013║$enati010_140sz" = "Lightning...";
+"0014║$enati010_150sz" = "What's wrong?";
+"0015║$enati010_160va" = "It's her!";
+"0016║$enati010_170sz" = "Yep. Looks like the army finally found 'em.";
+"0017║$enati010_180" = "Hostages?{Text NewLine}They should just blow 'em away with the l'Cie.{End}{Escape}Young Man";
+"0018║$enati010_190" = "They're all infected by Pulse,{Text NewLine}or something, by now anyway.{End}{Escape}Young Woman";
+"0019║$enati010_200" = "The parade's about to start.{Text NewLine}Come on, let's go.{End}{Escape}Sazh";

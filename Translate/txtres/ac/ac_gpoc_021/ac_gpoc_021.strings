@@ -1,0 +1,15 @@
+﻿/*txtres/ac/ac_gpoc_021/txtres_us.ztr*/
+/*0013*/
+"0000║$agpoc021_009va" = "Look, that's Titan!";
+"0001║$agpoc021_010sn" = "What's a thing that size even eat?";
+"0002║$agpoc021_020fa" = "You name it. He's a biogenitor—chews up{Text NewLine}one species, and spits out another.";
+"0003║$agpoc021_030m1" = "Piteous l'Cie...{End}{Escape}Titan";
+"0004║$agpoc021_040ho" = "It talks?";
+"0005║$agpoc021_050m1" = "The struggles of the frail and feeble end in loss.{Text NewLine}Better your lives' waters quicken the seeds of new.{End}{Escape}Titan";
+"0006║$agpoc021_060ho" = "What's it saying?{Text NewLine}The weak don't even deserve to live?";
+"0007║$agpoc021_070lt" = "Why don't we let him see for himself who's weak?";
+"0008║$agpoc021_080sn" = "I think he's saying the weak go down the hatch.";
+"0009║$agpoc021_090sz" = "Yeah, nice place, this Gran Pulse. Lovely.";
+"0010║$agpoc021_100ho" = "What gives a fal'Cie the right to decide that anyways?";
+"0011║$agpoc021_110va" = "Maybe he's trying to help us by threatening to kill us?";
+"0012║$agpoc021_120fa" = "Well last I checked,{Text NewLine}we're not exactly weak, are we?";

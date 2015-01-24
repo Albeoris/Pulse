@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_gptk_010/txtres_us.ztr*/
+/*0011*/
+"0000║$egptk010_010sn" = "You mean you met Serah?";
+"0001║$egptk010_020va" = "I tried to hide our Focus, and she ended up a l'Cie.";
+"0002║$egptk010_030va" = "I wanted to say I was sorry, but...";
+"0003║$egptk010_040sn" = "Well, when we rescue her, maybe you'll get the chance.";
+"0004║$egptk010_050va" = "Yeah. I hope so.";
+"0005║$egptk010_060sn" = "Come on.";
+"0006║$egptk010_070va" = "I think Serah saw the same vision of Ragnarok{Text NewLine}that we did.";
+"0007║$egptk010_080va" = "Which means, Dysley had to be lying{Text NewLine}when he explained her Focus.";
+"0008║$egptk010_090va" = "I think she beat it.";
+"0009║$egptk010_100va" = "She handed Cocoon over to us,{Text NewLine}and that's what made her turn to crystal!";
+"0010║$egptk010_110sn" = "Yep! I know.";

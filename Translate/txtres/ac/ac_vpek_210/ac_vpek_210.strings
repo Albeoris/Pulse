@@ -1,0 +1,14 @@
+﻿/*txtres/ac/ac_vpek_210/txtres_us.ztr*/
+/*0012*/
+"0000║$avpek210_010ho" = "What was PSICOM doing here?";
+"0001║$avpek210_020lt" = "Probably thought we'd try and use{Text NewLine}a Pulse machine to escape.";
+"0002║$avpek210_030ho" = "Maybe we should try it.";
+"0003║$avpek210_040ho" = "What does this do?";
+"0004║$avpek210_050lt" = "Hey, you're gonna hurt yourself!{Text NewLine}Don't touch that!";
+"0005║$avpek210_060ho" = "Wait. What if it works?";
+"0006║$avpek210_070lt" = "Leave it!";
+"0007║$avpek210_080ho" = "";
+"0008║$avpek210_090lt" = "I told you to leave it.";
+"0009║$avpek210_100ho" = "Stop! Stop already!";
+"0010║$avpek210_110ho" = "I think I got it.";
+"0011║$avpek210_120ho" = "Light!{Text NewLine}I think I can work this!";

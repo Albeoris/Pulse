@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_hgin_020/txtres_us.ztr*/
+/*0013*/
+"0000║$ehgin020_010ho" = "Aren't you scared?";
+"0001║$ehgin020_020va" = "Not so much.";
+"0002║$ehgin020_030ho" = "You really don't get it.";
+"0003║$ehgin020_040va" = "Pulse fal'Cie and l'Cie are bad news.";
+"0004║$ehgin020_050va" = "That's why Cocoon kicked them out.";
+"0005║$ehgin020_060va" = "Live too close to the fal'Cie?{Text NewLine}One-way ticket to Pulse!";
+"0006║$ehgin020_070va" = "That's the Purge in a nutshell.";
+"0007║$ehgin020_080ho" = "If they catch us here, they'll Purge us too.{Text NewLine}And then—";
+"0008║$ehgin020_090va" = "What's your problem?";
+"0009║$ehgin020_100ho" = "What's my—?{Text NewLine}Pulse is hell on earth!";
+"0010║$ehgin020_110va" = "We'll be okay!{Text NewLine}Calm down!";
+"0011║$ehgin020_120ho" = "Get off me.";
+"0012║$ehgin020_130sn" = "Serah? Can you hear me?{Text NewLine}Where are you?";

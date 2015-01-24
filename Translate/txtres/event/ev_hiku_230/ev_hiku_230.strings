@@ -1,0 +1,34 @@
+﻿/*txtres/event/ev_hiku_230/txtres_us.ztr*/
+/*0032*/
+"0000║$ehiku230_010sz" = "Been looking for you, Nabaat!";
+"0001║$ehiku230_020nb" = "Your Eminence, please escape.{Text NewLine}I'll cover your retreat.{End}{Escape}Nabaat";
+"0002║$ehiku230_030dy" = "Why don't you leave, Jihl.{End}{Escape}Primarch";
+"0003║$ehiku230_040dy" = "Or rather, take your leave.{End}{Escape}Primarch";
+"0004║$ehiku230_045dy" = "Humans have no business here.{End}{Escape}Primarch";
+"0005║$ehiku230_047nb" = "What?{End}{Escape}Nabaat";
+"0006║$ehiku230_050nb" = "Your Eminence!{End}{Escape}Nabaat";
+"0007║$ehiku230_053sz" = "Wha—?";
+"0008║$ehiku230_055sz" = "Magic?";
+"0009║$ehiku230_060sn" = "Dysley!";
+"0010║$ehiku230_070sn" = "Monster! People are not yours to use!";
+"0011║$ehiku230_080dy" = "What else does one do with tools?{End}{Escape}Primarch";
+"0012║$ehiku230_085ho" = "Snow!";
+"0013║$ehiku230_090sn" = "";
+"0014║$ehiku230_100dy" = "Cocoon is a factory, built by fal'Cie.{End}{Escape}Primarch";
+"0015║$ehiku230_110dy" = "A factory for the mass production of human thralls.{End}{Escape}Primarch";
+"0016║$ehiku230_120sn" = "Not anymore, it's not!";
+"0017║$ehiku230_130dy" = "What can mere men do?{End}{Escape}Primarch";
+"0018║$ehiku230_140dy" = "Without our help, death is all of which you're capable.{End}{Escape}Primarch";
+"0019║$ehiku230_150dy" = "You saw the fools.{Text NewLine}A mindless mob drunk on fear of a few l'Cie.{End}{Escape}Primarch";
+"0020║$ehiku230_170lt" = "If they only knew a l'Cie was the one filling their glasses!";
+"0021║$ehiku230_180dy" = "L'Cie?{End}{Escape}Primarch";
+"0022║$ehiku230_190dy" = "You mean me?{End}{Escape}Primarch";
+"0023║$ehiku230_200dy" = "Oh child, perish the thought.{End}{Escape}Primarch";
+"0024║$ehiku230_205dy" = "I am more than that!{End}{Escape}Primarch";
+"0025║$ehiku230_210dy" = "I am fal'Cie.{End}{Escape}Primarch";
+"0026║$ehiku230_220dy" = "My name is Barthandelus.{End}{Escape}Primarch";
+"0027║$ehiku230_230dy" = "Voice of the Sanctum, and Lord-Sovereign{Text NewLine}of the Cocoon fal'Cie.{End}{Escape}Primarch";
+"0028║$ehiku230_240dy" = "Your kind feared the darkness,{Text NewLine}so we gave you light.{End}{Escape}Primarch";
+"0029║$ehiku230_250dy" = "You begged us for the Purge,{Text NewLine}and did it not come to pass?{End}{Escape}Primarch";
+"0030║$ehiku230_260dy" = "Now you spurn our counsel?{Text NewLine}You must learn your place!{End}{Escape}Primarch";
+"0031║$ehiku230_kari" = "";

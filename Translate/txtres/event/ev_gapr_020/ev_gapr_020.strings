@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_gapr_020/txtres_us.ztr*/
+/*0009*/
+"0000║$egapr020_010ho" = "Have you ever been here before?{Text NewLine}On duty, I mean.";
+"0001║$egapr020_020lt" = "No, I haven't. This area's covered by the{Text NewLine}Woodlands Observation Battalion.";
+"0002║$egapr020_030lt" = "You scared?";
+"0003║$egapr020_040ho" = "Not really.{Text NewLine}I'm ready to fight if I have to.";
+"0004║$egapr020_050lt" = "To keep you safe.";
+"0005║$egapr020_060lt" = "I'll want it back.";
+"0006║$egapr020_070ho" = "Lightning.";
+"0007║$egapr020_080ho" = "I'm glad I followed you.";
+"0008║$egapr020_090ho" = "By myself, I would've had no chance.";

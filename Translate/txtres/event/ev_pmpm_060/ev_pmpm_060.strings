@@ -1,0 +1,16 @@
+﻿/*txtres/event/ev_pmpm_060/txtres_us.ztr*/
+/*0014*/
+"0000║$epmpm060_010lt" = "Talk to your dad.";
+"0001║$epmpm060_020ho" = "What? Why?";
+"0002║$epmpm060_030lt" = "Fighting without hope is no way to live.";
+"0003║$epmpm060_040lt" = "It's just a way to die.";
+"0004║$epmpm060_050lt" = "I want you to find the hope you were named for.";
+"0005║$epmpm060_060lt" = "";
+"0006║$epmpm060_070lt" = "Staying alive, I can help you with.{Text NewLine}But I can't—";
+"0007║$epmpm060_080lt" = "I can't give you hope.";
+"0008║$epmpm060_090lt" = "If you go to see your father...";
+"0009║$epmpm060_100ho" = "You think meeting my dad{Text NewLine}will make anything better?";
+"0010║$epmpm060_110ho" = "He's never listened to a word I've said.";
+"0011║$epmpm060_120ho" = "He's just—he'll never believe all this l'Cie stuff.";
+"0012║$epmpm060_130ho" = "Snow believed Serah, didn't he?";
+"0013║$epmpm060_140lt" = "Yeah.";

@@ -1,0 +1,13 @@
+﻿/*txtres/ac/ac_gpoc_092/txtres_us.ztr*/
+/*0011*/
+"0000║$agpoc092_010m1" = "L'Cie dwell outside the natural order.{End}{Escape}Titan";
+"0001║$agpoc092_015m1" = "Should their strength fail them, they become{Text NewLine}the mindless foes of life itself.{End}{Escape}Titan";
+"0002║$agpoc092_020sz" = "Oh great, another one.{Text NewLine}Nothing like witnessing survival of the fittest first hand.";
+"0003║$agpoc092_025sz" = "";
+"0004║$agpoc092_030sn" = "A Cie'th?";
+"0005║$agpoc092_040lt" = "'A mindless foe of life itself.'";
+"0006║$agpoc092_050sn" = "I'm gonna go out on a limb and say he's not here to help.";
+"0007║$agpoc092_060sz" = "You're not even alive to worry about surviving anyway!";
+"0008║$agpoc092_070ho" = "So that's what's waiting for weak l'Cie.";
+"0009║$agpoc092_080va" = "I think I'd like to stay inside the natural order.";
+"0010║$agpoc092_090fa" = "Once you're a Cie'th, killing's{Text NewLine}the only thing that comes naturally.";

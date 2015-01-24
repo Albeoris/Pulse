@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_hiku_000/txtres_us.ztr*/
+/*0017*/
+"0000║$ehiku000_010w1" = "{Italic}The l'Cie will face official sentencing{Text NewLine}upon the convoy's arrival in the capital.{Italic}{End}{Escape}Reporter";
+"0001║$ehiku000_020m1" = "";
+"0002║$ehiku000_030sn" = "So what's with the freak show?";
+"0003║$ehiku000_040ra" = "So the Primarch can stand in{Text NewLine}judgment of the villainous l'Cie...{End}{Escape}Raines";
+"0004║$ehiku000_050ra" = "...with their execution as the climax.{End}{Escape}Raines";
+"0005║$ehiku000_060ra" = "The people will cheer their demise,{Text NewLine}and fal'Cie dominion will be undisputed.{End}{Escape}Raines";
+"0006║$ehiku000_070lt" = "All part of the plan.";
+"0007║$ehiku000_080ra" = "Yes, but it also presents an opportunity.{End}{Escape}Raines";
+"0008║$ehiku010_110m1" = "{Italic}In a display of unwavering dedication to duty...{Italic}{End}{Escape}Reporter";
+"0009║$ehiku010_120m1" = "{Italic}...the Primarch himself has boarded the {Italic}Palamecia{Italic}...{Italic}{End}{Escape}Reporter";
+"0010║$ehiku010_130m1" = "{Italic}...and focused his personal attention{Text NewLine}on resolving the Pulse crisis.{Italic}{End}{Escape}Reporter";
+"0011║$ehiku010_140fa" = "They're baiting us. Trying to draw us out.";
+"0012║$ehiku010_150sn" = "Bait, huh?";
+"0013║$ehiku010_160lt" = "Yeah, that's right: 'Here are your friends.{Text NewLine}Come and get 'em.'";
+"0014║$ehiku010_170sn" = "Well, if they're daring us to mount a rescue...";
+"0015║$ehiku010_180sn" = "I'll take that action.{Text NewLine}All in.";
+"0016║$ehiku010_190lg" = "All righty, bets are on the table.{Text NewLine}We leave when you're ready. I'll be standing by.{End}{Escape}Rygdea";

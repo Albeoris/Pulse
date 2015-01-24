@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_pmpm_065/txtres_us.ztr*/
+/*0017*/
+"0000║$epmpm065_010wm" = "{Italic}In a recently convened emergency conference...{Italic}{End}{Escape}Reporter";
+"0001║$epmpm065_020wm" = "{Italic}...the Sanctum announced that{Text NewLine}the fugitive l'Cie have been located.{Italic}{End}{Escape}Reporter";
+"0002║$epmpm065_030wm" = "{Italic}The military plans to apprehend the l'Cie{Text NewLine}and carry out a public execution.{Italic}{End}{Escape}Reporter";
+"0003║$epmpm065_040wm" = "{Italic}These images coming to you live{Text NewLine}from the scene in Palumpolum.{Italic}{End}{Escape}Reporter";
+"0004║$epmpm065_050lt" = "Start running.{Text NewLine}I'll keep 'em busy.";
+"0005║$epmpm065_060ho" = "But—!";
+"0006║$epmpm065_070lt" = "You survive.";
+"0007║$epmpm065_080rs" = "These are l'Cie. Show no mercy.{End}{Escape}Rosch";
+"0008║$epmpm065_090rs" = "They aren't people. They're targets.{End}{Escape}Rosch";
+"0009║$epmpm065_100fa" = "That's some crowd.{Text NewLine}Gonna need a plan.";
+"0010║$epmpm065_110fa" = "{End}{Escape}";
+"0011║$epmpm065_120sn" = "Since when have heroes ever needed plans?";
+"0012║$epmpm065_130sn" = "Fang!";
+"0013║$epmpm065_140ho" = "It's him!";
+"0014║$epmpm065_145rs" = "Move! Take us up!{End}{Escape}Rosch";
+"0015║$epmpm065_148sn" = "Yeah!";
+"0016║$epmpm065_150sn" = "Lightning!";

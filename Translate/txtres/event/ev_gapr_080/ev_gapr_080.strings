@@ -1,0 +1,20 @@
+﻿/*txtres/event/ev_gapr_080/txtres_us.ztr*/
+/*0018*/
+"0000║$egapr080_010ho" = "I wonder how the others are doing.";
+"0001║$egapr080_020lt" = "Sazh and Vanille?";
+"0002║$egapr080_030lt" = "Who knows?";
+"0003║$egapr080_040lt" = "Even if they got away,{Text NewLine}they'll get caught eventually.";
+"0004║$egapr080_050lt" = "Then they'll have to choose:{Text NewLine}resist or surrender.";
+"0005║$egapr080_060ho" = "Surrender...";
+"0006║$egapr080_070ho" = "Do you think {Italic}he's{Italic} still alive?";
+"0007║$egapr080_080lt" = "You mean Snow?";
+"0008║$egapr080_090lt" = "He's too stubborn to die.";
+"0009║$egapr080_100lt" = "And that's his best quality.";
+"0010║$egapr080_110lt" = "He's arrogant and chummy from the get-go.{Text NewLine}He thinks he's everybody's pal. Never liked him much.";
+"0011║$egapr080_120lt" = "He leads around a bunch of kids—gang called 'NORA.'";
+"0012║$egapr080_130ho" = "Where'd they get the name 'Nora'?";
+"0013║$egapr080_140lt" = "It's a stupid acronym.";
+"0014║$egapr080_150lt" = "Their little code.";
+"0015║$egapr080_160lt" = "Stands for 'No Obligations, Rules, or Authority.'";
+"0016║$egapr080_170lt" = "Must be nice.";
+"0017║$egapr080_180ho" = "It's irresponsible.";

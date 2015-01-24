@@ -1,0 +1,21 @@
+﻿/*txtres/event/ev_lasd_280/txtres_us.ztr*/
+/*0019*/
+"0000║$elasd280_010fa" = "Where's this end?";
+"0001║$elasd280_020sz" = "If there is one, I can't see it.";
+"0002║$elasd280_030va" = "I can't do this.";
+"0003║$elasd280_040va" = "All these Cie'th were people once, like us.";
+"0004║$elasd280_050ho" = "But that's what Barthandelus is going for.";
+"0005║$elasd280_060ho" = "Don't you see? Make us feel guilty, lose faith...";
+"0006║$elasd280_070ho" = "And the second we give up, it's Focus time.";
+"0007║$elasd280_080sn" = "Wait till we're broken, then slip on the leash.";
+"0008║$elasd280_090sz" = "Yeah, well, when you think{Text NewLine}about it...";
+"0009║$elasd280_100sz" = "Having all this empathy?{Text NewLine}It puts us humans at a big disadvantage.";
+"0010║$elasd280_110lt" = "Maybe. But it's also what makes us dangerous.";
+"0011║$elasd280_120va" = "Fang? What's wrong?";
+"0012║$elasd280_130fa" = "Oh, nothing.";
+"0013║$elasd280_140fa" = "Just that time's running short.";
+"0014║$elasd280_150va" = "It's okay.";
+"0015║$elasd280_160va" = "My mind's made up this time.";
+"0016║$elasd280_170va" = "We'll just make Cocoon our home.";
+"0017║$elasd280_180va" = "Yeah.{End}{Escape}Fang";
+"0018║$elasd280_190va" = "I guess we will.{End}{Escape}Fang";

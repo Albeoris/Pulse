@@ -1,0 +1,9 @@
+﻿/*txtres/event/ev_hiku_120/txtres_us.ztr*/
+/*0007*/
+"0000║$ehiku120_010m1" = "{Italic}Code Purple! I repeat: Code Purple!{Italic}{End}{Escape}";
+"0001║$ehiku120_020m1" = "{Italic}Security breach! All units on alert!{Text NewLine}Code Purple!{Italic}{End}{Escape}";
+"0002║$ehiku120_030ho" = "All these colors. What's it mean?";
+"0003║$ehiku120_040fa" = "Means we're doing our job.{Text NewLine}Making a lot of PSICOM guys nervous.";
+"0004║$ehiku120_045ho" = "Who are they fighting?";
+"0005║$ehiku120_050fa" = "Vanille.";
+"0006║$ehiku120_500m1" = "";

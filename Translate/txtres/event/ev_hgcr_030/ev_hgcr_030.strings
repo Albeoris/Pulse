@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_hgcr_030/txtres_us.ztr*/
+/*0013*/
+"0000║$ehgcr030_080lt" = "Okay, if we don't know our Focus,{Text NewLine}how do we complete it?";
+"0001║$ehgcr030_090va" = "I think...I saw it.";
+"0002║$ehgcr030_100lt" = "Saw what?";
+"0003║$ehgcr030_110sz" = "That is how a Focus comes down, people.";
+"0004║$ehgcr030_115sz" = "The fal'Cie? They don't spell it out{Text NewLine}with clear-cut instructions.";
+"0005║$ehgcr030_120sz" = "All you get is a hazy glimpse.";
+"0006║$ehgcr030_130sz" = "Well, that's what they say.{Text NewLine}You know, legends and all.";
+"0007║$ehgcr030_140lt" = "Did you see anything?";
+"0008║$ehgcr030_150ho" = "I uh—I just...{Text NewLine}It's all kind of foggy, but...";
+"0009║$ehgcr030_155ho" = "I saw this big—I mean {Italic}towering{Italic}—";
+"0010║$ehgcr030_157sz" = "W-wait a minute.";
+"0011║$ehgcr030_160sz" = "Hold on now.{Text NewLine}Did we {Italic}all{Italic} have the same dream?";
+"0012║$ehgcr030_170lt" = "Ragnarok.{End}{Escape}Lightning & Snow";

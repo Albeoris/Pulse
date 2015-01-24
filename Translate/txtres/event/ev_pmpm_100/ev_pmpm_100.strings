@@ -1,0 +1,14 @@
+﻿/*txtres/event/ev_pmpm_100/txtres_us.ztr*/
+/*0012*/
+"0000║$epmpm100_010sn" = "It's me, what's up?";
+"0001║$epmpm100_020fa" = "You damn well know what's up!";
+"0002║$epmpm100_030fa" = "Why haven't you called in?";
+"0003║$epmpm100_040sn" = "Sorry, slipped my mind.";
+"0004║$epmpm100_050fa" = "Right... What's your status?";
+"0005║$epmpm100_060sn" = "Great, great! Hope's great too!";
+"0006║$epmpm100_070sn" = "Are you all right?";
+"0007║$epmpm100_080fa" = "I'm great, you're great, everybody's great.";
+"0008║$epmpm100_090fa" = "Reunion time.{Text NewLine}Figure out a rendezvous point.";
+"0009║$epmpm100_100fa" = "Don't sweat it.{Text NewLine}That line's hyper-encrypted.";
+"0010║$epmpm100_110sn" = "Hey, Sis. Is that you?";
+"0011║$epmpm100_120lt" = "I'm not your sister.";

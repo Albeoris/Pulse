@@ -1,0 +1,24 @@
+﻿/*txtres/event/ev_nati_050/txtres_us.ztr*/
+/*0022*/
+"0000║$enati050_010va" = "What's in Nautilus Park, anyway?";
+"0001║$enati050_020sz" = "It's a huge amusement park, built by the Sanctum.";
+"0002║$enati050_030sz" = "Bet they never expected l'Cie visitors.";
+"0003║$enati050_040va" = "So, is this place special?";
+"0004║$enati050_041va" = "";
+"0005║$enati050_050sz" = "I promised Dajh.";
+"0006║$enati050_051sz" = "I was gonna bring him some day.";
+"0007║$enati050_060sz" = "Hope I can at least tell him about it.";
+"0008║$enati050_070va" = "You'll get the chance.";
+"0009║$enati050_080sz" = "Maybe.";
+"0010║$enati050_081sz" = "I do know where they're keeping him.";
+"0011║$enati050_090va" = "Can I come with you?";
+"0012║$enati050_100sz" = "Sure, more the merrier.";
+"0013║$enati050_110sz" = "What about you?";
+"0014║$enati050_111sz" = "You got someone special out there?";
+"0015║$enati050_120va" = "Special? Nope.";
+"0016║$enati050_130sz" = "Really?{Text NewLine}Now {Italic}that{Italic} is kind of sad.";
+"0017║$enati050_140va" = "Yeah.";
+"0018║$enati050_150sz" = "Hey, I'm kidding!{Text NewLine}I didn't mean to upset you.";
+"0019║$enati050_160va" = "Well, I'm just fine, thank you!";
+"0020║$enati050_170" = "{Italic}I wanted to tell him everything.{Text NewLine}But I couldn't.{Italic}{End}{Escape}";
+"0021║$enati050_180" = "{Italic}Not until the time was right.{Italic}{End}{Escape}";

@@ -1,0 +1,12 @@
+﻿/*txtres/event/ev_hgcr_210/txtres_us.ztr*/
+/*0010*/
+"0000║$ehgcr210_000sn" = "Serah.";
+"0001║$ehgcr210_002m1" = "Bring her this way!{End}{Escape}Soldier";
+"0002║$ehgcr210_004m1" = "Careful now!{End}{Escape}Soldier";
+"0003║$ehgcr210_006m1" = "Come on!{End}{Escape}Soldier";
+"0004║$ehgcr210_010sn" = "Serah!";
+"0005║$ehgcr210_015m1" = "Shut it!{End}{Escape}Soldier";
+"0006║$ehgcr210_020sn" = "";
+"0007║$ehgcr210_025fa" = "Stand down.{End}{Escape}Woman";
+"0008║$ehgcr210_030sn" = "You too?{Text NewLine}Why are you helping them?";
+"0009║$ehgcr210_040fa" = "If I were you, I'd worry about myself.{End}{Escape}Woman";

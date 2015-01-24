@@ -1,0 +1,24 @@
+﻿/*txtres/event/ev_hang_120/txtres_us.ztr*/
+/*0022*/
+"0000║$ehang120_010sd" = "{Italic}On behalf of Cocoon's citizens...{Italic}{End}{Escape}Sanctum Primarch";
+"0001║$ehang120_020sd" = "{Italic}...I would like to thank our brave Pulse pioneers...{Italic}{End}{Escape}Sanctum Primarch";
+"0002║$ehang120_030sd" = "{Italic}...and express our best wishes for{Text NewLine}a successful relocation.{Italic}{End}{Escape}Sanctum Primarch";
+"0003║$ehang120_040sd" = "{Italic}Your noble and selfless sacrifice...{Italic}{End}{Escape}Sanctum Primarch";
+"0004║$ehang120_050sd" = "{Italic}...ensures the continued safety{Text NewLine}and peace of our society.{Italic}{End}{Escape}Sanctum Primarch";
+"0005║$ehang120_060sd" = "{Italic}Were it not for this remarkable gesture...{Italic}{End}{Escape}Sanctum Primarch";
+"0006║$ehang120_070sd" = "{Italic}...every resident of Cocoon...{Italic}{End}{Escape}Sanctum Primarch";
+"0007║$ehang120_080sd" = "{Italic}...your family, your friends, your neighbors...{Italic}{End}{Escape}Sanctum Primarch";
+"0008║$ehang120_090sd" = "{Italic}...would be exposed to the dangers of the world below.{Italic}{End}{Escape}Sanctum Primarch";
+"0009║$ehang120_100sd" = "{Italic}By choosing to leave Cocoon...{Italic}{End}{Escape}Sanctum Primarch";
+"0010║$ehang120_110sd" = "{Italic}...and participating in this migration—{Italic}{End}{Escape}Sanctum Primarch";
+"0011║$ehang120_120yj" = "'Migration'? More like 'extermination.'{End}{Escape}Yuj";
+"0012║$ehang120_130sn" = "Yuj.";
+"0013║$ehang120_140sn" = "You stay here.";
+"0014║$ehang120_150yj" = "Sorry.{Text NewLine}I didn't mean to—{End}{Escape}Yuj";
+"0015║$ehang120_160sn" = "These people need heroes!";
+"0016║$ehang120_170sn" = "Here.{Text NewLine}You keep your cool, and they will too.";
+"0017║$ehang120_180sn" = "You got it?";
+"0018║$ehang120_185yj" = "Got it.{End}{Escape}Yuj";
+"0019║$ehang120_190sn" = "What's our motto?";
+"0020║$ehang120_200yj" = "The army's no match for NORA!{End}{Escape}Yuj";
+"0021║$ehang120_210sn" = "Attaboy.";

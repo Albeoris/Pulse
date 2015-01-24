@@ -1,0 +1,32 @@
+﻿/*txtres/event/ev_lasd_370/txtres_us.ztr*/
+/*0030*/
+"0000║$elasd370_000va" = "We promised, didn't we?";
+"0001║$elasd370_005va" = "{Italic}The brand of a l'Cie.{Italic}{End}{Escape}";
+"0002║$elasd370_010va" = "{Italic}The symbol of the Focus we all faced.{Italic}{End}{Escape}";
+"0003║$elasd370_015va" = "{Italic}The mark of the fate we all shared.{Italic}{End}{Escape}";
+"0004║$elasd370_020va" = "{Italic}Proof of the promise we all made.{Italic}{End}{Escape}";
+"0005║$elasd370_030sn" = "The heroes never die.";
+"0006║$elasd370_035sn" = "Come on. We've got a world to save!";
+"0007║$elasd370_040ho" = "If we have the power to destroy Cocoon,{Text NewLine}then we have the power to save it.";
+"0008║$elasd370_050ho" = "You say you want your Day of Wrath, do you?{Text NewLine}Well it's coming right up!";
+"0009║$elasd370_060sz" = "Time we gave the people what they really want.";
+"0010║$elasd370_070va" = "We can do it.";
+"0011║$elasd370_072va" = "I know we can.";
+"0012║$elasd370_074va" = "We made it this far.";
+"0013║$elasd370_076lt" = "Right.";
+"0014║$elasd370_080va" = "Let's make a real miracle happen!";
+"0015║$elasd370_090fa" = "Lady Luck sure ain't on his side!";
+"0016║$elasd370_095op" = "You overreach yourselves.{End}{Escape}Orphan";
+"0017║$elasd370_100lt" = "No. We overreach you.";
+"0018║$elasd370_110op" = "Is that so?{End}{Escape}Orphan";
+"0019║$elasd370_120lt" = "You don't believe in anything.";
+"0020║$elasd370_130lt" = "You gave up on life before you were even born.";
+"0021║$elasd370_140lt" = "Sat poisoning Cocoon from the inside,{Text NewLine}waiting for someone to come and destroy you.";
+"0022║$elasd370_150lt" = "Sure, you think the end of the world is salvation.{Text NewLine}All you care about is death's release.";
+"0023║$elasd370_160lt" = "So take it, and leave the rest of us alone.";
+"0024║$elasd370_170lt" = "We don't think like that.";
+"0025║$elasd370_180lt" = "When we think there's no hope left,{Text NewLine}we keep looking until we find some.";
+"0026║$elasd370_190lt" = "Maybe Cocoon is past saving, but it's our home.{Text NewLine}And we'll protect it or die trying!";
+"0027║$elasd370_200lt" = "We live to make the impossible possible!";
+"0028║$elasd370_205lt" = "";
+"0029║$elasd370_210lt" = "That is our Focus!";

@@ -1,0 +1,10 @@
+﻿/*txtres/ac/ac_eark_011/txtres_us.ztr*/
+/*0008*/
+"0000║$aeark011_010lt" = "Are we back in the Ark?";
+"0001║$aeark011_020sn" = "Seems a little different from before, no?";
+"0002║$aeark011_030fa" = "Sure does. Then again, it's probably not the same Ark.";
+"0003║$aeark011_040sn" = "What do you mean?";
+"0004║$aeark011_050va" = "It's like I said before.{Text NewLine}They hid these things all across Gran Pulse.";
+"0005║$aeark011_060ho" = "Okay. And you think the plan is for Barthandelus to use{Text NewLine}all of them in this grand scheme of his?";
+"0006║$aeark011_070sz" = "Let loose all the horrors locked inside,{Text NewLine}and watch Cocoon get destroyed from the bleachers.";
+"0007║$aeark011_080fa" = "Either that, or he still hasn't given up on{Text NewLine}the idea of training us all for doomsday.";

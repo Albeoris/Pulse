@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_pmpm_200/txtres_us.ztr*/
+/*0013*/
+"0000║$epmpm200_010ho" = "I wanted to ask you something.";
+"0001║$epmpm200_020sn" = "What's that?";
+"0002║$epmpm200_030ho" = "You say you want a family.";
+"0003║$epmpm200_040ho" = "What if—what if they were taken from you?";
+"0004║$epmpm200_050sn" = "Well then, I'd take them back.";
+"0005║$epmpm200_060ho" = "And what if you couldn't?";
+"0006║$epmpm200_070ho" = "What if you knew who was to blame?";
+"0007║$epmpm200_080sn" = "Well, then there'd be trouble.";
+"0008║$epmpm200_090sn" = "Hey, are you okay?";
+"0009║$epmpm200_100sn" = "Did you get hit in the head, or something, or—?";
+"0010║$epmpm200_110sn" = "Guess we'll have to talk about this later!";
+"0011║$epmpm200_120ho" = "Don't just stand there!";
+"0012║$epmpm200_130sn" = "Hope, wait!";

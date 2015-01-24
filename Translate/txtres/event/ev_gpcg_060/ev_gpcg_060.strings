@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_gpcg_060/txtres_us.ztr*/
+/*0017*/
+"0000║$egpcg060_010sz" = "That's some beast you tamed, I'll tell you that.";
+"0001║$egpcg060_011ho" = "Yeah.";
+"0002║$egpcg060_020ho" = "I always thought the Eidolons appeared to{Text NewLine}set us free through death. But now...";
+"0003║$egpcg060_030ho" = "...I think maybe they're here{Text NewLine}to snap us out of our slumps.";
+"0004║$egpcg060_040sn" = "Oh. Like the one you were just in?";
+"0005║$egpcg060_050ho" = "I'll ask for help earlier next time around.";
+"0006║$egpcg060_060va" = "I told you. On Gran Pulse, we're all family.";
+"0007║$egpcg060_070va" = "You can moan all you like, but you're stuck with us.";
+"0008║$egpcg060_080sz" = "You're never alone in hell.";
+"0009║$egpcg060_090fa" = "Listen, funnyman,{Text NewLine}don't call this place hell, all right?";
+"0010║$egpcg060_100lt" = "So, we're all decided then?";
+"0011║$egpcg060_110va" = "{Italic}Maybe nothing would change.{Text NewLine}And maybe we'd hit a dead end.{Italic}{End}{Escape}";
+"0012║$egpcg060_120va" = "{Italic}But, we were at least going to see{Text NewLine}where the road would take us.{Italic}{End}{Escape}";
+"0013║$egpcg060_130va" = "{Italic}The search for a home buried in the past.{Text NewLine}And the faintest glimmer of hope.{Italic}{End}{Escape}";
+"0014║$egpcg060_140va" = "{Italic}Our final journey had just begun.{Italic}{End}{Escape}";
+"0015║$egpcg060_150" = "Yeah.{End}{Escape}Fang";
+"0016║$egpcg060_160" = "Yep.{End}{Escape}Vanille";

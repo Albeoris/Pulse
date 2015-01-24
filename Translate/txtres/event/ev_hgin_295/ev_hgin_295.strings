@@ -1,0 +1,6 @@
+﻿/*txtres/event/ev_hgin_295/txtres_us.ztr*/
+/*0004*/
+"0000║$ehgin295_010a" = "{Italic}The target is almost in place.{Text NewLine}Surface team, what is your status?{Italic}{End}{Escape}Captain";
+"0001║$ehgin295_020b" = "{Italic}Good to go. Resistance is under control.{Text NewLine}The assault proceeds as planned.{Italic}{End}{Escape}Soldier";
+"0002║$ehgin295_030a" = "{Italic}Leave no trace.{Text NewLine}The Pulse Vestige never existed.{Italic}{End}{Escape}Captain";
+"0003║$ehgin295_040ph" = "Fire!{End}{Escape}Soldier";

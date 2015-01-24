@@ -1,0 +1,10 @@
+﻿/*txtres/event/ev_hang_110/txtres_us.ztr*/
+/*0008*/
+"0000║$ehang110_010sz" = "So, Soldier...";
+"0001║$ehang110_020sz" = "What's your angle?";
+"0002║$ehang110_030sz" = "What, is it classified military info?{Text NewLine}What's it matter? You quit, didn't you?";
+"0003║$ehang110_040sz" = "You think I'm gonna go out there{Text NewLine}and just tell everybody your secret?";
+"0004║$ehang110_050lt" = "The Pulse fal'Cie.";
+"0005║$ehang110_070lt" = "My 'angle.'{Text NewLine}I'm after the fal'Cie.";
+"0006║$ehang110_080lt" = "Still happy you tagged along?";
+"0007║$ehang110_090sz" = "Didn't have a choice.";

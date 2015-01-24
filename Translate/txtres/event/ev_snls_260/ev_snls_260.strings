@@ -1,0 +1,26 @@
+﻿/*txtres/event/ev_snls_260/txtres_us.ztr*/
+/*0024*/
+"0000║$esnls260_010sz" = "We can board the ship over there.";
+"0001║$esnls260_020sz" = "When it rains around here, it pours.{Text NewLine}And then it rains some more.";
+"0002║$esnls260_030va" = "Sazh... Do you hate Pulse?";
+"0003║$esnls260_040sz" = "Why wouldn't I?";
+"0004║$esnls260_050sz" = "Look at this mess it's gotten us all into!";
+"0005║$esnls260_060sz" = "Of course, that's not to say I always hated it.";
+"0006║$esnls260_070sz" = "Seemed fishy. All that Sanctum ranting{Text NewLine}about the 'threat from Pulse.'";
+"0007║$esnls260_080sz" = "'Only a matter of time before they strike.'";
+"0008║$esnls260_090sz" = "'Pulse is infested with monsters.'";
+"0009║$esnls260_100sz" = "Scare after scare, and not even a shred of proof.";
+"0010║$esnls260_110sz" = "Tired old cynics like me,{Text NewLine}we don't just swallow that tabloid crap.";
+"0011║$esnls260_120sz" = "No, no. Not me. I figured the Sanctum{Text NewLine}was up to something crooked.";
+"0012║$esnls260_130sz" = "At least until I got dragged in.";
+"0013║$esnls260_135va" = "Yeah...";
+"0014║$esnls260_140sz" = "Now that I think about it, all this Purge business...";
+"0015║$esnls260_150sz" = "...it really only happened because{Text NewLine}Dajh found that Pulse fal'Cie.";
+"0016║$esnls260_160va" = "You're wrong.";
+"0017║$esnls260_170va" = "Don't blame him. It was all—";
+"0018║$esnls260_180sz" = "Yeah, you're right.{Text NewLine}It was that scum from Pulse behind it.";
+"0019║$esnls260_190va" = "{Italic}I might as well have tried to stop the rain.{Text NewLine}I fought the tears...{Italic}{End}{Escape}";
+"0020║$esnls260_200va" = "{Italic}...but they still fell.{Italic}{End}{Escape}";
+"0021║$esnls260_210sz" = "You're getting soaked.";
+"0022║$esnls260_220va" = "I'll be fine!";
+"0023║$esnls260_230va" = "It's only water.";

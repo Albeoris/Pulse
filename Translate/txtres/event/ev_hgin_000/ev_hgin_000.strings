@@ -1,0 +1,20 @@
+﻿/*txtres/event/ev_hgin_000/txtres_us.ztr*/
+/*0018*/
+"0000║$ehgin000_ 030ho" = "Even soldiers know not to go near the fal'Cie.";
+"0001║$ehgin000_000" = "{End}{Escape}Vanille & Hope";
+"0002║$ehgin000_000va" = "Wow, that was close.";
+"0003║$ehgin000_002va" = "Now, where is the...";
+"0004║$ehgin000_004va" = "Oops.";
+"0005║$ehgin000_006va" = "Well then...";
+"0006║$ehgin000_010va" = "Guess it's just us.";
+"0007║$ehgin000_020ho" = "What did you expect?";
+"0008║$ehgin000_040ho" = "You become a Pulse l'Cie, and you're finished.";
+"0009║$ehgin000_050va" = "What do you mean, 'finished'?";
+"0010║$ehgin000_060ho" = "Haven't you heard, Miss—?";
+"0011║$ehgin000_070va" = "Vanille.";
+"0012║$ehgin000_080ho" = "Huh?";
+"0013║$ehgin000_090va" = "My name. And yours?";
+"0014║$ehgin000_100ho" = "Hope.";
+"0015║$ehgin000_110ho" = "Thank you.";
+"0016║$ehgin000_120ho" = "What were we thinking?";
+"0017║$ehgin000_130va" = "Well, since we're here,{Text NewLine}let's look around!";

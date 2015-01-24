@@ -1,0 +1,23 @@
+﻿/*txtres/event/ev_gptt_050/txtres_us.ztr*/
+/*0021*/
+"0000║$egptt050_010ho" = "Oerba's right down there, then, isn't it?";
+"0001║$egptt050_020va" = "Yep.";
+"0002║$egptt050_030va" = "So what's it like?{End}{Escape}Snow";
+"0003║$egptt050_040va" = "Well, it's kind of small.{Text NewLine}But it's warm and green, and very naturey!";
+"0004║$egptt050_050fa" = "Around the fal'Cie, it was flowers{Text NewLine}as far as you could see, huh?";
+"0005║$egptt050_060sz" = "View from here ain't so rosy, I'm sorry to say.";
+"0006║$egptt050_070lt" = "You want to wait here?";
+"0007║$egptt050_080va" = "I need to see for myself.";
+"0008║$egptt050_090va" = "It's all gone.";
+"0009║$egptt050_100fa" = "Every trace of color.";
+"0010║$egptt050_110fa" = "We're chasing shadows.{Text NewLine}This whole idea of losing our brands is hopeless!";
+"0011║$egptt050_120sn" = "There's got to be a way.";
+"0012║$egptt050_130ho" = "Let's keep on looking.{Text NewLine}That's what we came here for.";
+"0013║$egptt050_140ho" = "We all agreed, and now we're here.";
+"0014║$egptt050_150va" = "You think...you think it's really possible?";
+"0015║$egptt050_160ho" = "Sure. Anything is.";
+"0016║$egptt050_170lt" = "There's no going back.";
+"0017║$egptt050_180fa" = "You don't think I know that?";
+"0018║$egptt050_181sz" = "Come on.";
+"0019║$egptt050_190sz" = "";
+"0020║$egptt050_200va" = "No.";

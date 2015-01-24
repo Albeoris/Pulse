@@ -1,0 +1,11 @@
+﻿/*txtres/event/ev_hiku_080/txtres_us.ztr*/
+/*0009*/
+"0000║$ehiku080_030sn" = "Let us through!{Text NewLine}Block our way, you die!";
+"0001║$ehiku080_040fa" = "You {Italic}trying{Italic} to get 'em angry?";
+"0002║$ehiku080_050sn" = "Thought maybe they'd run.{Text NewLine}There's been enough blood spilled.";
+"0003║$ehiku080_060lt" = "You thought they'd run?";
+"0004║$ehiku080_070lt" = "Let me refresh your memory. Those soldiers{Text NewLine}think they're protecting Cocoon from l'Cie.";
+"0005║$ehiku080_080lt" = "The fal'Cie have them all brainwashed.";
+"0006║$ehiku080_090sn" = "Fal'Cie... I have had it!{Text NewLine}We cannot let this go on!";
+"0007║$ehiku080_100m1" = "{Italic}Attention all crew: Code Green!{Text NewLine}Repeat: Code Green!{Italic}{End}{Escape}";
+"0008║$ehiku080_110m1" = "{Italic}Security forces stand by!{Text NewLine}Hostile forces on board, Code Green!{Italic}{End}{Escape}";

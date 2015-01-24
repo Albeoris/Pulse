@@ -1,0 +1,6 @@
+﻿/*txtres/event/ev_gpwo_060/txtres_us.ztr*/
+/*0004*/
+"0000║$egpwo060_001va" = "{Italic}Even if we were chasing shadows,{Text NewLine}our minds were made up.{Italic}{End}{Escape}";
+"0001║$egpwo060_002va" = "{Italic}We'd realized along the way that choice{Text NewLine}was the only thing we had left.{Italic}{End}{Escape}";
+"0002║$egpwo060_003va" = "{Italic}Maybe we'd fall short.{Text NewLine}Maybe we'd never even come close.{Italic}{End}{Escape}";
+"0003║$egpwo060_004va" = "{Italic}But someone, someday, would know we'd tried.{Italic}{End}{Escape}";

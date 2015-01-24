@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_pmpm_170/txtres_us.ztr*/
+/*0017*/
+"0000║$epmpm170_010ho" = "Hey.";
+"0001║$epmpm170_020ho" = "You okay?";
+"0002║$epmpm170_030w1" = "Leave her alone!{End}{Escape}Mother";
+"0003║$epmpm170_040m1" = "L'Cie scum.{End}{Escape}Man";
+"0004║$epmpm170_050m2" = "Save the girl.{End}{Escape}Man";
+"0005║$epmpm170_060m1" = "Call the army!{End}{Escape}Man";
+"0006║$epmpm170_070m2" = "We can take 'em!{End}{Escape}Man";
+"0007║$epmpm170_080m1" = "Protect Cocoon!{End}{Escape}Man";
+"0008║$epmpm170_090w1" = "Don't you touch her!{End}{Escape}Mother";
+"0009║$epmpm170_100w2" = "Mommy!{End}{Escape}Girl";
+"0010║$epmpm170_110w1" = "It's okay. You're okay now.{End}{Escape}Mother";
+"0011║$epmpm170_120sn" = "Oh, great.";
+"0012║$epmpm170_130m1" = "That was magic!{End}{Escape}Man";
+"0013║$epmpm170_140m2" = "We don't stand a chance!{Text NewLine}We can't fight that!{End}{Escape}Man";
+"0014║$epmpm170_150ho" = "I'm sorry.";
+"0015║$epmpm170_160sn" = "Time to go!";
+"0016║$epmpm170_170mn" = "Stop them!{Text NewLine}Empty those clips!{End}{Escape}PSICOM Soldier";

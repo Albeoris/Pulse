@@ -1,0 +1,8 @@
+﻿/*txtres/event/ev_nati_070/txtres_us.ztr*/
+/*0006*/
+"0000║$enati070_010sz" = "Ugh! The smell...";
+"0001║$enati070_020sz" = "Glad I don't work here.";
+"0002║$enati070_030va" = "{End}{Escape}";
+"0003║$enati070_040va" = "{Italic}The smell reminded me of home.{Text NewLine}The wilderness of Pulse.{Italic}{End}{Escape}";
+"0004║$enati070_050sz" = "Hey! Come back here!";
+"0005║$enati070_060va" = "";

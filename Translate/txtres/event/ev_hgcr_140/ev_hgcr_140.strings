@@ -1,0 +1,35 @@
+﻿/*txtres/event/ev_hgcr_140/txtres_us.ztr*/
+/*0033*/
+"0000║$ehgcr140_005m1" = "Sweep Team! Form ranks!{End}{Escape}Captain";
+"0001║$ehgcr140_010sz" = "They must be hunting down Purge survivors.";
+"0002║$ehgcr140_020va" = "I hope everyone made it out okay.";
+"0003║$ehgcr140_030sz" = "So do I.";
+"0004║$ehgcr140_040sz" = "But nowhere is safe for them now.";
+"0005║$ehgcr140_050sz" = "Damn it!";
+"0006║$ehgcr140_060sz" = "Just 'cause they shared{Text NewLine}a neighborhood with a fal'Cie...";
+"0007║$ehgcr140_070sz" = "They get treated like Pulse-tainted rats.";
+"0008║$ehgcr140_080va" = "People really hate Pulse, don't they?";
+"0009║$ehgcr140_090sz" = "Not {Italic}hate{Italic}.";
+"0010║$ehgcr140_100sz" = "More like {Italic}fear{Italic}.";
+"0011║$ehgcr140_110sz" = "Tens of millions of people...";
+"0012║$ehgcr140_120sz" = "...all scared of Pulse boogeymen.";
+"0013║$ehgcr140_130sz" = "They'd be shaking in their beds{Text NewLine}every night if they knew...";
+"0014║$ehgcr140_140sz" = "...that l'Cie like us were around.";
+"0015║$ehgcr140_150va" = "But...";
+"0016║$ehgcr140_160va" = "They Purged that entire town!";
+"0017║$ehgcr140_170sz" = "It's crazy, I know.";
+"0018║$ehgcr140_180sz" = "But the Sanctum fal'Cie did nothing to stop it.";
+"0019║$ehgcr140_190sz" = "Up until now, Eden's always stepped in...";
+"0020║$ehgcr140_200sz" = "...to correct their errors in judgment.";
+"0021║$ehgcr140_210sz" = "Guess humans aren't worth the effort.";
+"0022║$ehgcr140_220sz" = "Figure they'll let us just kill each other off.";
+"0023║$ehgcr140_230ho" = "L'Cie are not human.";
+"0024║$ehgcr140_240va" = "Listen, you, that's enough!";
+"0025║$ehgcr140_250va" = "We're still alive.";
+"0026║$ehgcr140_260va" = "That's something.";
+"0027║$ehgcr140_262sz" = "Where is it?";
+"0028║$ehgcr140_264lt" = "What?";
+"0029║$ehgcr140_266ho" = "I don't know.";
+"0030║$ehgcr140_268lt" = "There!";
+"0031║$ehgcr140_270lt" = "They're sealing off the area.{Text NewLine}They're trying to trap the stragglers.";
+"0032║$ehgcr140_290lt" = "We've got to get moving before{Text NewLine}we're caught in the net.";

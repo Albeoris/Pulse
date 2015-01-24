@@ -1,0 +1,29 @@
+﻿/*txtres/event/ev_hgcr_050/txtres_us.ztr*/
+/*0027*/
+"0000║$ehgcr050_010sn" = "We fight it!{Text NewLine}Ragnarok!";
+"0001║$ehgcr050_020sn" = "That's the reason we're l'Cie.{Text NewLine}To stop it—to keep Cocoon safe!";
+"0002║$ehgcr050_030sz" = "Yeah, why don't you give us one{Text NewLine}reason to believe that? One reason.";
+"0003║$ehgcr050_040sn" = "Serah.";
+"0004║$ehgcr050_050sn" = "She said to protect Cocoon,{Text NewLine}and then she turned to crystal.";
+"0005║$ehgcr050_060sn" = "That's the proof right there.{Text NewLine}She completed her Focus!";
+"0006║$ehgcr050_070sn" = "That means ours is to save Cocoon.";
+"0007║$ehgcr050_080sn" = "Serah's fal'Cie was the same as ours.";
+"0008║$ehgcr050_090sn" = "Our Focus has got to be the same.";
+"0009║$ehgcr050_100sn" = "We were chosen to be guardians,{Text NewLine}to defeat Ragnarok!";
+"0010║$ehgcr050_110sn" = "It makes sense!";
+"0011║$ehgcr050_120sz" = "The hell it does!{Text NewLine}You're grasping at straws, son!";
+"0012║$ehgcr050_130sz" = "Pulse fal'Cie are Cocoon's enemies.{Text NewLine}We just got recruited by one of them.";
+"0013║$ehgcr050_140sz" = "If I were a betting man...";
+"0014║$ehgcr050_150sz" = "I'd put us on the other side.";
+"0015║$ehgcr050_160sn" = "So Serah's an enemy too?";
+"0016║$ehgcr050_170sn" = "Well I don't buy it!";
+"0017║$ehgcr050_180sn" = "We have the power to save Cocoon.{Text NewLine}If we work together and carry out our Focus—";
+"0018║$ehgcr050_190lt" = "Our Focus?";
+"0019║$ehgcr050_200lt" = "The fal'Cie took Serah from us,{Text NewLine}and you want to help it?";
+"0020║$ehgcr050_210lt" = "Whose side are you on?";
+"0021║$ehgcr050_220m1" = "Freeze!{End}{Escape}Soldier";
+"0022║$ehgcr050_230m1" = "Place your hands behind your heads!{End}{Escape}Soldier";
+"0023║$ehgcr050_240m1" = "You fall off the Purge train?{End}{Escape}Captain";
+"0024║$ehgcr050_250lt" = "Maybe.";
+"0025║$ehgcr050_260m1" = "Are you talking back to me?{End}{Escape}Captain";
+"0026║$ehgcr050_270lt" = "Nice gun.";

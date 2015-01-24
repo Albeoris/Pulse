@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_hiku_100/txtres_us.ztr*/
+/*0013*/
+"0000║$ehiku100_010va" = "Do I deserve to escape?";
+"0001║$ehiku100_020sz" = "What, you'd rather die?";
+"0002║$ehiku100_030sz" = "'Cause that's got to scare you.";
+"0003║$ehiku100_040sz" = "Scares me.";
+"0004║$ehiku100_050sz" = "Scares me so much,{Text NewLine}I think I might die of fright.";
+"0005║$ehiku100_060sz" = "";
+"0006║$ehiku100_070sz" = "So, I push myself to live even harder.";
+"0007║$ehiku100_080sz" = "I can just imagine Dajh,{Text NewLine}laughing at me talking this nonsense.";
+"0008║$ehiku100_090sz" = "Right now, I'd do anything to see that smile.";
+"0009║$ehiku100_100sz" = "Stay positive!{Text NewLine}Right?";
+"0010║$ehiku100_500m1" = "";
+"0011║$ehiku100_505m1" = "";
+"0012║$ehiku100_510m1" = "";

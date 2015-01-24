@@ -1,0 +1,17 @@
+﻿/*txtres/event/ev_hiku_020/txtres_us.ztr*/
+/*0015*/
+"0000║$ehiku020_010lg" = "This baby back here's a PSICOM vessel.{End}{Escape}Rygdea";
+"0001║$ehiku020_020lg" = "It'll deliver you to the {Italic}Palamecia{Italic}.{End}{Escape}Rygdea";
+"0002║$ehiku020_030sn" = "Oh, we're cargo now?";
+"0003║$ehiku020_040lg" = "A parting gift to our rotting government.{Text NewLine}Take those PSICOM guys apart.{End}{Escape}Rygdea";
+"0004║$ehiku020_050lt" = "And we're supposed to take on all of them?{Text NewLine}I think the whole division's on board.";
+"0005║$ehiku020_060fa" = "I don't care how many lackeys they've got.{Text NewLine}Bring 'em on! Vanille's in there.";
+"0006║$ehiku020_070ho" = "I'm sure she's fine.";
+"0007║$ehiku020_080ho" = "Vanille's tougher than I could ever be.";
+"0008║$ehiku020_090lt" = "Hope, are you scared?";
+"0009║$ehiku020_100ho" = "Yeah, I'm terrified.{Text NewLine}But I'll be okay.";
+"0010║$ehiku020_110ho" = "Because I have you, and this guy,{Text NewLine}and Fang.";
+"0011║$ehiku020_120ho" = "We're all in this mess.{Text NewLine}We've got to stick together.";
+"0012║$ehiku020_130sn" = "What do you mean, 'this guy'?";
+"0013║$ehiku020_140lg" = "Right, enough with the bonding.{End}{Escape}Rygdea";
+"0014║$ehiku020_150lg" = "It's go time.{End}{Escape}Rygdea";

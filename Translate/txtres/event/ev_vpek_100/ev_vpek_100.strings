@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_vpek_100/txtres_us.ztr*/
+/*0011*/
+"0000║$evpek100_010va" = "We made it!";
+"0001║$evpek100_020sz" = "Where's Grumpy?";
+"0002║$evpek100_030sz" = "Got left behind, huh?";
+"0003║$evpek100_040ho" = "Leave me alone!";
+"0004║$evpek100_050ho" = "This is pointless.";
+"0005║$evpek100_060ho" = "Can't keep up.{Text NewLine}Can't get home.";
+"0006║$evpek100_070ho" = "It's over for me.";
+"0007║$evpek100_080va" = "It's {Italic}not{Italic} over.";
+"0008║$evpek100_090va" = "We'll get you home!";
+"0009║$evpek100_100ho" = "I don't have one.{Text NewLine}Now that Mom is—";
+"0010║$evpek100_110va" = "What about your dad?";

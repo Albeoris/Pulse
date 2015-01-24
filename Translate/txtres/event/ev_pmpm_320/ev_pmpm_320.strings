@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_pmpm_320/txtres_us.ztr*/
+/*0011*/
+"0000║$epmpm320_010ho" = "Um... Operation Nora didn't work out.";
+"0001║$epmpm320_020ho" = "Lightning.";
+"0002║$epmpm320_030lt" = "You'll be okay.";
+"0003║$epmpm320_040lt" = "I'll keep you safe.";
+"0004║$epmpm320_050ho" = "I—me too.";
+"0005║$epmpm320_060ho" = "I mean, at least I'll try.{Text NewLine}I'll try to watch out for you, too.";
+"0006║$epmpm320_070fa" = "Don't forget about this one.";
+"0007║$epmpm320_080lt" = "That one will be all right.";
+"0008║$epmpm320_090lt" = "He's too stubborn to die.";
+"0009║$epmpm320_100va" = "{Italic}Knowing you'll always be welcome,{Text NewLine}no matter how much has changed...{Italic}{End}{Escape}";
+"0010║$epmpm320_110va" = "{Italic}That's what having a home is all about.{Italic}{End}{Escape}";

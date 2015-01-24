@@ -1,0 +1,21 @@
+﻿/*txtres/event/ev_gpyu_010/txtres_us.ztr*/
+/*0019*/
+"0000║$egpyu010_010va" = "These flowers. You remember them, right?";
+"0001║$egpyu010_020fa" = "Yeah, sure I do.{Text NewLine}They grew all over Oerba.";
+"0002║$egpyu010_030va" = "We can't be far now.";
+"0003║$egpyu010_040fa" = "It's my fault Gran Pulse ended up like this, isn't it?";
+"0004║$egpyu010_050va" = "Wha—?";
+"0005║$egpyu010_060fa" = "I remember everything.";
+"0006║$egpyu010_070fa" = "I became Ragnarok. I scarred Cocoon.";
+"0007║$egpyu010_080fa" = "And I left Gran Pulse in this mess.{Text NewLine}It was me.";
+"0008║$egpyu010_090va" = "What are you talking about?";
+"0009║$egpyu010_100fa" = "It all came back to me.{Text NewLine}Everything that happened with our Focus. All of it.";
+"0010║$egpyu010_110va" = "You're lying.";
+"0011║$egpyu010_120fa" = "No, it's the truth. It's all my fault.";
+"0012║$egpyu010_130va" = "Don't say that!";
+"0013║$egpyu010_140fa" = "The Eidolon knows the truth.{Text NewLine}Ha! I knew I was right.";
+"0014║$egpyu010_150va" = "Wait, so you {Italic}were{Italic} lying.";
+"0015║$egpyu010_160fa" = "No more than you were.{Text NewLine}Admit it, you remember everything.";
+"0016║$egpyu010_170va" = "It wasn't!{Text NewLine}It wasn't your fault.";
+"0017║$egpyu010_180fa" = "Vanille.{Text NewLine}We should talk about this later!";
+"0018║$egpyu010_190fa" = "Vanille!";

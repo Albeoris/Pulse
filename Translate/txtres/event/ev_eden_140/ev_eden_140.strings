@@ -1,0 +1,13 @@
+﻿/*txtres/event/ev_eden_140/txtres_us.ztr*/
+/*0011*/
+"0000║$eeden140_000m1" = "{Italic}That's all she can take! Fall back!{Italic}{End}{Escape}Operator";
+"0001║$eeden140_010va" = "I don't understand—we want the same thing!{Text NewLine}Why can't we just work together?";
+"0002║$eeden140_020fa" = "These people are so blinded by fear,{Text NewLine}they can't even imagine it. Are we too late?";
+"0003║$eeden140_030sn" = "Not yet.{Text NewLine}And we can't give up—no one else knows the truth.";
+"0004║$eeden140_040sn" = "Am I right?";
+"0005║$eeden140_050lt" = "Only we know about the plan to destroy Cocoon.";
+"0006║$eeden140_060ho" = "And which fal'Cie is behind it.{Text NewLine}Barthandelus.";
+"0007║$eeden140_070fa" = "Then what are we waiting for?{Text NewLine}It's time for some payback.";
+"0008║$eeden140_080sz" = "That's what I'm talking about.";
+"0009║$eeden140_090sz" = "Once everything is finally out in the open,{Text NewLine}people are gonna have to wake up from this nightmare!";
+"0010║$eeden140_100lt" = "Let's show 'em how human we still are.";

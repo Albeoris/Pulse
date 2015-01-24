@@ -1,0 +1,6 @@
+﻿/*txtres/event/ev_gptk_000/txtres_us.ztr*/
+/*0004*/
+"0000║$egptk000_010va" = "Whatcha doing?";
+"0001║$egptk000_020sn" = "I was, uh...talking to Serah.{Text NewLine}Just telling her that...we're all gonna be okay.";
+"0002║$egptk000_030va" = "It's so pretty.";
+"0003║$egptk000_040va" = "{Italic}Serah... You'd been crying, hadn't you?{Text NewLine}Back when we first met?{Italic}{End}{Escape}";

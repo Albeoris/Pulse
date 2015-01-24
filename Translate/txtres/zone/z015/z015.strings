@@ -1,0 +1,35 @@
+﻿/*D:\Temp\FFXIII\txtres\zone\z015\txtres_us.ztr*/
+/*0033*/
+"0000║$m_z015fl_blift" = "ACTIVATE{End}{Escape}";
+"0001║$m_z015fl_ho001" = "I'll do whatever it takes.{End}{Escape}Hope";
+"0002║$m_z015fl_ho002" = "You just have to face your fear.{Text NewLine}Then you can take on anything.{End}{Escape}Hope";
+"0003║$m_z015fl_ho003" = "I've got to be stronger.{End}{Escape}Hope";
+"0004║$m_z015fl_ho004" = "I'll never pull this off if I don't toughen up.{End}{Escape}Hope";
+"0005║$m_z015fl_ho005" = "So far, so good. Let's pick up the pace.{End}{Escape}Hope";
+"0006║$m_z015fl_ho006" = "I think I'm getting the hang of fighting, thanks to you.{End}{Escape}Hope";
+"0007║$m_z015fl_ho007" = "We're turning back? Did we forget something?{End}{Escape}Hope";
+"0008║$m_z015fl_ho008" = "If we go back now, they'll catch us!{End}{Escape}Hope";
+"0009║$m_z015fl_ho009" = "Isn't this the way we came?{End}{Escape}Hope";
+"0010║$m_z015fl_ho010" = "Light, uh...you know best and everything, but why are we turning around?{End}{Escape}Hope";
+"0011║$m_z015fl_ho011" = "Who'd have thought there'd be traps here?{End}{Escape}Hope";
+"0012║$m_z015fl_ho012" = "Hey! I think we're on to something!{End}{Escape}Hope";
+"0013║$m_z015fl_ho013" = "We're moving! What's going on?{End}{Escape}Hope";
+"0014║$m_z015fl_lt001" = "I've got your back. You call the shots now.{End}{Escape}Lightning";
+"0015║$m_z015fl_lt002" = "Be wary, but don't be afraid.{End}{Escape}Lightning";
+"0016║$m_z015fl_lt003" = "Don't go chasing after enemies.{Text NewLine}It's a surefire way to get ambushed.{End}{Escape}Lightning";
+"0017║$m_z015fl_lt004" = "Always be aware of your surroundings, Hope.{End}{Escape}Lightning";
+"0018║$m_z015fl_lt005" = "Trust me to cover your tail, and stay focused on moving forward.{End}{Escape}Lightning";
+"0019║$m_z015fl_lt006" = "Never panic. Calm heads make good decisions.{End}{Escape}Lightning";
+"0020║$m_z015fl_lt007" = "You're doing fine, Hope. Keep it up.{End}{Escape}Lightning";
+"0021║$m_z015fl_lt008" = "We can use the lights as a guide to keep us moving in the right direction.{End}{Escape}Lightning";
+"0022║$m_z015fl_lt009" = "The military uses this place for bioweapons research.{Text NewLine}Lots of angry teeth and claws.{End}{Escape}Lightning";
+"0023║$m_z015fl_lt010" = "Study your enemy's actions.{Text NewLine}That'll help you form a strategy.{End}{Escape}Lightning";
+"0024║$m_z015fl_lt011" = "Concentration's important, but never lose sight of what's happening around you.{End}{Escape}Lightning";
+"0025║$m_z015fl_lt012" = "That's one of the bulkhead fal'Cie.{Text NewLine}Stay on guard.{End}{Escape}Lightning";
+"0026║$m_z015fl_lt013" = "There are a lot of feral creatures here, too.{Text NewLine}They're a little different from the military breeds.{End}{Escape}Lightning";
+"0027║$m_z015fl_lt014" = "Wild animals can be even more violent and unpredictable than the trained-to-kill variety. Be careful.{End}{Escape}Lightning";
+"0028║$m_z015fl_lt015" = "We're stuck in here till we mop these things up.{End}{Escape}Lightning";
+"0029║$m_z015fl_lt016" = "These fences are for containing the animals.{Text NewLine}If we take care of our pen-mates, they should power down.{End}{Escape}Lightning";
+"0030║$m_z015fl_lt017" = "You can handle a climb like this.{End}{Escape}Lightning";
+"0031║$m_z015fl_nlift" = "ACTIVATE{End}{Escape}";
+"0032║$m_z015fl_saku" = "";

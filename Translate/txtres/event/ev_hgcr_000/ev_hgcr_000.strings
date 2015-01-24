@@ -1,0 +1,21 @@
+﻿/*txtres/event/ev_hgcr_000/txtres_us.ztr*/
+/*0019*/
+"0000║$ehgcr000_010sn" = "Serah!";
+"0001║$ehgcr000_020sn" = "";
+"0002║$ehgcr000_030sn" = "Is this...for real?";
+"0003║$ehgcr000_040sz" = "This must be...Lake Bresha?";
+"0004║$ehgcr000_050sz" = "I guess we fell from up there,{Text NewLine}and the lake turned to crystal?";
+"0005║$ehgcr000_060sz" = "Help me out here! I mean, did the fal'Cie do this?{Text NewLine}How in the world did we end up here?";
+"0006║$ehgcr000_070lt" = "How should I know?";
+"0007║$ehgcr000_080va" = "We're alive. How?";
+"0008║$ehgcr000_090sn" = "Serah!";
+"0009║$ehgcr000_100sn" = "No one survives a fall from that high,{Text NewLine}not without a miracle. Serah saved us!";
+"0010║$ehgcr000_110lt" = "Serah?";
+"0011║$ehgcr000_120lt" = "Listen. It's all your fault she got—";
+"0012║$ehgcr000_122sz" = "Hey, hey, hey, hey!";
+"0013║$ehgcr000_130sn" = "Watch out!";
+"0014║$ehgcr000_140sn" = "What did I...just do?";
+"0015║$ehgcr000_150ho" = "You used magic!";
+"0016║$ehgcr000_155ho" = "You used the power of a l'Cie.";
+"0017║$ehgcr000_160ho" = "The fal'Cie cursed us.{Text NewLine}We're l'Cie now!";
+"0018║$ehgcr000_162lt" = "Right.";

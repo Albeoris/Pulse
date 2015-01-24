@@ -1,0 +1,20 @@
+﻿/*txtres/ac/ac_gpda_093/txtres_us.ztr*/
+/*0018*/
+"0000║$agpda093_010sn" = "Uhh...Vanille?";
+"0001║$agpda093_020va" = "Shh...";
+"0002║$agpda093_025sn" = "What's she doing this time?";
+"0003║$agpda093_030va" = "Yeah, that's a good boy! Don't get mad!";
+"0004║$agpda093_040va" = "";
+"0005║$agpda093_050m1" = "{End}{Escape}Sheep";
+"0006║$agpda093_060va" = "Hi! You're not mad, are you?";
+"0007║$agpda093_070m1" = "{End}{Escape}Sheep";
+"0008║$agpda093_080va" = "Uh—wait!";
+"0009║$agpda093_090m1" = "{End}{Escape}Sheep";
+"0010║$agpda093_100m1" = "{End}{Escape}Sheep";
+"0011║$agpda093_110va" = "I just...need...a little...wool!";
+"0012║$agpda093_120sn" = "What are you doing? Stop that!";
+"0013║$agpda093_130va" = "";
+"0014║$agpda093_140m1" = "{End}{Escape}Sheep";
+"0015║$agpda093_150va" = "All right!";
+"0016║$agpda093_160va" = "Sorry about that. No hard feelings, huh?";
+"0017║$agpda093_170m1" = "{End}{Escape}Sheep";

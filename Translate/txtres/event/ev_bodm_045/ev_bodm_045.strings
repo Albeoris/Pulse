@@ -1,0 +1,25 @@
+﻿/*txtres/event/ev_bodm_045/txtres_us.ztr*/
+/*0023*/
+"0000║$ebodm045_010sn" = "Got to love these fireworks.";
+"0001║$ebodm045_020sn" = "They granted my wish.";
+"0002║$ebodm045_030sr" = "Your wish?{End}{Escape}Serah";
+"0003║$ebodm045_040sn" = "Before I asked you to marry me.";
+"0004║$ebodm045_050sn" = "I wished that you would say 'yes.'";
+"0005║$ebodm045_060sr" = "Then maybe they'll grant mine too.{End}{Escape}Serah";
+"0006║$ebodm045_065sn" = "What's that?";
+"0007║$ebodm045_070sr" = "To have the courage to tell Lightning{Text NewLine}that I've become a l'Cie.{End}{Escape}Serah";
+"0008║$ebodm045_080sn" = "Hey, our engagement is way bigger news!";
+"0009║$ebodm045_090sn" = "Oh man, I can't wait to see her face.";
+"0010║$ebodm045_100sn" = "";
+"0011║$ebodm045_110sn" = "She'll be my new sister.";
+"0012║$ebodm045_111sr" = "Yeah.{End}{Escape}Serah";
+"0013║$ebodm045_113sn" = "";
+"0014║$ebodm045_120sr" = "Hey, Snow?{End}{Escape}Serah";
+"0015║$ebodm045_130sn" = "Yeah?";
+"0016║$ebodm045_140sn" = "What the—!";
+"0017║$ebodm045_160sn" = "That was close.";
+"0018║$ebodm045_170sr" = "{End}{Escape}Serah";
+"0019║$ebodm045_180sr" = "Gorgeous.{End}{Escape}Serah";
+"0020║$ebodm045_185sr" = "Our own private heaven.{End}{Escape}Serah";
+"0021║$ebodm045_190sn" = "All we need—just you and me.";
+"0022║$ebodm045_200sr" = "Thank you, Snow.{End}{Escape}Serah";

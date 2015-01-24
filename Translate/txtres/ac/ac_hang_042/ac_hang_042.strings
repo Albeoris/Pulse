@@ -1,0 +1,7 @@
+﻿/*txtres/ac/ac_hang_042/txtres_us.ztr*/
+/*0005*/
+"0000║$ahang042_010m1" = "Deportees, are we?{End}{Escape}Officer";
+"0001║$ahang042_020m1" = "Weapons down.{Text NewLine}I'd hate for this to turn ugly.{End}{Escape}Officer";
+"0002║$ahang042_030sz" = "Uh...'turn ugly'?";
+"0003║$ahang042_040lt" = "He wants to kill us without a fight.";
+"0004║$ahang042_050m1" = "Time's up!{End}{Escape}Officer";

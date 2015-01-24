@@ -1,0 +1,12 @@
+﻿/*txtres/event/ev_fark_130/txtres_us.ztr*/
+/*0010*/
+"0000║$efark130_010va" = "Look! A new path.";
+"0001║$efark130_020va" = "Maybe that thing did save us.";
+"0002║$efark130_030sn" = "I don't suppose you'd be willing{Text NewLine}to call it a sign of me being right?";
+"0003║$efark130_031sn" = "No? Okay...";
+"0004║$efark130_040sn" = "Listen. Keep our eyes on the goal{Text NewLine}and we'll figure something out!";
+"0005║$efark130_050sn" = "All right!";
+"0006║$efark130_060" = "{Italic}Hey, Serah...{Italic}{End}{Escape}";
+"0007║$efark130_070" = "{Italic}So I guess being a l'Cie doesn't have to mean{Text NewLine}you can't do what's right.{Italic}{End}{Escape}";
+"0008║$efark130_080" = "";
+"0009║$efark130_090" = "{Italic}Does it?{Italic}{End}{Escape}";

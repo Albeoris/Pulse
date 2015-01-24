@@ -1,0 +1,32 @@
+﻿/*txtres/event/ev_hgin_240/txtres_us.ztr*/
+/*0030*/
+"0000║$ehgin240_010sz" = "What's gotten into you, Soldier?";
+"0001║$ehgin240_020sz" = "I thought you came for a fight.";
+"0002║$ehgin240_030lt" = "My sister...";
+"0003║$ehgin240_040sz" = "Your sister?";
+"0004║$ehgin240_050lt" = "She's a l'Cie.";
+"0005║$ehgin240_060sz" = "What?{Text NewLine}A {Italic}Pulse{Italic} l'Cie?";
+"0006║$ehgin240_070lt" = "The fal'Cie has her captive.";
+"0007║$ehgin240_080lt" = "But I'll find her.";
+"0008║$ehgin240_090sz" = "Is she still...?";
+"0009║$ehgin240_100sz" = "What was her Focus?";
+"0010║$ehgin240_110sz" = "When she became a l'Cie,{Text NewLine}what did the fal'Cie order her to do?";
+"0011║$ehgin240_120sz" = "It wasn't 'blow up Cocoon,'{Text NewLine}or anything like that, was it?";
+"0012║$ehgin240_130lt" = "I didn't ask.";
+"0013║$ehgin240_140sz" = "Listen to me.";
+"0014║$ehgin240_150sz" = "When a person gets cursed by a fal'Cie,{Text NewLine}they become a l'Cie.";
+"0015║$ehgin240_160sz" = "Then they get given a Focus, right?";
+"0016║$ehgin240_170sz" = "How do I put this?";
+"0017║$ehgin240_180sz" = "If they don't carry it out,{Text NewLine}l'Cie end up as one of those things.";
+"0018║$ehgin240_190sz" = "What I'm saying is, if your sister's gone that far...";
+"0019║$ehgin240_200sz" = "I mean—!";
+"0020║$ehgin240_210sz" = "She might still—!{Text NewLine}How can I—?";
+"0021║$ehgin240_220sz" = "Oh, man.";
+"0022║$ehgin240_230sz" = "There's no way to turn a l'Cie back into a human.";
+"0023║$ehgin240_240sz" = "Even if she completes her Focus,{Text NewLine}there's no changing her fate.";
+"0024║$ehgin240_250sz" = "She'll live her life as a fal'Cie slave.";
+"0025║$ehgin240_260sz" = "Don't make her suffer.";
+"0026║$ehgin240_270lt" = "Just say it!";
+"0027║$ehgin240_280lt" = "Any l'Cie...";
+"0028║$ehgin240_290lt" = "Anyone who might ever become a l'Cie{Text NewLine}should be wiped off the face of Cocoon.";
+"0029║$ehgin240_300lt" = "It's people like you that started{Text NewLine}the Purge in the first place.";

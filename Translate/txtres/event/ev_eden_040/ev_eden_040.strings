@@ -1,0 +1,6 @@
+﻿/*txtres/event/ev_eden_040/txtres_us.ztr*/
+/*0004*/
+"0000║$eeden040_000m1" = "{Italic}Say again, patrol. And speak clearly.{Italic}{End}{Escape}Marshal";
+"0001║$eeden040_010m1" = "{Italic}The armies of Pulse! They're using transgates!{Italic}{End}{Escape}Soldier";
+"0002║$eeden040_020m1" = "{Italic}Transgates? How many coming through?{Italic}{End}{Escape}Marshal";
+"0003║$eeden040_030m1" = "{Italic}Numbers unconfirmed. But it's a full-scale invasion!{Text NewLine}Eden's being overrun!{Italic}{End}{Escape}Soldier";

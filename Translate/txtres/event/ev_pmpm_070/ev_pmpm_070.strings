@@ -1,0 +1,19 @@
+﻿/*txtres/event/ev_pmpm_070/txtres_us.ztr*/
+/*0017*/
+"0000║$epmpm070_010lt" = "Take care of him.";
+"0001║$epmpm070_020sn" = "Lightning, listen to me!";
+"0002║$epmpm070_030lt" = "Get moving!";
+"0003║$epmpm070_040sn" = "No, you don't understand!{Text NewLine}Serah's all right! She'll turn back!";
+"0004║$epmpm070_050lt" = "Take care of Hope.";
+"0005║$epmpm070_055sn" = "Wait!";
+"0006║$epmpm070_060fa" = "And then there were three.";
+"0007║$epmpm070_065m1" = "They're here!{End}{Escape}GC Soldier";
+"0008║$epmpm070_066m2" = "Hold it!{End}{Escape}PSICOM Soldier";
+"0009║$epmpm070_068sn" = "Gotta go!";
+"0010║$epmpm070_070sn" = "So how've you been?";
+"0011║$epmpm070_073sn" = "Hang on!";
+"0012║$epmpm070_075m3" = "Fire! Fire!{End}{Escape}PSICOM Soldier";
+"0013║$epmpm070_076m4" = "One's down!{End}{Escape}GC Soldier";
+"0014║$epmpm070_077m5" = "{End}{Escape}GC Soldier";
+"0015║$epmpm070_080sn" = "Take cover!";
+"0016║$epmpm070_090sn" = "I got this one!";

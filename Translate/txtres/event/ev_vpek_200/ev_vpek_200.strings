@@ -1,0 +1,7 @@
+﻿/*txtres/event/ev_vpek_200/txtres_us.ztr*/
+/*0005*/
+"0000║$evpek200_010ho" = "Wait for me!";
+"0001║$evpek200_020ho" = "I'm going with you.";
+"0002║$evpek200_030lt" = "I can't babysit you anymore.";
+"0003║$evpek200_040ho" = "I can fight.{Text NewLine}I'm not afraid.";
+"0004║$evpek200_050lt" = "Great, a PSICOM hit squad.";

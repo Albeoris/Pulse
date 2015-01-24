@@ -1,0 +1,8 @@
+﻿/*txtres/event/ev_hang_150/txtres_us.ztr*/
+/*0006*/
+"0000║$ehang150_000mq" = "No more...{End}{Escape}Maqui";
+"0001║$ehang150_010lb" = "There are soldiers everywhere.";
+"0002║$ehang150_020gd" = "Yo, Boss. What's the plan?";
+"0003║$ehang150_030sn" = "Charge in, guns blazing.";
+"0004║$ehang150_040mq" = "Hey! That's not a plan!{End}{Escape}Maqui";
+"0005║$ehang150_050lb" = "Real heroes don't need plans.";

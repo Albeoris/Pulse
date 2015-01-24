@@ -1,0 +1,29 @@
+﻿/*txtres/event/ev_vpek_020/txtres_us.ztr*/
+/*0027*/
+"0000║$evpek020_010va" = "Glad that's over.";
+"0001║$evpek020_020sz" = "Man, I'm beat.";
+"0002║$evpek020_030sz" = "What, no break?";
+"0003║$evpek020_040lt" = "They're tracking us.";
+"0004║$evpek020_050sz" = "I know that.{Text NewLine}I know that, but we aren't soldiers!";
+"0005║$evpek020_060sz" = "We don't have your kind of stamina.";
+"0006║$evpek020_070lt" = "You've got enough to complain.";
+"0007║$evpek020_071sz" = "Oh, that's—!";
+"0008║$evpek020_080sz" = "Forget it!";
+"0009║$evpek020_090ho" = "I think, um...";
+"0010║$evpek020_100sz" = "I'd stick with her if I were you.";
+"0011║$evpek020_110ho" = "Later, then.";
+"0012║$evpek020_120va" = "Come on. Let's get going.";
+"0013║$evpek020_130sz" = "Get going to where, exactly?";
+"0014║$evpek020_140sz" = "The whole of Cocoon's against us.";
+"0015║$evpek020_150sz" = "No matter how far we run, there's no escape.";
+"0016║$evpek020_160sz" = "That Cie'th clock, it's still a-tickin'.";
+"0017║$evpek020_170va" = "There's still time.";
+"0018║$evpek020_180va" = "You give up too easy, old man!";
+"0019║$evpek020_190sz" = "I'm not giving up.";
+"0020║$evpek020_200sz" = "But there are some things that you just can't change.";
+"0021║$evpek020_210sz" = "A kid like you would not understand.";
+"0022║$evpek020_220va" = "Yeah, I'm a kid!";
+"0023║$evpek020_230va" = "I don't understand!";
+"0024║$evpek020_240sz" = "Well, I guess we can be fugitives together.";
+"0025║$evpek020_250sz" = "You ready?";
+"0026║$evpek020_260va" = "Ready!";

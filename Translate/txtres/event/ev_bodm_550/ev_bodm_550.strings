@@ -1,0 +1,34 @@
+﻿/*txtres/event/ev_bodm_550/txtres_us.ztr*/
+/*0032*/
+"0000║$ebodm550_100fa" = "But guess what? We grin and bear it like good l'Cie,{Text NewLine}or the fal'Cie starts making more.";
+"0001║$ebodm550_110fa" = "Like that girl the other day.";
+"0002║$ebodm550_120fa" = "It doesn't matter what our Focus is.{Text NewLine}We do it, whether we like it or not.";
+"0003║$ebodm550_130va" = "But—";
+"0004║$ebodm550_140fa" = "Say we call it quits.{Text NewLine}You think these people will let us go?";
+"0005║$ebodm550_150fa" = "They'll lynch us in the street.";
+"0006║$ebodm550_160fa" = "Listen, Vanille.";
+"0007║$ebodm550_170fa" = "We do what we've gotta do and get ourselves{Text NewLine}off this filthy world, as fast as we can.";
+"0008║$ebodm550_180fa" = "";
+"0009║$ebodm550_190va" = "Fang?";
+"0010║$ebodm550_1fa" = "{Italic}When we came out of crystal stasis,{Text NewLine}we didn't remember our Focus or what we'd done.{Italic}{End}{Escape}";
+"0011║$ebodm550_200fa" = "You get out of here first.{Text NewLine}I'll buy you some time.";
+"0012║$ebodm550_205va" = "";
+"0013║$ebodm550_210fa" = "Now, don't you worry.";
+"0014║$ebodm550_220fa" = "I'll come and find you, no matter where you go.";
+"0015║$ebodm550_225va" = "";
+"0016║$ebodm550_230va" = "Wait! Fang!";
+"0017║$ebodm550_240va" = "Fang! Please! Don't leave me!";
+"0018║$ebodm550_250fa" = "You're not gonna end up a Cie'th.";
+"0019║$ebodm550_260fa" = "You boys coming or not?{Text NewLine}Your fight's right here!";
+"0020║$ebodm550_270fa" = "{Italic}By the time I took care of 'em all,{Text NewLine}Vanille was long gone.{Italic}{End}{Escape}";
+"0021║$ebodm550_280fa" = "{Italic}After that, Raines and his Cavalry found me.{Italic}{End}{Escape}";
+"0022║$ebodm550_290fa" = "{Italic}I never stopped searching for Vanille,{Text NewLine}but I couldn't find her.{Italic}{End}{Escape}";
+"0023║$ebodm550_2fa" = "{Italic}All we could do was wander Cocoon,{Text NewLine}looking for what we'd lost.{Italic}{End}{Escape}";
+"0024║$ebodm550_300fa" = "{Italic}Her, or our Focus.{Italic}{End}{Escape}";
+"0025║$ebodm550_3m1" = "";
+"0026║$ebodm550_4va" = "Let's give up!{Text NewLine}Forget our Focus, we don't need it!";
+"0027║$ebodm550_5fa" = "We don't need it?";
+"0028║$ebodm550_6fa" = "Look, if we don't figure it out and pull it off,{Text NewLine}you're gonna be a Cie'th.";
+"0029║$ebodm550_7va" = "It's just—making a kid that young a l'Cie?";
+"0030║$ebodm550_8va" = "It's not right!";
+"0031║$ebodm550_9fa" = "Yeah, it's unfair.";
