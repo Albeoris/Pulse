@@ -35,6 +35,10 @@
         RSRight = 0x58,
         RSUp = 0x59, // RSUp, 8
         
-        DPad = 0x5A // DPad, Arrows
+        DPad = 0x5A, // DPad, Arrows
+        LStick = 0x5C, // Move character
+        NPad = 0x5D, // Rotate camera
+        LeftRightPad = 0x5F, //LeftRight Pad
+        Arrows = 0x60 
     }
 }

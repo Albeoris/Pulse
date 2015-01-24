@@ -2,7 +2,15 @@ using System.IO;
 
 namespace Pulse.Core
 {
-    public sealed class DisposableStream : Stream
+    public interface IPositionProvider
+    {
+        long GetReadPosition();
+        long GetWritePosition();
+        void SetReadPosition(long position);
+        void SetWritePosition(long position);
+    }
+
+    public sealed class DisposableStream : Stream, IPositionProvider
     {
         private readonly Stream _stream;
 
@@ -73,6 +81,26 @@ namespace Pulse.Core
         {
             get { return _stream.Position; }
             set { _stream.Position = value; }
+        }
+
+        public long GetReadPosition()
+        {
+            return _stream.GetReadPosition();
+        }
+
+        public long GetWritePosition()
+        {
+            return _stream.GetWritePosition();
+        }
+
+        public void SetReadPosition(long position)
+        {
+            _stream.SetReadPosition(position);
+        }
+
+        public void SetWritePosition(long position)
+        {
+            _stream.SetWritePosition(position);
         }
     }
 }

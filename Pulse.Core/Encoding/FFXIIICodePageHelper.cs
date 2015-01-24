@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
@@ -6,44 +6,33 @@ namespace Pulse.Core
 {
     public static class FFXIIICodePageHelper
     {
-        public static FFXIIICodePage Create(string[] values)
+        public static FFXIIICodePage CreateEuro()
         {
-            char[] chars = new char[224];
-            Dictionary<char, byte> bytes = new Dictionary<char, byte>(224);
-
-            for (byte i = 0; i < 224; i++)
-            {
-                string value = values[i];
-                chars[i] = string.IsNullOrEmpty(value) ? '\0' : value[0];
-                foreach (var ch in value)
-                    bytes[ch] = i;
-            }
-
-            return new FFXIIICodePage(chars, bytes);
+            return Create(Encoding.GetEncoding(1252));
         }
 
-        public static unsafe FFXIIICodePage CreateCyrillic()
+        public static FFXIIICodePage CreateCyrillic()
         {
-            const string cyrillic = "¡√ƒ®∆«»…Àœ”‘÷◊ÿŸ⁄€‹›ﬁﬂ·‚„‰ÊÁÈÍÎÏÌÔÚÙˆ˜¯˘˙˚¸˝˛ˇ∏";
-            Encoding ansi = Encoding.GetEncoding(1252);
+            return Create(Encoding.GetEncoding(1251));
+        }
 
-            byte[] buff = new byte[224];
-            char[] chars = new char[224];
+        public static unsafe FFXIIICodePage Create(Encoding encoding)
+        {
+            byte[] buff = new byte[256];
+            char[] chars = new char[256 + 0x2C10];
 
-            fixed (char* cyrillicPtr = cyrillic)
             fixed (byte* buffPtr = &buff[0])
             fixed (char* charsPtr = &chars[0])
             {
-                for (byte b = 0x20; b < 0x7B; b++)
-                    buffPtr[b - 0x20] = b;
+                for (int b = 0; b < 256; b++)
+                    buffPtr[b] = (byte)b;
 
-                ansi.GetChars(buffPtr, 0x7A, charsPtr, 0x7A);
-
-                for (int i = 0; i < cyrillic.Length; i++)
-                    charsPtr[0x7B + i - 0x20] = cyrillicPtr[i];
+                encoding.GetChars(buffPtr, buff.Length, charsPtr, buff.Length);
             }
 
-            Dictionary<char, byte> bytes = new Dictionary<char, byte>(chars.Length);
+            CreateAdditionalCharacters(chars);
+            
+            Dictionary<char, short> bytes = new Dictionary<char, short>(chars.Length);
             for (int i = chars.Length - 1; i >= 0; i--)
             {
                 char ch = chars[i];
@@ -52,30 +41,54 @@ namespace Pulse.Core
                     case '\0':
                         continue;
                 }
-                bytes[chars[i]] = (byte)i;
+                bytes[chars[i]] = (short)i;
             }
 
-            bytes['¿'] = bytes['A'];
-            bytes['¬'] = bytes['B'];
-            bytes['≈'] = bytes['E'];
-            bytes[' '] = bytes['K'];
-            bytes['Ã'] = bytes['M'];
-            bytes['Õ'] = bytes['H'];
-            bytes['Œ'] = bytes['O'];
-            bytes['–'] = bytes['P'];
-            bytes['—'] = bytes['C'];
-            bytes['“'] = bytes['T'];
-            bytes['’'] = bytes['X'];
-            bytes['‡'] = bytes['a'];
-            bytes['Â'] = bytes['e'];
-            bytes['Ë'] = bytes['u'];
-            bytes['Ó'] = bytes['o'];
-            bytes[''] = bytes['p'];
-            bytes['Ò'] = bytes['c'];
-            bytes['Û'] = bytes['y'];
-            bytes['ı'] = bytes['x'];
-
             return new FFXIIICodePage(chars, bytes);
+        }
+
+        private static void CreateAdditionalCharacters(char[] chars)
+        {
+            chars[256] = 's'; // Spanish
+
+            chars[FFXIIITextDecoder.ValueToIndex(0x8141)] = 'ÔΩ§';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8142)] = 'ÔΩ°';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8145)] = 'ÔΩ•';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8146)] = 'Ô∏ì';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8148)] = 'Ô∏ñ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8149)] = 'Ô∏ï';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8151)] = 'Ôºø';
+            chars[FFXIIITextDecoder.ValueToIndex(0x815B)] = '‚Äî';
+            chars[FFXIIITextDecoder.ValueToIndex(0x815C)] = '‚Äï';
+            chars[FFXIIITextDecoder.ValueToIndex(0x815E)] = 'Ôºè';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8160)] = '„Äú';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8163)] = '‚Ä¶';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8169)] = 'Ôºà';
+            chars[FFXIIITextDecoder.ValueToIndex(0x816A)] = 'Ôºâ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8173)] = '„Ää';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8174)] = '„Äã';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8175)] = '„Äå';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8176)] = '„Äç';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8179)] = '„Äê';
+            chars[FFXIIITextDecoder.ValueToIndex(0x817A)] = '„Äë';
+            chars[FFXIIITextDecoder.ValueToIndex(0x817B)] = 'Ôºã';
+            chars[FFXIIITextDecoder.ValueToIndex(0x817C)] = 'Ôºç';
+            chars[FFXIIITextDecoder.ValueToIndex(0x817E)] = '‚úï';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8181)] = 'Ôºù';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8183)] = 'Ôºú';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8184)] = 'Ôºû';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8193)] = 'ÔºÖ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x8195)] = 'ÔºÜ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x819A)] = '‚òÖ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x819B)] = '‚óØ';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81A0)] = '‚¨ú';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81A2)] = '‚ñ≥';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81A6)] = '‚Åú';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81A8)] = '‚Üí';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81A9)] = '‚Üê';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81AA)] = '‚Üë';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81AB)] = '‚Üì';
+            chars[FFXIIITextDecoder.ValueToIndex(0x81F4)] = '‚ô¨';
         }
 
         public static void ToXml(FFXIIICodePage codepage, XmlElement node)
@@ -89,11 +102,11 @@ namespace Pulse.Core
                 charNode.SetChar("Char", ch);
             }
 
-            foreach (KeyValuePair<char, byte> pair in codepage.Bytes)
+            foreach (KeyValuePair<char, short> pair in codepage.Codes)
             {
                 XmlElement byteNode = bytesNode.CreateChildElement("Entry");
                 byteNode.SetChar("Char", pair.Key);
-                byteNode.SetByte("Byte", pair.Value);
+                byteNode.SetInt16("Byte", pair.Value);
             }
         }
 
@@ -101,10 +114,10 @@ namespace Pulse.Core
         {
             XmlElement charsNode = node.GetChildElement("Chars");
             XmlElement bytesNode = node.GetChildElement("Bytes");
-            if (charsNode.ChildNodes.Count != 224) throw Exceptions.CreateException("ÕÂ‚ÂÌÓÂ ˜ËÒÎÓ ‰Ó˜ÂÌËı ˝ÎÂÏÂÌÚÓ‚ ÛÁÎ‡ '{0}': {1}. ŒÊË‰‡ÂÚÒˇ: 224", charsNode.Name, charsNode.ChildNodes.Count);
+            if (charsNode.ChildNodes.Count != 11536) throw Exceptions.CreateException("–ù–µ–≤–µ—Ä–Ω–æ–µ —á–∏—Å–ª–æ –¥–æ—á–µ—Ä–Ω–∏—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ —É–∑–ª–∞ '{0}': {1}. –û–∂–∏–¥–∞–µ—Ç—Å—è: 11536", charsNode.Name, charsNode.ChildNodes.Count);
 
-            char[] chars = new char[224];
-            Dictionary<char, byte> bytes = new Dictionary<char, byte>(224);
+            char[] chars = new char[256 + 0x2C10];
+            Dictionary<char, short> bytes = new Dictionary<char, short>(256);
 
             for (int i = 0; i < chars.Length; i++)
             {
@@ -113,7 +126,7 @@ namespace Pulse.Core
             }
 
             foreach (XmlElement byteNode in bytesNode)
-                bytes[byteNode.GetChar("Char")] = byteNode.GetByte("Byte");
+                bytes[byteNode.GetChar("Char")] = byteNode.GetInt16("Byte");
 
             return new FFXIIICodePage(chars, bytes);
         }

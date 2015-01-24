@@ -1,7 +1,8 @@
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.WindowsAPICodePack.Dialogs;
+using Pulse.Core;
 using Pulse.Core.Components;
 using Pulse.FS;
 
@@ -9,50 +10,50 @@ namespace Pulse.UI
 {
     public sealed class UiGameFileCommanderExtractCommand : ICommand
     {
-        private readonly UiTreeView _commandTreeView;
+        private readonly Func<UiArchives> _archivesProvider;
 
-        public UiGameFileCommanderExtractCommand(UiTreeView treeView)
+        public event EventHandler CanExecuteChanged;
+
+        public UiGameFileCommanderExtractCommand(Func<UiArchives> archivesProvider)
         {
-            _commandTreeView = treeView;
-            _commandTreeView.SelectedItemChanged += SelectedItemChanged;
+            _archivesProvider = Exceptions.CheckArgumentNull(archivesProvider, "archivesProvider");
         }
 
         public bool CanExecute(object parameter)
         {
-            return _commandTreeView.SelectedItem != null;
+            return true;
         }
 
         public void Execute(object parameter)
         {
             try
             {
-                UiArchiveNode item = _commandTreeView.SelectedItem as UiArchiveNode;
-                if (item == null)
+                UiArchives archives = _archivesProvider();
+                if (archives == null)
                     return;
 
-                Wildcard wildcard = null;
-                if (item.Childs.Length > 0)
+                UiGameFileCommanderSettingsWindow settingsDlg = new UiGameFileCommanderSettingsWindow(true);
+                if (settingsDlg.ShowDialog() != true)
+                    return;
+
+                Wildcard wildcard = new Wildcard(settingsDlg.Wildcard, false);
+                bool convert = settingsDlg.Convert;
+                string targetDir = InteractionService.WorkingLocation.Provide().ProvideExtractedDirectory();
+
+                foreach (IArchiveListing listing in archives.EnumerateCheckedEntries(wildcard))
                 {
-                    UiInputWindow dlg = new UiInputWindow("Укажите маску поиска...", "*");
-                    if (dlg.ShowDialog() != true)
-                        return;
-
-                    wildcard = new Wildcard(dlg.Answer);
+                    XgrArchiveListing xgrArchiveListing = listing as XgrArchiveListing;
+                    if (xgrArchiveListing != null)
+                    {
+                        XgrArchiveExtractor extractor = new XgrArchiveExtractor(xgrArchiveListing, targetDir, entry => CreateXgrEntryExtractor(entry, convert));
+                        UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
+                    }
+                    else
+                    {
+                        ArchiveExtractor extractor = new ArchiveExtractor((ArchiveListing)listing, targetDir, entry => CreateEntryExtractor(entry, convert));
+                        UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
+                    }
                 }
-
-                string targetDir;
-                using (CommonOpenFileDialog dlg = new CommonOpenFileDialog("Выберите каталог..."))
-                {
-                    dlg.IsFolderPicker = true;
-                    if (dlg.ShowDialog() != CommonFileDialogResult.Ok)
-                        return;
-
-                    targetDir = dlg.FileName;
-                }
-
-                ArchiveListing listing = item.CreateChildListing(wildcard);
-                ArchiveExtractor extractor = new ArchiveExtractor(listing, targetDir);
-                UiProgressWindow.Execute("Распаковка файлов", extractor, extractor.Extract, UiProgressUnits.Bytes);
             }
             catch (Exception ex)
             {
@@ -60,13 +61,32 @@ namespace Pulse.UI
             }
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private IArchiveEntryExtractor CreateEntryExtractor(ArchiveEntry entry, bool convert)
         {
-            EventHandler h = CanExecuteChanged;
-            if (h != null)
-                h.Invoke(sender, e);
+            if (!convert)
+                return ArchiveEntryExtractorUnpack.Instance;
+
+            switch (PathEx.GetMultiDotComparableExtension(entry.Name))
+            {
+                case ".ztr":
+                    return ArchiveEntryExtractorZtrToStrings.Instance;
+            }
+
+            return ArchiveEntryExtractorUnpack.Instance;
+        }
+
+        private IXgrArchiveEntryExtractor CreateXgrEntryExtractor(WpdEntry entry, bool convert)
+        {
+            if (!convert)
+                return XgrArchiveEntryExtractorUnpack.Instance;
+
+            switch (entry.Extension.ToLower())
+            {
+                case "txbh":
+                    return XgrArchiveEntryExtractorTxbhToDds.Instance;
+            }
+
+            return XgrArchiveEntryExtractorUnpack.Instance;
         }
     }
 }

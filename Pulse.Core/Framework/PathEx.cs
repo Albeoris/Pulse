@@ -17,5 +17,18 @@ namespace Pulse.Core
 
             return Path.Combine(directory, newName);
         }
+
+        public static string GetMultiDotComparableExtension(string filePath)
+        {
+            string fileName = Path.GetFileName(filePath);
+            if (string.IsNullOrEmpty(fileName))
+                return string.Empty;
+
+            int index = fileName.IndexOf('.');
+            if (index < 0)
+                return string.Empty;
+
+            return fileName.Substring(index).ToLower();
+        }
     }
 }

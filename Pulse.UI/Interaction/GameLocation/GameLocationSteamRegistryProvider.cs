@@ -25,12 +25,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return "Из реестр (Steam)"; }
+            get { return Lang.InfoProvider.GameLocation.SteamRegistryTitle; }
         }
 
         public string Description
         {
-            get { return "Получает информацию из реестра Windows, используя данные Steam."; }
+            get { return Lang.InfoProvider.GameLocation.SteamRegistryDescription; }
         }
     }
 }

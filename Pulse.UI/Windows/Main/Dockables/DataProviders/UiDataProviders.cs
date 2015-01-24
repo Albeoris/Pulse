@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Pulse.Core;
 
 namespace Pulse.UI
 {
@@ -13,7 +14,7 @@ namespace Pulse.UI
         {
             #region Construct
 
-            Header = "Источники данных";
+            Header = Lang.Dockable.DataSources.Header;
 
             _listView = UiListViewFactory.Create();
             _listView.ItemTemplate = CreateTemplate();
@@ -30,7 +31,7 @@ namespace Pulse.UI
         private Style CreateNodeStyle()
         {
             Style style = new Style();
-            style.Setters.Add(new Setter(ContextMenuProperty, new Binding("ContextMenu") {Mode = BindingMode.TwoWay}));
+            style.Setters.Add(new Setter(ContextMenuProperty, new Binding("ContextMenu") {Mode = BindingMode.OneWay}));
             return style;
         }
 
@@ -66,7 +67,8 @@ namespace Pulse.UI
                 {
                     UiDataProviderNode.Create(InteractionService.Configuration),
                     UiDataProviderNode.Create(InteractionService.GameLocation),
-                    UiDataProviderNode.Create(InteractionService.WorkingLocation)
+                    UiDataProviderNode.Create(InteractionService.WorkingLocation),
+                    UiDataProviderNode.Create(InteractionService.TextEncoding)
                 };
             }
             catch (Exception ex)

@@ -7,11 +7,11 @@ namespace Pulse.FS
 {
     public sealed class ZtrFilePacker
     {
-        private readonly Encoding _encoding;
+        private readonly FFXIIITextEncoding _encoding;
         private readonly Stream _output;
         private readonly BinaryWriter _bw;
 
-        public ZtrFilePacker(Stream output, Encoding encoding)
+        public ZtrFilePacker(Stream output, FFXIIITextEncoding encoding)
         {
             _encoding = encoding;
             _output = output;

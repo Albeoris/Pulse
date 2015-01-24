@@ -7,10 +7,12 @@ namespace Pulse.FS
     public sealed class ZtrTextReader
     {
         private readonly Stream _input;
+        private readonly IZtrFormatter _formatter;
 
-        public ZtrTextReader(Stream input)
+        public ZtrTextReader(Stream input, IZtrFormatter formatter)
         {
             _input = input;
+            _formatter = formatter;
         }
 
         public ZtrFileEntry[] Read(out string name)
@@ -18,16 +20,20 @@ namespace Pulse.FS
             using (StreamReader sr = new StreamReader(_input, Encoding.UTF8, true, 4096, true))
             {
                 name = sr.ReadLine();
-                int count = int.Parse(sr.ReadLine(), CultureInfo.InvariantCulture);
+                if (_formatter is StringsZtrFormatter) // TEMP
+                    name = name.Substring(2, name.Length - 4);
+
+                string countStr = sr.ReadLine();
+                if (_formatter is StringsZtrFormatter) // TEMP
+                    countStr = countStr.Substring(2, countStr.Length - 4);
+                int count = int.Parse(countStr, CultureInfo.InvariantCulture);
                 ZtrFileEntry[] result = new ZtrFileEntry[count];
 
                 for (int i = 0; i < count; i++)
                 {
-                    ZtrFileEntry entry = new ZtrFileEntry();
-                    string[] line = sr.ReadLine().Split('║');
-                    entry.Key = line[1];
-                    entry.Value = line[2];
-                    result[int.Parse(line[0], CultureInfo.InvariantCulture)] = entry;
+                    int index;
+                    ZtrFileEntry entry = _formatter.Read(sr, out index);
+                    result[index] = entry;
                 }
 
                 return result;

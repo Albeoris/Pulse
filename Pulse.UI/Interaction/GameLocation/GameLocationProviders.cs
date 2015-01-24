@@ -1,9 +1,11 @@
-﻿namespace Pulse.UI
+﻿using Pulse.Core;
+
+namespace Pulse.UI
 {
     public sealed class GameLocationProviders : InfoProviderGroup<GameLocationInfo>
     {
         public GameLocationProviders()
-            :base("Каталог игры", "Местоположении игровых файлов.")
+            :base(Lang.InfoProvider.GameLocation.Title, Lang.InfoProvider.GameLocation.Description)
         {
             Capacity = 3;
             Add(new GameLocationConfigurationProvider());

@@ -1,3 +1,5 @@
+using Pulse.Core;
+
 namespace Pulse.UI
 {
     public sealed class WorkingLocationConfigurationProvider : IInfoProvider<WorkingLocationInfo>
@@ -11,12 +13,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return "Настройки"; }
+            get { return Lang.InfoProvider.WorkingLocation.ConfigurationTitle; }
         }
 
         public string Description
         {
-            get { return "Использует информацию, сохранённую в настроечном файле."; }
+            get { return Lang.InfoProvider.WorkingLocation.ConfigurationDescription; }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Pulse.FS
+﻿using System.Collections.Generic;
+
+namespace Pulse.FS
 {
     public sealed class ZtrFileEntry
     {

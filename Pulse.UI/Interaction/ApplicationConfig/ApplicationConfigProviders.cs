@@ -1,9 +1,11 @@
-﻿namespace Pulse.UI.Interaction
+﻿using Pulse.Core;
+
+namespace Pulse.UI.Interaction
 {
     public sealed class ApplicationConfigProviders : InfoProviderGroup<ApplicationConfigInfo>
     {
         public ApplicationConfigProviders()
-            : base("Настройки", "Различные настройки приложения.")
+            : base(Lang.InfoProvider.ApplicationConfig.Title, Lang.InfoProvider.ApplicationConfig.Description)
         {
             Capacity = 2;
             Add(new ApplicationConfigFileProvider());

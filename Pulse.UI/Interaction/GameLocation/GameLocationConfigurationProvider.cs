@@ -1,3 +1,5 @@
+using Pulse.Core;
+
 namespace Pulse.UI
 {
     public sealed class GameLocationConfigurationProvider : IInfoProvider<GameLocationInfo>
@@ -11,12 +13,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return "Из настроек"; }
+            get { return Lang.InfoProvider.GameLocation.ConfigurationTitle; }
         }
 
         public string Description
         {
-            get { return "Использует информацию, сохранённую в настроечном файле."; }
+            get { return Lang.InfoProvider.GameLocation.ConfigurationDescription; }
         }
     }
 }

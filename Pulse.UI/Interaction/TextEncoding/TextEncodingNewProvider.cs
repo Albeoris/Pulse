@@ -1,3 +1,5 @@
+using Pulse.Core;
+
 namespace Pulse.UI
 {
     public sealed class TextEncodingNewProvider : IInfoProvider<TextEncodingInfo>
@@ -9,12 +11,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return "Новая"; }
+            get { return Lang.InfoProvider.TextEncoding.Title; }
         }
 
         public string Description
         {
-            get { return "Создает стандартный набор кодировок."; }
+            get { return Lang.InfoProvider.TextEncoding.Description; }
         }
     }
 }

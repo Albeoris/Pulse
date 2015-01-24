@@ -6,11 +6,21 @@ namespace Pulse.UI
 {
     public sealed class WorkingLocationInfo
     {
+        private const string ExtractedDirectoryName = "Extracted";
+
         public readonly string RootDirectory;
 
         public WorkingLocationInfo(string rootDirectory)
         {
             RootDirectory = rootDirectory;
+        }
+
+        public string ProvideExtractedDirectory()
+        {
+            string path = Path.Combine(RootDirectory, ExtractedDirectoryName);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            return path;
         }
 
         public void Validate()

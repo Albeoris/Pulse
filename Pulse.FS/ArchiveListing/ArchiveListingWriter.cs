@@ -5,24 +5,24 @@ namespace Pulse.FS
 {
     public sealed class ArchiveListingWriter
     {
-        public static void Write(ArchiveListing listing, ArchiveAccessor accessor)
+        public static void Write(ArchiveListing listing)
         {
-            ArchiveListingWriter writer = new ArchiveListingWriter(listing, accessor);
+            ArchiveListingWriter writer = new ArchiveListingWriter(listing);
             writer.Write();
         }
 
         private readonly ArchiveListing _listing;
         private readonly ArchiveAccessor _accessor;
 
-        private ArchiveListingWriter(ArchiveListing listing, ArchiveAccessor accessor)
+        private ArchiveListingWriter(ArchiveListing listing)
         {
             _listing = listing;
-            _accessor = accessor;
+            _accessor = _listing.Accessor;
         }
 
         public void Write()
         {
-            using (Stream output = _accessor.OpenCapacityListing())
+            using (MemoryStream headerBuff = new MemoryStream(32768))
             using (MemoryStream textBuff = new MemoryStream(32768))
             {
                 ArchiveListingBlockInfo[] blocksInfo;
@@ -45,12 +45,20 @@ namespace Pulse.FS
                 header.BlockOffset = entriesInfo.Length * 8 + 12;
                 header.InfoOffset = header.BlockOffset + blocksInfo.Length * 12;
 
-                output.WriteStruct(header);
+                headerBuff.WriteStruct(header);
                 foreach (ArchiveListingEntryInfo entry in entriesInfo)
-                    output.WriteStruct(entry);
+                    headerBuff.WriteStruct(entry);
                 foreach (ArchiveListingBlockInfo block in blocksInfo)
-                    output.WriteStruct(block);
-                textBuff.CopyTo(output, blocksSize, buff);
+                    headerBuff.WriteStruct(block);
+
+                int hederSize = (int)headerBuff.Length;
+                headerBuff.Position = 0;
+
+                using (Stream output = _accessor.RecreateListing(hederSize + blocksSize))
+                {
+                    headerBuff.CopyTo(output, hederSize, buff);
+                    textBuff.CopyTo(output, blocksSize, buff);
+                }
             }
         }
     }

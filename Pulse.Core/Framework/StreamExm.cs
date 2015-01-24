@@ -45,7 +45,7 @@ namespace Pulse.Core
             return buff;
         }
 
-        public static void CopyTo(this Stream input, Stream output, int size, byte[] buff, bool flush = true)
+        public static void CopyTo(this Stream input, Stream output, int size, byte[] buff, Action<long> progress = null, bool flush = true)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
@@ -74,6 +74,7 @@ namespace Pulse.Core
             {
                 output.Write(buff, 0, read);
                 left -= read;
+                progress.NullSafeInvoke(read);
             }
 
             if (left != 0)
@@ -104,19 +105,7 @@ namespace Pulse.Core
             return result;
         }
 
-        public static T[] ReadStructsByTotalSize<T>(this Stream input, long totalSize) where T:new()
-        {
-            if (input == null)
-                throw new ArgumentNullException("input");
-
-            int size = Marshal.SizeOf(TypeCache<T>.Type);
-            if (totalSize % size != 0)
-                throw new ArgumentException("totalSize");
-            
-            return ReadStructs<T>(input, (int)(totalSize / size));
-        }
-
-        public static T ReadStruct<T>(this Stream input) where T:new()
+        public static T ReadStruct<T>(this Stream input) where T : new()
         {
             if (input == null)
                 throw new ArgumentNullException("input");
@@ -124,9 +113,9 @@ namespace Pulse.Core
             return ReadStructs<T>(input, 1)[0];
         }
 
-        public static SafeHGlobalHandle ReadBuff(this Stream input, int size)
+        public static SafeUnmanagedArray ReadBuff(this Stream input, int size)
         {
-            SafeHGlobalHandle handle = new SafeHGlobalHandle(size);
+            SafeUnmanagedArray handle = new SafeUnmanagedArray(size);
 
             try
             {
@@ -145,7 +134,7 @@ namespace Pulse.Core
             return handle;
         }
 
-        public static void Read(this Stream input, SafeHGlobalHandle buffer, long offset, int length)
+        public static void Read(this Stream input, SafeUnmanagedArray buffer, long offset, int length)
         {
             try
             {
@@ -160,6 +149,32 @@ namespace Pulse.Core
                 buffer.Dispose();
                 throw;
             }
+        }
+
+        public static T ReadContent<T>(this Stream input) where T : IStreamingContent, new()
+        {
+            T result = new T();
+            result.ReadFromStream(input);
+            return result;
+        }
+
+        public static T[] ReadContent<T>(this Stream input, int count) where T : IStreamingContent, new()
+        {
+            T[] result = new T[count];
+            for (int i = 0; i < count; i++)
+                result[i] = ReadContent<T>(input);
+            return result;
+        }
+
+        public static void WriteContent<T>(this Stream output, T item) where T : IStreamingContent
+        {
+            item.WriteToStream(output);
+        }
+
+        public static void WriteContent<T>(this Stream output, T[] items) where T : IStreamingContent
+        {
+            foreach (IStreamingContent item in items)
+                item.WriteToStream(output);
         }
 
         public static void WriteStruct(this Stream output, object pack)
@@ -196,5 +211,39 @@ namespace Pulse.Core
         {
             return new StreamSegment(output, offset, size < 0 ? output.Length - offset : size);
         }
+
+        #region IPositionProvider
+
+        public static long GetReadPosition(this Stream self)
+        {
+            IPositionProvider baseProvider = self as IPositionProvider;
+            return baseProvider == null ? self.Position : baseProvider.GetReadPosition();
+        }
+
+        public static long GetWritePosition(this Stream self)
+        {
+            IPositionProvider baseProvider = self as IPositionProvider;
+            return baseProvider == null ? self.Position : baseProvider.GetWritePosition();
+        }
+
+        public static void SetReadPosition(this Stream self, long value)
+        {
+            IPositionProvider baseProvider = self as IPositionProvider;
+            if (baseProvider == null)
+                self.Position = value;
+            else
+                baseProvider.SetReadPosition(value);
+        }
+
+        public static void SetWritePosition(this Stream self, long value)
+        {
+            IPositionProvider baseProvider = self as IPositionProvider;
+            if (baseProvider == null)
+                self.Position = value;
+            else
+                baseProvider.SetWritePosition(value);
+        }
+
+        #endregion
     }
 }

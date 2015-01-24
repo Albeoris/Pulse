@@ -52,16 +52,7 @@ namespace Pulse.FS
         {
             using (DisposableStack stack = new DisposableStack(2))
             {
-                Stream input = stack.Add(accessor.OpenListing());
-                if (accessor.ListingEntry.Size != accessor.ListingEntry.UncompressedSize)
-                {
-                    SafeHGlobalHandle buffer = stack.Add(new SafeHGlobalHandle((int)accessor.ListingEntry.UncompressedSize));
-                    Stream output = stack.Add(buffer.OpenStream(FileAccess.ReadWrite));
-                    ArchiveEntryExtractor extractor = new ArchiveEntryExtractor(accessor.ListingEntry, input, output);
-                    extractor.Extract();
-                    output.Position = 0;
-                    input = output;
-                }
+                Stream input = stack.Add(accessor.ExtractListing());
 
                 ArchiveListingHeader header = input.ReadStruct<ArchiveListingHeader>();
                 ArchiveListingEntryInfo[] entries = input.ReadStructs<ArchiveListingEntryInfo>(header.EntriesCount);
@@ -104,16 +95,16 @@ namespace Pulse.FS
                     long compressedSize = long.Parse(info[2], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
                     string name = info[3];
 
-                    ArchiveListingEntry entry = new ArchiveListingEntry(name, sector, compressedSize, uncompressedSize)
+                    ArchiveEntry entry = new ArchiveEntry(name, sector, compressedSize, uncompressedSize)
                     {
                         UnknownNumber = entryInfo.UnknownNumber,
                         UnknownValue = entryInfo.UnknownValue
                     };
                     result.Add(entry);
 
-                    if (name.StartsWith("zone/filelist"))
+                    if (_zonesBinaryDirectory != null && name.StartsWith("zone/filelist"))
                     {
-                        string binaryName = Path.Combine(_zonesBinaryDirectory, String.Format("zone/white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
+                        string binaryName = Path.Combine(_zonesBinaryDirectory, String.Format("white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
                         _accessors.Add(accessor.CreateChild(binaryName, entry));
                     }
                 }

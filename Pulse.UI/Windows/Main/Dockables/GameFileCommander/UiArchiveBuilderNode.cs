@@ -6,9 +6,9 @@ namespace Pulse.UI
 {
     public sealed class UiArchiveBuilderNode
     {
-        public string Name;
-        public ArchiveListing Listing;
-        public ArchiveListingEntry Entry;
+        public readonly string Name;
+        public readonly IArchiveListing Listing;       
+        public readonly IArchiveEntry Entry;           
         public readonly Dictionary<string, UiArchiveBuilderNode> Childs = new Dictionary<string, UiArchiveBuilderNode>();
 
         public UiArchiveBuilderNode(string name)
@@ -16,13 +16,13 @@ namespace Pulse.UI
             Name = name;
         }
 
-        public UiArchiveBuilderNode(string name, ArchiveListing listing)
+        public UiArchiveBuilderNode(string name, IArchiveListing listing)
             : this(name)
         {
             Listing = listing;
         }
 
-        public UiArchiveBuilderNode(string name, ArchiveListingEntry entry)
+        public UiArchiveBuilderNode(string name, IArchiveEntry entry)
             : this(name)
         {
             Entry = entry;

@@ -1,14 +1,20 @@
-﻿namespace Pulse.UI
+﻿using Pulse.Core;
+
+namespace Pulse.UI
 {
     public sealed class TextEncodingProviders : InfoProviderGroup<TextEncodingInfo>
     {
         public TextEncodingProviders()
-            :base("Кодировки", "Кодировки для распаковки и упаковки игровых текстов.")
+            :base(Lang.InfoProvider.TextEncoding.Title, Lang.InfoProvider.TextEncoding.Description)
         {
-            Capacity = 2;
-            Add(new TextEncodingConfigurationProvider());
+            Capacity = 3;
+
+            TextEncodingUserProvider userProvider = new TextEncodingUserProvider();
+            InfoProvided += userProvider.EncodingProvided;
+
+            Add(new TextEncodingWorkingLocationProvider());
             Add(new TextEncodingNewProvider());
-            //Add(new TextEncodingUserProvider());
+            Add(userProvider);
         }
     }
 }

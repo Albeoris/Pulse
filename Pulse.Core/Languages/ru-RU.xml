@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+
+  <Measurement
+    Elapsed="Прошло"
+    Remaining="Осталось"
+    SecondAbbr="сек"
+    ByteAbbr="Б"
+    KByteAbbr="КБ"
+    MByteAbbr="МБ"
+    GByteAbbr="ГБ"
+    TByteAbbr="ТБ"
+    PByteAbbr="ПБ"
+    EByteAbbr="ЭБ"
+    />
+  
+  <Button
+    OK="OK"
+    Cancel="Отмена"
+    Continue="Продолжить"
+    />
+
+  <InfoProvider>
+    
+    <ApplicationConfig
+      Title="Настройки"
+      Description="Различные настройки приложения."
+      NewTitle="Новый"
+      NewDescription="Инициализирует все настройки значениями по умолчанию."
+      FileTitle="Из файла"
+      FileDescription="Считывает настройки приложения из файла {0}"
+    />
+
+    <GameLocation
+      Title="Каталог игры"
+      Description="Местоположении игровых файлов."
+      ConfigurationTitle="Из настроек"
+      ConfigurationDescription="Использует информацию, сохранённую в настроечном файле."
+      SteamRegistryTitle="Из реестр (Steam)"
+      SteamRegistryDescription="Получает информацию из реестра Windows, используя данные Steam."
+      UserTitle="Ручной выбор"
+      UserDescription="Позволяет вручную выбрать каталог, в который была установлена игра."
+    />
+
+    <WorkingLocation
+      Title="Рабочий каталог"
+      Description="Директория для хранения результатов работы приложения."
+      ConfigurationTitle="Из настроек"
+      ConfigurationDescription="Использует информацию, сохранённую в настроечном файле."
+      UserTitle="Ручной выбор"
+      UserDescription="Позволяет вручную выбрать рабочий каталог."
+    />
+
+    <TextEncoding
+      Title="Кодировки"
+      Description="Кодировки для распаковки и упаковки игровых текстов."
+      NewTitle="Новая"
+      NewDescription="Инициализирует стандартную кодировку на основе Windows-1252 кодировки."
+      WorkingLocationTitle="Из рабочего каталога"
+      WorkingLocationDescription="Считывает кодировку из рабочего каталога."
+      UserTitle="Редактировать"
+      UserDescription="Изменить текущую кодировку."
+    />
+    
+  </InfoProvider>
+
+  <Dockable>
+    
+    <DataSources Header="Источники данных"/>
+    
+    <GameFileCommander
+      Header="Ресурсы игры"
+      Unpack="Распаковать"
+      Pack="Упаковать"
+      />
+    
+  </Dockable>
+
+</Data>

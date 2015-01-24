@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Pulse.Core;
 using zlib;
 
@@ -15,18 +17,36 @@ namespace Pulse.FS
             return buff;
         }
 
-        public static void Uncompress(Stream input, Stream output, int uncompressedSize, Action<long> uncompressed = null)
+        public static async Task UncompressAndDisposeSourceAsync(Stream input, Stream output, int uncompressedSize, CancellationToken cancelationToken, Action<long> uncompressed = null)
+        {
+            try
+            {
+                if (cancelationToken.IsCancellationRequested)
+                    return;
+                
+                byte[] buff = new byte[Math.Min(32 * 1024, uncompressedSize)];
+                await Task.Run(() => Uncompress(input, output, uncompressedSize, buff, cancelationToken, uncompressed));
+            }
+            finally
+            {
+                input.SafeDispose();
+            }
+        }
+
+        public static void Uncompress(Stream input, Stream output, int uncompressedSize, byte[] buff, CancellationToken cancelationToken, Action<long> uncompressed = null)
         {
             Exceptions.CheckArgumentNull(input, "input");
             Exceptions.CheckArgumentNull(output, "output");
             Exceptions.CheckArgumentOutOfRangeException(uncompressedSize, "uncompressedSize", 0, int.MaxValue);
 
-            byte[] buff = new byte[Math.Min(32 * 1024, uncompressedSize)];
             ZInputStream reader = new ZInputStream(input);
 
             int readed;
             while (uncompressedSize > 0 && (readed = reader.read(buff, 0, Math.Min(buff.Length, uncompressedSize))) > 0)
             {
+                if (cancelationToken.IsCancellationRequested)
+                    return;
+
                 uncompressedSize -= readed;
                 output.Write(buff, 0, readed);
                 uncompressed.NullSafeInvoke(readed);
@@ -46,7 +66,7 @@ namespace Pulse.FS
             ZOutputStream writer = new ZOutputStream(output, 6);
 
             long position = output.Position;
-            
+
             int readed;
             while (uncompressedSize > 0 && (readed = input.Read(buff, 0, Math.Min(buff.Length, uncompressedSize))) > 0)
             {
@@ -78,7 +98,7 @@ namespace Pulse.FS
                 throw new Exception("Неожиданный конец потока.");
         }
 
-        public static Stream ReplaceEntryContent(Stream input, ArchiveListingEntry entry, out int compressedSize)
+        public static Stream ReplaceEntryContent(Stream input, ArchiveEntry entry, out int compressedSize)
         {
             entry.UncompressedSize = (int)input.Length;
             MemoryStream output = new MemoryStream((int)entry.UncompressedSize);

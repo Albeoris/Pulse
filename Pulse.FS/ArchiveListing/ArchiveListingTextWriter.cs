@@ -28,9 +28,7 @@ namespace Pulse.FS
                     sw.AutoFlush = true;
                     for (int i = 0; i < listing.Count; i++)
                     {
-                        if (i == 14106)
-                            Console.WriteLine();
-                        ArchiveListingEntry entry = listing[i];
+                        ArchiveEntry entry = listing[i];
                         entriesInfo[i] = new ArchiveListingEntryInfo {BlockNumber = (short)(ms.Position / 8192)};
 
                         if (blockNumber != entriesInfo[i].BlockNumber)

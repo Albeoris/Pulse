@@ -10,21 +10,23 @@ namespace Pulse.FS
     {
         private readonly ArchiveListing _listing;
         private readonly string _targetDir;
-
+        private readonly Func<ArchiveEntry, IArchiveEntryExtractor> _entryExtractorFactory;
+        
         public event Action<long> ProgressTotalChanged;
         public event Action<long> ProgressIncrement;
 
-        public ArchiveExtractor(ArchiveListing listing, string targetDir)
+        public ArchiveExtractor(ArchiveListing listing, string targetDir, Func<ArchiveEntry, IArchiveEntryExtractor> entryExtractorFactory)
         {
             _listing = Exceptions.CheckArgumentNull(listing, "listing");
             _targetDir = Exceptions.CheckDirectoryNotFoundException(targetDir);
+            _entryExtractorFactory = Exceptions.CheckArgumentNull(entryExtractorFactory, "entryExtractorFactory");
         }
 
         public void Extract()
         {
             long totalSize = 0;
             HashSet<string> paths = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            foreach (ArchiveListingEntry entry in _listing)
+            foreach (ArchiveEntry entry in _listing)
             {
                 totalSize += entry.UncompressedSize;
                 paths.Add(Path.GetDirectoryName(entry.Name));
@@ -37,16 +39,10 @@ namespace Pulse.FS
             Parallel.ForEach(_listing, Extract);
         }
 
-        private void Extract(ArchiveListingEntry entry)
+        private void Extract(ArchiveEntry entry)
         {
-            string fullPath = Path.Combine(_targetDir, entry.Name);
-            using (Stream input = _listing.Accessor.OpenBinary(entry))
-            using (FileStream output = File.Create(fullPath, 32768))
-            {
-                ArchiveEntryExtractor entryExtractor = new ArchiveEntryExtractor(entry, input, output);
-                entryExtractor.ProgressIncrement += ProgressIncrement;
-                entryExtractor.Extract();
-            }
+            IArchiveEntryExtractor entryExtractor = _entryExtractorFactory(entry);
+            entryExtractor.Extract(_listing.Accessor, entry, _targetDir, ProgressIncrement);
         }
     }
 }

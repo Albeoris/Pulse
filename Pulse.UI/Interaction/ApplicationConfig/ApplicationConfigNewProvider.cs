@@ -1,3 +1,5 @@
+using Pulse.Core;
+
 namespace Pulse.UI.Interaction
 {
     public sealed class ApplicationConfigNewProvider : IInfoProvider<ApplicationConfigInfo>
@@ -9,11 +11,11 @@ namespace Pulse.UI.Interaction
 
         public string Title
         {
-            get { return "Новый"; }
+            get { return Lang.InfoProvider.ApplicationConfig.NewTitle; }
         }
 
         public string Description {
-            get { return "Инициализирует все настройки значениями по умолчанию."; }
+            get { return Lang.InfoProvider.ApplicationConfig.NewDescription; }
         }
     }
 }

@@ -56,17 +56,15 @@ namespace Pulse.Core
             switch (code)
             {
                 case FFXIIITextTagCode.End:
-                case FFXIIITextTagCode.Question:
+                case FFXIIITextTagCode.Escape:
                 case FFXIIITextTagCode.Italic:
-                case FFXIIITextTagCode.Separator:
+                case FFXIIITextTagCode.Many:
                 case FFXIIITextTagCode.Article:
                 case FFXIIITextTagCode.ArticleMany:
                     left++;
                     return new FFXIIITextTag(code);
                 case FFXIIITextTagCode.Icon:
                     return new FFXIIITextTag(code, (FFXIIITextTagIcon)bytes[offset++]);
-                case FFXIIITextTagCode.Var81:
-                case FFXIIITextTagCode.Var85:
                 case FFXIIITextTagCode.VarF4:
                 case FFXIIITextTagCode.VarF6:
                 case FFXIIITextTagCode.VarF7:
@@ -78,6 +76,9 @@ namespace Pulse.Core
                 case FFXIIITextTagCode.Color:
                     return new FFXIIITextTag(code, (FFXIIITextTagColor)bytes[offset++]);
                 default:
+                    if ((int)code >= 0x81)
+                        return new FFXIIITextTag(code, (FFXIIITextTagColor)bytes[offset++]);
+
                     left += 2;
                     offset--;
                     return null;
@@ -100,6 +101,14 @@ namespace Pulse.Core
             FFXIIITextTagCode? code = EnumCache<FFXIIITextTagCode>.TryParse(tag);
             if (code == null)
             {
+                byte varCode, numArg;
+                if (byte.TryParse(tag.Substring(1, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out varCode) &&
+                    byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
+                    return new FFXIIITextTag((FFXIIITextTagCode)varCode, (FFXIIITextTagParam)numArg);
+            }
+
+            if (code == null)
+            {
                 offset = oldOffset;
                 left = oldleft;
                 return null;
@@ -108,14 +117,12 @@ namespace Pulse.Core
             switch (code.Value)
             {
                 case FFXIIITextTagCode.End:
-                case FFXIIITextTagCode.Question:
+                case FFXIIITextTagCode.Escape:
                 case FFXIIITextTagCode.Italic:
-                case FFXIIITextTagCode.Separator:
+                case FFXIIITextTagCode.Many:
                 case FFXIIITextTagCode.Article:
                 case FFXIIITextTagCode.ArticleMany:
                     return new FFXIIITextTag(code.Value);
-                case FFXIIITextTagCode.Var81:
-                case FFXIIITextTagCode.Var85:
                 case FFXIIITextTagCode.VarF4:
                 case FFXIIITextTagCode.VarF6:
                 case FFXIIITextTagCode.VarF7:

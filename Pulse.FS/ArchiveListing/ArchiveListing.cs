@@ -2,7 +2,7 @@
 
 namespace Pulse.FS
 {
-    public sealed class ArchiveListing : List<ArchiveListingEntry>
+    public sealed class ArchiveListing : List<ArchiveEntry>, IArchiveListing
     {
         public readonly ArchiveAccessor Accessor;
 
@@ -10,6 +10,8 @@ namespace Pulse.FS
         {
             get { return Accessor.ListingEntry.Name; }
         }
+
+        public ArchiveListing FullListing { get; set; }
 
         public ArchiveListing(ArchiveAccessor accessor)
         {

@@ -7,18 +7,21 @@ namespace Pulse.Core
     public sealed class FFXIIICodePage
     {
         public readonly char[] Chars;
-        public readonly Dictionary<char, byte> Bytes;
+        public readonly Dictionary<char, short> Codes;
 
-        public FFXIIICodePage(char[] chars, Dictionary<char, byte> bytes)
+        public FFXIIICodePage(char[] chars, Dictionary<char, short> bytes)
         {
             Chars = Exceptions.CheckArgumentNull(chars, "chars");
-            Bytes = Exceptions.CheckArgumentNull(bytes, "bytes");
+            Codes = Exceptions.CheckArgumentNull(bytes, "bytes");
         }
 
-        public char this[byte b]
+        public char this[short b]
         {
             get
             {
+                if (b == 324)
+                    return 'Ⅷ';
+
                 char c = Chars[b];
                 if (c == '\0')
                     throw new ArgumentOutOfRangeException("b", b, "Символ соответствующий заданному байту не задан.");
@@ -26,9 +29,12 @@ namespace Pulse.Core
             }
         }
 
-        public byte this[char c]
+        public short this[char c]
         {
-            get { return Bytes[c]; }
+            get
+            {
+                return TryGetByte(c) ?? Codes['#'];
+            }
         }
 
         public char? TryGetChar(byte b)
@@ -39,10 +45,10 @@ namespace Pulse.Core
             return c;
         }
 
-        public byte? TryGetByte(char c)
+        public short? TryGetByte(char c)
         {
-            byte b;
-            if (Bytes.TryGetValue(c, out b))
+            short b;
+            if (Codes.TryGetValue(c, out b))
                 return b;
             return null;
         }

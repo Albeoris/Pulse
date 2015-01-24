@@ -14,14 +14,12 @@ namespace Pulse.UI.Interaction
 
         public GameLocationInfo GameLocation;
         public WorkingLocationInfo WorkingLocation;
-        public TextEncodingInfo TextEncoding;
 
         public void Load()
         {
             XmlElement config = XmlHelper.LoadDocument(ConfigurationFilePath);
             GameLocation = GameLocationInfo.FromXml(config["GameLocation"]);
             WorkingLocation = WorkingLocationInfo.FromXml(config["WorkingLocation"]);
-            TextEncoding = TextEncodingInfo.FromXml(config["TextEncoding"]);
         }
 
         public void Save()
@@ -31,7 +29,6 @@ namespace Pulse.UI.Interaction
             
             if (GameLocation != null) GameLocation.ToXml(config.CreateChildElement("GameLocation"));
             if (WorkingLocation != null) WorkingLocation.ToXml(config.CreateChildElement("WorkingLocation"));
-            if (TextEncoding != null) TextEncoding.ToXml(config.CreateChildElement("TextEncoding"));
 
             config.GetOwnerDocument().Save(ConfigurationFilePath);
         }

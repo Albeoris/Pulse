@@ -1,4 +1,7 @@
-﻿namespace Pulse.UI.Interaction
+﻿using System;
+using Pulse.Core;
+
+namespace Pulse.UI.Interaction
 {
     public sealed class ApplicationConfigFileProvider : IInfoProvider<ApplicationConfigInfo>
     {
@@ -11,12 +14,12 @@
 
         public string Title
         {
-            get { return "Из файла"; }
+            get { return Lang.InfoProvider.ApplicationConfig.FileTitle; }
         }
 
         public string Description
         {
-            get { return @"Считывает настройки приложения из файла " + ApplicationConfigInfo.ConfigurationFilePath; }
+            get { return String.Format(Lang.InfoProvider.ApplicationConfig.FileDescription, ApplicationConfigInfo.ConfigurationFilePath); }
         }
     }
 }

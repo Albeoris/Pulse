@@ -42,12 +42,22 @@ namespace Pulse.Core
 
         public static unsafe ushort ToBigUInt16(byte* b)
         {
-            return (ushort)(*(b + 1) | *b << 8);
+            return (ushort)(*b << 8 | *(b + 1));
+        }
+
+        public static unsafe short ToBigInt16(byte* b)
+        {
+            return (short)((*b << 8) | (*(b + 1)));
         }
 
         public static unsafe int ToBigInt32(byte* b)
         {
-            return *(b + 3) | *(b + 2) << 8 | *(b + 1) << 16 | *b << 24;
+            return *b << 24 | *(b + 1) << 16 | *(b + 2) << 8 | *(b + 3);
+        }
+
+        public static unsafe uint ToBigUInt32(byte* b)
+        {
+            return (uint)(*b << 24 | *(b + 1) << 16 | *(b + 2) << 8 | *(b + 3));
         }
     }
 }

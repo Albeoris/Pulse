@@ -1,62 +1,80 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Pulse.Core;
 
 namespace Pulse.FS
 {
-    public sealed class WpdHeader
+    public sealed class WpdHeader : IStreamingContent
     {
         public const int MagicNumber = 0x00445057; // WPD
 
         public int Magic = MagicNumber;
         public int Count;
-        public int[] Offsets;
-        public int[] Lengths;
-        public string[] Names;
-        public string[] Extensions;
+        public WpdEntry[] Entries;
 
-        public static unsafe WpdHeader ReadFromStream(Stream input)
+        public unsafe void ReadFromStream(Stream input)
         {
-            WpdHeader result = new WpdHeader();
-
-            if (input.Length - input.Position < 16)
-                return result;
+            if (input.Length - input.GetReadPosition() < 16)
+                return;
 
             byte[] buff = input.EnsureRead(16);
             fixed (byte* b = &buff[0])
             {
-                result.Magic = Endian.ToBigInt32(b + 0);
-                result.Count = Endian.ToBigInt32(b + 4);
+                Magic = Endian.ToBigInt32(b + 0);
+                Count = Endian.ToBigInt32(b + 4);
             }
 
-            result.Offsets = new int[result.Count];
-            result.Lengths = new int[result.Count];
-            result.Names = new string[result.Count];
-            result.Extensions = new string[result.Count];
+            Entries = new WpdEntry[Count];
+            if (Count < 1)
+                return;
 
-            char[] text = new char[16];
-
-            buff = input.EnsureRead(result.Count * 32);
-            fixed (int* o = &result.Offsets[0])
-            fixed (int* l = &result.Lengths[0])
-            fixed (char* t = &text[0])
+            buff = input.EnsureRead(Count * 32);
             fixed (byte* b = &buff[0])
             {
-                for (int i = 0; i < result.Count; i++)
+                for (int i = 0; i < Count; i++)
                 {
                     int offset = i * 32;
-                    result.Names[i] = new string((sbyte*)b + offset);
-                    *(o + i) = Endian.ToBigInt32(b + offset + 16);
-                    *(l + i) = Endian.ToBigInt32(b + offset + 20);
-                    result.Extensions[i] = new string((sbyte*)b + offset + 24);
+
+                    Entries[i] = new WpdEntry(
+                        new string((sbyte*)b + offset),
+                        Endian.ToBigInt32(b + offset + 16),
+                        Endian.ToBigInt32(b + offset + 20),
+                        new string((sbyte*)b + offset + 24));
                 }
             }
+        }
 
-            return result;
+        public void WriteToStream(Stream stream)
+        {
+            if (Entries == null)
+                return;
+
+            Count = Entries.Length;
+
+            BinaryWriter bw = new BinaryWriter(stream);
+            bw.Write(MagicNumber);
+            bw.WriteBig(Count);
+            bw.Write(0L);
+
+            if (Count < 1)
+                return;
+
+            for (int i = 0; i < Count; i++)
+            {
+                WpdEntry entry = Entries[i];
+
+                byte[] bytes = Encoding.ASCII.GetBytes(entry.Name);
+                Array.Resize(ref bytes, 16);
+                bw.Write(bytes, 0, bytes.Length);
+
+                bw.WriteBig(entry.Offset);
+                bw.WriteBig(entry.Length);
+
+                bytes = Encoding.ASCII.GetBytes(entry.Extension);
+                Array.Resize(ref bytes, 8);
+                bw.Write(bytes, 0, bytes.Length);
+            }
         }
     }
 }

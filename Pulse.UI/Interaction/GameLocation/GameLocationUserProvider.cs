@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Pulse.Core;
 
 namespace Pulse.UI
 {
@@ -22,12 +23,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return "Ручной выбор"; }
+            get { return Lang.InfoProvider.GameLocation.UserTitle; }
         }
 
         public string Description
         {
-            get { return "Позволяет вручную выбрать каталог, в который была установлена игра."; }
+            get { return Lang.InfoProvider.GameLocation.UserDescription; }
         }
     }
 }

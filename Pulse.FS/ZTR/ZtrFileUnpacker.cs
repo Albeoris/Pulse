@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Sockets;
 using System.Text;
 using Pulse.Core;
 
@@ -20,7 +21,7 @@ namespace Pulse.FS
 
         public ZtrFileEntry[] Unpack()
         {
-            if (_input.Length - _input.Position < 5)
+            if (_input.Length < 5)
                 return new ZtrFileEntry[0];
 
             ZtrFileType type = (ZtrFileType)_br.ReadInt32();
@@ -49,9 +50,9 @@ namespace Pulse.FS
 
             for (int i = 0; i < count; i++)
             {
-                _input.SetPosition(offsets[i * 2]);
+                _input.SetReadPosition(offsets[i * 2]);
                 entries[i].Key = ZtrFileHelper.ReadNullTerminatedString(_input, Encoding.ASCII);
-                _input.SetPosition(offsets[i * 2 + 1]);
+                _input.SetReadPosition(offsets[i * 2 + 1]);
                 entries[i].Value = ZtrFileHelper.ReadNullTerminatedString(_input, _encoding);
             }
 
@@ -65,10 +66,10 @@ namespace Pulse.FS
             int keyOffset = _br.ReadInt32();
             int textOffset = _br.ReadInt32();
 
-            _input.SetPosition(keyOffset);
+            _input.SetReadPosition(keyOffset);
             result.Key = ZtrFileHelper.ReadNullTerminatedString(_input, Encoding.ASCII);
 
-            _input.SetPosition(textOffset);
+            _input.SetReadPosition(textOffset);
             result.Value = ZtrFileHelper.ReadNullTerminatedString(_input, _encoding);
 
             return new[] {result};

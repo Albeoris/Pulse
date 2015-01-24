@@ -3,7 +3,10 @@ using System.IO;
 
 namespace Pulse.Core
 {
-    public sealed class StreamSegment : Stream
+    /// <summary>
+    /// НЕ потокобезопасный!
+    /// </summary>
+    public sealed class StreamSegment : Stream, IPositionProvider
     {
         private long _offset, _length;
 
@@ -90,6 +93,26 @@ namespace Pulse.Core
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
+        }
+
+        public long GetReadPosition()
+        {
+            return BaseStream.GetReadPosition();
+        }
+
+        public long GetWritePosition()
+        {
+            return BaseStream.GetWritePosition();
+        }
+
+        public void SetReadPosition(long position)
+        {
+            BaseStream.SetReadPosition(position);
+        }
+
+        public void SetWritePosition(long position)
+        {
+            BaseStream.SetWritePosition(position);
         }
     }
 }

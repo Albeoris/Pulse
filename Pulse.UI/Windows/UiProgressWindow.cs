@@ -47,7 +47,7 @@ namespace Pulse.UI
                 root.AddUiElement(_progressTextBlock, 1, 0);
             }
 
-            _elapsedTextBlock = UiTextBlockFactory.Create("Прошло: 00:00");
+            _elapsedTextBlock = UiTextBlockFactory.Create(Lang.Measurement.Elapsed + ": 00:00");
             {
                 _elapsedTextBlock.HorizontalAlignment = HorizontalAlignment.Left;
                 root.AddUiElement(_elapsedTextBlock, 2, 0);
@@ -59,7 +59,7 @@ namespace Pulse.UI
                 root.AddUiElement(_processedTextBlock, 2, 0);
             }
 
-            _remainingTextBlock = UiTextBlockFactory.Create("Осталось: 00:00");
+            _remainingTextBlock = UiTextBlockFactory.Create(Lang.Measurement.Remaining + ": 00:00");
             {
                 _remainingTextBlock.HorizontalAlignment = HorizontalAlignment.Right;
                 root.AddUiElement(_remainingTextBlock, 2, 0);
@@ -137,9 +137,9 @@ namespace Pulse.UI
             TimeSpan left = TimeSpan.FromSeconds((_totalCount - _processedCount) / speed);
 
             _progressTextBlock.Text = String.Format("{0:F2}%", percents);
-            _elapsedTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", elapsed, "Прошло");
+            _elapsedTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", elapsed, Lang.Measurement.Elapsed);
             _processedTextBlock.Text = String.Format("{0} / {1}", FormatValue(_processedCount), FormatValue(_totalCount));
-            _remainingTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", left, "Осталось");
+            _remainingTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", left, Lang.Measurement.Remaining);
 
             _timer.Elapsed += OnTimer;
         }
@@ -160,19 +160,19 @@ namespace Pulse.UI
             switch (i)
             {
                 case 0:
-                    return string.Format("{0:F2} Б", dec);
-                case 1:
-                    return string.Format("{0:F2} КБ", dec);
-                case 2:
-                    return string.Format("{0:F2} МБ", dec);
-                case 3:
-                    return string.Format("{0:F2} ГБ", dec);
-                case 4:
-                    return string.Format("{0:F2} ТБ", dec);
-                case 5:
-                    return string.Format("{0:F2} ПБ", dec);
-                case 6:
-                    return string.Format("{0:F2} ЭБ", dec);
+                    return string.Format("{0:F2} "  + Lang.Measurement.ByteAbbr, dec);
+                case 1:                              
+                    return string.Format("{0:F2} " + Lang.Measurement.KByteAbbr, dec);
+                case 2:                            
+                    return string.Format("{0:F2} " + Lang.Measurement.MByteAbbr, dec);
+                case 3:                            
+                    return string.Format("{0:F2} " + Lang.Measurement.GByteAbbr, dec);
+                case 4:                            
+                    return string.Format("{0:F2} " + Lang.Measurement.TByteAbbr, dec);
+                case 5:                            
+                    return string.Format("{0:F2} " + Lang.Measurement.PByteAbbr, dec);
+                case 6:                            
+                    return string.Format("{0:F2} " + Lang.Measurement.EByteAbbr, dec);
                 default:
                     throw new ArgumentOutOfRangeException("value");
             }

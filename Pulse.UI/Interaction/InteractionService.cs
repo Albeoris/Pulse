@@ -21,7 +21,6 @@ namespace Pulse.UI
 
             GameLocation.InfoProvided += Configuration.GameLocationProvided;
             WorkingLocation.InfoProvided += Configuration.WorkingLocationProvided;
-            TextEncoding.InfoProvided += WorkingLocation.TextEncodingProvided;
         }
     }
 }

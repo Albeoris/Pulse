@@ -5,13 +5,7 @@ namespace Pulse.Core
 {
     public sealed class FFXIIITextDecoder
     {
-        private readonly Encoding _encoding;
         private readonly FFXIIICodePage _codepage;
-
-        public FFXIIITextDecoder(Encoding encoding)
-        {
-            _encoding = Exceptions.CheckArgumentNull(encoding, "encoding");
-        }
 
         public FFXIIITextDecoder(FFXIIICodePage codepage)
         {
@@ -38,26 +32,16 @@ namespace Pulse.Core
                 }
                 else
                 {
-                    if (_encoding != null)
+                    byte value = bytes[index++];
+                    count--;
+
+                    if (value >= 0x80)
                     {
-                        int charsWrited = 0;
-                        int bytesReaded = 1;
-                        for (; bytesReaded < 5; bytesReaded++)
-                        {
-                            charsWrited = _encoding.GetCharCount(bytes, index, bytesReaded);
-                            if (charsWrited > 0)
-                                break;
-                        }
-                        count -= bytesReaded;
-                        index += bytesReaded;
-                        result += charsWrited;
-                    }
-                    else
-                    {
-                        count--;
                         index++;
-                        result++;
+                        count--;
                     }
+
+                    result++;
                 }
             }
 
@@ -77,34 +61,42 @@ namespace Pulse.Core
                 }
                 else
                 {
-                    //if (bytes[byteIndex] != 0x00 && bytes[byteIndex] != 0x09 && (bytes[byteIndex] < 0x20 || bytes[byteIndex] >'z'))
-                    //    throw new Exception();
-
-                    if (_encoding != null)
+                    int value = bytes[byteIndex++];
+                    byteCount--;
+                    if (value >= 0x80)
                     {
-                        int charsWrited = 0;
-                        int bytesReaded = 1;
-                        for (; bytesReaded < 5; bytesReaded++)
-                        {
-                            charsWrited = _encoding.GetChars(bytes, byteIndex, bytesReaded, chars, charIndex);
-                            if (charsWrited > 0)
-                                break;
-                        }
-                        charIndex += charsWrited;
-                        byteIndex += bytesReaded;
-                        byteCount -= bytesReaded;
-                        result += charsWrited;
-                    }
-                    else
-                    {
-                        chars[charIndex++] = _codepage[bytes[byteIndex++]];
+                        value = ValueToIndex(value, bytes[byteIndex++]);
                         byteCount--;
-                        result++;
                     }
+                    chars[charIndex++] = _codepage[(short)value];
+                    result++;
+
                 }
             }
 
             return result;
+        }
+
+        public static int ValueToIndex(int hight, int low)
+        {
+            switch (hight)
+            {
+                case 0x81:
+                    if (low >= 0x80) low--;
+                    return 256 + low - 0x40;
+                case 0x85:
+                    return low < 0x80 ? low + 0x40 : low + 0x21;
+            }
+
+            throw new NotSupportedException(String.Format("{0}, {1}", hight, low));
+        }
+
+        public static int ValueToIndex(int value)
+        {
+            if (value <= 0xFF)
+                return value;
+
+            return ValueToIndex(value >> 8, value & 0xFF);
         }
     }
 }
