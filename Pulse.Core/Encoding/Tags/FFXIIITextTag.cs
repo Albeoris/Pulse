@@ -32,7 +32,10 @@ namespace Pulse.Core
         {
             StringBuilder sb = new StringBuilder(MaxTagLength);
             sb.Append('{');
-            sb.Append(Code);
+            if (EnumCache<FFXIIITextTagCode>.IsDefined(Code))
+                sb.Append(Code);
+            else
+                sb.Append("Var").AppendFormat(((byte)Code).ToString("X2"));
             if (Param != null)
             {
                 sb.Append(' ');
