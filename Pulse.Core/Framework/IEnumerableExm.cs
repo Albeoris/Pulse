@@ -21,6 +21,11 @@ namespace Pulse.Core
             return self.OrderBy(t => t);
         }
 
+        public static IEnumerable<T> Order<T>(this IEnumerable<T> self, IComparer<T> comparer)
+        {
+            return self.OrderBy(t => t, comparer);
+        }
+
         public static IEnumerable<T> DistinctBy<T, TValue>(this IEnumerable<T> self, Func<T, TValue> predicate)
         {
             HashSet<TValue> set = new HashSet<TValue>();

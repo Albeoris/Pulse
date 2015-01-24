@@ -62,6 +62,7 @@ namespace Pulse.FS
             finally
             {
                 ListingEntry.Size = newSize;
+                ListingEntry.UncompressedSize = newSize;
             }
         }
 
@@ -110,6 +111,11 @@ namespace Pulse.FS
             result.BeforeDispose.Add(new DisposableAction(cts.Dispose, true));
             result.BeforeDispose.Add(new DisposableAction(() => uncompressingTask.CancelAndWait(cts, 5000), true));
             return result;
+        }
+
+        public int Level
+        {
+            get { return _level; }
         }
     }
 }

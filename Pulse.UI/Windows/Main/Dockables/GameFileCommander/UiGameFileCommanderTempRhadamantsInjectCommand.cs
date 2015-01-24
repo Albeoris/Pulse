@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -80,11 +81,9 @@ namespace Pulse.UI
                     }
                 }
 
-                foreach (UiArchiveNode archive in archives)
+                foreach (IArchiveListing archiveListing in archives.Select(a=>a.Listing).Order(ArchiveListingInjectComparer.Instance))
                 {
-                    ArchiveListing fullListing = archive.Listing as ArchiveListing;
-                    if (fullListing == null)
-                        continue;
+                    ArchiveListing fullListing = (ArchiveListing)archiveListing;
 
                     ArchiveListing listing = new ArchiveListing(fullListing.Accessor) {FullListing = fullListing};
                     foreach (ArchiveEntry entry in fullListing)
@@ -98,7 +97,7 @@ namespace Pulse.UI
                             }
                         }
                     }
-                    if (listing.Count == 0)
+                    if (listing.Accessor.Level > 0 && listing.Count == 0)
                         continue;
 
                     ArchiveInjector injector = new ArchiveInjector(listing, null, entry => ProvideEntryInjector(entry, dic));

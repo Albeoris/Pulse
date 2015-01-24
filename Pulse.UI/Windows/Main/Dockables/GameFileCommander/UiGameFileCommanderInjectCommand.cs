@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Pulse.Core;
@@ -41,7 +42,7 @@ namespace Pulse.UI
                 bool convert = settingsDlg.Convert;
                 string sourceDir = InteractionService.WorkingLocation.Provide().ProvideExtractedDirectory();
 
-                foreach (IArchiveListing listing in archives.EnumerateCheckedEntries(wildcard))
+                foreach (IArchiveListing listing in archives.EnumerateCheckedEntries(wildcard).Order(ArchiveListingInjectComparer.Instance))
                 {
                     XgrArchiveListing xgrArchiveListing = listing as XgrArchiveListing;
                     if (xgrArchiveListing != null)

@@ -202,6 +202,7 @@
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorPack.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorStringsToZtr.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorTempRhadamantsTxtToZtr.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveListingInjectComparer.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveBuilderNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNode.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNodeComparer.cs" />

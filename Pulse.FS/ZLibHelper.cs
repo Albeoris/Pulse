@@ -90,6 +90,9 @@ namespace Pulse.FS
             int readed;
             while (size > 0 && (readed = self.read(buff, offset, size)) != 0)
             {
+                if (readed < 0)
+                    throw new Exception("Неожиданный конец потока.");
+
                 size -= readed;
                 offset += readed;
             }

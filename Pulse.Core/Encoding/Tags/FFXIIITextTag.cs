@@ -102,7 +102,8 @@ namespace Pulse.Core
             if (code == null)
             {
                 byte varCode, numArg;
-                if (byte.TryParse(tag.Substring(1, 2), NumberStyles.Integer, CultureInfo.InvariantCulture, out varCode) &&
+                if (tag.Length == 5 &&
+                    byte.TryParse(tag.Substring(3, 2), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out varCode) &&
                     byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
                     return new FFXIIITextTag((FFXIIITextTagCode)varCode, (FFXIIITextTagParam)numArg);
             }
@@ -197,7 +198,11 @@ namespace Pulse.Core
         {
             StringBuilder sb = new StringBuilder(MaxTagLength);
             sb.Append('{');
-            sb.Append(Code);
+            if (EnumCache<FFXIIITextTagCode>.IsDefined(Code))
+                sb.Append(Code);
+            else
+                sb.Append("Var").AppendFormat(((byte)Code).ToString("X2"));
+
             if (Param != null)
             {
                 sb.Append(' ');

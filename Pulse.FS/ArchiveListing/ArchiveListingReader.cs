@@ -32,6 +32,7 @@ namespace Pulse.FS
         public void Read()
         {
             int count = Math.Max(Environment.ProcessorCount, 1);
+            count = 1;
             using (Semaphore semaphore = new Semaphore(count, count))
             {
                 do
