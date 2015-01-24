@@ -76,7 +76,17 @@ namespace Pulse.Core
                 case FFXIIITextTagCode.Color:
                     return new FFXIIITextTag(code, (FFXIIITextTagColor)bytes[offset++]);
                 default:
-                    if ((int)code >= 0x81)
+                    int value = (int)code;
+                    switch (value)
+                    {
+                        case 81:
+                        case 85:
+                            left += 2;
+                            offset--;
+                            return null;
+                    }
+
+                    if (value >= 0x80)
                         return new FFXIIITextTag(code, (FFXIIITextTagColor)bytes[offset++]);
 
                     left += 2;
