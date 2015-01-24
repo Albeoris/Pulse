@@ -197,7 +197,7 @@ namespace Pulse.UI
             for (int i = 0; i < result.Length; i++)
             {
                 WpdEntry entry = fontEntries[i];
-                using (StreamSegment wflInput = new StreamSegment(xgr, entry.Offset, entry.Length))
+                using (StreamSegment wflInput = new StreamSegment(xgr, entry.Offset, entry.Length, FileAccess.Read))
                 {
                     WflFileReader reader = new WflFileReader(wflInput);
                     result[i] = reader.Read();
@@ -212,7 +212,7 @@ namespace Pulse.UI
             for (int i = 0; i < result.Length; i++)
             {
                 WpdEntry entry = textureEntries[i];
-                using (StreamSegment textureHeaderInput = new StreamSegment(xgrStream, entry.Offset, entry.Length))
+                using (StreamSegment textureHeaderInput = new StreamSegment(xgrStream, entry.Offset, entry.Length, FileAccess.Read))
                     result[i] = textureHeaderInput.ReadContent<TextureSection>();
             }
             return result;
@@ -243,7 +243,7 @@ namespace Pulse.UI
                 return null;
 
             GtexMipMapLocation mimMap = data.MipMapData[0];
-            using (StreamSegment textureInput = new StreamSegment(imgbStream, mimMap.Offset, mimMap.Length))
+            using (StreamSegment textureInput = new StreamSegment(imgbStream, mimMap.Offset, mimMap.Length, FileAccess.Read))
             using (GLService.AcquireContext())
                 return ImageDDS.LoadFromStream(textureInput, data);
         }

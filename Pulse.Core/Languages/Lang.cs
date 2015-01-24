@@ -217,6 +217,8 @@ namespace Pulse.Core
 
                 public static readonly string Title = GetTextEncoding("Title");
                 public static readonly string Description = GetTextEncoding("Description");
+                public static readonly string NewTitle = GetTextEncoding("NewTitle");
+                public static readonly string NewDescription = GetTextEncoding("NewDescription");
                 public static readonly string WorkingLocationTitle = GetTextEncoding("WorkingLocationTitle");
                 public static readonly string WorkingLocationDescription = GetTextEncoding("WorkingLocationDescription");
                 public static readonly string UserTitle = GetTextEncoding("UserTitle");

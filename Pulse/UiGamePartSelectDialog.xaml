@@ -1,0 +1,16 @@
+﻿<Window x:Class="Pulse.UiGamePartSelectDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"
+        Title="Выбор игры" SizeToContent="Width" ResizeMode="NoResize" Height="300">
+    <StackPanel Orientation="Horizontal">
+        <Button Background="White" Click="OnPart1ButtonClick">
+            <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-1.png"/>
+        </Button>
+        <Button Background="White" Click="OnPart2ButtonClick" IsEnabled="False">
+            <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-2.png"/>
+        </Button>
+        <Button Background="White" Click="OnPart3ButtonClick" IsEnabled="False">
+            <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-3.png"/>
+        </Button>
+    </StackPanel>
+</Window>

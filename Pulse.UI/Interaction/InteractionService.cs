@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Windows;
-using System.Windows.Threading;
+﻿using Pulse.Core;
 using Pulse.UI.Interaction;
 
 namespace Pulse.UI
 {
     public sealed class InteractionService
     {
+        public static FFXIIIGamePart GamePart { get; private set; }
         public static ApplicationConfigProviders Configuration { get; private set; }
         public static GameLocationProviders GameLocation { get; private set; }
         public static WorkingLocationProviders WorkingLocation { get; private set; }
@@ -21,6 +20,11 @@ namespace Pulse.UI
 
             GameLocation.InfoProvided += Configuration.GameLocationProvided;
             WorkingLocation.InfoProvided += Configuration.WorkingLocationProvided;
+        }
+
+        public static void SetGamePart(FFXIIIGamePart result)
+        {
+            GamePart = result;
         }
     }
 }

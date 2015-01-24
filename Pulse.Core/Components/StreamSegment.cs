@@ -12,7 +12,7 @@ namespace Pulse.Core
 
         public readonly Stream BaseStream;
 
-        public StreamSegment(Stream stream, long offset, long length)
+        public StreamSegment(Stream stream, long offset, long length, FileAccess access)
         {
             Exceptions.CheckArgumentNull(stream, "stream");
             if (offset < 0 || offset >= stream.Length)
@@ -24,7 +24,18 @@ namespace Pulse.Core
             _length = length;
 
             BaseStream = stream;
-            BaseStream.Seek(_offset, SeekOrigin.Begin);
+            switch (access)
+            {
+                case FileAccess.Read:
+                    BaseStream.SetReadPosition(_offset);
+                    break;
+                case FileAccess.Write:
+                    BaseStream.SetWritePosition(_offset);
+                    break;
+                default:
+                    BaseStream.Seek(_offset, SeekOrigin.Begin);
+                    break;
+            }
         }
 
         public override bool CanRead
@@ -87,7 +98,7 @@ namespace Pulse.Core
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return BaseStream.Read(buffer, offset, (int)Math.Min(count, Length - Position));
+            return BaseStream.Read(buffer, offset, (int)Math.Min(count, Length - GetReadPosition()));
         }
 
         public override void Write(byte[] buffer, int offset, int count)
@@ -97,22 +108,22 @@ namespace Pulse.Core
 
         public long GetReadPosition()
         {
-            return BaseStream.GetReadPosition();
+            return BaseStream.GetReadPosition() - _offset;
         }
 
         public long GetWritePosition()
         {
-            return BaseStream.GetWritePosition();
+            return BaseStream.GetWritePosition() - _offset;
         }
 
         public void SetReadPosition(long position)
         {
-            BaseStream.SetReadPosition(position);
+            BaseStream.SetReadPosition(position + _offset);
         }
 
         public void SetWritePosition(long position)
         {
-            BaseStream.SetWritePosition(position);
+            BaseStream.SetWritePosition(position + _offset);
         }
     }
 }

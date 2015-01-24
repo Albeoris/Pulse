@@ -209,7 +209,7 @@ namespace Pulse.Core
 
         public static StreamSegment GetStreamSegment(this Stream output, long offset, long size = -1)
         {
-            return new StreamSegment(output, offset, size < 0 ? output.Length - offset : size);
+            return new StreamSegment(output, offset, size < 0 ? output.Length - offset : size, FileAccess.ReadWrite);
         }
 
         #region IPositionProvider

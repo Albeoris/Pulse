@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Pulse.Core;
 using Pulse.FS;
@@ -17,11 +9,17 @@ namespace Pulse
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            new UiMainWindow().Show();
+            UiMainWindow main = new UiMainWindow();
+            UiGamePartSelectDialog dlg = new UiGamePartSelectDialog();
+            if (dlg.ShowDialog() != true)
+                Environment.Exit(1);
+            
+            InteractionService.SetGamePart(dlg.Result);
+            main.Show();
         }
     }
 }

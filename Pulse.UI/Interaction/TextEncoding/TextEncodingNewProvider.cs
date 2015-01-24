@@ -11,12 +11,12 @@ namespace Pulse.UI
 
         public string Title
         {
-            get { return Lang.InfoProvider.TextEncoding.Title; }
+            get { return Lang.InfoProvider.TextEncoding.NewTitle; }
         }
 
         public string Description
         {
-            get { return Lang.InfoProvider.TextEncoding.Description; }
+            get { return Lang.InfoProvider.TextEncoding.NewDescription; }
         }
     }
 }

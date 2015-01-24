@@ -9,8 +9,6 @@ namespace Pulse.UI.Interaction
         public const string ConfigurationDirectory = ".\\Configuration";
         public const string ConfigurationFile = "Pulse.cfg";
         public const string LayoutConfigurationFile = "Layout.cfg";
-        public static readonly string ConfigurationFilePath = Path.Combine(ConfigurationDirectory, ConfigurationFile);
-        public static readonly string LayoutConfigurationFilePath = Path.Combine(ConfigurationDirectory, LayoutConfigurationFile);
 
         public GameLocationInfo GameLocation;
         public WorkingLocationInfo WorkingLocation;
@@ -20,6 +18,16 @@ namespace Pulse.UI.Interaction
             XmlElement config = XmlHelper.LoadDocument(ConfigurationFilePath);
             GameLocation = GameLocationInfo.FromXml(config["GameLocation"]);
             WorkingLocation = WorkingLocationInfo.FromXml(config["WorkingLocation"]);
+        }
+
+        public static string ConfigurationFilePath
+        {
+            get { return Path.Combine(ConfigurationDirectory, InteractionService.GamePart + "_" + ConfigurationFile); }
+        }
+
+        public static string LayoutConfigurationFilePath
+        {
+            get { return Path.Combine(ConfigurationDirectory, InteractionService.GamePart + "_" + LayoutConfigurationFile); }
         }
 
         public void Save()

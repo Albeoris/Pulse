@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml;
 using Pulse.Core;
 
@@ -8,13 +9,36 @@ namespace Pulse.UI
     {
         public readonly string RootDirectory;
         public readonly string SystemDirectory;
+        public readonly string UpdatesDirectory;
         public readonly string AreasDirectory;
+
+        private const string Part1ResourceDirName = "white_data";
+        private const string Part2ResourceDirName = "alba_data";
 
         public GameLocationInfo(string rootDirectory)
         {
             RootDirectory = rootDirectory;
-            SystemDirectory = Path.Combine(RootDirectory, "white_data", "sys");
-            AreasDirectory = Path.Combine(RootDirectory, "white_data", "zone");
+
+            string resourcePath = Path.Combine(RootDirectory, ResourceDirName);
+            SystemDirectory = Path.Combine(resourcePath, "sys");
+            AreasDirectory = Path.Combine(resourcePath, "zone");
+            UpdatesDirectory = Path.Combine(resourcePath, "udp");
+        }
+
+        public static string ResourceDirName
+        {
+            get
+            {
+                switch (InteractionService.GamePart)
+                {
+                    case FFXIIIGamePart.Part1:
+                        return Part1ResourceDirName;
+                    case FFXIIIGamePart.Part2:
+                        return Part2ResourceDirName;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
         }
 
         public void Validate()
