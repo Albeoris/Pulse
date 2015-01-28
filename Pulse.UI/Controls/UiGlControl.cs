@@ -25,5 +25,13 @@ namespace Pulse.UI.Controls
         {
             Control.Context.SwapBuffers();
         }
+
+        public void SetViewportDesiredSize(int width, int height)
+        {
+            Width = width;
+            Height = height;
+            Control.Width = width;
+            Control.Height = height;
+        }
     }
 }

@@ -85,7 +85,8 @@ namespace Pulse.Core
                     if (low >= 0x80) low--;
                     return 256 + low - 0x40;
                 case 0x85:
-                    return low < 0x80 ? low + 0x40 : low + 0x21;
+                    return low < 0x9E ? low + 0x40 : low + 0x21;
+                    //return low < 0x80 ? low + 0x40 : low + 0x21;
             }
 
             throw new NotSupportedException(String.Format("{0}, {1}", hight, low));

@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
@@ -27,16 +29,28 @@ namespace Pulse.FS
                 if (_formatter is StringsZtrFormatter) // TEMP
                     countStr = countStr.Substring(2, countStr.Length - 4);
                 int count = int.Parse(countStr, CultureInfo.InvariantCulture);
-                ZtrFileEntry[] result = new ZtrFileEntry[count];
+                List<ZtrFileEntry> result = new List<ZtrFileEntry>(count);
 
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < count && !sr.EndOfStream; i++)
                 {
                     int index;
                     ZtrFileEntry entry = _formatter.Read(sr, out index);
-                    result[index] = entry;
+                    if (entry == null)
+                        continue;
+                    
+                    if (string.IsNullOrWhiteSpace(entry.Key))
+                    {
+                        Log.Warning("Неверная запись [Key: {0}, Value: {1}] в файле: {2}", entry.Key, entry.Value, name);
+                        continue;
+                    }
+                    
+                    result.Add(entry);
                 }
 
-                return result;
+                if (result.Count != count)
+                    Log.Warning("Неверное количество строк в файле: {0} из {1}", result.Count, count);
+
+                return result.ToArray();
             }
         }
     }

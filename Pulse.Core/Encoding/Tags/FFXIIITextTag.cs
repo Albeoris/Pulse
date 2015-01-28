@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-using Pulse.Core;
 
 namespace Pulse.Core
 {
@@ -82,8 +81,8 @@ namespace Pulse.Core
                     int value = (int)code;
                     switch (value)
                     {
-                        case 81:
-                        case 85:
+                        case 0x81:
+                        case 0x85:
                             left += 2;
                             offset--;
                             return null;
@@ -148,26 +147,42 @@ namespace Pulse.Core
                 }
                 case FFXIIITextTagCode.Icon:
                 {
+                    byte numArg;
                     FFXIIITextTagIcon? arg = EnumCache<FFXIIITextTagIcon>.TryParse(par);
-                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
+                    if (arg == null && byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
+                        arg = (FFXIIITextTagIcon)numArg;
+                    if (arg != null)
+                        return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
                 case FFXIIITextTagCode.Text:
                 {
+                    byte numArg;
                     FFXIIITextTagText? arg = EnumCache<FFXIIITextTagText>.TryParse(par);
-                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
+                    if (arg == null && byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
+                        arg = (FFXIIITextTagText)numArg;
+                    if (arg != null)
+                        return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
                 case FFXIIITextTagCode.Key:
                 {
+                    byte numArg;
                     FFXIIITextTagKey? arg = EnumCache<FFXIIITextTagKey>.TryParse(par);
-                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
+                    if (arg == null && byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
+                        arg = (FFXIIITextTagKey)numArg;
+                    if (arg != null)
+                        return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
                 case FFXIIITextTagCode.Color:
                 {
+                    byte numArg;
                     FFXIIITextTagColor? arg = EnumCache<FFXIIITextTagColor>.TryParse(par);
-                    if (arg != null) return new FFXIIITextTag(code.Value, arg.Value);
+                    if (arg == null && byte.TryParse(par, NumberStyles.Integer, CultureInfo.InvariantCulture, out numArg))
+                        arg = (FFXIIITextTagColor)numArg;
+                    if (arg != null)
+                        return new FFXIIITextTag(code.Value, arg.Value);
                     break;
                 }
             }

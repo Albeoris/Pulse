@@ -4,7 +4,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Pulse.Core;
-using Pulse.FS;
 
 namespace Pulse.UI.Encoding
 {
@@ -26,8 +25,8 @@ namespace Pulse.UI.Encoding
 
         public UiEncodingAdditionalCharacterControl()
         {
-            Orientation = System.Windows.Controls.Orientation.Horizontal;
-            this.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            Orientation = Orientation.Horizontal;
+            VerticalAlignment = VerticalAlignment.Center;
 
             #region Construct
 

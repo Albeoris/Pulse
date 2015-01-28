@@ -12,7 +12,6 @@ using Pulse.FS;
 using Pulse.OpenGL;
 using Pulse.UI.Controls;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
-using WindowState = System.Windows.WindowState;
 
 namespace Pulse.UI.Encoding
 {
@@ -24,8 +23,10 @@ namespace Pulse.UI.Encoding
         private static readonly Color NotMappedColor = Color.FromArgb(80, 90, 90, 255);
 
         private readonly UiComboBox _comboBox;
-        private readonly UiScrollViewer _viewer;
-        private readonly UiGlControl _glControl;
+        private readonly UiScrollViewer _glControlViewer;
+        private readonly UiScrollViewer _glPreviewViewer;
+        private readonly UiGlControl _glEditControl;
+        private readonly UiGlControl _glPreviewControl;
         private readonly UiEncodingCharactersControl _charactersControl;
         private AutoResetEvent _drawEvent;
         private UiEncodingWindowSource _currentSource;
@@ -33,7 +34,17 @@ namespace Pulse.UI.Encoding
         private readonly AutoResetEvent _moveEvent = new AutoResetEvent(false);
         private long _oldMovable, _newMovable;
         private int _oldX, _oldY, _deltaX, _deltaY;
+        private int _glControlLoadingCounter;
         
+        private float _scale = 1;
+        private string _previewText = @"QUICKBROWNFOXJUMPSOVERTHELAZYDOG
+quick brown fox jumps over the lazy dog
+0123456789%/:!?…+-=*&「」()∙,.~#$_
+СЪЕШЬЕЩЁЭТИХМЯГКИХФРАНЦУЗСКИХБУЛОКДАВЫПЕЙЧАЮ
+съешь ещё этих мягких французских булок, да выпей чаю
+АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯА
+абвгдеёжзийклмнопрстуфхцчшщъыьэюяа";
+
         public UiEncodingWindow()
         {
             #region Construct
@@ -43,10 +54,11 @@ namespace Pulse.UI.Encoding
             Width = 1024;
             Height = 768;
 
-            UiGrid root = UiGridFactory.Create(3, 1);
+            UiGrid root = UiGridFactory.Create(4, 1);
             {
                 root.RowDefinitions[0].Height = GridLength.Auto;
                 root.RowDefinitions[2].Height = GridLength.Auto;
+                root.RowDefinitions[3].Height = GridLength.Auto;
 
                 _comboBox = UiComboBoxFactory.Create();
                 {
@@ -57,31 +69,72 @@ namespace Pulse.UI.Encoding
                     root.AddUiElement(_comboBox, 0, 0);
                 }
 
-                _viewer = UiScrollViewerFactory.Create();
+                _glControlViewer = UiScrollViewerFactory.Create();
                 {
-                    _viewer.HorizontalAlignment = HorizontalAlignment.Left;
-                    _viewer.VerticalAlignment = VerticalAlignment.Top;
-                    _viewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
-                    _viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+                    _glControlViewer.HorizontalAlignment = HorizontalAlignment.Left;
+                    _glControlViewer.VerticalAlignment = VerticalAlignment.Top;
+                    _glControlViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+                    _glControlViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 
-                    _glControl = new UiScrollableGlControl();
+                    _glEditControl = new UiScrollableGlControl();
                     {
-                        _glControl.ClipToBounds = true;
-                        _glControl.Control.Load += OnGLControlElementLoaded;
-                        _glControl.Control.Resize += OnGLControlElementResize;
-                        _glControl.Control.MouseDown += OnGLControlElementMouseDown;
-                        _glControl.Control.MouseUp += OnGLControlElementMouseUp;
-                        _glControl.Control.MouseMove += OnGLControlElementMouseMove;
+                        _glEditControl.ClipToBounds = true;
+                        _glEditControl.Control.Load += OnGLControlElementLoaded;
+                        _glEditControl.Control.Resize += OnGLControlElementResize;
+                        _glEditControl.Control.MouseDown += OnGLControlElementMouseDown;
+                        _glEditControl.Control.MouseUp += OnGLControlElementMouseUp;
+                        _glEditControl.Control.MouseMove += OnGLControlElementMouseMove;
 
-                        _viewer.Content = _glControl;
+                        _glControlViewer.Content = _glEditControl;
                     }
 
-                    root.AddUiElement(_viewer, 1, 0);
+                    root.AddUiElement(_glControlViewer, 1, 0);
+                }
+
+                UiGrid previewGroup = UiGridFactory.Create(2, 2);
+                {
+                    previewGroup.RowDefinitions[0].Height = GridLength.Auto;
+                    previewGroup.ColumnDefinitions[1].Width = GridLength.Auto;
+                
+                    _glPreviewViewer = UiScrollViewerFactory.Create();
+                    {
+                        _glPreviewViewer.Height = 200;
+                        _glPreviewViewer.HorizontalAlignment = HorizontalAlignment.Left;
+                        _glPreviewViewer.VerticalAlignment = VerticalAlignment.Top;
+                        _glPreviewViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+                        _glPreviewViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+
+                        _glPreviewControl = new UiScrollableGlControl();
+                        {
+                            _glPreviewControl.ClipToBounds = true;
+                            _glPreviewControl.Control.Load += OnGLControlElementLoaded;
+                            _glPreviewControl.Control.Resize += OnGLPrviewElementResize;
+
+                            _glPreviewViewer.Content = _glPreviewControl;
+                        }
+
+                        previewGroup.AddUiElement(_glPreviewViewer, 0, 0, 2);
+
+                        UiEncodingLabeledNumber scale = new UiEncodingLabeledNumber("Масштаб:", 200, 100, 400, OnScaleValueChanged);
+                        {
+                            scale.Value = 100;
+                            previewGroup.AddUiElement(scale, 0, 1);
+                        }
+
+                        UiTextBox textBox = UiTextBoxFactory.Create();
+                        {
+                            textBox.Text = _previewText;
+                            textBox.TextChanged += OnPreviewTextChanged;
+                            previewGroup.AddUiElement(textBox, 1, 1);
+                        }
+                    }
+
+                    root.AddUiElement(previewGroup, 2, 0);
                 }
 
                 _charactersControl = new UiEncodingCharactersControl();
                 {
-                    root.AddUiElement(_charactersControl, 2, 0);
+                    root.AddUiElement(_charactersControl, 3, 0);
                 }
 
                 UiButton button = UiButtonFactory.Create("OK");
@@ -90,7 +143,7 @@ namespace Pulse.UI.Encoding
                     button.Margin = new Thickness(3);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
                     button.Click += (s, a) => DialogResult = true;
-                    root.AddUiElement(button, 2, 0);
+                    root.AddUiElement(button, 3, 0);
                 }
             }
             Content = root;
@@ -101,6 +154,18 @@ namespace Pulse.UI.Encoding
             Closing += (s, e) => movingThread.Abort();
 
             #endregion
+        }
+
+        private void OnScaleValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            _scale =  (int)e.NewValue / 100f;
+            _drawEvent.NullSafeSet();
+        }
+
+        private void OnPreviewTextChanged(object sender, TextChangedEventArgs e)
+        {
+            _previewText = ((UiTextBox)sender).Text;
+            _drawEvent.Set();
         }
 
         public void Add(UiEncodingWindowSource source)
@@ -253,6 +318,9 @@ namespace Pulse.UI.Encoding
 
         private void OnGLControlElementLoaded(object sender, EventArgs e)
         {
+            if (Interlocked.Increment(ref _glControlLoadingCounter) % 2 != 0)
+                return;
+
             Activated += OnWindowActivated;
             Deactivated += OnWindowDeactivated;
             StateChanged += OnWindowStateChanged;
@@ -261,13 +329,21 @@ namespace Pulse.UI.Encoding
 
         private void OnGLControlElementResize(object sender, EventArgs e)
         {
-            ConfigPreview();
+            ConfigGlEdit();
+        }
+
+        private void OnGLPrviewElementResize(object sender, EventArgs e)
+        {
+            ConfigGlPrview();
         }
 
         private void OnGLControlElementMouseDown(object sender, MouseEventArgs e)
         {
             if (_currentSource == null)
                 return;
+
+            List<int> mainIndices = new List<int>(2);
+            List<int> additionalIndices = new List<int>(2);
 
             WflContent info = _currentSource.Info;
             int height = info.Header.LineHeight;
@@ -287,10 +363,8 @@ namespace Pulse.UI.Encoding
                     int ox = e.X - x;
                     if (ox >= 0 && ox <= width)
                     {
-                        _charactersControl.SetCurrent(_currentSource, i, false);
-                        _drawEvent.Set();
+                        mainIndices.Add(i);
                         _newMovable = 1;
-                        return;
                     }
                 }
             }
@@ -298,9 +372,12 @@ namespace Pulse.UI.Encoding
             int squareSize = info.Header.LineSpacing + info.Header.SquareDiff;
             short value = (short)((e.Y / squareSize) << 8 | (e.X / squareSize));
             int index = Array.IndexOf(info.AdditionalTable, value);
-            _charactersControl.SetCurrent(_currentSource, index, true);
-            _drawEvent.Set();
-            _newMovable = 1;
+            if (index >= 0)
+                additionalIndices.Add(index);
+
+            _charactersControl.SetCurrent(_currentSource, mainIndices, additionalIndices);
+            if (mainIndices.Count > 0 || additionalIndices.Count > 0)
+                _drawEvent.Set();
         }
 
         private void OnGLControlElementMouseUp(object sender, MouseEventArgs e)
@@ -347,16 +424,19 @@ namespace Pulse.UI.Encoding
 
         private void OnWindowActivated(object sender, EventArgs e)
         {
-            GLService.SubscribeControl(_glControl);
-            _drawEvent = GLService.RegisterDrawMethod(Draw);
-            _charactersControl.DrawEvent = _drawEvent;
-            ConfigPreview();
+            GLService.SubscribeControl(_glEditControl);
+            GLService.SubscribeControl(_glPreviewControl);
+            _charactersControl.DrawEvent = _drawEvent = GLService.RegisterDrawMethod(DrawEdit);
+
+            if (_comboBox.SelectedIndex < 0 && _comboBox.Items.Count > 0)
+                _comboBox.SelectedIndex = 0;
         }
 
         private void OnWindowDeactivated(object sender, EventArgs e)
         {
-            GLService.UnregisterDrawMethod(Draw);
-            GLService.UnsubscribeControl(_glControl);
+            GLService.UnregisterDrawMethod(DrawEdit);
+            GLService.UnsubscribeControl(_glEditControl);
+            GLService.UnsubscribeControl(_glPreviewControl);
         }
 
         private void OnWindowStateChanged(object sender, EventArgs e)
@@ -373,19 +453,23 @@ namespace Pulse.UI.Encoding
         private void OnComboBoxItemChanged(object sender, EventArgs e)
         {
             _currentSource = (UiEncodingWindowSource)_comboBox.SelectedItem;
-            _charactersControl.SetCurrent(_currentSource, -1, false);
-            int height = _currentSource.Texture.Height + (_currentSource.Info.Header.LineHeight + _currentSource.Info.Header.LineSpacing) * 4;
-            GLService.SetViewportDesiredSize(_currentSource.Texture.Width, height);
+            _charactersControl.SetCurrent(_currentSource, new int[0], new int[0]);
+            //_glEditControl.SetViewportDesiredSize(_currentSource.Texture.Width, _currentSource.Texture.Height);
+            //_glPreviewControl.SetViewportDesiredSize(_currentSource.Texture.Width * 4, (_currentSource.Info.Header.LineHeight + _currentSource.Info.Header.LineSpacing) * 8 * 4);
+            GLService.SetViewportDesiredSize(_currentSource.Texture.Width, _currentSource.Texture.Height);
         }
 
-        private void ConfigPreview()
+        private void ConfigGlEdit()
         {
-            using (_glControl.AcquireContext())
+            if (!_glEditControl.IsLoaded)
+                return;
+
+            using (_glEditControl.AcquireContext())
             {
                 GL.ClearColor(Color4.Black);
 
-                int w = Math.Max(1, _glControl.Control.Width);
-                int h = Math.Max(1, _glControl.Control.Height);
+                int w = Math.Max(1, _glEditControl.Control.Width);
+                int h = Math.Max(1, _glEditControl.Control.Height);
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.LoadIdentity();
                 GL.Ortho(0, w, h, 0, -1, 1);
@@ -395,17 +479,38 @@ namespace Pulse.UI.Encoding
             }
         }
 
-        private void Draw()
+        private void ConfigGlPrview()
+        {
+            if (!_glPreviewControl.IsLoaded)
+                return;
+
+            using (_glPreviewControl.AcquireContext())
+            {
+                GL.ClearColor(Color4.Black);
+
+                int w = Math.Max(1, _glPreviewControl.Control.Width);
+                int h = Math.Max(1, _glPreviewControl.Control.Height);
+                GL.MatrixMode(MatrixMode.Projection);
+                GL.LoadIdentity();
+                GL.Ortho(0, w, h, 0, -1, 1);
+                GL.Viewport(0, 0, w, h);
+
+                _drawEvent.NullSafeSet();
+            }
+        }
+
+        private void DrawEdit()
         {
             UiEncodingWindowSource current = _currentSource;
             if (current == null)
                 return;
 
-            using (_glControl.AcquireContext())
+            using (_glEditControl.AcquireContext())
             {
                 GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
                 GL.MatrixMode(MatrixMode.Modelview);
                 GL.LoadIdentity();
+                GL.Scale(1, 1, 1);
 
                 GL.Enable(EnableCap.Blend);
                 GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
@@ -413,14 +518,29 @@ namespace Pulse.UI.Encoding
 
                 current.Texture.Draw(0, 0, 0);
 
-                const string PreviwText = "QUICKBROWNFOXJUMPSOVERTHELAZYDOG\r\nquick brown fox jumps over the lazy dog\r\n0123456789%/:!?…+-=*&「」()∙,.~#$_\r\nСЪЕШЬЕЩЁЭТИХМЯГКИХФРАНЦУЗСКИХБУЛОК\r\nсъешь ещё этих мягких французских булок";
-
                 DrawCharacters(current);
-                DrawPreview(current, PreviwText);
 
                 GL.Disable(EnableCap.Blend);
 
-                _glControl.SwapBuffers();
+                _glEditControl.SwapBuffers();
+            }
+
+            using (_glPreviewControl.AcquireContext())
+            {
+                GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+                GL.MatrixMode(MatrixMode.Modelview);
+                GL.LoadIdentity();
+                GL.Scale(_scale, _scale, _scale);
+
+                GL.Enable(EnableCap.Blend);
+                GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+                GL.Color3(Color.Transparent);
+
+                DrawPreview(current, _previewText);
+
+                GL.Disable(EnableCap.Blend);
+
+                _glPreviewControl.SwapBuffers();
             }
         }
 
@@ -447,7 +567,7 @@ namespace Pulse.UI.Encoding
                 rectangle.Y = y;
                 rectangle.Width = width & 0x7F;
 
-                if (!_charactersControl.CurrentIsAdditional && i == _charactersControl.CurrentIndex)
+                if (_charactersControl.CurrentMainIndices.Contains(i))
                 {
                     rectangle.DrawSolid(SelectedColor);
 
@@ -497,7 +617,7 @@ namespace Pulse.UI.Encoding
                 rectangle.Y = (value >> 8) * squareSize;
                 rectangle.X = (value & 0xFF) * squareSize;
 
-                if (_charactersControl.CurrentIsAdditional && _charactersControl.CurrentIndex == i)
+                if (_charactersControl.CurrentAdditionalIndices.Contains(i))
                     rectangle.DrawSolid(SelectedColor);
                 else if (source.Chars[i + 256] == 0x00)
                     rectangle.DrawSolid(NotMappedColor);
@@ -505,13 +625,12 @@ namespace Pulse.UI.Encoding
                     rectangle.DrawBorder(GridColor);
             }
         }
-
-        private void DrawPreview(UiEncodingWindowSource source, string text)
+private void DrawPreview(UiEncodingWindowSource source, string text)
         {
             GL.Color3(Color.Transparent);
 
             float x = 0;
-            float y = source.Texture.Height + source.Info.Header.LineSpacing;
+            float y = source.Info.Header.LineSpacing; // + source.Texture.Height
             int squareSize = source.Info.Header.SquareSize;
             int lineSpacing = source.Info.Header.LineHeight + source.Info.Header.LineSpacing;
 

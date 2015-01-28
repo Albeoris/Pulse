@@ -4,7 +4,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Pulse.Core;
-using Pulse.FS;
 
 namespace Pulse.UI.Encoding
 {
@@ -117,7 +116,7 @@ namespace Pulse.UI.Encoding
             sbyte width = (sbyte)((sizes & 0x0000FF00) >> 8);
             sbyte after = (sbyte)((sizes & 0x00FF0000) >> 16);
 
-            _indexLabel.Text = "0x" + (_littleIndex).ToString("X");
+            _indexLabel.Text = "0x" + (index).ToString("X");
             _ox.Value = ox;
             _oy.Value = oy;
             _before.Value = before;

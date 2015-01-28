@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\LazyArray.cs" />
     <Compile Include="Components\ProxyMemoryStream.cs" />
     <Compile Include="Components\CircularBuffer.cs" />
     <Compile Include="Components\Wildcard.cs" />

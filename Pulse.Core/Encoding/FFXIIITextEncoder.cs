@@ -110,7 +110,7 @@ namespace Pulse.Core
             
             value = 0x8180 + value - 0xFF;
             hight = (value & 0xFF00) >> 8;
-            low = value & 0xFF00;
+            low = value & 0x00FF;
         }
     }
 }

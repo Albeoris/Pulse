@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
+﻿using System.Collections.Generic;
 
 namespace Pulse.Core
 {
@@ -15,40 +13,28 @@ namespace Pulse.Core
             Codes = Exceptions.CheckArgumentNull(bytes, "bytes");
         }
 
-        public char this[short b]
+        public char this[short code]
         {
-            get
-            {
-                if (b == 324)
-                    return 'Ⅷ';
-
-                char c = Chars[b];
-                if (c == '\0')
-                    throw new ArgumentOutOfRangeException("b", b, "Символ соответствующий заданному байту не задан.");
-                return c;
-            }
+            get { return TryGetChar(code) ?? 'Ⅷ'; }
         }
 
-        public short this[char c]
+        public short this[char ch]
         {
-            get
-            {
-                return TryGetByte(c) ?? Codes['#'];
-            }
+            get { return TryGetCode(ch) ?? Codes['#']; }
         }
 
-        public char? TryGetChar(byte b)
+        public char? TryGetChar(short code)
         {
-            char c = Chars[b];
+            char c = Chars[code];
             if (c == '\0')
                 return null;
             return c;
         }
 
-        public short? TryGetByte(char c)
+        public short? TryGetCode(char ch)
         {
             short b;
-            if (Codes.TryGetValue(c, out b))
+            if (Codes.TryGetValue(ch, out b))
                 return b;
             return null;
         }

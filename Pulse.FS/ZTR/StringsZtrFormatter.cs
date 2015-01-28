@@ -37,7 +37,12 @@ namespace Pulse.FS
             {
                 int value = sr.Read();
                 if (value < 0)
+                {
+                    if (sb.Length == 0)
+                        return null;
+
                     throw Exceptions.CreateException("Неожиданный конец потока.");
+                }
 
                 char ch = (char)value;
                 switch (ch)
