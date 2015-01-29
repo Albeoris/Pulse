@@ -38,6 +38,7 @@
         DPad = 0x5A, // DPad, Arrows
         LStick = 0x5C, // Move character
         NPad = 0x5D, // Rotate camera
+        LeftRightAnalogic = 0x5E, // LeftRight Analogic
         LeftRightPad = 0x5F, //LeftRight Pad
         Arrows = 0x60 
     }

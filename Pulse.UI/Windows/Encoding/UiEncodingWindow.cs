@@ -170,7 +170,7 @@ quick brown fox jumps over the lazy dog
 
         public void Add(UiEncodingWindowSource source)
         {
-            //if (source.DisplayName == "wfnt18")
+            //if (source.DisplayName == "wfnt28")
             //{
             //    Dictionary<char, char> dic = new Dictionary<char, char>();
             //    dic['А'] = 'A';     dic['A'] = 'А';

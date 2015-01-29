@@ -111,8 +111,8 @@ namespace Pulse.UI.Encoding
             if (CurrentSource == null)
                 return;
 
-            foreach (int index in CurrentMainIndices)
-                _mainControls[index].IncrementXY(ox, oy);
+            for (int i = 0; i < CurrentMainIndices.Count; i++)
+                _mainControls[i].IncrementXY(ox, oy);
         }
     }
 }
