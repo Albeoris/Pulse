@@ -123,6 +123,13 @@ namespace Pulse.Core
             if (position > Length)
                 throw new ArgumentOutOfRangeException("position");
 
+            if (_write.Position > position)
+            {
+                _read.Position = position;
+                _readyForRead.Set();
+                return;
+            }
+
             int index = 0;
             while (true)
             {

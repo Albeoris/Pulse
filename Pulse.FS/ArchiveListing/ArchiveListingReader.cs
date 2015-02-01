@@ -51,10 +51,8 @@ namespace Pulse.FS
 
         private void ReadInternal(ArchiveAccessor accessor, Semaphore semaphore)
         {
-            using (DisposableStack stack = new DisposableStack(2))
+            using (Stream input = accessor.ExtractListing())
             {
-                Stream input = stack.Add(accessor.ExtractListing());
-
                 ArchiveListingHeader header = input.ReadStruct<ArchiveListingHeader>();
                 ArchiveListingEntryInfo[] entries = input.ReadStructs<ArchiveListingEntryInfo>(header.EntriesCount);
 
@@ -106,7 +104,8 @@ namespace Pulse.FS
                     if (_zonesBinaryDirectory != null && name.StartsWith("zone/filelist"))
                     {
                         string binaryName = Path.Combine(_zonesBinaryDirectory, String.Format("white_{0}_img{1}.win32.bin", name.Substring(14, 5), name.EndsWith("2") ? "2" : string.Empty));
-                        _accessors.Add(accessor.CreateChild(binaryName, entry));
+                        if (File.Exists(binaryName))
+                            _accessors.Add(accessor.CreateChild(binaryName, entry));
                     }
                 }
                 _listings.Add(result);
