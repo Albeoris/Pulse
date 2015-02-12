@@ -51,10 +51,10 @@ namespace Pulse.UI
 
                 Dictionary<string, Dictionary<string, string>> dic = new Dictionary<string, Dictionary<string, string>>(2);
 
-                string[] files = Directory.GetFiles(dir, "*.ztr.txt", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(dir, "txtres*.txt", SearchOption.AllDirectories);
                 if (files.Length == 0)
                 {
-                    MessageBox.Show("Cannot find any *.ztr.txt files.");
+                    MessageBox.Show("Cannot find any txtres*.txt files.");
                     return;
                 }
 
@@ -97,7 +97,7 @@ namespace Pulse.UI
                             }
                         }
                     }
-                    if (listing.Accessor.Level > 0 && listing.Count == 0)
+                    if (listing.Accessor.Level > 0)// && listing.Count == 0)
                         continue;
 
                     ArchiveInjector injector = new ArchiveInjector(listing, null, entry => ProvideEntryInjector(entry, dic));

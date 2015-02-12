@@ -80,13 +80,17 @@ namespace Pulse.FS
                     if (i < header.EntriesCount - 1)
                     {
                         ArchiveListingEntryInfoV1 next = entries[i + 1];
-                        infoLength = next.BlockNumber == currentBlock ? next.Offset : blockLength - 4;
+                        infoLength = next.BlockNumber == currentBlock ? next.Offset : blockLength;// - 4;
                     }
                     else
                     {
                         infoLength = blockLength - 4;
                     }
+                    
                     infoLength = infoLength - entryInfoV1.Offset - 1;
+                    int zeroIndex = Array.IndexOf(buff, (byte)0, entryInfoV1.Offset, infoLength);
+                    if (zeroIndex > 0)
+                        infoLength = zeroIndex - entryInfoV1.Offset;
 
                     string[] info = Encoding.ASCII.GetString(buff, entryInfoV1.Offset, infoLength).Split(':');
                     long sector = long.Parse(info[0], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);

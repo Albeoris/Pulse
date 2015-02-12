@@ -85,8 +85,6 @@ namespace Pulse.UI
             {
                 string oldText = entry.Value;
                 string newText;
-                if (oldText.StartsWith("Primers: Battle"))
-                    Console.WriteLine();
 
                 if (string.IsNullOrEmpty(oldText) || !_entries.TryGetValue(entry.Key, out newText))
                 {
