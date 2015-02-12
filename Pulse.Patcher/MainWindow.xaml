@@ -1,0 +1,21 @@
+﻿<Window x:Class="Pulse.Patcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:patcher="clr-namespace:Pulse.Patcher"
+        Title="MainWindow" Width="525" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBox Name="NameTextBox" Width="150"/>
+            <PasswordBox Name="PasswordBox" Width="200"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Подготовить" Click="OnPrepareButtonClick" IsEnabled="False"/>
+            <patcher:UiPatcherDownloadButton/>
+            <Button Content="Установить" Click="OnInstallButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

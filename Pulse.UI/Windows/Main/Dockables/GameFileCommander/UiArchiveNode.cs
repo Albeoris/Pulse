@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using Pulse.Core.Components;
+using Pulse.Core;
 using Pulse.FS;
 using Pulse.UI.Annotations;
 

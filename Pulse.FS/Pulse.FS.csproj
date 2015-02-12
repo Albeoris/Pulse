@@ -49,6 +49,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -89,13 +90,14 @@
     <Compile Include="ArchiveExtractor\ArchiveExtractor.cs" />
     <Compile Include="ArchiveExtractor\IXgrArchiveEntryExtractor.cs" />
     <Compile Include="ArchiveExtractor\XgrArchiveExtractor.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingEntryInfoV2.cs" />
     <Compile Include="ArchiveInjector\ArchiveInjector.cs" />
     <Compile Include="ArchiveInjector\IArchiveEntryInjector.cs" />
     <Compile Include="ArchiveInjector\IXgrArchiveEntryInjector.cs" />
     <Compile Include="ArchiveListing\ArchiveAccessor.cs" />
     <Compile Include="ArchiveListing\ArchiveListing.cs" />
     <Compile Include="ArchiveListing\ArchiveEntry.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingEntryInfo.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingEntryInfoV1.cs" />
     <Compile Include="ArchiveListing\ArchiveListingHeader.cs" />
     <Compile Include="ArchiveListing\ArchiveListingReader.cs" />
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
@@ -148,6 +150,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ArchiveListing\XIII-2\format.h" />
+    <Content Include="ArchiveListing\XIII-2\main.cpp" />
+    <Content Include="ArchiveListing\XIII-2\misc.cpp" />
+    <None Include="Resources\Executable\ffxiiicrypt.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Sections\Partially Stolen.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -60,7 +60,7 @@ namespace Pulse.UI
                     int index = 0;
                     XgrArchiveInjector injector = new XgrArchiveInjector(fontEntries, false, e => new XgrArchiveEntryInjectorWflContentPack(fontContent[index++], e));
                     injector.Inject();
-                    
+
                     return result;
                 }
             }
@@ -71,6 +71,119 @@ namespace Pulse.UI
 
             throw new OperationCanceledException();
         }
+
+        //private void Replace(UiEncodingWindowSource[] sources)
+        //{
+        //    Dictionary<char, char> dic = new Dictionary<char, char>();
+        //    dic['А'] = 'A';
+        //    dic['A'] = 'А';
+        //    dic['В'] = 'B';
+        //    dic['B'] = 'В';
+        //    dic['Е'] = 'E';
+        //    dic['E'] = 'Е';
+        //    dic['К'] = 'K';
+        //    dic['K'] = 'К';
+        //    dic['М'] = 'M';
+        //    dic['M'] = 'М';
+        //    dic['Н'] = 'H';
+        //    dic['H'] = 'Н';
+        //    dic['О'] = 'O';
+        //    dic['O'] = 'О';
+        //    dic['Р'] = 'P';
+        //    dic['P'] = 'Р';
+        //    dic['С'] = 'C';
+        //    dic['C'] = 'С';
+        //    dic['Т'] = 'T';
+        //    dic['T'] = 'Т';
+        //    dic['Х'] = 'X';
+        //    dic['X'] = 'Х';
+        //    dic['а'] = 'a';
+        //    dic['a'] = 'а';
+        //    dic['е'] = 'e';
+        //    dic['e'] = 'е';
+        //    dic['и'] = 'u';
+        //    dic['u'] = 'и';
+        //    dic['о'] = 'o';
+        //    dic['o'] = 'о';
+        //    dic['р'] = 'p';
+        //    dic['p'] = 'р';
+        //    dic['с'] = 'c';
+        //    dic['c'] = 'с';
+        //    dic['у'] = 'y';
+        //    dic['y'] = 'у';
+        //    dic['х'] = 'x';
+        //    dic['x'] = 'х';
+            
+        //    int[] sbig = {0x44, 0x46, 0x47, 0x49, 0x4A, 0x4C, 0x4E, 0x51, 0x52, 0x53, 0x55, 0x56, 0x57, 0x59, 0x5A};
+        //    int[] slit = {0x62, 0x64, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x71, 0x72, 0x73, 0x74, 0x76, 0x77, 0x7A};
+        //    int[] tbig = {0xc1, 0xc3, 0xc4, 0xc7, 0xc8, 0xcb, 0xcf, 0xd3, 0xd4, 0xdf, 0xe1, 0xe2, 0xe3, 0xe4, 0xe6};
+        //    int[] tlit = {0xe7, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0xef, 0xf2, 0xf4, 0xf6, 0xf7, 0xf8, 0xf9, 0xfb, 0xfc, 0xfd, 0xfe, 0xff};
+
+        //    UiEncodingWindowSource good = sources[1];
+        //    foreach (UiEncodingWindowSource source in sources)
+        //    {
+        //        if (source == good)
+        //            continue;
+
+        //        int index = 0;
+        //        for (int rus = 0x44; rus <= 0x5A; rus++)
+        //        {
+        //            char engChar;
+        //            char rusChar = source.Chars[rus];
+        //            if (dic.TryGetValue(rusChar, out engChar))
+        //            {
+        //                short eng = source.Codes[engChar];
+        //                source.Codes[rusChar] = eng;
+        //                source.Chars[rus] = '\0';
+        //            }
+        //            else if (rus == sbig[index])
+        //            {
+        //                int eng = tbig[index++];
+        //                Swap(source, eng, rus);
+        //            }
+        //        }
+
+        //        index = 0;
+        //        for (int rus = 0x62; rus <= 0x7A; rus++)
+        //        {
+        //            char engChar;
+        //            char rusChar = source.Chars[rus];
+        //            if (dic.TryGetValue(rusChar, out engChar))
+        //            {
+        //                short eng = source.Codes[engChar];
+        //                source.Codes[rusChar] = eng;
+        //                source.Chars[rus] = '\0';
+        //            }
+        //            else if (rus == slit[index])
+        //            {
+        //                int eng = tlit[index++];
+        //                Swap(source, eng, rus);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void Swap(UiEncodingWindowSource source, int eng, int rus)
+        //{
+        //    char engCh = source.Chars[eng];
+        //    char rusCh = source.Chars[rus];
+
+        //    short engCode, rusCode;
+        //    bool e = source.Codes.TryGetValue(engCh, out engCode);
+        //    bool r = source.Codes.TryGetValue(rusCh, out rusCode);
+        //    if (e)
+        //        if (r) source.Codes[engCh] = rusCode;
+        //        else source.Codes.Remove(engCh);
+        //    if (r)
+        //        if (e) source.Codes[rusCh] = engCode;
+        //        else source.Codes.Remove(rusCh);
+
+        //    source.Chars.Swap(eng, rus);
+        //    source.Info.Offsets.Swap(eng, rus);
+        //    source.Info.Sizes.Swap(eng, rus);
+        //    source.Info.Offsets.Swap(eng + 256, rus + 256);
+        //    source.Info.Sizes.Swap(eng + 256, rus + 256);
+        //}
 
         private UiEncodingWindowSource[] PrepareWindowSources(WflContent[] wflContents, GLTexture[] textures, string[] names, char[] chars, ConcurrentDictionary<char, short> codes)
         {
@@ -251,37 +364,6 @@ namespace Pulse.UI
         public void EncodingProvided(TextEncodingInfo encoding)
         {
             _oldEncoding = encoding;
-        }
-    }
-
-    public sealed class XgrArchiveEntryInjectorWflContentPack : IXgrArchiveEntryInjector
-    {
-        private readonly WflContent _content;
-        private readonly WpdEntry _targetEntry;
-
-        public XgrArchiveEntryInjectorWflContentPack(WflContent content, WpdEntry targetEntry)
-        {
-            _content = content;
-            _targetEntry = targetEntry;
-        }
-
-        public int CalcSize()
-        {
-            return _targetEntry.Length;
-        }
-
-        public void Inject(Stream indices, Stream content, Action<long> progress)
-        {
-            using (MemoryStream ms = new MemoryStream(1024))
-            {
-                WflFileWriter writer = new WflFileWriter(ms);
-                writer.Write(_content);
-
-                ms.Position = 0;
-                XgrArchiveEntryInjectorPack.Inject(indices, _targetEntry, ms, (int)ms.Length, null);
-            }
-
-            progress.NullSafeInvoke(_targetEntry.Length);
         }
     }
 }

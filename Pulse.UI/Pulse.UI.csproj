@@ -166,6 +166,7 @@
     <Compile Include="Interaction\TextEncoding\TextEncodingWorkingLocationProvider.cs" />
     <Compile Include="Interaction\TextEncoding\TextEncodingInfo.cs" />
     <Compile Include="Interaction\TextEncoding\TextEncodingUserProvider.cs" />
+    <Compile Include="Interaction\TextEncoding\XgrArchiveEntryInjectorWflContentPack.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationConfigurationProvider.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationInfo.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationProviders.cs" />

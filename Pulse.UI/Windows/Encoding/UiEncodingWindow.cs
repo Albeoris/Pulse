@@ -108,7 +108,7 @@ quick brown fox jumps over the lazy dog
                         {
                             _glPreviewControl.ClipToBounds = true;
                             _glPreviewControl.Control.Load += OnGLControlElementLoaded;
-                            _glPreviewControl.Control.Resize += OnGLPrviewElementResize;
+                            _glPreviewControl.Control.Resize += OnGLControlElementResize;
 
                             _glPreviewViewer.Content = _glPreviewControl;
                         }
@@ -170,150 +170,7 @@ quick brown fox jumps over the lazy dog
 
         public void Add(UiEncodingWindowSource source)
         {
-            //if (source.DisplayName == "wfnt28")
-            //{
-            //    Dictionary<char, char> dic = new Dictionary<char, char>();
-            //    dic['А'] = 'A';     dic['A'] = 'А';
-            //    dic['В'] = 'B';     dic['B'] = 'В';
-            //    dic['Е'] = 'E';     dic['E'] = 'Е';
-            //    dic['К'] = 'K';     dic['K'] = 'К';
-            //    dic['М'] = 'M';     dic['M'] = 'М';
-            //    dic['Н'] = 'H';     dic['H'] = 'Н';
-            //    dic['О'] = 'O';     dic['O'] = 'О';
-            //    dic['Р'] = 'P';     dic['P'] = 'Р';
-            //    dic['С'] = 'C';     dic['C'] = 'С';
-            //    dic['Т'] = 'T';     dic['T'] = 'Т';
-            //    dic['Х'] = 'X';     dic['X'] = 'Х';
-            //    dic['а'] = 'a';     dic['a'] = 'а';
-            //    dic['е'] = 'e';     dic['e'] = 'е';
-            //    dic['и'] = 'u';     dic['u'] = 'и';
-            //    dic['о'] = 'o';     dic['o'] = 'о';
-            //    dic['р'] = 'p';     dic['p'] = 'р';
-            //    dic['с'] = 'c';     dic['c'] = 'с';
-            //    dic['у'] = 'y';     dic['y'] = 'у';
-            //    dic['х'] = 'x';     dic['x'] = 'х';
-
-            //    for (int rusInd = 193; rusInd <= 255; rusInd++)
-            //    {
-            //        char eng;
-            //        char rus = source.Chars[rusInd];
-            //        if (dic.TryGetValue(rus, out eng))
-            //        {
-            //            short engCode = source.Codes[eng];
-            //            source.Codes[rus] = engCode;
-            //            source.Chars[rusInd] = '\0';
-            //        }
-            //    }
-
-            //    int index = 193;
-            //    for (int i = 66; i <= 90 && index < 256; i++)
-            //    {
-            //        char eng = source.Chars[i];
-            //        if (dic.ContainsKey(eng))
-            //            continue;
-
-            //        while (index < 256)
-            //        {
-            //            char rus = source.Chars[index];
-            //            if (rus == '\0' || dic.ContainsKey(rus))
-            //            {
-            //                index++;
-            //                continue;
-            //            }
-
-            //            switch (rus)
-            //            {
-            //                case 'Ё':
-            //                case 'ё':
-            //                case 'Ы':
-            //                case 'Й':
-            //                case 'Ъ':
-            //                case 'Ь':
-            //                case 'Ц':
-            //                case 'Ч':
-            //                case 'Ш':
-            //                case 'Щ':
-            //                case 'Э':
-            //                case 'ъ':
-            //                    case 'Ж':
-            //                    case 'Ю':
-            //                    index++;
-            //                    continue;
-            //            }
-
-            //            break;
-            //        }
-
-            //        if (index < 256)
-            //        {
-            //            Swap(source, i, index);
-            //            index++;
-            //        }
-            //    }
-
-            //    for (int i = 97; i <= 122 && index < 256; i++)
-            //    {
-            //        char eng = source.Chars[i];
-            //        if (dic.ContainsKey(eng))
-            //            continue;
-
-            //        while (index < 256)
-            //        {
-            //            char rus = source.Chars[index];
-            //            if (rus == '\0' || dic.ContainsKey(rus))
-            //            {
-            //                index++;
-            //                continue;
-            //            }
-
-            //             switch (rus)
-            //            {
-            //                case 'Ё':
-            //                case 'ё':
-            //                case 'Ы':
-            //                case 'Й':
-            //                case 'Ъ':
-            //                case 'Ь':
-            //                case 'Ц':
-            //                case 'Ч':
-            //                case 'Ш':
-            //                case 'Щ':
-            //                case 'Э':
-            //                case 'ъ':
-            //                     case 'Ж':
-            //                    case 'Ю':
-            //                    index++;
-            //                    continue;
-            //            }
-
-            //            break;
-            //        }
-
-            //        if (index < 256)
-            //        {
-            //            Swap(source, i, index);
-            //            index++;
-            //        }
-            //    }
-            //}
             _comboBox.Items.Add(source);
-        }
-
-        private void Swap(UiEncodingWindowSource source, int eng, int rus)
-        {
-            char engCh = source.Chars[eng];
-            char rusCh = source.Chars[rus];
-
-            short engCode = source.Codes[engCh];
-            short rusCode = source.Codes[rusCh];
-            source.Codes[engCh] = rusCode;
-            source.Codes[rusCh] = engCode;
-
-            source.Chars.Swap(eng, rus);
-            source.Info.Offsets.Swap(eng, rus);
-            source.Info.Sizes.Swap(eng, rus);
-            source.Info.Offsets.Swap(eng+256, rus+256);
-            source.Info.Sizes.Swap(eng+256, rus+256);
         }
 
         private void OnGLControlElementLoaded(object sender, EventArgs e)
@@ -330,10 +187,6 @@ quick brown fox jumps over the lazy dog
         private void OnGLControlElementResize(object sender, EventArgs e)
         {
             ConfigGlEdit();
-        }
-
-        private void OnGLPrviewElementResize(object sender, EventArgs e)
-        {
             ConfigGlPrview();
         }
 

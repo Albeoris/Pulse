@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Pulse.Core.Components
+namespace Pulse.Core
 {
     public sealed class Wildcard
     {

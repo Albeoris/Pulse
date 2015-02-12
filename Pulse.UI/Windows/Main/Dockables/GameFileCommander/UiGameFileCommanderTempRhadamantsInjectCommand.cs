@@ -119,7 +119,7 @@ namespace Pulse.UI
                 if (!entry.Name.EndsWith(locale + ".ztr", StringComparison.InvariantCultureIgnoreCase))
                     continue;
 
-                return new ArchiveEntryInjectorTempRhadamantsTxtToZtr(entry, dic[locale]);
+                return new ArchiveEntryInjectorTempRhadamantsTxtToZtr(entry, dic[locale], InteractionService.TextEncoding.Provide().Encoding);
             }
             return null;
         }

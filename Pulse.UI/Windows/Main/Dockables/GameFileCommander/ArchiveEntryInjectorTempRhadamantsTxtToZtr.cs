@@ -11,11 +11,13 @@ namespace Pulse.UI
     {
         private readonly ArchiveEntry _targetEntry;
         private readonly Dictionary<string, string> _entries;
+        private readonly FFXIIITextEncoding _encoding;
 
-        public ArchiveEntryInjectorTempRhadamantsTxtToZtr(ArchiveEntry targetEntry, Dictionary<string, string> entries)
+        public ArchiveEntryInjectorTempRhadamantsTxtToZtr(ArchiveEntry targetEntry, Dictionary<string, string> entries, FFXIIITextEncoding encoding)
         {
             _targetEntry = targetEntry;
             _entries = entries;
+            _encoding = encoding;
         }
 
         public int CalcSize()
@@ -31,7 +33,7 @@ namespace Pulse.UI
             ZtrFileEntry[] targetEntries;
             using (Stream input = archiveAccessor.ExtractBinary(_targetEntry))
             {
-                ZtrFileUnpacker unpacker = new ZtrFileUnpacker(input, InteractionService.TextEncoding.Provide().Encoding);
+                ZtrFileUnpacker unpacker = new ZtrFileUnpacker(input, _encoding);
                 targetEntries = unpacker.Unpack();
             }
 
@@ -40,7 +42,7 @@ namespace Pulse.UI
             byte[] data;
             using (MemoryStream buff = new MemoryStream((int)(_targetEntry.UncompressedSize + 1024)))
             {
-                ZtrFilePacker packer = new ZtrFilePacker(buff, InteractionService.TextEncoding.Provide().Encoding);
+                ZtrFilePacker packer = new ZtrFilePacker(buff, _encoding);
                 packer.Pack(entries);
                 data = buff.ToArray();
             }

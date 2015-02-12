@@ -16,12 +16,12 @@ namespace Pulse.FS
             _output = output;
         }
 
-        public void Write(ArchiveListing listing, out ArchiveListingBlockInfo[] blocksInfo, out ArchiveListingEntryInfo[] entriesInfo)
+        public void Write(ArchiveListing listing, out ArchiveListingBlockInfo[] blocksInfo, out ArchiveListingEntryInfoV1[] entriesInfoV1)
         {
             using (MemoryStream ms = new MemoryStream(32768))
             {
                 int blockNumber = 0, unpackedBlockOffset = 0;
-                entriesInfo = new ArchiveListingEntryInfo[listing.Count];
+                entriesInfoV1 = new ArchiveListingEntryInfoV1[listing.Count];
                 List<ArchiveListingBlockInfo> blocks = new List<ArchiveListingBlockInfo>(128);
                 using (FormattingStreamWriter sw = new FormattingStreamWriter(ms, Encoding.ASCII, 4096, true, CultureInfo.InvariantCulture))
                 {
@@ -29,9 +29,9 @@ namespace Pulse.FS
                     for (int i = 0; i < listing.Count; i++)
                     {
                         ArchiveEntry entry = listing[i];
-                        entriesInfo[i] = new ArchiveListingEntryInfo {BlockNumber = (short)(ms.Position / 8192)};
+                        entriesInfoV1[i] = new ArchiveListingEntryInfoV1 {BlockNumber = (short)(ms.Position / 8192)};
 
-                        if (blockNumber != entriesInfo[i].BlockNumber)
+                        if (blockNumber != entriesInfoV1[i].BlockNumber)
                         {
                             sw.Write("end\0");
                             int blockSize = (int)(ms.Position - unpackedBlockOffset);
@@ -46,7 +46,7 @@ namespace Pulse.FS
                         }
                         else if (i == listing.Count - 1)
                         {
-                            entriesInfo[i].Offset = (short)(ms.Position - unpackedBlockOffset);
+                            entriesInfoV1[i].Offset = (short)(ms.Position - unpackedBlockOffset);
                             sw.Write("{0:x}:{1:x}:{2:x}:{3}\0end\0", entry.Sector, entry.UncompressedSize, entry.Size, entry.Name);
                             int blockSize = (int)(ms.Position - unpackedBlockOffset);
                             ms.Position = unpackedBlockOffset;
@@ -56,7 +56,7 @@ namespace Pulse.FS
                         }
                         else
                         {
-                            entriesInfo[i].Offset = (short)(ms.Position - unpackedBlockOffset);
+                            entriesInfoV1[i].Offset = (short)(ms.Position - unpackedBlockOffset);
                             sw.Write("{0:x}:{1:x}:{2:x}:{3}\0", entry.Sector, entry.UncompressedSize, entry.Size, entry.Name);
                         }
 

@@ -177,6 +177,9 @@ namespace Pulse.UI
         private static void GetEndingTags(string text, StringBuilder sb)
         {
             int index = text.Length - 1;
+            if (index < 0)
+                return;
+
             while (text[index] == '}')
             {
                 index = text.LastIndexOf('{', index - 1) - 1;
@@ -192,6 +195,7 @@ namespace Pulse.UI
             int offset = 0;
             int left = chars.Length;
             FFXIIITextTag tag;
+
             while (left > 0 && (tag = FFXIIITextTag.TryRead(chars, ref offset, ref left)) != null)
             {
                 switch (tag.Code)

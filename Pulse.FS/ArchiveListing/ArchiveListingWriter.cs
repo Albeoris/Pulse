@@ -26,14 +26,14 @@ namespace Pulse.FS
             using (MemoryStream textBuff = new MemoryStream(32768))
             {
                 ArchiveListingBlockInfo[] blocksInfo;
-                ArchiveListingEntryInfo[] entriesInfo;
+                ArchiveListingEntryInfoV1[] entriesInfoV1;
                 ArchiveListingTextWriter textWriter = new ArchiveListingTextWriter(textBuff);
-                textWriter.Write(_listing, out blocksInfo, out entriesInfo);
+                textWriter.Write(_listing, out blocksInfo, out entriesInfoV1);
 
-                for (int i = 0; i < entriesInfo.Length; i++)
+                for (int i = 0; i < entriesInfoV1.Length; i++)
                 {
-                    entriesInfo[i].UnknownNumber = _listing[i].UnknownNumber;
-                    entriesInfo[i].UnknownValue = _listing[i].UnknownValue;
+                    entriesInfoV1[i].UnknownNumber = _listing[i].UnknownNumber;
+                    entriesInfoV1[i].UnknownValue = _listing[i].UnknownValue;
                 }
 
                 byte[] buff = new byte[8192];
@@ -41,12 +41,12 @@ namespace Pulse.FS
                 textBuff.Position = 0;
 
                 ArchiveListingHeader header = new ArchiveListingHeader();
-                header.EntriesCount = entriesInfo.Length;
-                header.BlockOffset = entriesInfo.Length * 8 + 12;
+                header.EntriesCount = entriesInfoV1.Length;
+                header.BlockOffset = entriesInfoV1.Length * 8 + 12;
                 header.InfoOffset = header.BlockOffset + blocksInfo.Length * 12;
 
                 headerBuff.WriteStruct(header);
-                foreach (ArchiveListingEntryInfo entry in entriesInfo)
+                foreach (ArchiveListingEntryInfoV1 entry in entriesInfoV1)
                     headerBuff.WriteStruct(entry);
                 foreach (ArchiveListingBlockInfo block in blocksInfo)
                     headerBuff.WriteStruct(block);

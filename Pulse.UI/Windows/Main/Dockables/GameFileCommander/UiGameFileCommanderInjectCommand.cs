@@ -1,10 +1,8 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Pulse.Core;
-using Pulse.Core.Components;
 using Pulse.FS;
 
 namespace Pulse.UI

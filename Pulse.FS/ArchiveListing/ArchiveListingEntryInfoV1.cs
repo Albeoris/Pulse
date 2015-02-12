@@ -3,7 +3,7 @@
 namespace Pulse.FS
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct ArchiveListingEntryInfo
+    public struct ArchiveListingEntryInfoV1
     {
         public short UnknownValue;
         public short UnknownNumber;

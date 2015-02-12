@@ -21,6 +21,8 @@ namespace Pulse.UI
         }
 
         private readonly string _sourcePath;
+        private readonly Stream _source;
+
         private readonly int _sourceSize;
         private readonly WpdEntry _targetEntry;
 
@@ -31,6 +33,13 @@ namespace Pulse.UI
             _targetEntry = targetEntry;
         }
 
+        public XgrArchiveEntryInjectorPack(Stream source, WpdEntry targetEntry)
+        {
+            _source = source;
+            _sourceSize = (int)source.Length;
+            _targetEntry = targetEntry;
+        }
+
         public int CalcSize()
         {
             return _sourceSize;
@@ -38,8 +47,15 @@ namespace Pulse.UI
 
         public void Inject(Stream indices, Stream content, Action<long> progress)
         {
-            using (Stream input = File.OpenRead(_sourcePath))
-                Inject(indices, _targetEntry, input, _sourceSize, progress);
+            if (_source == null)
+            {
+                using (Stream input = File.OpenRead(_sourcePath))
+                    Inject(indices, _targetEntry, input, _sourceSize, progress);
+            }
+            else
+            {
+                Inject(indices, _targetEntry, _source, _sourceSize, progress);
+            }
         }
 
         public static void Inject(Stream indices, WpdEntry targetEntry, Stream source, int sourceSize, Action<long> progress)
