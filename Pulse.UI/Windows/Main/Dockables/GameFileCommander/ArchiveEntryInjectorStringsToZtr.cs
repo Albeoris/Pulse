@@ -124,8 +124,8 @@ namespace Pulse.UI
                 string oldEnding = sb.ToString();
                 sb.Clear();
 
-                GetEndingTags(newText, sb);
-                int newLength = newText.Length - sb.Length;
+                int endingLength = GetEndingTags(newText, sb);
+                int newLength = newText.Length - endingLength;
                 sb.Clear();
 
                 // ¬осстановление старых хвостов и тегов новой строки
@@ -174,11 +174,11 @@ namespace Pulse.UI
             return result;
         }
 
-        private static void GetEndingTags(string text, StringBuilder sb)
+        private static int GetEndingTags(string text, StringBuilder sb)
         {
             int index = text.Length - 1;
             if (index < 0)
-                return;
+                return 0;
 
             while (text[index] == '}')
             {
@@ -188,12 +188,13 @@ namespace Pulse.UI
             }
 
             if (index == text.Length - 1)
-                return;
+                return 0;
 
             char[] chars = index < 0 ? text.ToCharArray() : text.ToCharArray(index + 1, text.Length - index - 1);
 
             int offset = 0;
             int left = chars.Length;
+            int result = left;
             FFXIIITextTag tag;
 
             while (left > 0 && (tag = FFXIIITextTag.TryRead(chars, ref offset, ref left)) != null)
@@ -206,6 +207,7 @@ namespace Pulse.UI
                         sb.Append(tag);
                         break;
                     default:
+                        result = left;
                         sb.Clear();
                         break;
                 }
@@ -213,6 +215,8 @@ namespace Pulse.UI
 
             if (left != 0)
                 Log.Warning("[ArchiveEntryInjectorStringsToZtr.GetEndingTags] Ќеверна€ управл€юща€ последовательность: {0}", text);
+
+            return result;
         }
 
         private static readonly FFXIIITextTag NewLineTag = new FFXIIITextTag(FFXIIITextTagCode.Text, FFXIIITextTagText.NewLine);
