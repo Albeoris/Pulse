@@ -67,8 +67,8 @@ namespace Pulse.FS
             byte[] key = Encoding.ASCII.GetBytes(entry.Key);
             byte[] value = _encoding.GetBytes(entry.Value);
 
-            _bw.Write(4);
-            _bw.Write(4 + key.Length + 1);
+            _bw.Write(12);
+            _bw.Write(12 + key.Length + 1);
 
             _bw.Write(key);
             _bw.Write((byte)0);

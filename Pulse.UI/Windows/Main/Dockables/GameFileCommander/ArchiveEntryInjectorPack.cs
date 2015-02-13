@@ -45,8 +45,11 @@ namespace Pulse.UI
         public static void Inject(ArchiveAccessor archiveAccessor, ArchiveEntry targetEntry, Stream source, int sourceSize, bool? wantCompress, Action<long> progress)
         {
             bool compress = wantCompress ?? targetEntry.IsCompressed;
-            int compressedSize = sourceSize;
+            if (sourceSize < 128)
+                compress = false;
+            
             byte[] copyBuff = new byte[Math.Min(sourceSize, 32 * 1024)];
+            int compressedSize = sourceSize;
 
             if (!compress)
             {
@@ -58,17 +61,28 @@ namespace Pulse.UI
                 using (SafeUnmanagedArray buff = new SafeUnmanagedArray(sourceSize + 256))
                 using (UnmanagedMemoryStream buffStream = buff.OpenStream(FileAccess.ReadWrite))
                 {
-                    compressedSize = ZLibHelper.Compress(source, buffStream, sourceSize, progress);
-                    using (Stream output = archiveAccessor.OpenOrAppendBinary(targetEntry, compressedSize))
+                    compressedSize = ZLibHelper.Compress(source, buffStream, sourceSize);
+                    if (compressedSize >= sourceSize)
                     {
-                        buffStream.Position = 0;
-                        buffStream.CopyTo(output, compressedSize, copyBuff);
+                        compressedSize = sourceSize;
+                        using (Stream output = archiveAccessor.OpenOrAppendBinary(targetEntry, compressedSize))
+                            source.CopyTo(output, sourceSize, copyBuff);
+                    }
+                    else
+                    {
+                        using (Stream output = archiveAccessor.OpenOrAppendBinary(targetEntry, compressedSize))
+                        {
+                            buffStream.Position = 0;
+                            buffStream.CopyTo(output, compressedSize, copyBuff);
+                        }
                     }
                 }
             }
 
             targetEntry.Size = compressedSize;
             targetEntry.UncompressedSize = sourceSize;
+
+            progress.NullSafeInvoke(sourceSize);
         }
     }
 }

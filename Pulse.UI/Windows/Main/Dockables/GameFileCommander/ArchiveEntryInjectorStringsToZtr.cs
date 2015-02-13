@@ -42,9 +42,6 @@ namespace Pulse.UI
 
         public void Inject(ArchiveAccessor archiveAccessor, bool? wantCompress, Action<long> progress)
         {
-            bool compress = wantCompress ?? _targetEntry.IsCompressed;
-            byte[] copyBuff = new byte[Math.Min(_sourceSize, 32 * 1024)];
-
             ZtrFileEntry[] sourceEntries;
             using (Stream input = File.OpenRead(_sourcePath))
             {
@@ -62,41 +59,14 @@ namespace Pulse.UI
 
             ZtrFileEntry[] entries = MergeEntries(sourceEntries, targetEntries);
 
-            byte[] data;
             using (MemoryStream buff = new MemoryStream(_sourceSize))
             {
                 ZtrFilePacker packer = new ZtrFilePacker(buff, InteractionService.TextEncoding.Provide().Encoding);
                 packer.Pack(entries);
-                data = buff.ToArray();
+
+                buff.Position = 0;
+                ArchiveEntryInjectorPack.Inject(archiveAccessor, _targetEntry, buff, (int)buff.Length, wantCompress, progress);
             }
-
-            int uncompressedSize = data.Length;
-            int compressedSize = uncompressedSize;
-
-            if (!compress)
-            {
-                using (Stream output = archiveAccessor.OpenOrAppendBinary(_targetEntry, uncompressedSize))
-                    output.Write(data, 0, uncompressedSize);
-            }
-            else
-            {
-                using (SafeUnmanagedArray buff = new SafeUnmanagedArray(uncompressedSize + 256))
-                using (UnmanagedMemoryStream buffStream = buff.OpenStream(FileAccess.ReadWrite))
-                using (MemoryStream input = new MemoryStream(data))
-                {
-                    compressedSize = ZLibHelper.Compress(input, buffStream, uncompressedSize, progress);
-                    using (Stream output = archiveAccessor.OpenOrAppendBinary(_targetEntry, compressedSize))
-                    {
-                        buffStream.Position = 0;
-                        buffStream.CopyTo(output, compressedSize, copyBuff);
-                    }
-                }
-            }
-
-            _targetEntry.Size = compressedSize;
-            _targetEntry.UncompressedSize = uncompressedSize;
-
-            progress.NullSafeInvoke(_sourceSize);
         }
 
         private static ZtrFileEntry[] MergeEntries(ZtrFileEntry[] sourceEntries, ZtrFileEntry[] targetEntries)

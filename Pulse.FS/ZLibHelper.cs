@@ -105,23 +105,5 @@ namespace Pulse.FS
             if (size != 0)
                 throw new Exception("Неожиданный конец потока.");
         }
-
-        public static Stream ReplaceEntryContent(Stream input, ArchiveEntry entry, out int compressedSize)
-        {
-            entry.UncompressedSize = (int)input.Length;
-            MemoryStream output = new MemoryStream((int)entry.UncompressedSize);
-            try
-            {
-                compressedSize = Compress(input, output, (int)entry.UncompressedSize);
-                output.Flush();
-                output.Position = 0;
-            }
-            catch
-            {
-                output.SafeDispose();
-                throw;
-            }
-            return output;
-        }
     }
 }

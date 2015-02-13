@@ -97,7 +97,7 @@ namespace Pulse.UI
                             }
                         }
                     }
-                    if (listing.Accessor.Level > 0)// && listing.Count == 0)
+                    if (listing.Accessor.Level > 0 && listing.Count == 0)
                         continue;
 
                     ArchiveInjector injector = new ArchiveInjector(listing, null, entry => ProvideEntryInjector(entry, dic));
