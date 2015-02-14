@@ -36,6 +36,7 @@
         RSUp = 0x59, // RSUp, 8
         
         DPad = 0x5A, // DPad, Arrows
+        Analog = 0x5B, // Analog, Zoom in map in texttagkey.
         LStick = 0x5C, // Move character
         NPad = 0x5D, // Rotate camera
         LeftRightAnalogic = 0x5E, // LeftRight Analogic
