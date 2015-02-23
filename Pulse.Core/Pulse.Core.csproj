@@ -112,6 +112,7 @@
     <Compile Include="Framework\DirectoryInfoExm.cs" />
     <Compile Include="Framework\FileEx.cs" />
     <Compile Include="Framework\IStreamingContent.cs" />
+    <Compile Include="Framework\ManualResetEventExm.cs" />
     <Compile Include="Framework\Pair.cs" />
     <Compile Include="Framework\ConcurrentDictionaryExm.cs" />
     <Compile Include="Framework\DisposableAction.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Framework\StreamExm.cs" />
     <Compile Include="Framework\StringBuilderExm.cs" />
     <Compile Include="Framework\TaskExm.cs" />
+    <Compile Include="Framework\TimeoutAction.cs" />
     <Compile Include="Framework\TypeCache.cs" />
     <Compile Include="Framework\XmlDocumentExm.cs" />
     <Compile Include="Framework\XmlElementExm.cs" />

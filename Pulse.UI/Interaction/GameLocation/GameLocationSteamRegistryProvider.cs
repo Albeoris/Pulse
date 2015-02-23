@@ -6,9 +6,9 @@ namespace Pulse.UI
 {
     public sealed class GameLocationSteamRegistryProvider : IInfoProvider<GameLocationInfo>
     {
-        private const string SteamRegistyPart1Path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 292120";
-        private const string SteamRegistyPart2Path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 292140";
-        private const string SteamGamePathTag = @"InstallLocation";
+        public const string SteamRegistyPart1Path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 292120";
+        public const string SteamRegistyPart2Path = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 292140";
+        public const string SteamGamePathTag = @"InstallLocation";
 
         public GameLocationInfo Provide()
         {

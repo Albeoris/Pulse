@@ -31,7 +31,7 @@ namespace Pulse.UI
             }
             catch(Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(null, ex);
             }
 
             Interlocked.Exchange(ref _canExecute, 1);

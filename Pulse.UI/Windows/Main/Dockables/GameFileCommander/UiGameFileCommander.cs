@@ -179,7 +179,7 @@ namespace Pulse.UI
             }
             catch (Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
             }
         }
 
@@ -194,7 +194,7 @@ namespace Pulse.UI
             catch (Exception ex)
             {
                 ClearContent();
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
             }
         }
 
@@ -216,7 +216,7 @@ namespace Pulse.UI
             }
             catch (Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
             }
         }
 
@@ -239,7 +239,7 @@ namespace Pulse.UI
             catch (Exception ex)
             {
                 ClearContent();
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
             }
         }
 

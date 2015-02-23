@@ -16,13 +16,5 @@ namespace Pulse.Patcher
     /// </summary>
     public partial class App : Application
     {
-        protected override async void OnStartup(StartupEventArgs e)
-        {
-            //await Downloader.Download();
-            //MessageBox.Show("Downloaded!");
-            //Environment.Exit(0);
-
-            base.OnStartup(e);
-        }
     }
 }

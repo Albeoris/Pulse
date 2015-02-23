@@ -26,7 +26,7 @@ namespace Pulse
             }
             catch (Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
                 Environment.Exit(1);
             }
         }
@@ -40,7 +40,7 @@ namespace Pulse
             }
             catch (Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
                 Environment.Exit(1);
             }
         }
@@ -54,7 +54,7 @@ namespace Pulse
             }
             catch (Exception ex)
             {
-                UiHelper.ShowError(ex);
+                UiHelper.ShowError(this, ex);
                 Environment.Exit(1);
             }
         }

@@ -146,36 +146,7 @@ namespace Pulse.UI
 
         private string FormatValue(long value)
         {
-            if (_units == UiProgressUnits.Items)
-                return value.ToString(CultureInfo.CurrentCulture);
-
-            int i = 0;
-            decimal dec = value;
-            while ((dec > 1024))
-            {
-                dec /= 1024;
-                i++;
-            }
-
-            switch (i)
-            {
-                case 0:
-                    return string.Format("{0:F2} "  + Lang.Measurement.ByteAbbr, dec);
-                case 1:                              
-                    return string.Format("{0:F2} " + Lang.Measurement.KByteAbbr, dec);
-                case 2:                            
-                    return string.Format("{0:F2} " + Lang.Measurement.MByteAbbr, dec);
-                case 3:                            
-                    return string.Format("{0:F2} " + Lang.Measurement.GByteAbbr, dec);
-                case 4:                            
-                    return string.Format("{0:F2} " + Lang.Measurement.TByteAbbr, dec);
-                case 5:                            
-                    return string.Format("{0:F2} " + Lang.Measurement.PByteAbbr, dec);
-                case 6:                            
-                    return string.Format("{0:F2} " + Lang.Measurement.EByteAbbr, dec);
-                default:
-                    throw new ArgumentOutOfRangeException("value");
-            }
+            return _units == UiProgressUnits.Items ? value.ToString(CultureInfo.CurrentCulture) : UiHelper.FormatBytes(value);
         }
 
         #endregion

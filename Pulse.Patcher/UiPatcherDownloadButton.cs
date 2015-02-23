@@ -1,154 +1,159 @@
-using System;
-using System.Globalization;
-using System.IO;
-using System.Net.Http;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Pulse.Core;
-using Pulse.UI;
+//using System;
+//using System.Globalization;
+//using System.IO;
+//using System.Net.Http;
+//using System.Threading;
+//using System.Windows;
+//using System.Windows.Controls;
+//using System.Windows.Media;
+//using Pulse.Core;
+//using Pulse.UI;
 
-namespace Pulse.Patcher
-{
-    public sealed class UiPatcherDownloadButton : UiButton
-    {
-        private const string FileName = "ff13.ffrtt.ru";
+//namespace Pulse.Patcher
+//{
+//    public sealed class UiPatcherDownloadButton : UiButton
+//    {
+//        private const string FileName = "ff13.ffrtt.ru";
 
-        private readonly UiTextBlock _downloadButtonLabel;
-        private readonly UiTextBlock _downloadButtonTimeLabel;
+//        private readonly UiTextBlock _downloadButtonLabel;
+//        private readonly UiTextBlock _downloadButtonTimeLabel;
 
-        private DateTime _localFileTime;
-        private DateTime _remoteFileTime = new DateTime(2015, 1, 1);
+//        private DateTime _localFileTime;
+//        private DateTime _remoteFileTime = new DateTime(2015, 1, 1);
 
-        public UiPatcherDownloadButton()
-        {
-            Loaded += OnLoaded;
+//        public UiPatcherDownloadButton()
+//        {
+//            Loaded += OnLoaded;
 
-            Width = 200;
-            Height = 80;
+//            Width = 200;
+//            Height = 80;
 
-            UiStackPanel stackPanel = UiStackPanelFactory.Create(Orientation.Vertical);
-            {
-                _downloadButtonLabel = stackPanel.AddUiElement(UiTextBlockFactory.Create("Скачать"));
-                _downloadButtonTimeLabel = stackPanel.AddUiElement(UiTextBlockFactory.Create(String.Empty));
-            }
+//            UiStackPanel stackPanel = UiStackPanelFactory.Create(Orientation.Vertical);
+//            {
+//                _downloadButtonLabel = stackPanel.AddUiElement(UiTextBlockFactory.Create("Скачать"));
+//                _downloadButtonTimeLabel = stackPanel.AddUiElement(UiTextBlockFactory.Create(String.Empty));
+//            }
 
-            Content = stackPanel;
-        }
+//            Content = stackPanel;
+//        }
 
-        private async void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                _localFileTime = File.GetCreationTime(FileName);
-                RefreshColor(false);
+//        private async void OnLoaded(object sender, RoutedEventArgs e)
+//        {
+//            try
+//            {
+//                _localFileTime = File.GetCreationTime(FileName);
+//                RefreshColor(false);
 
-                const string gitArchiveLink = "http://github.com/Albeoris/Pulse/blob/master/Translate/FF13TranslationAlpha.ecp";
+//                const string gitArchiveLink = "http://github.com/Albeoris/Pulse/blob/master/Translate/FF13TranslationAlpha.ecp";
 
-                int count = 2;
-                using (HttpClient client = new HttpClient())
-                using (Stream input = await client.GetStreamAsync(gitArchiveLink))
-                {
-                    StreamReader sr = new StreamReader(input);
-                    while (!sr.EndOfStream && count > 0)
-                    {
-                        string line = await sr.ReadLineAsync();
-                        if (line == null)
-                            continue;
+//                int count = 2;
+//                using (HttpClient client = new HttpClient())
+//                using (Stream input = await client.GetStreamAsync(gitArchiveLink))
+//                {
+//                    StreamReader sr = new StreamReader(input);
+//                    while (!sr.EndOfStream && count > 0)
+//                    {
+//                        string line = await sr.ReadLineAsync();
+//                        if (line == null)
+//                            continue;
 
-                        const string sizePattern = "<div class=\"info file-name\">";
-                        const string timePattern = "<time datetime=\"";
+//                        const string sizePattern = "<div class=\"info file-name\">";
+//                        const string timePattern = "<time datetime=\"";
 
-                        if (line.Contains(sizePattern))
-                        {
-                            line = sr.ReadLine();
-                            count--;
+//                        if (line.Contains(sizePattern))
+//                        {
+//                            line = sr.ReadLine();
+//                            count--;
 
-                            if (line == null)
-                                continue;
+//                            if (line == null)
+//                                continue;
 
-                            string size = line.Replace("span>", " ").Trim(' ', '<', '/', '\t');
-                            _downloadButtonLabel.Text = "Скачать (" + size + ')';
-                            continue;
-                        }
+//                            string size = line.Replace("span>", " ").Trim(' ', '<', '/', '\t');
+//                            _downloadButtonLabel.Text = "Скачать (" + size + ')';
+//                            continue;
+//                        }
 
-                        int tokenIndex = line.IndexOf(timePattern, StringComparison.Ordinal);
-                        if (tokenIndex < 0)
-                            continue;
+//                        int tokenIndex = line.IndexOf(timePattern, StringComparison.Ordinal);
+//                        if (tokenIndex < 0)
+//                            continue;
 
-                        tokenIndex += timePattern.Length;
-                        int length = line.IndexOf('"', tokenIndex + 1) - tokenIndex;
+//                        tokenIndex += timePattern.Length;
+//                        int length = line.IndexOf('"', tokenIndex + 1) - tokenIndex;
 
-                        string value = line.Substring(tokenIndex, length);
-                        count--;
+//                        string value = line.Substring(tokenIndex, length);
+//                        count--;
 
-                        if (!DateTime.TryParse(value, out _remoteFileTime))
-                            continue;
+//                        if (!DateTime.TryParse(value, out _remoteFileTime))
+//                            continue;
 
-                        _downloadButtonTimeLabel.Text = _remoteFileTime.ToString(CultureInfo.CurrentCulture);
-                        RefreshColor(true);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-        }
+//                        _downloadButtonTimeLabel.Text = _remoteFileTime.ToString(CultureInfo.CurrentCulture);
+//                        RefreshColor(true);
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                Log.Error(ex);
+//            }
+//        }
 
-        private void RefreshColor(bool isStrictEquality)
-        {
-            if (isStrictEquality)
-            {
-                if (_localFileTime == _remoteFileTime)
-                {
-                    MakeGray();
-                    return;
-                }
-            }
-            else if (_localFileTime > _remoteFileTime)
-            {
-                MakeGray();
-                return;
-            }
+//        private void RefreshColor(bool isStrictEquality)
+//        {
+//            if (isStrictEquality)
+//            {
+//                if (_localFileTime == _remoteFileTime)
+//                {
+//                    MakeGray();
+//                    return;
+//                }
+//            }
+//            else if (_localFileTime > _remoteFileTime)
+//            {
+//                MakeGray();
+//                return;
+//            }
 
-            MakeGreen();
-        }
+//            MakeGreen();
+//        }
 
-        private void MakeGray()
-        {
-            Background = Brushes.Gray;
-        }
+//        private void MakeGray()
+//        {
+//            Background = Brushes.Gray;
+//        }
 
-        private void MakeGreen()
-        {
-            Background = Brushes.ForestGreen;
-        }
+//        private void MakeGreen()
+//        {
+//            Background = Brushes.ForestGreen;
+//        }
 
-        protected override async void OnClick()
-        {
-            base.OnClick();
+//        protected override async void OnClick()
+//        {
+//            base.OnClick();
 
-            IsEnabled = false;
+//            IsEnabled = false;
 
-            try
-            {
-                await Downloader.Download(FileName);
-                
-                _localFileTime = _remoteFileTime;
-                File.SetCreationTime(FileName, _localFileTime);
-                RefreshColor(true);
+//            try
+//            {
+//                using (ManualResetEvent mre = new ManualResetEvent(false))
+//                {
+//                    Downloader downloader = new Downloader(mre);
+//                    await downloader.Download(FileName);
+//                }
 
-                MessageBox.Show((Window)this.GetRootElement(), "Готово!");
-            }
-            catch (Exception ex)
-            {
-                UiHelper.ShowError(ex);
-            }
-            finally
-            {
-                IsEnabled = true;
-            }
-        }
-    }
-}
+//                _localFileTime = _remoteFileTime;
+//                File.SetCreationTime(FileName, _localFileTime);
+//                RefreshColor(true);
+
+//                MessageBox.Show((Window)this.GetRootElement(), "Готово!");
+//            }
+//            catch (Exception ex)
+//            {
+//                UiHelper.ShowError(this, ex);
+//            }
+//            finally
+//            {
+//                IsEnabled = true;
+//            }
+//        }
+//    }
+//}

@@ -63,6 +63,9 @@
       <Private>True</Private>
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\packages\NAudio.1.7.2\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -84,13 +87,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\UiPatcherExitButton.cs" />
+    <Compile Include="Controls\UiPatcherPrepareButton.cs" />
+    <Compile Include="Controls\UiPatcherInstallButton.cs" />
+    <Compile Include="Controls\UiPatcherPlayButton.cs" />
+    <Compile Include="Controls\UiProgressButton.xaml.cs">
+      <DependentUpon>UiProgressButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UiPatcherDownloadButton.cs" />
+    <Compile Include="PatcherService.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="PatchFormatVersion.cs" />
     <Compile Include="UiPatcherDownloadButton.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="XgrPatchData.cs" />
+    <Page Include="Controls\UiProgressButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,10 +120,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -153,6 +162,9 @@
       <Project>{87509062-BCDD-4BF0-92C8-169C0B59740B}</Project>
       <Name>Pulse.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Background.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

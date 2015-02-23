@@ -14,6 +14,7 @@ namespace Pulse.UI
 
         private const string Part1ResourceDirName = "white_data";
         private const string Part2ResourceDirName = "alba_data";
+        private const string ExecutableRelativePath = @"prog\win\bin\ffxiiiimg.exe";
 
         public GameLocationInfo(string rootDirectory)
         {
@@ -39,6 +40,11 @@ namespace Pulse.UI
                         throw new NotImplementedException();
                 }
             }
+        }
+
+        public string ExecutablePath
+        {
+            get { return Path.Combine(RootDirectory, ResourceDirName, ExecutableRelativePath); }
         }
 
         public void Validate()
