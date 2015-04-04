@@ -43,6 +43,10 @@ namespace Pulse.OpenGL
                 output.Format = GtexPixelFromat.Dxt3;
             else if (header.PixelFormat.Equals(DdsPixelFormat.DXT5))
                 output.Format = GtexPixelFromat.Dxt5;
+            else if (header.PixelFormat.Equals(DdsPixelFormat.X8R8G8B8))
+                output.Format = GtexPixelFromat.X8R8G8B8;
+            else
+                throw new NotImplementedException();
         }
     }
 }

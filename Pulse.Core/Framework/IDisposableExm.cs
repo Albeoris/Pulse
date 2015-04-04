@@ -16,6 +16,14 @@ namespace Pulse.Core
                 self.Dispose();
         }
 
+        [TargetedPatchingOptOut("Performance critical to inline across NGen image boundaries")]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void NullSafeDispose<T>(this Lazy<T> self) where T : IDisposable
+        {
+            if (!ReferenceEquals(self, null) && self.IsValueCreated)
+                self.Value.NullSafeDispose();
+        }
+
         public static void SafeDispose(this IDisposable self)
         {
             try

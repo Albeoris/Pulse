@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>80cc87bc</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,10 +70,14 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,8 +85,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Flute.cs" />
     <Compile Include="Components\LazyArray.cs" />
-    <Compile Include="Components\ProxyMemoryStream.cs" />
     <Compile Include="Components\CircularBuffer.cs" />
     <Compile Include="Components\Wildcard.cs" />
     <Compile Include="Components\DisposableStream.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Framework\StreamExm.cs" />
     <Compile Include="Framework\StringBuilderExm.cs" />
     <Compile Include="Framework\TaskExm.cs" />
+    <Compile Include="Framework\ThreadHelper.cs" />
     <Compile Include="Framework\TimeoutAction.cs" />
     <Compile Include="Framework\TypeCache.cs" />
     <Compile Include="Framework\XmlDocumentExm.cs" />
@@ -148,6 +154,7 @@
     <Compile Include="Framework\XmlHelper.cs" />
     <Compile Include="General\FFXIIIGamePart.cs" />
     <Compile Include="General\IProgressSender.cs" />
+    <Compile Include="General\ProgressSender.cs" />
     <Compile Include="Languages\Lang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinAPI\NativeMethods.cs" />

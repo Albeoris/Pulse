@@ -17,5 +17,16 @@ namespace Pulse.Core
                 return defaultResult;
             }
         }
+
+        public static void SafeInvoke(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch
+            {
+            }
+        }
     }
 }

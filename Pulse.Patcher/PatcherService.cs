@@ -55,17 +55,20 @@ namespace Pulse.Patcher
             }
             catch
             {
-                using (CommonOpenFileDialog dlg = new CommonOpenFileDialog(String.Format("Укажите каталог Final Fantasy XIII-{0}...", (int)gamePart)))
+                return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    dlg.IsFolderPicker = true;
-                    if (dlg.ShowDialog() != CommonFileDialogResult.Ok)
-                        throw new OperationCanceledException();
+                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog(String.Format("Укажите каталог Final Fantasy XIII-{0}...", (int)gamePart)))
+                    {
+                        dlg.IsFolderPicker = true;
+                        if (dlg.ShowDialog() != CommonFileDialogResult.Ok)
+                            throw new OperationCanceledException();
 
-                    GameLocationInfo result = new GameLocationInfo(dlg.FileName);
-                    result.Validate();
+                        GameLocationInfo result = new GameLocationInfo(dlg.FileName);
+                        result.Validate();
 
-                    return result;
-                }
+                        return result;
+                    }
+                });
             }
         }
 

@@ -35,10 +35,10 @@ namespace Pulse.FS
                     int offset = 0;
                     ZtrFileEncoding tagsEncoding = ZtrFileEncoding.ReadFromStream(_input);
                     compressedSize = compressedSize - tagsEncoding.BlockSize - 4;
-                    long blockOffset = _input.GetReadPosition();
+                    long blockOffset = _input.Position;
                     while (offset < 4096 && compressedSize > 0)
                     {
-                        while (index < _offsets.Length && _offsets[index].Block == blockNumber && _input.GetReadPosition() - blockOffset == _offsets[index].PackedOffset)
+                        while (index < _offsets.Length && _offsets[index].Block == blockNumber && _input.Position - blockOffset == _offsets[index].PackedOffset)
                         {
                             _offsets[index].UnpackedOffset = (int)(io.Position + offset + _offsets[index].BlockOffset);
                             if (index > 0)

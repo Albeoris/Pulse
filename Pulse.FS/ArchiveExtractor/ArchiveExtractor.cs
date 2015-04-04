@@ -13,7 +13,7 @@ namespace Pulse.FS
         private readonly Func<ArchiveEntry, IArchiveEntryExtractor> _entryExtractorFactory;
         
         public event Action<long> ProgressTotalChanged;
-        public event Action<long> ProgressIncrement;
+        public event Action<long> ProgressIncremented;
 
         public ArchiveExtractor(ArchiveListing listing, string targetDir, Func<ArchiveEntry, IArchiveEntryExtractor> entryExtractorFactory)
         {
@@ -42,7 +42,7 @@ namespace Pulse.FS
         private void Extract(ArchiveEntry entry)
         {
             IArchiveEntryExtractor entryExtractor = _entryExtractorFactory(entry);
-            entryExtractor.Extract(_listing.Accessor, entry, _targetDir, ProgressIncrement);
+            entryExtractor.Extract(_listing.Accessor, entry, _targetDir, ProgressIncremented);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using Pulse.Core;
@@ -60,6 +61,12 @@ namespace Pulse.OpenGL
                     result.PixelFormat = DdsPixelFormat.DXT5;
                     result.Flags |= DdsHeaderFlags.PixelFormat;
                     break;
+                case GtexPixelFromat.X8R8G8B8:
+                    result.PixelFormat = DdsPixelFormat.X8R8G8B8;
+                    result.Flags |= DdsHeaderFlags.PixelFormat;
+                    break;
+                default:
+                    throw new NotSupportedException();
             }
 
             return result;

@@ -19,16 +19,16 @@ namespace Pulse.UI
             ArchiveListing xList = x as ArchiveListing;
             ArchiveListing yList = y as ArchiveListing;
 
-            XgrArchiveListing xXgr = x as XgrArchiveListing;
-            XgrArchiveListing yXgr = y as XgrArchiveListing;
+            WpdArchiveListing xWpd = x as WpdArchiveListing;
+            WpdArchiveListing yWpd = y as WpdArchiveListing;
 
             if (xList != null && yList != null)
                 return xList.Accessor.Level.CompareTo(yList.Accessor.Level) * -1;
 
-            if (xXgr != null && yXgr != null)
+            if (xWpd != null && yWpd != null)
                 return String.Compare(x.Name, y.Name, StringComparison.Ordinal);
 
-            return xXgr != null ? 1 : -1;
+            return xWpd != null ? 1 : -1;
         }
     }
 }

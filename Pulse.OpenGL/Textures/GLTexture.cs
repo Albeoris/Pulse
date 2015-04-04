@@ -33,7 +33,7 @@ namespace Pulse.OpenGL
             Exceptions.CheckArgumentNullOrEmprty(filePath, "filePath");
 
             ImageFormat imageFormat = PixelFormat.GetOptimalImageFormat();
-            filePath = Path.ChangeExtension(filePath, imageFormat.ToString().ToLower());
+            filePath = PathEx.ChangeMultiDotExtension(filePath, imageFormat.ToString().ToLower());
 
             ImageFileGLTextureWriter writer = new ImageFileGLTextureWriter(this, filePath, imageFormat);
             writer.Write();

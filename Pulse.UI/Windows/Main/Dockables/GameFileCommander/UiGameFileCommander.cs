@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,6 +44,9 @@ namespace Pulse.UI
                     _listView.ItemContainerStyle = CreateListViewItemContainerStyle();
                     _listView.SetValue(VirtualizingStackPanel.IsVirtualizingProperty, false);
                     _listView.KeyDown += OnListViewKeyDown;
+                    //_listView.SetBinding(Selector.SelectedItemProperty, new Binding("ListViewSelectedItem") {Mode = BindingMode.OneWayToSource});
+                    _listView.SelectionChanged += OnListViewSelectionChanged;
+                    _listView.DataContext = this;
                     _grid.AddUiElement(_listView, 0, 2);
                 }
             }
@@ -53,15 +58,26 @@ namespace Pulse.UI
             Loaded += OnLoaded;
         }
 
+        private void OnListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UiNode node = e.AddedItems.OfType<UiNode>().FirstOrDefault();
+            InteractionService.RaiseSelectedNodeChanged(node);
+        }
+
+        protected override int Index
+        {
+            get { return 1; }
+        }
+
         private void OnListViewKeyDown(object sender, KeyEventArgs e)
         {
-            UiArchiveNode selectedChild = (UiArchiveNode)_listView.SelectedItem;
+            UiNode selectedChild = (UiNode)_listView.SelectedItem;
 
             if (e.Key == Key.Back)
             {
-                UiArchiveNode current = (UiArchiveNode)_treeView.SelectedItem;
+                UiNode current = (UiNode)_treeView.SelectedItem;
                 if (current == null)
-                    return;
+                    return;    
 
                 selectedChild.IsSelected = false;
                 GoToParent(current);
@@ -72,9 +88,15 @@ namespace Pulse.UI
             }
         }
 
-        private void GoToParent(UiArchiveNode current)
+        //Binding
+        public UiNode ListViewSelectedItem
         {
-            UiArchiveNode parent = current.Parent;
+            set { InteractionService.RaiseSelectedNodeChanged(value); }
+        }
+
+        private void GoToParent(UiNode current)
+        {
+            UiNode parent = current.Parent;
             if (parent == null)
                 return;
 
@@ -86,12 +108,12 @@ namespace Pulse.UI
             _listView.FocusSelectedItem();
         }
 
-        private void GoToChild(UiArchiveNode child)
+        private void GoToChild(UiNode child)
         {
-            if (child == null || child.Childs.Length < 1)
+            if (child == null || child.GetChilds().Length < 1)
                 return;
 
-            UiArchiveNode current = child.Parent;
+            UiNode current = child.Parent;
             if (current != null)
                 current.IsSelected = false;
 
@@ -129,8 +151,8 @@ namespace Pulse.UI
             if (item == null)
                 return;
 
-            UiArchiveNode node = (UiArchiveNode)item.Content;
-            GoToChild(node);
+            UiNode nodeOld = (UiNode)item.Content;
+            GoToChild(nodeOld);
         }
 
         private static DataTemplate CreateArchiveListingTemplate(bool hierarchical)
@@ -138,12 +160,15 @@ namespace Pulse.UI
             DataTemplate template;
             if (hierarchical)
             {
-                template = new HierarchicalDataTemplate {DataType = typeof(UiArchiveNode)};
-                ((HierarchicalDataTemplate)template).ItemsSource = new Binding("OrderedHierarchyChilds");
+                //template = new HierarchicalDataTemplate {DataType = typeof(UiArchiveNodeOld)};
+                //((HierarchicalDataTemplate)template).ItemsSource = new Binding("OrderedHierarchyChilds");
+                template = new HierarchicalDataTemplate {DataType = typeof(UiContainerNode)};
+                ((HierarchicalDataTemplate)template).ItemsSource = new Binding("BindableHierarchyChilds");
             }
             else
             {
-                template = new DataTemplate {DataType = typeof(UiArchiveNode)};
+                //template = new DataTemplate {DataType = typeof(UiArchiveNodeOld)};
+                template = new DataTemplate {DataType = typeof(UiNode)};
             }
 
             FrameworkElementFactory stackPanel = new FrameworkElementFactory(typeof(StackPanel));
@@ -155,9 +180,15 @@ namespace Pulse.UI
             stackPanel.AppendChild(checkbox);
 
             FrameworkElementFactory image = new FrameworkElementFactory(typeof(Image));
+            image.SetValue(HeightProperty, 16d);
             image.SetValue(Image.SourceProperty, new Binding("Icon"));
             image.SetValue(MarginProperty, new Thickness(3));
             stackPanel.AppendChild(image);
+
+            //FrameworkElementFactory icon = new FrameworkElementFactory(typeof(ContentPresenter));
+            //icon.SetValue(ContentPresenter.ContentProperty, new Binding("Icon"));
+            //icon.SetValue(MarginProperty, new Thickness(3));
+            //stackPanel.AppendChild(icon);
 
             FrameworkElementFactory textBlock = new FrameworkElementFactory(typeof(TextBlock));
             textBlock.SetBinding(TextBlock.TextProperty, new Binding("Name"));
@@ -173,9 +204,9 @@ namespace Pulse.UI
         {
             try
             {
-                UiArchiveNode item = (UiArchiveNode)_treeView.SelectedItem;
+                UiContainerNode item = (UiContainerNode)_treeView.SelectedItem;
                 if (item != null)
-                    _listView.ItemsSource = item.OrderedChilds;
+                    _listView.ItemsSource = item.BindableChilds;
             }
             catch (Exception ex)
             {
@@ -241,11 +272,6 @@ namespace Pulse.UI
                 ClearContent();
                 UiHelper.ShowError(this, ex);
             }
-        }
-
-        protected override int Index
-        {
-            get { return 1; }
         }
 
         private UiContextMenu CreateTreeViewContextMenu()

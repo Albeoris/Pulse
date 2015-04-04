@@ -73,6 +73,10 @@
       Unpack="Распаковать"
       Pack="Упаковать"
       />
+
+    <GameFilePreview
+      Header="Предпросмотр"
+      />
     
   </Dockable>
 

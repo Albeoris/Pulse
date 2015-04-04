@@ -1,0 +1,56 @@
+typedef struct
+{
+    int Magic;
+    int Version;
+    byte U1, U2, U3, U4;
+    int Dummy;
+} YkdFileHeader;
+
+typedef struct
+{
+    int U1, U2, U3, U4;
+    int U5[20];
+} YkdBlockHeader;
+
+typedef struct
+{
+    int U[4];
+} YkdFirstBlockPadding;
+
+typedef struct
+{
+    int Count[4];
+
+    local int count = Count[0];
+    if (count > 0)
+    {
+        int Offsets[count];
+        local int padding = (4 - (count % 4))%4;
+        if (padding > 0)
+            int Padding[padding];
+    }
+} YkdOffsets;
+
+typedef struct
+{
+    int U1, Index, U2, U3;
+    char TextureName[10h];
+    int OX, OY, SourceWidth, SourceHeight;
+    int TargetWidth, TargetHeight, U4, U5;
+    int Color1, Color2, Color3, Color4;
+} YkdTextureInfo;
+
+YkdFileHeader fileHeader;
+YkdBlockHeader firstBlock;
+YkdFirstBlockPadding firstBlockPadding; // ???
+YkdOffsets offsets1;
+
+YkdBlockHeader block2; // Count?
+YkdOffsets offsets2;
+FSkip(290h); // Size?
+
+YkdBlockHeader block3;
+YkdOffsets offsets3;
+FSkip(80h); // Size?
+
+YkdTextureInfo info1[6]; // Count?

@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>d6f8b6f8</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
@@ -76,6 +78,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,41 +92,43 @@
   <ItemGroup>
     <Compile Include="ArchiveExtractor\IArchiveEntryExtractor.cs" />
     <Compile Include="ArchiveExtractor\ArchiveExtractor.cs" />
-    <Compile Include="ArchiveExtractor\IXgrArchiveEntryExtractor.cs" />
-    <Compile Include="ArchiveExtractor\XgrArchiveExtractor.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingCompressedData.cs" />
     <Compile Include="ArchiveListing\ArchiveListingEntryInfoV2.cs" />
-    <Compile Include="ArchiveInjector\ArchiveInjector.cs" />
-    <Compile Include="ArchiveInjector\IArchiveEntryInjector.cs" />
-    <Compile Include="ArchiveInjector\IXgrArchiveEntryInjector.cs" />
     <Compile Include="ArchiveListing\ArchiveAccessor.cs" />
     <Compile Include="ArchiveListing\ArchiveListing.cs" />
     <Compile Include="ArchiveListing\ArchiveEntry.cs" />
     <Compile Include="ArchiveListing\ArchiveListingEntryInfoV1.cs" />
     <Compile Include="ArchiveListing\ArchiveListingHeader.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingReader.cs" />
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
+    <Compile Include="ArchiveListing\ArchiveListingReaderV1.cs" />
     <Compile Include="ArchiveListing\ArchiveListingTextWriter.cs" />
     <Compile Include="ArchiveListing\ArchiveListingWriter.cs" />
     <Compile Include="ArchiveListing\IArchiveEntry.cs" />
     <Compile Include="ArchiveListing\IArchiveListing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sections\GtexHeader.cs" />
-    <Compile Include="Sections\SectionBase.cs" />
-    <Compile Include="Sections\SectionHeader.cs" />
-    <Compile Include="Sections\SectionType.cs" />
-    <Compile Include="Sections\Textures\GtexData.cs" />
-    <Compile Include="Sections\Textures\TextureHeader.cs" />
-    <Compile Include="Sections\Textures\GtexMipMapLocation.cs" />
-    <Compile Include="Sections\Textures\TextureSection.cs" />
+    <Compile Include="IMGB\Sections\GtexHeader.cs" />
+    <Compile Include="IMGB\Sections\SectionBase.cs" />
+    <Compile Include="IMGB\Sections\SectionHeader.cs" />
+    <Compile Include="IMGB\Sections\SectionType.cs" />
+    <Compile Include="IMGB\Sections\Textures\GtexData.cs" />
+    <Compile Include="IMGB\Sections\Textures\TextureHeader.cs" />
+    <Compile Include="IMGB\Sections\Textures\GtexMipMapLocation.cs" />
+    <Compile Include="IMGB\Sections\Textures\TextureSection.cs" />
+    <Compile Include="IMGB\SeDb\SeDbResEntry.cs" />
     <Compile Include="WFL\WflContent.cs" />
     <Compile Include="WFL\WflFileReader.cs" />
     <Compile Include="WFL\WflFileWriter.cs" />
     <Compile Include="WFL\WflHeader.cs" />
-    <Compile Include="WPD\WpdEntry.cs" />
-    <Compile Include="WPD\WpdHeader.cs" />
-    <Compile Include="WPD\XgrArchiveAccessor.cs" />
-    <Compile Include="WPD\XgrArchiveListing.cs" />
-    <Compile Include="WPD\XgrArchiveListingReader.cs" />
+    <Compile Include="IMGB\SeDb\SeDbResHeader.cs" />
+    <Compile Include="IMGB\SeDb\SeDbArchiveListing.cs" />
+    <Compile Include="IMGB\SeDb\SeDbArchiveListingReader.cs" />
+    <Compile Include="IMGB\WPD\WpdEntry.cs" />
+    <Compile Include="IMGB\WPD\WpdHeader.cs" />
+    <Compile Include="IMGB\ImgbArchiveAccessor.cs" />
+    <Compile Include="IMGB\WPD\WpdArchiveListing.cs" />
+    <Compile Include="IMGB\WPD\WpdArchiveListingReader.cs" />
+    <Compile Include="YKD\YkdBlockHeader.cs" />
+    <Compile Include="YKD\YkdHeader.cs" />
     <Compile Include="ZLibHelper.cs" />
     <Compile Include="ZTR\IZtrFormatter.cs" />
     <Compile Include="ZTR\StringsZtrFormatter.cs" />
@@ -156,7 +162,7 @@
     <None Include="Resources\Executable\ffxiiicrypt.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Sections\Partially Stolen.txt" />
+    <Content Include="IMGB\Sections\Partially Stolen.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

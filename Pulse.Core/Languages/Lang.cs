@@ -254,6 +254,16 @@ namespace Pulse.Core
                 public static readonly string Unpack = GetDockableInfoProviders("Unpack");
                 public static readonly string Pack = GetDockableInfoProviders("Pack");
             }
+
+            public static class GameFilePreview
+            {
+                private static string GetDockableInfoProviders(string name)
+                {
+                    return GetDockable(name, "GameFilePreview");
+                }
+
+                public static readonly string Header = GetDockableInfoProviders("Header");
+            }
         }
     }
 }

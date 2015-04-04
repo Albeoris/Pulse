@@ -48,7 +48,7 @@ namespace Pulse.Patcher
 
         private async Task<SafeUnmanagedArray> Decompress()
         {
-            string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(true);
+            string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(false); // todo
             if (CancelEvent.IsSet())
                 return null;
 
@@ -136,68 +136,111 @@ namespace Pulse.Patcher
                 return;
 
             FFXIIITextEncoding encoding = ReadEncoding(br);
+            TextEncodingInfo encodingInfo = new TextEncodingInfo(encoding);
+            InteractionService.TextEncoding.SetValue(encodingInfo);
             if (CancelEvent.IsSet())
                 return;
 
-            long position = br.BaseStream.Position;
-            XgrPatchData fonts = XgrPatchData.ReadFrom(br);
-            OnProgress(br.BaseStream.Position - position);
-            if (CancelEvent.IsSet())
-                return;
+            //long position = br.BaseStream.Position;
+            //XgrPatchData fonts = XgrPatchData.ReadFrom(br);
+            //OnProgress(br.BaseStream.Position - position);
+            //if (CancelEvent.IsSet())
+            //    return;
 
-            Dictionary<string, string> dic = ReadStrings(br);
-            if (CancelEvent.IsSet())
-                return;
 
-            UiArchives archives = UiArchiveTreeBuilder.BuildAsync(gameLocation).Result;
-            foreach (UiArchiveNode archive in archives)
-                archive.IsChecked = true;
-            if (CancelEvent.IsSet())
-                return;
-
-            XgrArchiveListing[] fontListings = GetFontArchiveListings(archives, fonts.XgrArchiveName);
-            if (CancelEvent.IsSet())
-                return;
-
-            ArchiveListing[] textListings = GetTextArchiveListings(archives);
-            if (CancelEvent.IsSet())
-                return;
-
-            Position = 0;
-            Maximum = fontListings.Length + textListings.Length;
-
-            foreach (XgrArchiveListing xgrArchiveListing in fontListings)
+            UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
+            using (MemoryInjectionAccessor source = new MemoryInjectionAccessor())
             {
-                XgrArchiveInjector injector = new XgrArchiveInjector(xgrArchiveListing, false, entry => ProvideXgrEntryInjector(entry, fonts));
-                injector.Inject();
-                OnProgress(1);
-            }
+                UiInjectionManager manager = new UiInjectionManager();
 
-            foreach (ArchiveListing listing in textListings)
-            {
-                ArchiveInjector injector = new ArchiveInjector(listing, false, entry => ProvideEntryInjector(entry, dic, encoding));
-                injector.Inject();
-                OnProgress(1);
+                long position = br.BaseStream.Position;
+                using (XgrPatchData fonts = XgrPatchData.ReadFrom(br))
+                {
+                    OnProgress(br.BaseStream.Position - position);
+                    if (CancelEvent.IsSet())
+                        return;
+
+                    foreach (KeyValuePair<string, SafeUnmanagedArray> data in fonts)
+                        source.RegisterStream(Path.Combine(fonts.XgrArchiveUnpackName, data.Key), data.Value.OpenStream(FileAccess.Read));
+
+                    Dictionary<string, string> dic = ReadStrings(br);
+                    if (CancelEvent.IsSet())
+                        return;
+
+                    source.RegisterStrings(dic);
+                    if (CancelEvent.IsSet())
+                        return;
+
+                    UiArchives archives = builder.Build();
+                    Position = 0;
+                    Maximum = archives.Count;
+                    foreach (UiContainerNode archive in archives)
+                    {
+                        Check(archive);
+                        OnProgress(1);
+                    }
+                    if (CancelEvent.IsSet())
+                        return;
+
+                    IUiLeafsAccessor[] accessors = archives.AccessToCheckedLeafs(new Wildcard("*"), null, false).ToArray();
+                    Position = 0;
+                    Maximum = accessors.Length;
+                    foreach (IUiLeafsAccessor accessor in accessors)
+                    {
+                        accessor.Inject(source, manager);
+                        OnProgress(1);
+                    }
+                }
+
+                manager.WriteListings();
             }
         }
 
-        private XgrArchiveListing[] GetFontArchiveListings(UiArchives archives, string xgrArchiveName)
+        private void Check(UiNode node)
         {
-            return archives
-                .EnumerateCheckedEntries(new Wildcard("*"))
-                .Order(ArchiveListingInjectComparer.Instance)
-                .OfType<XgrArchiveListing>()
-                .Where(xgrArchiveListing => xgrArchiveListing.Accessor.Name == xgrArchiveName)
-                .ToArray();
-        }
-
-        private ArchiveListing[] GetTextArchiveListings(UiArchives archives)
-        {
-            return archives
-                .EnumerateCheckedEntries(new Wildcard("*us.ztr"))
-                .Order(ArchiveListingInjectComparer.Instance)
-                .OfType<ArchiveListing>()
-                .ToArray();
+            switch (node.Type)
+            {
+                case UiNodeType.Group:
+                case UiNodeType.Directory:
+                case UiNodeType.Archive:
+                {
+                    foreach (UiNode child in node.GetChilds())
+                        Check(child);
+                    break;
+                }
+                case UiNodeType.DataTable:
+                {
+                    if (PathComparer.Instance.Value.Equals(node.Name, @"system.win32.xgr") || node.Name.StartsWith("tutorial"))
+                        foreach (UiNode child in node.GetChilds())
+                            Check(child);
+                    break;
+                }
+                case UiNodeType.ArchiveLeaf:
+                {
+                    UiArchiveLeaf leaf = (UiArchiveLeaf)node;
+                    string extension = PathEx.GetMultiDotComparableExtension(leaf.Entry.Name);
+                    switch (extension)
+                    {
+                        case ".ztr":
+                            if (leaf.Entry.Name.Contains("_us"))
+                                leaf.IsChecked = true;
+                            break;
+                    }
+                    break;
+                }
+                case UiNodeType.DataTableLeaf:
+                {
+                    UiWpdTableLeaf leaf = (UiWpdTableLeaf)node;
+                    switch (leaf.Entry.Extension)
+                    {
+                        case "wfl":
+                        case "txbh":
+                            leaf.IsChecked = true;
+                            break;
+                    }
+                    break;
+                }
+            }
         }
 
         private FFXIIITextEncoding ReadEncoding(BinaryReader br)
@@ -208,7 +251,7 @@ namespace Pulse.Patcher
             using (MemoryStream ms = new MemoryStream(length))
             {
                 byte[] buff = new byte[4096];
-                br.BaseStream.CopyTo(ms, length, buff);
+                br.BaseStream.CopyToStream(ms, length, buff);
                 ms.Position = 0;
 
                 XmlDocument doc = new XmlDocument();
@@ -243,36 +286,6 @@ namespace Pulse.Patcher
             }
 
             return result;
-        }
-
-        private IXgrArchiveEntryInjector ProvideXgrEntryInjector(WpdEntry entry, XgrPatchData fonts)
-        {
-            SafeUnmanagedArray data;
-            switch (entry.Extension.ToLower())
-            {
-                case "txbh":
-                {
-                    if (fonts.TryGetValue(entry.Name + ".dds", out data))
-                        return new XgrArchiveEntryInjectorDdsToTxb(data.OpenStream(FileAccess.Read), entry);
-                    break;
-                }
-            }
-
-            if (fonts.TryGetValue(entry.Name + '.' + entry.Extension, out data))
-                return new XgrArchiveEntryInjectorPack(data.OpenStream(FileAccess.Read), entry);
-
-            return null;
-        }
-
-        private IArchiveEntryInjector ProvideEntryInjector(ArchiveEntry entry, Dictionary<string, string> dic, FFXIIITextEncoding encoding)
-        {
-            switch (PathEx.GetMultiDotComparableExtension(entry.Name))
-            {
-                case ".ztr":
-                    return new ArchiveEntryInjectorTempRhadamantsTxtToZtr(entry, dic, encoding);
-            }
-
-            return null;
         }
     }
 }

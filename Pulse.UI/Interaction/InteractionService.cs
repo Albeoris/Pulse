@@ -1,4 +1,5 @@
-﻿using Pulse.Core;
+﻿using System;
+using Pulse.Core;
 using Pulse.UI.Interaction;
 
 namespace Pulse.UI
@@ -10,6 +11,8 @@ namespace Pulse.UI
         public static GameLocationProviders GameLocation { get; private set; }
         public static WorkingLocationProviders WorkingLocation { get; private set; }
         public static TextEncodingProviders TextEncoding { get; private set; }
+
+        public static event Action<IUiLeaf> SelectedLeafChanged;
 
         static InteractionService()
         {
@@ -25,6 +28,11 @@ namespace Pulse.UI
         public static void SetGamePart(FFXIIIGamePart result)
         {
             GamePart = result;
+        }
+
+        public static void RaiseSelectedNodeChanged(UiNode node)
+        {
+            SelectedLeafChanged.NullSafeInvoke(node as IUiLeaf);
         }
     }
 }

@@ -93,13 +93,13 @@ namespace Pulse.UI
         private readonly UiCheckBox _convertBox;
 
         public string Wildcard { get; private set; }
-        public bool? Compressing { get; private set; }
+        public bool? Compression { get; private set; }
         public bool Convert { get; private set; }
 
         private void OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             Wildcard = _wildcardBox.Text;
-            if (_compressBox != null) Compressing = _compressBox.IsChecked;
+            if (_compressBox != null) Compression = _compressBox.IsChecked;
             if (_convertBox != null) Convert = _convertBox.IsChecked == true;
             
             DialogResult = true;

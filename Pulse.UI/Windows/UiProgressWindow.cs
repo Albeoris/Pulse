@@ -98,7 +98,7 @@ namespace Pulse.UI
             Interlocked.Exchange(ref _totalCount, totalCount);
         }
 
-        public void Increment(long processedCount)
+        public void Incremented(long processedCount)
         {
             if (Interlocked.Add(ref _processedCount, processedCount) < 0)
                 throw new ArgumentOutOfRangeException("processedCount");
@@ -156,7 +156,7 @@ namespace Pulse.UI
             using (UiProgressWindow window = new UiProgressWindow(title, units))
             {
                 progressSender.ProgressTotalChanged += window.SetTotal;
-                progressSender.ProgressIncrement += window.Increment;
+                progressSender.ProgressIncremented += window.Incremented;
                 Task.Run(() => ExecuteAction(window, action));
                 window.ShowDialog();
             }
@@ -167,7 +167,7 @@ namespace Pulse.UI
             using (UiProgressWindow window = new UiProgressWindow(title, units))
             {
                 progressSender.ProgressTotalChanged += window.SetTotal;
-                progressSender.ProgressIncrement += window.Increment;
+                progressSender.ProgressIncremented += window.Incremented;
                 Task<T> task = Task.Run(() => ExecuteFunction(window, func));
                 window.ShowDialog();
                 return task.Result;
@@ -211,7 +211,7 @@ namespace Pulse.UI
         {
             try
             {
-                action(window.SetTotal, window.Increment);
+                action(window.SetTotal, window.Incremented);
             }
             finally
             {
@@ -235,7 +235,7 @@ namespace Pulse.UI
         {
             try
             {
-                return action(window.SetTotal, window.Increment);
+                return action(window.SetTotal, window.Incremented);
             }
             finally
             {

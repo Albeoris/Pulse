@@ -50,9 +50,9 @@ namespace Pulse.FS
 
             for (int i = 0; i < count; i++)
             {
-                _input.SetReadPosition(offsets[i * 2]);
+                _input.Position = offsets[i * 2];
                 entries[i].Key = ZtrFileHelper.ReadNullTerminatedString(_input, Encoding.ASCII, 1);
-                _input.SetReadPosition(offsets[i * 2 + 1]);
+                _input.Position = offsets[i * 2 + 1];
                 entries[i].Value = ZtrFileHelper.ReadNullTerminatedString(_input, _encoding, 2);
             }
 
@@ -66,10 +66,10 @@ namespace Pulse.FS
             int keyOffset = _br.ReadInt32();
             int textOffset = _br.ReadInt32();
 
-            _input.SetReadPosition(keyOffset);
+            _input.Position = keyOffset;
             result.Key = ZtrFileHelper.ReadNullTerminatedString(_input, Encoding.ASCII, 1);
 
-            _input.SetReadPosition(textOffset);
+            _input.Position = textOffset;
             result.Value = ZtrFileHelper.ReadNullTerminatedString(_input, _encoding, 2);
 
             return new[] {result};

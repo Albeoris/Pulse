@@ -6,7 +6,7 @@ namespace Pulse.Core
     /// <summary>
     /// НЕ потокобезопасный!
     /// </summary>
-    public sealed class StreamSegment : Stream, IPositionProvider
+    public sealed class StreamSegment : Stream
     {
         private long _offset, _length;
 
@@ -27,10 +27,10 @@ namespace Pulse.Core
             switch (access)
             {
                 case FileAccess.Read:
-                    BaseStream.SetReadPosition(_offset);
+                    BaseStream.Position = _offset;
                     break;
                 case FileAccess.Write:
-                    BaseStream.SetWritePosition(_offset);
+                    BaseStream.Position = _offset;
                     break;
                 default:
                     BaseStream.Seek(_offset, SeekOrigin.Begin);
@@ -98,32 +98,12 @@ namespace Pulse.Core
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return BaseStream.Read(buffer, offset, (int)Math.Min(count, Length - GetReadPosition()));
+            return BaseStream.Read(buffer, offset, (int)Math.Min(count, Length - Position));
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
             BaseStream.Write(buffer, offset, count);
-        }
-
-        public long GetReadPosition()
-        {
-            return BaseStream.GetReadPosition() - _offset;
-        }
-
-        public long GetWritePosition()
-        {
-            return BaseStream.GetWritePosition() - _offset;
-        }
-
-        public void SetReadPosition(long position)
-        {
-            BaseStream.SetReadPosition(position + _offset);
-        }
-
-        public void SetWritePosition(long position)
-        {
-            BaseStream.SetWritePosition(position + _offset);
         }
     }
 }

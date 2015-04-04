@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>180a0687</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapConverter.cs" />
+    <Compile Include="Controls\CircularProgressBar.cs" />
     <Compile Include="Controls\Extended\UiButton.cs" />
     <Compile Include="Controls\Extended\UiCheckBox.cs" />
     <Compile Include="Controls\Extended\UiComboBox.cs" />
@@ -142,7 +144,9 @@
     <Compile Include="Controls\Extended\UiWatermarkTextBox.cs" />
     <Compile Include="Controls\Extended\UiWindow.cs" />
     <Compile Include="Controls\UiGlControl.cs" />
+    <Compile Include="Controls\UiGlTextureViewer.cs" />
     <Compile Include="Controls\UiScrollableGlControl.cs" />
+    <Compile Include="DispatcherExm.cs" />
     <Compile Include="Factories\Extended\UiCheckBoxFactory.cs" />
     <Compile Include="Factories\Extended\UiIntegerUpDownFactory.cs" />
     <Compile Include="Factories\Extended\UiScrollViewerFactory.cs" />
@@ -204,21 +208,56 @@
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorStringsToZtr.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorTempRhadamantsTxtToZtr.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveListingInjectComparer.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveBuilderNode.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNode.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNodeComparer.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchives.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveTreeBuilder.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFilePreview.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\ArchiveEntryInjectionData.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\MemoryInjectionSource.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\MemoryInjectionAccessor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\DdsToTxbhWpdEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\DefaultArchiveEntryExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\DefaultArchiveEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\DefaultWpdEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\FileSystemExtractionTarget.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\FileSystemInjectionSource.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\IArchiveEntryExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\IArchiveEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\IWpdEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\StringsToZtrArchiveEntryInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\TxbhToDdsWpdEntryExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\UiInjectionManager.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiSeDbTableLeaf.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\UiArchiveExtension.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\DefaultWpdEntryExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\IUiExtractionTarget.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\IUiInjectionSource.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\IUiLeaf.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\IUiLeafsAccessor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\IWpdEntryExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\UiArchiveInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\UiArchiveExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\UiArciveLeafsAccessor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiContainerNode.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiNodeComparer.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiArchiveLeaf.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiDataTableNode.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiLazyContainerNode.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiArchiveNode.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiArchiveNodeOld.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\UiArchives.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\UiArchiveTreeBuilder.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommander.cs" />
     <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviders.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommanderExtractCommand.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommanderTempRhadamantsInjectCommand.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommanderInjectCommand.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFileCommanderSettingsWindow.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveEntryExtractorUnpack.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveEntryExtractorTxbhToDds.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveEntryInjectorDdsToTxb.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveEntryInjectorPack.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiNode.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\UiChildPackageBuilder.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiNodeType.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\UiWpdExtractor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\UiWpdInjector.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\UiWpdLeafsAccessor.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiWpdTableLeaf.cs" />
+    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\ZtrToStringsArchiveEntryExtractor.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveInjector.cs" />
     <Compile Include="Windows\Main\Dockables\UiMainDockable.cs" />
     <Compile Include="Windows\Main\UiMainWindow.cs" />

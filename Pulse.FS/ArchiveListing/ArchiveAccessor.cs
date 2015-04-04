@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.IO.MemoryMappedFiles;
 using System.Threading;
 using System.Threading.Tasks;
 using Pulse.Core;
@@ -32,13 +34,18 @@ namespace Pulse.FS
         public ArchiveAccessor CreateChild(string binaryFile, ArchiveEntry entry)
         {
             ArchiveAccessor result = new ArchiveAccessor(new SharedMemoryMappedFile(binaryFile), _binaryFile, entry);
-            result._level++;
+            result._level = _level + 1;
             return result;
+        }
+
+        public int Level
+        {
+            get { return _level; }
         }
 
         public Stream ExtractListing()
         {
-            Stream compressed = _listingFile.CreateViewStream(ListingEntry.Offset, ListingEntry.Size);
+            Stream compressed = _listingFile.CreateViewStream(ListingEntry.Offset, ListingEntry.Size, MemoryMappedFileAccess.Read);
             return BackgroundExtractIfCompressed(compressed, ListingEntry);
         }
 
@@ -51,7 +58,7 @@ namespace Pulse.FS
 
                 long capacity = MathEx.RoundUp(ListingEntry.Size, 0x800);
                 if (newSize <= capacity)
-                    return _listingFile.CreateViewStream(ListingEntry.Offset, newSize);
+                    return _listingFile.CreateViewStream(ListingEntry.Offset, newSize, MemoryMappedFileAccess.Write);
 
                 long offset;
                 Stream result = _listingFile.IncreaseSize(MathEx.RoundUp(newSize, 0x800), out offset);
@@ -67,12 +74,12 @@ namespace Pulse.FS
 
         public Stream OpenBinary(ArchiveEntry entry)
         {
-            return _binaryFile.CreateViewStream(entry.Offset, entry.Size);
+            return _binaryFile.CreateViewStream(entry.Offset, entry.Size, MemoryMappedFileAccess.ReadWrite);
         }
 
         public Stream ExtractBinary(ArchiveEntry entry)
         {
-            Stream compressed = _binaryFile.CreateViewStream(entry.Offset, entry.Size);
+            Stream compressed = _binaryFile.CreateViewStream(entry.Offset, entry.Size, MemoryMappedFileAccess.Read);
             return BackgroundExtractIfCompressed(compressed, entry);
         }
 
@@ -82,7 +89,7 @@ namespace Pulse.FS
             {
                 long capacity = MathEx.RoundUp(entry.Size, 0x800);
                 if (newSize <= capacity)
-                    return _binaryFile.CreateViewStream(entry.Offset, newSize);
+                    return _binaryFile.CreateViewStream(entry.Offset, newSize, MemoryMappedFileAccess.Write);
 
                 long offset;
                 Stream result = _binaryFile.IncreaseSize(MathEx.RoundUp(newSize, 0x800), out offset);
@@ -101,20 +108,55 @@ namespace Pulse.FS
                 return input;
 
             int uncompressedSize = (int)entry.UncompressedSize;
+            if (uncompressedSize == 0)
+                return new MemoryStream(0);
 
-            ProxyMemoryStream proxy = new ProxyMemoryStream(uncompressedSize);
-            DisposableStream result = new DisposableStream(proxy);
+            Stream writer, reader;
+            Flute.CreatePipe(uncompressedSize, out writer, out reader);
 
-            CancellationTokenSource cts = new CancellationTokenSource();
-            Task uncompressingTask = ZLibHelper.UncompressAndDisposeSourceAsync(input, proxy, uncompressedSize, cts.Token);
-            result.BeforeDispose.Add(new DisposableAction(cts.Dispose, true));
-            result.BeforeDispose.Add(new DisposableAction(() => uncompressingTask.CancelAndWait(cts, 5000), true));
-            return result;
+            ThreadHelper.Start("UncompressAndDisposeSourceAsync", () => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None));
+            return reader;
         }
 
-        public int Level
+        public void OnWritingCompleted(ArchiveEntry entry, MemoryStream ms, bool? compression)
         {
-            get { return _level; }
+            ms.Position = 0;
+
+            int compressedSize = 0;
+            int uncompressedSize = (int)ms.Length;
+            byte[] copyBuff = new byte[Math.Min(uncompressedSize, 32 * 1024)];
+
+            try
+            {
+                bool compress = uncompressedSize > 256 && (compression ?? entry.IsCompressed);
+                if (compress)
+                {
+                    using (SafeUnmanagedArray buff = new SafeUnmanagedArray(uncompressedSize + 256))
+                    using (UnmanagedMemoryStream buffStream = buff.OpenStream(FileAccess.ReadWrite))
+                    {
+                        compressedSize = ZLibHelper.Compress(ms, buffStream, uncompressedSize);
+                        if (uncompressedSize - compressedSize > 256)
+                        {
+                            using (Stream output = OpenOrAppendBinary(entry, compressedSize))
+                            {
+                                buffStream.Position = 0;
+                                buffStream.CopyToStream(output, compressedSize, copyBuff);
+                            }
+                            return;
+                        }
+                    }
+                }
+
+                ms.Position = 0;
+                compressedSize = uncompressedSize;
+                using (Stream output = OpenOrAppendBinary(entry, uncompressedSize))
+                    ms.CopyToStream(output, uncompressedSize, copyBuff);
+            }
+            finally
+            {
+                entry.Size = compressedSize;
+                entry.UncompressedSize = uncompressedSize;
+            }
         }
     }
 }

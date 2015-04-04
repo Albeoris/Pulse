@@ -35,14 +35,6 @@ namespace Pulse.Core
             }
         }
 
-        public Stream CreateViewStream(long offset, long size)
-        {
-            IDisposable context = Acquire();
-            DisposableStream result = new DisposableStream(_mmf.CreateViewStream(offset, size, MemoryMappedFileAccess.ReadWrite));
-            result.AfterDispose.Add(context);
-            return result;
-        }
-
         public Stream CreateViewStream(long offset, long size, MemoryMappedFileAccess access)
         {
             IDisposable context = Acquire();

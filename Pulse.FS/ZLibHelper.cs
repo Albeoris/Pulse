@@ -17,12 +17,7 @@ namespace Pulse.FS
             return buff;
         }
 
-        public static Task UncompressAndDisposeSourceAsync(Stream input, Stream output, int uncompressedSize, CancellationToken cancelationToken, Action<long> uncompressed = null)
-        {
-            return Task.Run(() => UncompressAndDisposeSource(input, output, uncompressedSize, cancelationToken, uncompressed));
-        }
-
-        public static void UncompressAndDisposeSource(Stream input, Stream output, int uncompressedSize, CancellationToken cancelationToken, Action<long> uncompressed = null)
+        public static void UncompressAndDisposeStreams(Stream input, Stream output, int uncompressedSize, CancellationToken cancelationToken, Action<long> uncompressed = null)
         {
             try
             {
@@ -32,8 +27,13 @@ namespace Pulse.FS
                 byte[] buff = new byte[Math.Min(32 * 1024, uncompressedSize)];
                 Uncompress(input, output, uncompressedSize, buff, cancelationToken, uncompressed);
             }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
             finally
             {
+                output.SafeDispose();
                 input.SafeDispose();
             }
         }

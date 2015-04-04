@@ -6,7 +6,7 @@ using Pulse.FS;
 
 namespace Pulse.UI
 {
-    public sealed class ArchiveEntryExtractorUnpack : IArchiveEntryExtractor
+    public sealed class ArchiveEntryExtractorUnpack : FS.IArchiveEntryExtractor
     {
         private static readonly Lazy<ArchiveEntryExtractorUnpack> LazyInstance = new Lazy<ArchiveEntryExtractorUnpack>();
 
@@ -32,7 +32,7 @@ namespace Pulse.UI
                 if (entry.IsCompressed)
                     ZLibHelper.Uncompress(input, output, (int)entry.UncompressedSize, buff, CancellationToken.None, progress);
                 else
-                    input.CopyTo(output, (int)entry.UncompressedSize, buff, progress);
+                    input.CopyToStream(output, (int)entry.UncompressedSize, buff, progress);
             }
         }
     }

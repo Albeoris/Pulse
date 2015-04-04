@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Media;
 
 namespace Pulse.UI
 {
@@ -14,13 +15,13 @@ namespace Pulse.UI
 
         public static T GetParentElement<T>(this FrameworkElement self) where T : FrameworkElement
         {
-            FrameworkElement element = self;
-            while (element.Parent != null)
+            DependencyObject element = VisualTreeHelper.GetParent(self);
+            while (element != null)
             {
-                element = (FrameworkElement)element.Parent;
                 T result = element as T;
                 if (result != null)
                     return result;
+                element = VisualTreeHelper.GetParent(element);
             }
             return null;
         }

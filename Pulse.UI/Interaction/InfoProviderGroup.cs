@@ -81,7 +81,7 @@ namespace Pulse.UI
             InfoLost.NullSafeInvoke();
         }
 
-        private T SetValue(T value)
+        public T SetValue(T value)
         {
             _current = value;
             InfoProvided.NullSafeInvoke(value);

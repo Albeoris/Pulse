@@ -95,7 +95,7 @@ namespace Pulse.OpenGL
         {
             Exceptions.CheckArgumentNull(action, "action");
 
-            DrawingContext drawingContext = new DrawingContext(action, new Thread(DrawingThreadProc));
+            DrawingContext drawingContext = new DrawingContext(action, new Thread(DrawingThreadProc) {IsBackground = true});
 
             if (!DrawingContexts.TryAdd(action, drawingContext))
                 throw new Exception("Метод уже зарегистрирован.");

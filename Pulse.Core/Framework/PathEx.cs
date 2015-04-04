@@ -30,5 +30,20 @@ namespace Pulse.Core
 
             return fileName.Substring(index).ToLower();
         }
+
+        public static string ChangeMultiDotExtension(string filePath, string targetExtension)
+        {
+            string extension = GetMultiDotComparableExtension(filePath);
+            if (extension != string.Empty)
+                filePath = filePath.Substring(0, filePath.Length - extension.Length);
+
+            if (string.IsNullOrEmpty(targetExtension))
+                return filePath;
+
+            if (targetExtension[0] != '.')
+                targetExtension = '.' + targetExtension;
+
+            return filePath + targetExtension;
+        }
     }
 }

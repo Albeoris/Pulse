@@ -56,8 +56,8 @@ namespace Pulse.FS
 
                 using (Stream output = _accessor.RecreateListing(hederSize + blocksSize))
                 {
-                    headerBuff.CopyTo(output, hederSize, buff);
-                    textBuff.CopyTo(output, blocksSize, buff);
+                    headerBuff.CopyToStream(output, hederSize, buff);
+                    textBuff.CopyToStream(output, blocksSize, buff);
                 }
             }
         }

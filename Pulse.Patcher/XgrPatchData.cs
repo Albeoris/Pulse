@@ -9,11 +9,13 @@ namespace Pulse.Patcher
     public sealed class XgrPatchData : Dictionary<string, SafeUnmanagedArray>, IDisposable
     {
         public readonly string XgrArchiveName;
+        public readonly string XgrArchiveUnpackName;
 
         public XgrPatchData(string xgrArchiveName, int count)
             : base(count)
         {
             XgrArchiveName = xgrArchiveName;
+            XgrArchiveUnpackName = PathEx.ChangeMultiDotExtension(XgrArchiveName, ".unpack");
         }
 
         public void Dispose()

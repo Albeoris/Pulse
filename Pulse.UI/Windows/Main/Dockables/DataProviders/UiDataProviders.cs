@@ -47,6 +47,12 @@ namespace Pulse.UI
             image.SetValue(Image.SourceProperty, new Binding("Icon"));
             image.SetValue(MarginProperty, new Thickness(3));
             stackPanel.AppendChild(image);
+            
+            //FrameworkElementFactory icon = new FrameworkElementFactory(typeof(ContentPresenter));
+            //icon.SetValue(HeightProperty, 16d);
+            //icon.SetValue(ContentPresenter.ContentProperty, new Binding("Icon"));
+            //icon.SetValue(MarginProperty, new Thickness(3));
+            //stackPanel.AppendChild(icon);
 
             FrameworkElementFactory textBlock = new FrameworkElementFactory(typeof(TextBlock));
             textBlock.SetBinding(TextBlock.TextProperty, new Binding("Title"));

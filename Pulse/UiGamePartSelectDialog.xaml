@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Pulse.UiGamePartSelectDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="ToolWindow"  WindowStartupLocation="CenterScreen"
         Title="Выбор игры" SizeToContent="Width" ResizeMode="NoResize" Height="300">
     <StackPanel Orientation="Horizontal">
         <Button Background="White" Click="OnPart1ButtonClick">

@@ -18,7 +18,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Логин:" Grid.Column="0" Grid.Row="0"/>
-            <TextBlock Text="Паролль:" Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="Пароль:" Grid.Column="1" Grid.Row="0"/>
             <TextBox Name="NameTextBox" Grid.Column="0" Grid.Row="1"/>
             <PasswordBox Name="PasswordBox" Grid.Column="1" Grid.Row="1"/>
         </Grid>

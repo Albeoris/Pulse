@@ -45,7 +45,7 @@ namespace Pulse.Core
             return buff;
         }
 
-        public static void CopyTo(this Stream input, Stream output, int size, byte[] buff, Action<long> progress = null, bool flush = true)
+        public static void CopyToStream(this Stream input, Stream output, int size, byte[] buff, Action<long> progress = null, bool flush = true)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
@@ -122,7 +122,7 @@ namespace Pulse.Core
                 using (UnmanagedMemoryStream output = new UnmanagedMemoryStream(handle, 0, size, FileAccess.Write))
                 {
                     byte[] buff = new byte[Math.Min(32 * 1024, size)];
-                    input.CopyTo(output, size, buff);
+                    input.CopyToStream(output, size, buff);
                 }
             }
             catch
@@ -141,7 +141,7 @@ namespace Pulse.Core
                 using (UnmanagedMemoryStream output = new UnmanagedMemoryStream(buffer, 0, length, FileAccess.Write))
                 {
                     byte[] buff = new byte[Math.Min(32 * 1024, length)];
-                    input.CopyTo(output, length, buff);
+                    input.CopyToStream(output, length, buff);
                 }
             }
             catch
@@ -211,39 +211,5 @@ namespace Pulse.Core
         {
             return new StreamSegment(output, offset, size < 0 ? output.Length - offset : size, FileAccess.ReadWrite);
         }
-
-        #region IPositionProvider
-
-        public static long GetReadPosition(this Stream self)
-        {
-            IPositionProvider baseProvider = self as IPositionProvider;
-            return baseProvider == null ? self.Position : baseProvider.GetReadPosition();
-        }
-
-        public static long GetWritePosition(this Stream self)
-        {
-            IPositionProvider baseProvider = self as IPositionProvider;
-            return baseProvider == null ? self.Position : baseProvider.GetWritePosition();
-        }
-
-        public static void SetReadPosition(this Stream self, long value)
-        {
-            IPositionProvider baseProvider = self as IPositionProvider;
-            if (baseProvider == null)
-                self.Position = value;
-            else
-                baseProvider.SetReadPosition(value);
-        }
-
-        public static void SetWritePosition(this Stream self, long value)
-        {
-            IPositionProvider baseProvider = self as IPositionProvider;
-            if (baseProvider == null)
-                self.Position = value;
-            else
-                baseProvider.SetWritePosition(value);
-        }
-
-        #endregion
     }
 }

@@ -10,11 +10,11 @@ namespace Pulse.UI.Controls
 {
     public sealed class UiScrollableGlControl : UiGlControl
     {
-        private readonly Lazy<Window> _windowInstance;
+        private readonly Lazy<FrameworkElement> _root;
 
         public UiScrollableGlControl()
         {
-            _windowInstance = new Lazy<Window>(() => Window.GetWindow(this));
+            _root = new Lazy<FrameworkElement>(() => ParentScrollViewer.GetRootElement());//.GetParentElement<FrameworkElement>());
         }
 
         private ScrollViewer ParentScrollViewer { get; set; }
@@ -26,14 +26,14 @@ namespace Pulse.UI.Controls
             if (ParentScrollViewer == null)
                 return;
 
-            GeneralTransform tr = ParentScrollViewer.TransformToAncestor(_windowInstance.Value);
+            GeneralTransform tr = ParentScrollViewer.TransformToAncestor(_root.Value);
             Rect scrollRect = new Rect(new Size(ParentScrollViewer.ViewportWidth, ParentScrollViewer.ViewportHeight));
             scrollRect = tr.TransformBounds(scrollRect);
 
             Rect intersect = Rect.Intersect(scrollRect, rcBoundingBox);
             if (!intersect.IsEmpty)
             {
-                tr = _windowInstance.Value.TransformToDescendant(this);
+                tr = _root.Value.TransformToDescendant(this);
                 intersect = tr.TransformBounds(intersect);
             }
 

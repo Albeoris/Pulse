@@ -27,5 +27,10 @@
         {
             get { return Size > 0 && Size != UncompressedSize; }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

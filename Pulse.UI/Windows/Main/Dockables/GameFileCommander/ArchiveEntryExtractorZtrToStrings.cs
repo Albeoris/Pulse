@@ -5,7 +5,7 @@ using Pulse.FS;
 
 namespace Pulse.UI
 {
-    public sealed class ArchiveEntryExtractorZtrToStrings : IArchiveEntryExtractor
+    public sealed class ArchiveEntryExtractorZtrToStrings : FS.IArchiveEntryExtractor
     {
         private const string Extension = ".strings";
 
@@ -18,7 +18,7 @@ namespace Pulse.UI
 
         public void Extract(ArchiveAccessor archiveAccessor, ArchiveEntry entry, string targetDir, Action<long> progress)
         {
-            string outputPath = Path.Combine(targetDir, Path.ChangeExtension(entry.Name, Extension));
+            string outputPath = Path.Combine(targetDir, PathEx.ChangeMultiDotExtension(entry.Name, Extension));
             
             ZtrFileEntry[] entries;
             using (Stream input = archiveAccessor.ExtractBinary(entry))

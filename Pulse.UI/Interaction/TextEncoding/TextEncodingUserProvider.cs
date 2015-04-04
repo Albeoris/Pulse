@@ -28,9 +28,9 @@ namespace Pulse.UI
         public TextEncodingInfo Provide()
         {
             ArchiveListing listing;
-            XgrArchiveAccessor accessor = CreateAccessor(out listing);
+            ImgbArchiveAccessor accessor = CreateAccessor(out listing);
 
-            XgrArchiveListing fontEntries;
+            WpdArchiveListing fontEntries;
             WflContent[] fontContent;
             TextureSection[] textureHeaders;
             string[] names;
@@ -202,23 +202,24 @@ namespace Pulse.UI
             return result;
         }
 
-        private XgrArchiveAccessor CreateAccessor(out ArchiveListing listing)
+        private ImgbArchiveAccessor CreateAccessor(out ArchiveListing listing)
         {
             GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
             string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imgc.win32.bin");
             string listingPath = Path.Combine(gameLocation.SystemDirectory, "filelistc.win32.bin");
 
             ArchiveAccessor accessor = new ArchiveAccessor(binaryPath, listingPath);
-            listing = ArchiveListingReader.Read(null, accessor).First();
+            ArchiveListingReaderV1 reader = new ArchiveListingReaderV1(accessor, null, null);
+            listing = reader.Read();
             ArchiveEntry xgrEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.xgr"));
             ArchiveEntry imgbEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.imgb"));
 
-            return new XgrArchiveAccessor(accessor, xgrEntry, imgbEntry);
+            return new ImgbArchiveAccessor(listing, xgrEntry, imgbEntry);
         }
 
-        private void ReadXgrContent(XgrArchiveAccessor accessor, ArchiveListing listing, out XgrArchiveListing fontEntries, out WflContent[] fontContent, out TextureSection[] textureHeaders, out string[] names)
+        private void ReadXgrContent(ImgbArchiveAccessor accessor, ArchiveListing listing, out WpdArchiveListing fontEntries, out WflContent[] fontContent, out TextureSection[] textureHeaders, out string[] names)
         {
-            using (Stream indices = accessor.ExtractIndices())
+            using (Stream indices = accessor.ExtractHeaders())
             {
                 WpdEntry[] textureEntries;
                 ReadFontIndices(accessor, listing, indices, out textureEntries, out fontEntries, out names);
@@ -228,13 +229,13 @@ namespace Pulse.UI
             }
         }
 
-        private void ReadFontIndices(XgrArchiveAccessor accessor, ArchiveListing archiveListing, Stream xgr, out WpdEntry[] textureEntries, out XgrArchiveListing fontEntries, out string[] names)
+        private void ReadFontIndices(ImgbArchiveAccessor accessor, ArchiveListing archiveListing, Stream xgr, out WpdEntry[] textureEntries, out WpdArchiveListing fontEntries, out string[] names)
         {
             WpdHeader header = xgr.ReadContent<WpdHeader>();
-            XgrArchiveListing listing = new XgrArchiveListing(accessor, header.Count) {ParentArchiveListing = archiveListing};
+            WpdArchiveListing listing = new WpdArchiveListing(accessor, header.Count);// {ParentArchiveListing = archiveListing};
             listing.AddRange(header.Entries);
 
-            fontEntries = new XgrArchiveListing(listing.Accessor) {FullListing = listing, ParentArchiveListing = listing.ParentArchiveListing};
+            fontEntries = new WpdArchiveListing(listing.Accessor);// {FullListing = listing};//, ParentArchiveListing = listing.ParentArchiveListing};
 
             List<WpdEntry> textures = new List<WpdEntry>(4);
             List<WpdEntry> fonts = new List<WpdEntry>(4);
@@ -304,7 +305,7 @@ namespace Pulse.UI
             return names.ToArray();
         }
 
-        private static WflContent[] ReadFontContent(Stream xgr, XgrArchiveListing fontEntries)
+        private static WflContent[] ReadFontContent(Stream xgr, WpdArchiveListing fontEntries)
         {
             WflContent[] result = new WflContent[fontEntries.Count];
             for (int i = 0; i < result.Length; i++)
@@ -331,7 +332,7 @@ namespace Pulse.UI
             return result;
         }
 
-        private static GLTexture[] ReadTextures(XgrArchiveAccessor accessor, TextureSection[] gtexDatas)
+        private static GLTexture[] ReadTextures(ImgbArchiveAccessor accessor, TextureSection[] gtexDatas)
         {
             GLTexture[] textures = new GLTexture[gtexDatas.Length];
 
