@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Pulse.Core;
 using Pulse.FS;
@@ -16,14 +17,14 @@ namespace Pulse.UI
 
         public bool TryInject(IUiInjectionSource source, string sourceFullPath, ArchiveEntryInjectionData data, ArchiveEntry entry)
         {
-            ZtrFileEntry[] sourceEntries;
+            Dictionary<string, string> sourceEntries;
             using (Stream input = source.TryOpen(sourceFullPath))
             {
                 if (input != null)
                 {
                     string entryName;
                     ZtrTextReader reader = new ZtrTextReader(input, StringsZtrFormatter.Instance);
-                    sourceEntries = reader.Read(out entryName);
+                    sourceEntries = reader.Read(out entryName).ToDictionary(e => e.Key, e => e.Value);
                     using (Stream output = data.OuputStreamFactory(entry))
                         Inject(data.Listing, entry, sourceEntries, output);
 
@@ -45,7 +46,7 @@ namespace Pulse.UI
             return true;
         }
 
-        private void Inject(ArchiveListing listing, ArchiveEntry entry, ZtrFileEntry[] sourceEntries, Stream output)
+        private void Inject(ArchiveListing listing, ArchiveEntry entry, Dictionary<String,String> sourceEntries, Stream output)
         {
             ZtrFileEntry[] targetEntries;
             using (Stream original = listing.Accessor.ExtractBinary(entry))
@@ -54,32 +55,27 @@ namespace Pulse.UI
                 targetEntries = unpacker.Unpack();
             }
 
-            ZtrFileEntry[] entries = MergeEntries(sourceEntries, targetEntries);
+            MergeEntries(sourceEntries, targetEntries);
 
             ZtrFilePacker packer = new ZtrFilePacker(output, InteractionService.TextEncoding.Provide().Encoding);
-            packer.Pack(entries);
+            packer.Pack(targetEntries);
         }
 
-        private static ZtrFileEntry[] MergeEntries(ZtrFileEntry[] sourceEntries, ZtrFileEntry[] targetEntries)
+        private static void MergeEntries(Dictionary<string, string> newEntries, ZtrFileEntry[] targetEntries)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>(targetEntries.Length);
-            foreach (ZtrFileEntry entry in targetEntries)
-                dic.Add(entry.Key, entry.Value);
-
             StringBuilder sb = new StringBuilder(1024);
-            foreach (ZtrFileEntry entry in sourceEntries)
+            foreach (ZtrFileEntry entry in targetEntries)
             {
-                string oldText;
-                if (!dic.TryGetValue(entry.Key, out oldText))
+                string oldText = entry.Value;
+                if (SkipEntry(oldText))
+                    continue;
+
+                string newText;
+                if (!newEntries.TryGetValue(entry.Key, out newText))
                 {
                     Log.Warning("[ArchiveEntryInjectorStringsToZtr] Пропущена неизвестная запись {0}={1}.", entry.Key, entry.Value);
                     continue;
                 }
-
-                if (SkipEntry(oldText))
-                    continue;
-
-                string newText = entry.Value;
 
                 GetEndingTags(oldText, sb);
                 string oldEnding = sb.ToString();
@@ -122,18 +118,85 @@ namespace Pulse.UI
                 }
 
                 sb.Append(oldEnding);
-                dic[entry.Key] = sb.ToString();
+                entry.Value = sb.ToString();
                 sb.Clear();
             }
-
-            ZtrFileEntry[] result = new ZtrFileEntry[targetEntries.Length];
-            for (int index = 0; index < targetEntries.Length; index++)
-            {
-                ZtrFileEntry entry = targetEntries[index];
-                result[index] = new ZtrFileEntry {Key = entry.Key, Value = dic[entry.Key]};
-            }
-            return result;
         }
+
+        //private static ZtrFileEntry[] MergeEntries(ZtrFileEntry[] sourceEntries, ZtrFileEntry[] targetEntries)
+        //{
+        //    Dictionary<string, string> dic = new Dictionary<string, string>(targetEntries.Length);
+        //    foreach (ZtrFileEntry entry in targetEntries)
+        //        dic.Add(entry.Key, entry.Value);
+
+        //    StringBuilder sb = new StringBuilder(1024);
+        //    foreach (ZtrFileEntry entry in sourceEntries)
+        //    {
+        //        string oldText;
+        //        if (!dic.TryGetValue(entry.Key, out oldText))
+        //        {
+        //            Log.Warning("[ArchiveEntryInjectorStringsToZtr] Пропущена неизвестная запись {0}={1}.", entry.Key, entry.Value);
+        //            continue;
+        //        }
+
+        //        if (SkipEntry(oldText))
+        //            continue;
+
+        //        string newText = entry.Value;
+
+        //        GetEndingTags(oldText, sb);
+        //        string oldEnding = sb.ToString();
+        //        sb.Clear();
+
+        //        int endingLength = GetEndingTags(newText, sb);
+        //        int newLength = newText.Length - endingLength;
+        //        sb.Clear();
+
+        //        // Восстановление старых хвостов и тегов новой строки
+        //        bool cr = false;
+        //        for (int i = 0; i < newLength; i++)
+        //        {
+        //            char ch = newText[i];
+        //            switch (ch)
+        //            {
+        //                case '\n':
+        //                {
+        //                    cr = false;
+        //                    sb.Append(NewLineTag);
+        //                    break;
+        //                }
+        //                case '\r':
+        //                {
+        //                    cr = true;
+        //                    break;
+        //                }
+        //                default:
+        //                {
+        //                    if (cr)
+        //                    {
+        //                        sb.Append(NewLineTag);
+        //                        cr = false;
+        //                    }
+
+        //                    sb.Append(ch);
+        //                    break;
+        //                }
+        //            }
+        //        }
+
+        //        sb.Append(oldEnding);
+        //        dic[entry.Key] = sb.ToString();
+        //        sb.Clear();
+        //    }
+
+        //    ZtrFileEntry[] result = new ZtrFileEntry[targetEntries.Length];
+        //    for (int index = 0; index < targetEntries.Length; index++)
+        //    {
+        //        ZtrFileEntry entry = targetEntries[index];
+        //        result[index] = new ZtrFileEntry {Key = entry.Key, Value = dic[entry.Key]};
+        //    }
+        //    return result;
+        //}
 
         private static bool SkipEntry(string oldText)
         {

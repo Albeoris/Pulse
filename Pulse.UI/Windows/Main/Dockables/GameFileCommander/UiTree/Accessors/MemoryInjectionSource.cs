@@ -9,7 +9,7 @@ namespace Pulse.UI
     public class MemoryInjectionSource : IUiInjectionSource, IDisposable
     {
         private readonly Dictionary<string, Stream> _streams = new Dictionary<string, Stream>();
-        private ZtrFileEntry[] _strings = null;
+        private Dictionary<string,string> _strings = null;
 
         public void RegisterStream(string sourcePath, Stream stream)
         {
@@ -42,10 +42,10 @@ namespace Pulse.UI
             if (_strings != null)
                 throw new NotSupportedException();
 
-            _strings = strings.Select(pair => new ZtrFileEntry {Key = pair.Key, Value = pair.Value}).ToArray();
+            _strings = strings;
         }
 
-        public ZtrFileEntry[] TryProvideStrings()
+        public Dictionary<string,string>  TryProvideStrings()
         {
             return _strings;
         }
