@@ -5,6 +5,7 @@ namespace Pulse.FS
 {
     public sealed class YkdHeader : IStreamingContent
     {
+        public const int Size = 16;
         public const int MagicNumber = 0x5F444B59;
 
         public int Magic;
@@ -15,13 +16,13 @@ namespace Pulse.FS
         public void ReadFromStream(Stream stream)
         {
             BinaryReader br = new BinaryReader(stream);
-            br.Check(reader => reader.ReadInt32(), MagicNumber);
+            Magic = br.Check(reader => reader.ReadInt32(), MagicNumber);
             Unknown1 = br.ReadInt32();
             Unknown2 = br.ReadByte();
             Unknown3 = br.ReadByte();
             Unknown4 = br.ReadByte();
             Unknown5 = br.ReadByte();
-            br.Check(reader => reader.ReadInt32(), 0);
+            Dummy = br.Check(reader => reader.ReadInt32(), 0);
         }
 
         public void WriteToStream(Stream stream)

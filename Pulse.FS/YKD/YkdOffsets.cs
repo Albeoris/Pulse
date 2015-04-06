@@ -6,7 +6,7 @@ namespace Pulse.FS
 {
     public sealed class YkdOffsets : IStreamingContent
     {
-        public int Unknown1;
+        public int Unknown1; // gr103.ykd Resources
         public int Unknown2;
         public int Unknown3; // Animation
 
@@ -39,7 +39,12 @@ namespace Pulse.FS
 
             Offsets = new int[count];
             for (int i = 0; i < count; i++)
-                Offsets[i] = br.ReadInt32();
+            {
+                int offset = br.ReadInt32();
+                Offsets[i] = offset;
+                if (offset == 0 || offset >= stream.Length)
+                    throw new InvalidDataException();
+            }
 
             int alignment = ((4 - (count % 4)) % 4);
             for (int i = 0; i < alignment; i++)

@@ -25,7 +25,7 @@ namespace Pulse.FS
         {
             byte[] name = stream.EnsureRead(NameSize);
             fixed (byte* namePtr = &name[0])
-                Name = new string((sbyte*)namePtr);
+                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding);
 
             Offsets = stream.ReadContent<YkdOffsets>();
             Frames = new YkdFrames[Offsets.Count];
@@ -36,7 +36,7 @@ namespace Pulse.FS
         public void WriteToStream(Stream stream)
         {
             byte[] name = new byte[NameSize];
-            Encoding.ASCII.GetBytes(Name, 0, Name.Length, name, 0);
+            YkdFile.NamesEncoding.GetBytes(Name, 0, Name.Length, name, 0);
             stream.Write(name, 0, name.Length);
 
             YkdOffsets.WriteToStream(stream, ref Offsets, ref Frames, b => b.CalcSize());

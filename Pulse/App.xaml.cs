@@ -24,6 +24,48 @@ namespace Pulse
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            // YKD
+            //foreach (string file in Directory.GetFiles(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Work\Extracted\gui\resident\system.unpack", "*.ykd"))
+            //{
+            //    try
+            //    {
+            //        using (Stream input = File.OpenRead(file))
+            //        using (Stream output = File.Create(Path.ChangeExtension(file, ".new")))
+            //        {
+            //            try
+            //            {
+            //                YkdFile ykd = input.ReadContent<YkdFile>();
+            //                output.WriteContent(ykd);
+            //            }
+            //            catch (Exception)
+            //            {
+            //                output.Flush();
+            //                throw;
+            //            }
+            //        }
+
+            //        using (Stream input = File.OpenRead(file))
+            //        using (Stream output = File.OpenRead(Path.ChangeExtension(file, ".new")))
+            //        {
+            //            if (input.Length != output.Length)
+            //                throw new InvalidDataException();
+
+            //            input.Position = 0;
+            //            output.Position = 0;
+
+            //            for (int i = 0; i < input.Length; i++)
+            //            {
+            //                if (input.ReadByte() != output.ReadByte())
+            //                    throw new InvalidDataException();
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.Write(ex);
+            //    }
+            //}
+
             // book.strings => review.strings
             //ZtrFileEntry[] books, reviews;
             //using (Stream book = File.OpenRead(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Pack\Strings\book.strings\ru-RU\book.strings"))

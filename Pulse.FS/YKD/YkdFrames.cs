@@ -67,7 +67,7 @@ namespace Pulse.FS
             bw.Write(count);
             bw.Write(Unknown3);
 
-            long offset = stream.Position + (count + alignment) * 4;
+            int offset = (int)stream.Position + (count + alignment) * 4;
 
             for (int i = 0; i < count; i++)
                 bw.Write(offset + i * YkdFrame.Size);
