@@ -125,8 +125,13 @@
     <Compile Include="IMGB\ImgbArchiveAccessor.cs" />
     <Compile Include="IMGB\WPD\WpdArchiveListing.cs" />
     <Compile Include="IMGB\WPD\WpdArchiveListingReader.cs" />
+    <Compile Include="YKD\YkdBlockEntry.cs" />
     <Compile Include="YKD\YkdBlockHeader.cs" />
+    <Compile Include="YKD\YkdFile.cs" />
+    <Compile Include="YKD\YkdFrame.cs" />
+    <Compile Include="YKD\YkdFrames.cs" />
     <Compile Include="YKD\YkdHeader.cs" />
+    <Compile Include="YKD\YkdOffsets.cs" />
     <Compile Include="ZLibHelper.cs" />
     <Compile Include="ZTR\IZtrFormatter.cs" />
     <Compile Include="ZTR\StringsZtrFormatter.cs" />

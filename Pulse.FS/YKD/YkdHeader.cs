@@ -1,34 +1,39 @@
 ﻿using System.IO;
 using Pulse.Core;
 
-namespace Pulse.FS.YKD
+namespace Pulse.FS
 {
     public sealed class YkdHeader : IStreamingContent
     {
         public const int MagicNumber = 0x5F444B59;
 
         public int Magic;
-        private int Unknown1;
-        private byte Unknown2, Unknown3, Unknown4, Unknown5;
-        private int Dummy;
+        public int Unknown1;
+        public byte Unknown2, Unknown3, Unknown4, Unknown5;
+        public int Dummy;
 
         public void ReadFromStream(Stream stream)
         {
             BinaryReader br = new BinaryReader(stream);
-            Magic = br.ReadInt32();
-            if (Magic != MagicNumber)
-                throw new InvalidDataException(Magic.ToString());
+            br.Check(reader => reader.ReadInt32(), MagicNumber);
             Unknown1 = br.ReadInt32();
             Unknown2 = br.ReadByte();
             Unknown3 = br.ReadByte();
             Unknown4 = br.ReadByte();
             Unknown5 = br.ReadByte();
-            Dummy = br.ReadInt32();
+            br.Check(reader => reader.ReadInt32(), 0);
         }
 
         public void WriteToStream(Stream stream)
         {
-            throw new System.NotImplementedException();
+            BinaryWriter bw = new BinaryWriter(stream);
+            bw.Write(Magic);
+            bw.Write(Unknown1);
+            bw.Write(Unknown2);
+            bw.Write(Unknown3);
+            bw.Write(Unknown4);
+            bw.Write(Unknown5);
+            bw.Write(Dummy);
         }
     }
 }

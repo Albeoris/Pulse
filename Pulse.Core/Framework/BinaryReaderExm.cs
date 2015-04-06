@@ -53,5 +53,14 @@ namespace Pulse.Core
                     return Endian.ToBigUInt32(b);
             }
         }
+
+        public static T Check<T>(this BinaryReader self, Func<BinaryReader, T> func, T expected)
+        {
+            T value = func(self);
+            if (Equals(value, expected))
+                return value;
+
+            throw new InvalidDataException(String.Format("Неожиданное значение: [{0}], ожидается [{1}].", value, expected));
+        }
     }
 }

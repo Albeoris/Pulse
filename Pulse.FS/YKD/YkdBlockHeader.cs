@@ -1,14 +1,25 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using Pulse.Core;
 
-namespace Pulse.FS.YKD
+namespace Pulse.FS
 {
-    public sealed class YkdBlockHeader : IStreamingContent
+    public sealed class YkdBlock : IStreamingContent
     {
-        private uint Unknown1, Unknown2, Unknown3, Unknown4;
-        private readonly byte[] Data = new byte[0x60];
-        private int[] Offsets;
-        private uint Count1, Count2, Count3, Count4;
+        public uint Unknown1, Unknown2, Unknown3, Unknown4;
+        public readonly byte[] Data = new byte[0x60];
+
+        public YkdOffsets Offsets;
+        public YkdBlockEntry[] Entries;
+
+        public int CalcSize()
+        {
+            YkdBlockEntry[] entries = Entries ?? new YkdBlockEntry[0];
+            YkdOffsets offsets = new YkdOffsets {Offsets = new int[entries.Length]};
+
+            return 4 * 4 + 0x60 + offsets.CalcSize() + entries.Sum(t => t.CalcSize());
+        }
 
         public void ReadFromStream(Stream stream)
         {
@@ -21,16 +32,27 @@ namespace Pulse.FS.YKD
 
             stream.EnsureRead(Data, 0, Data.Length);
 
-
-            Offsets = new int[Count1];
-            for (int i = 0; i < Count1; i++)
-                Offsets[i] = br.ReadInt32();
-            stream.Seek(((4 - (Count1 % 4))%4) * 4, SeekOrigin.Current);
+            Offsets = stream.ReadContent<YkdOffsets>();
+            Entries = new YkdBlockEntry[Offsets.Count];
+            for (int i = 0; i < Offsets.Count; i++)
+            {
+                stream.SetPosition(Offsets[i]);
+                Entries[i] = stream.ReadContent<YkdBlockEntry>();
+            }
         }
 
         public void WriteToStream(Stream stream)
         {
-            throw new System.NotImplementedException();
+            BinaryWriter bw = new BinaryWriter(stream);
+
+            bw.Write(Unknown1);
+            bw.Write(Unknown2);
+            bw.Write(Unknown3);
+            bw.Write(Unknown4);
+
+            stream.Write(Data, 0, Data.Length);
+            YkdOffsets.WriteToStream(stream, ref Offsets, ref Entries, b => b.CalcSize());
+            stream.WriteContent(Entries);
         }
     }
 }

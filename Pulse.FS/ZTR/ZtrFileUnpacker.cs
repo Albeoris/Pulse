@@ -38,7 +38,7 @@ namespace Pulse.FS
 
         private ZtrFileEntry[] ExtractLittleEndianUncompressedDictionary(int count)
         {
-            if (count < 0 || count > 10240)
+            if (count < 0 || count > 102400)
                 throw new ArgumentOutOfRangeException("count", count.ToString());
 
             ZtrFileEntry[] entries = new ZtrFileEntry[count];
