@@ -1,7 +1,0 @@
-﻿/*txtres/ac/ac_pmpm_081/txtres_us.ztr*/
-/*0005*/
-"0000║$apmpm081_010fa" = "Must be the kid's family.";
-"0001║$apmpm081_020m1" = "{Italic}Now for an update on the situation in Palumpolum.{Italic}{End}{Escape}Reporter";
-"0002║$apmpm081_030m1" = "{Italic}The l'Cie continue their desperate flight...{Italic}{End}{Escape}Reporter";
-"0003║$apmpm081_040m1" = "{Italic}...and the military has now launched{Text NewLine}an all-out campaign to eliminate them.{Italic}{End}{Escape}Reporter";
-"0004║$apmpm081_050m1" = "{Italic}In the event you must leave your home, please{Text NewLine}follow the instructions broadcast on this channel.{Italic}{End}{Escape}Reporter";

@@ -1,0 +1,15 @@
+﻿/*txtres/event/ev_bodm_800/txtres_us.ztr*/
+/*0013*/
+"0000║$ebodm800_010va" = "{Italic}Никто никогда не говорил, что будущее будет лёгким.{Italic}{End}{Escape}";
+"0001║$ebodm800_020va" = "{Italic}Но я думаю, мы все видели проблеск мечты{Text NewLine}где-то в небе в ту ночь.{Italic}{End}{Escape}";
+"0002║$ebodm800_030va" = "{Italic}Крошечный огонёк надежды на то,{Text NewLine}что мы cможем изменить наши судьбы.{Italic}{End}{Escape}";
+"0003║$ebodm800_040va" = "{Italic}Кто знает?{Italic}{End}{Escape}";
+
+
+
+
+
+
+
+"0011║$ebodm800_120va" = "{Italic}Что мы обрели и потеряли в тот момент.{Italic}{End}{Escape}";
+

@@ -1,9 +1,0 @@
-﻿/*txtres/event/ev_vpek_080/txtres_us.ztr*/
-/*0007*/
-"0000║$evpek080_010ho" = "You're telling me you got on that train{Text NewLine}so you could save your sister?";
-"0001║$evpek080_020ho" = "That's crazy.{Text NewLine}I could never do something like that.";
-"0002║$evpek080_030lt" = "It's not a question of can or can't.";
-"0003║$evpek080_040lt" = "There are some things in life you just do.";
-"0004║$evpek080_050ho" = "Easy for someone like you to say.";
-"0005║$evpek080_060ho" = "Lightning!";
-"0006║$evpek080_070ho" = "She left me.";

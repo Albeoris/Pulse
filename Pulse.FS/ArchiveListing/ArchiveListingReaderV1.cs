@@ -18,7 +18,7 @@ namespace Pulse.FS
         private readonly Action<long> _progressIncrement;
         private readonly Action<long> _progressTotalChanged;
 
-        public ArchiveListingReaderV1(ArchiveAccessor accessor, Action<long> progressIncrement, Action<long> progressTotalChanged)
+        private ArchiveListingReaderV1(ArchiveAccessor accessor, Action<long> progressIncrement, Action<long> progressTotalChanged)
         {
             _accessor = accessor;
             _progressIncrement = progressIncrement;

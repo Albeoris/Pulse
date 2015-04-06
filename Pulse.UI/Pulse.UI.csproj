@@ -170,7 +170,6 @@
     <Compile Include="Interaction\TextEncoding\TextEncodingWorkingLocationProvider.cs" />
     <Compile Include="Interaction\TextEncoding\TextEncodingInfo.cs" />
     <Compile Include="Interaction\TextEncoding\TextEncodingUserProvider.cs" />
-    <Compile Include="Interaction\TextEncoding\XgrArchiveEntryInjectorWflContentPack.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationConfigurationProvider.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationInfo.cs" />
     <Compile Include="Interaction\WorkingLocation\WorkingLocationProviders.cs" />
@@ -202,8 +201,6 @@
     <Compile Include="Windows\Encoding\UiEncodingWindowSource.cs" />
     <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviderNode.cs" />
     <Compile Include="Windows\Main\Dockables\DataProviders\UiDataProviderNodeRefreshCommand.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryExtractorUnpack.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryExtractorZtrToStrings.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorPack.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorStringsToZtr.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\ArchiveEntryInjectorTempRhadamantsTxtToZtr.cs" />
@@ -211,7 +208,6 @@
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiGameFilePreview.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\ArchiveEntryInjectionData.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\MemoryInjectionSource.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\MemoryInjectionAccessor.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\DdsToTxbhWpdEntryInjector.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\DefaultArchiveEntryExtractor.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Injectors\DefaultArchiveEntryInjector.cs" />
@@ -258,7 +254,6 @@
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Accessors\UiWpdLeafsAccessor.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Nodes\UiWpdTableLeaf.cs" />
     <Compile Include="Windows\Main\Dockables\GameFileCommander\UiTree\Extractors\ZtrToStringsArchiveEntryExtractor.cs" />
-    <Compile Include="Windows\Main\Dockables\GameFileCommander\XgrArchiveInjector.cs" />
     <Compile Include="Windows\Main\Dockables\UiMainDockable.cs" />
     <Compile Include="Windows\Main\UiMainWindow.cs" />
     <Compile Include="Windows\UiInputWindow.cs" />

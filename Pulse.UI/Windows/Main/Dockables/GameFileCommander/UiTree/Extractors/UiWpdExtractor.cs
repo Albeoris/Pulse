@@ -39,7 +39,7 @@ namespace Pulse.UI
                 return;
 
             String root = InteractionService.WorkingLocation.Provide().ProvideExtractedDirectory();
-            String targetDirectory = Path.Combine(root, PathEx.ChangeMultiDotExtension(_listing.Name, ".unpack"));
+            String targetDirectory = Path.Combine(root, _listing.ExtractionSubpath);
             _target.CreateDirectory(targetDirectory);
 
             byte[] buff = new byte[32 * 1024];
@@ -50,7 +50,7 @@ namespace Pulse.UI
                 if (extractor == null)
                     return;
 
-                String targetPath = Path.Combine(targetDirectory, entry.Name + '.' + targetExtension);
+                String targetPath = Path.Combine(targetDirectory, entry.NameWithoutExtension + '.' + targetExtension);
                 using (Stream output = _target.Create(targetPath))
                     extractor.Extract(entry, output, _headers, _content, buff);
             }

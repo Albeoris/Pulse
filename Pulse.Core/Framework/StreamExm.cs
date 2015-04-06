@@ -173,7 +173,7 @@ namespace Pulse.Core
 
         public static void WriteContent<T>(this Stream output, T[] items) where T : IStreamingContent
         {
-            foreach (IStreamingContent item in items)
+            foreach (T item in items)
                 item.WriteToStream(output);
         }
 

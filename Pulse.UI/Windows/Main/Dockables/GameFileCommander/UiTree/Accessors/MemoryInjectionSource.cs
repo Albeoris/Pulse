@@ -6,7 +6,7 @@ using Pulse.FS;
 
 namespace Pulse.UI
 {
-    public class MemoryInjectionSource : IUiInjectionSource
+    public class MemoryInjectionSource : IUiInjectionSource, IDisposable
     {
         private readonly Dictionary<string, Stream> _streams = new Dictionary<string, Stream>();
         private ZtrFileEntry[] _strings = null;

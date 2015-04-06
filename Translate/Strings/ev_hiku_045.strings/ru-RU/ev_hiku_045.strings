@@ -1,0 +1,5 @@
+﻿/*txtres/event/ev_hiku_045/txtres_us.ztr*/
+/*0003*/
+"0000║$ehiku045_010m2" = "{Italic}Код подтверждён. Разрешаю посадку.{Italic}{End}{Escape}Мостик";
+"0001║$ehiku045_020lg" = "{Italic}Как раз вовремя.{Italic}{End}{Escape}Ригди";
+"0002║$ehiku045_030m2" = "{Italic}Всё чисто. Добро пожаловать на борт.{Italic}{End}{Escape}Мостик";

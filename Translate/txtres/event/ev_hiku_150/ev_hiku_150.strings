@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_hiku_150/txtres_us.ztr*/
-/*0004*/
-"0000║$ehiku150_003w1" = "{Italic}Bridge to engine room. We're losing thrust.{Text NewLine}Engine room, do you copy?{Italic}{End}{Escape}";
-"0001║$ehiku150_006w1" = "{Italic}What is the status of the main reactor?{Italic}{End}{Escape}";
-"0002║$ehiku150_010sz" = "Power's down.";
-"0003║$ehiku150_020sz" = "What's going on?";

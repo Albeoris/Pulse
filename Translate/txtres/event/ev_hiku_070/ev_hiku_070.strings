@@ -1,7 +1,0 @@
-﻿/*txtres/event/ev_hiku_070/txtres_us.ztr*/
-/*0005*/
-"0000║$ehiku070_030m1" = "{Italic}Code Red! Repeat: Code Red!{Italic}{End}{Escape}";
-"0001║$ehiku070_040m1" = "{Italic}Attention all crew: this is not a drill!{Text NewLine}Code Red!{Italic}{End}{Escape}";
-"0002║$ehiku070_050sn" = "All right. Let's tear 'em up!";
-"0003║$ehiku070_060lt" = "We're here for Vanille and Sazh.{Text NewLine}Stay focused!";
-"0004║$ehiku070_500m1" = "";

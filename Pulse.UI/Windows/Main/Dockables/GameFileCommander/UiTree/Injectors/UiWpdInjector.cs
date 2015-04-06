@@ -41,13 +41,13 @@ namespace Pulse.UI
                 return;
 
             String root = _source.ProvideRootDirectory();
-            String targetDirectory = Path.Combine(root, PathEx.ChangeMultiDotExtension(_listing.Name, ".unpack"));
+            String targetDirectory = Path.Combine(root, _listing.ExtractionSubpath);
             if (!_source.DirectoryIsExists(targetDirectory))
                 return;
 
             foreach (WpdEntry entry  in _leafs)
             {
-                String targetPath = Path.Combine(targetDirectory, entry.Name);
+                String targetPath = Path.Combine(targetDirectory, entry.NameWithoutExtension);
                 Inject(entry, targetPath);
             }
 

@@ -18,7 +18,16 @@ namespace Pulse.UI
 
         public override ImageSource Icon
         {
-            get { return Icons.FolderIcon; }
+            get
+            {
+                switch (Type)
+                {
+                    case UiNodeType.Group:
+                        return Icons.PackageIcon;
+                }
+                
+                return Icons.FolderIcon;
+            }
         }
 
         public IEnumerable<UiNode> BindableHierarchyChilds

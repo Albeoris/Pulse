@@ -23,7 +23,7 @@ namespace Pulse.FS
 
         public SeDbResEntry[] Entries;
 
-        public unsafe void ReadFromStream(Stream input)
+        public void ReadFromStream(Stream input)
         {
             BinaryReader br = new BinaryReader(input);
             

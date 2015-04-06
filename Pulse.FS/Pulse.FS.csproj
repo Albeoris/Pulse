@@ -90,8 +90,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveExtractor\IArchiveEntryExtractor.cs" />
-    <Compile Include="ArchiveExtractor\ArchiveExtractor.cs" />
     <Compile Include="ArchiveListing\ArchiveListingCompressedData.cs" />
     <Compile Include="ArchiveListing\ArchiveListingEntryInfoV2.cs" />
     <Compile Include="ArchiveListing\ArchiveAccessor.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
@@ -20,6 +21,11 @@ namespace Pulse.FS
         public string Name
         {
             get { return Accessor.Name; }
+        }
+
+        public string ExtractionSubpath
+        {
+            get { return PathEx.ChangeMultiDotExtension(Name, ".unpack"); }
         }
     }
 }

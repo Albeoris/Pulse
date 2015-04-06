@@ -1,0 +1,7 @@
+﻿/*D:\Temp\FFXIII\txtres\zone\z024\txtres_us.ztr*/
+/*0005*/
+"0000║$m_z024ac_txt0" = "Сесть в Атомоса?{End}{Escape}";
+"0001║$m_z024ac_txt1" = "Да{End}{Escape}";
+"0002║$m_z024ac_txt2" = "Нет{End}{Escape}";
+"0003║$m_z024ac_yrkg" = "ПОСАДКА{End}{Escape}";
+"0004║$m_z024kzr_txt" = "ИССЛЕДОВАТЬ{End}{Escape}";

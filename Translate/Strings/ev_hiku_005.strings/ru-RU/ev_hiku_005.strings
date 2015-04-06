@@ -1,0 +1,7 @@
+﻿/*txtres/event/ev_hiku_005/txtres_us.ztr*/
+/*0005*/
+
+"0001║$ehiku005_020w1" = "{Italic}Вот она.{Italic}{End}{Escape}Репортёр";
+"0002║$ehiku005_030w1" = "{Italic}{Italic}Паламеция{Italic} - гордость воздушного флота Святилища!{Italic}{End}{Escape}Репортёр";
+"0003║$ehiku005_040w1" = "{Italic}В настоящий момент этот величественный флагман{Text NewLine}служит тюрьмой для л'Си, пойманных в Наутилусе.{Italic}{End}{Escape}Репортёр";
+"0004║$ehiku005_050w1" = "{End}{Escape}";

@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_eden_010/txtres_us.ztr*/
-/*0004*/
-"0000║$eeden010_000tr" = "";
-"0001║$eeden010_005m1" = "Your Eminence.{End}{Escape}Aide";
-"0002║$eeden010_010m1" = "It is time. The people await your address.{End}{Escape}Aide";
-"0003║$eeden010_020rn" = "And so we greet the new dawn.{End}{Escape}Raines";

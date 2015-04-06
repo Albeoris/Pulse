@@ -72,6 +72,7 @@
       Header="Ресурсы игры"
       Unpack="Распаковать"
       Pack="Упаковать"
+      ArchivesNode ="Архивы"
       />
 
     <GameFilePreview

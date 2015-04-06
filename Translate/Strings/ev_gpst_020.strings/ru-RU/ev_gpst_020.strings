@@ -1,0 +1,5 @@
+﻿/*txtres/event/ev_gpst_020/txtres_us.ztr*/
+/*0003*/
+"0000║$egpst020_010va" = "{Italic}Творец создал фал'Си...{Italic}{End}{Escape}";
+"0001║$egpst020_011va" = "{Italic}...а они, в своих отчаянных попытках{Text NewLine}воссоединиться с Творцом, сотворили л'Си.{Italic}{End}{Escape}";
+"0002║$egpst020_020va" = "{Italic}А л'Си? Интересно, что же в итоге сотворим мы?{Italic}{End}{Escape}";

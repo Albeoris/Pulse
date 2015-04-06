@@ -10,8 +10,8 @@ namespace Pulse.UI
 {
     public sealed class UiChildPackageBuilder
     {
-        private ConcurrentDictionary<UiArchiveExtension, ConcurrentBag<UiNode>> _nodes = new ConcurrentDictionary<UiArchiveExtension, ConcurrentBag<UiNode>>();
-        private ConcurrentDictionary<string, Pair<ArchiveEntry, ArchiveEntry>> _pairs = new ConcurrentDictionary<string, Pair<ArchiveEntry, ArchiveEntry>>();
+        private readonly ConcurrentDictionary<UiArchiveExtension, ConcurrentBag<UiNode>> _nodes = new ConcurrentDictionary<UiArchiveExtension, ConcurrentBag<UiNode>>();
+        private readonly ConcurrentDictionary<string, Pair<ArchiveEntry, ArchiveEntry>> _pairs = new ConcurrentDictionary<string, Pair<ArchiveEntry, ArchiveEntry>>();
 
         private readonly string _areasDirectory;
 
@@ -37,7 +37,7 @@ namespace Pulse.UI
                 return null;
 
             int counter = 0;
-            UiContainerNode result = new UiContainerNode("Архивы", UiNodeType.Group);
+            UiContainerNode result = new UiContainerNode(Lang.Dockable.GameFileCommander.ArchivesNode, UiNodeType.Group);
             UiNode[] extensions = new UiNode[_nodes.Count];
             foreach (KeyValuePair<UiArchiveExtension, ConcurrentBag<UiNode>> pair in _nodes)
             {

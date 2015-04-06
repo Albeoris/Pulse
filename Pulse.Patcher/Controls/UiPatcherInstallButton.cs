@@ -48,7 +48,7 @@ namespace Pulse.Patcher
 
         private async Task<SafeUnmanagedArray> Decompress()
         {
-            string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(false); // todo
+            string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(true);
             if (CancelEvent.IsSet())
                 return null;
 
@@ -127,10 +127,10 @@ namespace Pulse.Patcher
                 return;
 
             GameLocationInfo gameLocation = PatcherService.GetGameLocation(gamePart);
-            PatchText(br, gameLocation);
+            Patch(br, gameLocation);
         }
 
-        private void PatchText(BinaryReader br, GameLocationInfo gameLocation)
+        private void Patch(BinaryReader br, GameLocationInfo gameLocation)
         {
             if (CancelEvent.IsSet())
                 return;
@@ -141,57 +141,54 @@ namespace Pulse.Patcher
             if (CancelEvent.IsSet())
                 return;
 
-            //long position = br.BaseStream.Position;
-            //XgrPatchData fonts = XgrPatchData.ReadFrom(br);
-            //OnProgress(br.BaseStream.Position - position);
-            //if (CancelEvent.IsSet())
-            //    return;
+            Dictionary<string, string> dic = ReadStrings(br);
+            if (CancelEvent.IsSet())
+                return;
 
-
-            UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
-            using (MemoryInjectionAccessor source = new MemoryInjectionAccessor())
+            using (DisposableStack disposables = new DisposableStack())
             {
-                UiInjectionManager manager = new UiInjectionManager();
+                MemoryInjectionSource source = disposables.Add(new MemoryInjectionSource());
+                source.RegisterStrings(dic);
+                if (CancelEvent.IsSet())
+                    return;
 
-                long position = br.BaseStream.Position;
-                using (XgrPatchData fonts = XgrPatchData.ReadFrom(br))
+                int count = br.ReadInt32();
+                OnProgress(4);
+
+                for (int i = 0; i < count; i++)
                 {
+                    long position = br.BaseStream.Position;
+                    ImgbPatchData imgb = disposables.Add(ImgbPatchData.ReadFrom(br));
+                    foreach (KeyValuePair<string, SafeUnmanagedArray> data in imgb)
+                        source.RegisterStream(Path.Combine(imgb.XgrArchiveUnpackName, data.Key), data.Value.OpenStream(FileAccess.Read));
                     OnProgress(br.BaseStream.Position - position);
                     if (CancelEvent.IsSet())
                         return;
-
-                    foreach (KeyValuePair<string, SafeUnmanagedArray> data in fonts)
-                        source.RegisterStream(Path.Combine(fonts.XgrArchiveUnpackName, data.Key), data.Value.OpenStream(FileAccess.Read));
-
-                    Dictionary<string, string> dic = ReadStrings(br);
-                    if (CancelEvent.IsSet())
-                        return;
-
-                    source.RegisterStrings(dic);
-                    if (CancelEvent.IsSet())
-                        return;
-
-                    UiArchives archives = builder.Build();
-                    Position = 0;
-                    Maximum = archives.Count;
-                    foreach (UiContainerNode archive in archives)
-                    {
-                        Check(archive);
-                        OnProgress(1);
-                    }
-                    if (CancelEvent.IsSet())
-                        return;
-
-                    IUiLeafsAccessor[] accessors = archives.AccessToCheckedLeafs(new Wildcard("*"), null, false).ToArray();
-                    Position = 0;
-                    Maximum = accessors.Length;
-                    foreach (IUiLeafsAccessor accessor in accessors)
-                    {
-                        accessor.Inject(source, manager);
-                        OnProgress(1);
-                    }
                 }
 
+                UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
+                UiArchives archives = builder.Build();
+                Position = 0;
+                Maximum = archives.Count;
+                foreach (UiContainerNode archive in archives)
+                {
+                    Check(archive);
+                    OnProgress(1);
+                }
+
+                if (CancelEvent.IsSet())
+                    return;
+
+                IUiLeafsAccessor[] accessors = archives.AccessToCheckedLeafs(new Wildcard("*"), null, false).ToArray();
+                Position = 0;
+                Maximum = accessors.Length;
+
+                UiInjectionManager manager = new UiInjectionManager();
+                foreach (IUiLeafsAccessor accessor in accessors)
+                {
+                    accessor.Inject(source, manager);
+                    OnProgress(1);
+                }
                 manager.WriteListings();
             }
         }

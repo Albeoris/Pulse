@@ -1,7 +1,0 @@
-﻿/*txtres/event/ev_hang_250/txtres_us.ztr*/
-/*0005*/
-"0000║$ehang250_000sn" = "All right, on my go.";
-"0001║$ehang250_005m1" = "I want every weapon ready to fire.{End}{Escape}Soldier";
-"0002║$ehang250_007m1" = "Stay sharp.{End}{Escape}Soldier";
-"0003║$ehang250_020gd" = "Right.";
-"0004║$ehang250_030sn" = "Go!";

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -49,7 +50,7 @@ namespace Pulse.Patcher
                         return;
                 }
 
-                await Task.Factory.StartNew(() => Pack(root, securityKey, targetPath));
+                await Pack(root, securityKey, targetPath);
 
             }
             finally
@@ -72,6 +73,10 @@ namespace Pulse.Patcher
                     return;
 
                 await PackTexts(root, bw);
+                if (CancelEvent.IsSet())
+                    return;
+
+                await PackImgb(root, bw);
                 if (CancelEvent.IsSet())
                     return;
 
@@ -114,7 +119,7 @@ namespace Pulse.Patcher
         private async Task PackTexts(string root, BinaryWriter bw)
         {
             await PackEncoding(root, bw);
-            PackFonts(root, bw);
+            //PackFonts(root, bw);
             PackStrings(root, bw);
         }
 
@@ -131,12 +136,12 @@ namespace Pulse.Patcher
             }
         }
 
-        private static void PackFonts(string root, BinaryWriter bw)
-        {
-            const string xgrArchiveName = @"gui/resident/system.win32.xgr";
-            root = Path.Combine(root, @"Fonts");
-            XgrPatchData.WriteTo(xgrArchiveName, root, bw);
-        }
+        //private static void PackFonts(string root, BinaryWriter bw)
+        //{
+        //    const string xgrArchiveName = @"gui/resident/system.unpack";
+        //    root = Path.Combine(root, @"Fonts");
+        //    ImgbPatchData.WriteTo(xgrArchiveName, root, bw);
+        //}
 
         private void PackStrings(string root, BinaryWriter bw)
         {
@@ -169,6 +174,26 @@ namespace Pulse.Patcher
             }
 
             bw.Write(0);
+        }
+
+        private async Task PackImgb(string root, BinaryWriter bw)
+        {
+            if (CancelEvent.IsSet())
+                return;
+
+            root = Path.Combine(root, @"Imgb");
+            
+            string[] dirs = Directory.GetDirectories(root, "*.unpack", SearchOption.AllDirectories);
+            bw.Write(dirs.Length);
+
+            Position = 0;
+            Maximum = dirs.Length;
+            foreach (string dir in dirs)
+            {
+                string path = dir.Substring(root.Length + 1).Replace('\\', '/');
+                ImgbPatchData.WriteTo(path, dir, bw);
+                OnProgress(1);
+            }
         }
     }
 }

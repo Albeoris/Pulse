@@ -123,7 +123,7 @@
     <Compile Include="Framework\DisposableAction.cs" />
     <Compile Include="Framework\DisposableBeginEndActions.cs" />
     <Compile Include="Framework\DisposableStack.cs" />
-    <Compile Include="Framework\EnumCache.cs" />
+    <Compile Include="Components\EnumCache.cs" />
     <Compile Include="Framework\EventHandlerExm.cs" />
     <Compile Include="Framework\EventWaitHandleExm.cs" />
     <Compile Include="Framework\Exceptions.cs" />

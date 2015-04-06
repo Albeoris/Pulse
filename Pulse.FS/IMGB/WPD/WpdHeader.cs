@@ -65,7 +65,7 @@ namespace Pulse.FS
             {
                 WpdEntry entry = Entries[i];
 
-                byte[] bytes = Encoding.ASCII.GetBytes(entry.Name);
+                byte[] bytes = Encoding.ASCII.GetBytes(entry.NameWithoutExtension);
                 Array.Resize(ref bytes, 16);
                 bw.Write(bytes, 0, bytes.Length);
 

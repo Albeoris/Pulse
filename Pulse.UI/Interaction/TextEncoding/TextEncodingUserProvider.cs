@@ -27,14 +27,14 @@ namespace Pulse.UI
 
         public TextEncodingInfo Provide()
         {
-            ArchiveListing listing;
-            ImgbArchiveAccessor accessor = CreateAccessor(out listing);
+            ImgbArchiveAccessor accessor = CreateAccessor();
 
-            WpdArchiveListing fontEntries;
+            WpdArchiveListing listing;
+            WpdEntry[] fontEntries;
             WflContent[] fontContent;
             TextureSection[] textureHeaders;
             string[] names;
-            ReadXgrContent(accessor, listing, out fontEntries, out fontContent, out textureHeaders, out names);
+            ReadXgrContent(accessor, out listing, out fontEntries, out fontContent, out textureHeaders, out names);
 
             GLTexture[] textures = ReadTextures(accessor, textureHeaders);
             try
@@ -57,9 +57,7 @@ namespace Pulse.UI
 
                     result.Save();
 
-                    int index = 0;
-                    XgrArchiveInjector injector = new XgrArchiveInjector(fontEntries, false, e => new XgrArchiveEntryInjectorWflContentPack(fontContent[index++], e));
-                    injector.Inject();
+                    Inject(listing, fontEntries, fontContent);
 
                     return result;
                 }
@@ -70,6 +68,32 @@ namespace Pulse.UI
             }
 
             throw new OperationCanceledException();
+        }
+
+        private void Inject(WpdArchiveListing listing, WpdEntry[] fontEntries, WflContent[] fontContent)
+        {
+            UiInjectionManager manager = new UiInjectionManager();
+            using (MemoryInjectionSource source = new MemoryInjectionSource())
+            {
+                String injectionRoot = Path.Combine(source.ProvideRootDirectory(), listing.ExtractionSubpath);
+                for (int i = 0; i < fontEntries.Length; i++)
+                {
+                    WpdEntry entry = fontEntries[i];
+                    WflContent content = fontContent[i];
+                    String injectionPath = Path.Combine(injectionRoot, entry.Name);
+
+                    MemoryStream stream = new MemoryStream(1024);
+                    source.RegisterStream(injectionPath, stream);
+
+                    WflFileWriter writer = new WflFileWriter(stream);
+                    writer.Write(content);
+                    stream.SetPosition(0);
+                }
+
+                UiWpdInjector injector = new UiWpdInjector(listing, fontEntries, false, source);
+                injector.Inject(manager);
+            }
+            manager.WriteListings();
         }
 
         //private void Replace(UiEncodingWindowSource[] sources)
@@ -202,49 +226,44 @@ namespace Pulse.UI
             return result;
         }
 
-        private ImgbArchiveAccessor CreateAccessor(out ArchiveListing listing)
+        private ImgbArchiveAccessor CreateAccessor()
         {
             GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
             string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imgc.win32.bin");
             string listingPath = Path.Combine(gameLocation.SystemDirectory, "filelistc.win32.bin");
 
             ArchiveAccessor accessor = new ArchiveAccessor(binaryPath, listingPath);
-            ArchiveListingReaderV1 reader = new ArchiveListingReaderV1(accessor, null, null);
-            listing = reader.Read();
+            ArchiveListing listing = ArchiveListingReaderV1.Read(accessor, null, null);
             ArchiveEntry xgrEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.xgr"));
             ArchiveEntry imgbEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.imgb"));
 
             return new ImgbArchiveAccessor(listing, xgrEntry, imgbEntry);
         }
 
-        private void ReadXgrContent(ImgbArchiveAccessor accessor, ArchiveListing listing, out WpdArchiveListing fontEntries, out WflContent[] fontContent, out TextureSection[] textureHeaders, out string[] names)
+        private void ReadXgrContent(ImgbArchiveAccessor accessor, out WpdArchiveListing listing, out WpdEntry[] fontEntries, out WflContent[] fontContent, out TextureSection[] textureHeaders, out string[] names)
         {
             using (Stream indices = accessor.ExtractHeaders())
             {
                 WpdEntry[] textureEntries;
-                ReadFontIndices(accessor, listing, indices, out textureEntries, out fontEntries, out names);
+                ReadFontIndices(accessor, out listing, out textureEntries, out fontEntries, out names);
 
                 fontContent = ReadFontContent(indices, fontEntries);
                 textureHeaders = ReadTextureHeaders(indices, textureEntries);
             }
         }
 
-        private void ReadFontIndices(ImgbArchiveAccessor accessor, ArchiveListing archiveListing, Stream xgr, out WpdEntry[] textureEntries, out WpdArchiveListing fontEntries, out string[] names)
+        private void ReadFontIndices(ImgbArchiveAccessor accessor, out WpdArchiveListing listing, out WpdEntry[] textureEntries, out WpdEntry[] fontEntries, out string[] names)
         {
-            WpdHeader header = xgr.ReadContent<WpdHeader>();
-            WpdArchiveListing listing = new WpdArchiveListing(accessor, header.Count);// {ParentArchiveListing = archiveListing};
-            listing.AddRange(header.Entries);
-
-            fontEntries = new WpdArchiveListing(listing.Accessor);// {FullListing = listing};//, ParentArchiveListing = listing.ParentArchiveListing};
+            listing = WpdArchiveListingReader.Read(accessor);
 
             List<WpdEntry> textures = new List<WpdEntry>(4);
             List<WpdEntry> fonts = new List<WpdEntry>(4);
 
-            foreach (WpdEntry entry in header.Entries)
+            foreach (WpdEntry entry in listing)
             {
                 const string prefix = "wfnt";
 
-                if (!entry.Name.StartsWith(prefix))
+                if (!entry.NameWithoutExtension.StartsWith(prefix))
                     continue;
 
                 switch (entry.Extension)
@@ -259,7 +278,7 @@ namespace Pulse.UI
             }
 
             names = SortAndExcludeNotPaired(textures, fonts);
-            fontEntries.AddRange(fonts);
+            fontEntries = fonts.ToArray();
             textureEntries = textures.ToArray();
         }
 
@@ -270,7 +289,7 @@ namespace Pulse.UI
             foreach (WpdEntry entry in textures)
             {
                 Pair<WpdEntry, WpdEntry> pair;
-                string name = entry.Name.Substring(0, 6);
+                string name = entry.NameWithoutExtension.Substring(0, 6);
                 if (!dic.TryGetValue(name, out pair))
                 {
                     pair = new Pair<WpdEntry, WpdEntry>();
@@ -282,7 +301,7 @@ namespace Pulse.UI
             foreach (WpdEntry entry in fonts)
             {
                 Pair<WpdEntry, WpdEntry> pair;
-                string name = entry.Name.Substring(0, 6);
+                string name = entry.NameWithoutExtension.Substring(0, 6);
                 if (!dic.TryGetValue(name, out pair))
                 {
                     pair = new Pair<WpdEntry, WpdEntry>();
@@ -305,9 +324,9 @@ namespace Pulse.UI
             return names.ToArray();
         }
 
-        private static WflContent[] ReadFontContent(Stream xgr, WpdArchiveListing fontEntries)
+        private static WflContent[] ReadFontContent(Stream xgr, WpdEntry[] fontEntries)
         {
-            WflContent[] result = new WflContent[fontEntries.Count];
+            WflContent[] result = new WflContent[fontEntries.Length];
             for (int i = 0; i < result.Length; i++)
             {
                 WpdEntry entry = fontEntries[i];

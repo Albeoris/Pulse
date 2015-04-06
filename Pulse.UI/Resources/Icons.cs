@@ -25,6 +25,11 @@ namespace Pulse.UI
             get { return LazyPendingIcon.Value; }
         }
 
+        public static DrawingImage PackageIcon
+        {
+            get { return LazyPackageIcon.Value; }
+        }
+
         public static BitmapSource DiskIcon
         {
             get { return LazyDiskIcon.Value; }
@@ -44,6 +49,7 @@ namespace Pulse.UI
         private static readonly Lazy<DrawingImage> LazyCrossIcon = new Lazy<DrawingImage>(CreateRedCrossIcon);
         private static readonly Lazy<DrawingImage> LazyPendingIcon = new Lazy<DrawingImage>(CreatePendingIcon);
 
+        private static readonly Lazy<DrawingImage> LazyPackageIcon = new Lazy<DrawingImage>(CreatePackageIcon);
         private static readonly Lazy<BitmapSource> LazyDiskIcon = new Lazy<BitmapSource>(CreateDiskIcon);
         private static readonly Lazy<BitmapSource> LazyFolderIcon = new Lazy<BitmapSource>(CreateDirectoryIcon);
         private static readonly Lazy<BitmapSource> LazyTxtFileIcon = new Lazy<BitmapSource>(() => CreateFileIcon(".txt"));
@@ -75,6 +81,17 @@ namespace Pulse.UI
             Pen pen = new Pen(Brushes.DimGray, 3);
             PathGeometry geometry = (PathGeometry)Application.Current.FindResource("ClockIconGeometry");
             GeometryDrawing drawning = new GeometryDrawing(Brushes.DarkGray, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreatePackageIcon()
+        {
+            Pen pen = new Pen(Brushes.Black, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("PackageIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.Blue, pen, geometry);
             DrawingImage imageSource = new DrawingImage(drawning);
 
             imageSource.Freeze();

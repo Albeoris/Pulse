@@ -1,9 +1,0 @@
-﻿/*txtres/event/ev_eden_130/txtres_us.ztr*/
-/*0007*/
-"0000║$eeden130_000sn" = "Rosch?";
-"0001║$eeden130_010rs" = "I see your power has grown, Mr. Villiers.{End}{Escape}Rosch";
-"0002║$eeden130_020rs" = "No matter. We will lay down our lives{Text NewLine}if that is what it takes to stop you.{End}{Escape}Rosch";
-"0003║$eeden130_030sn" = "Oh, we're on the same side here.{Text NewLine}We came back to stop all of this!";
-"0004║$eeden130_040rs" = "Nevertheless, you are l'Cie.{End}{Escape}Rosch";
-"0005║$eeden130_050rs" = "We can trust the pawns no more than{Text NewLine}the fal'Cie who move them.{End}{Escape}Rosch";
-"0006║$eeden130_060rs" = "Humanity's fate rests in its own hands!{End}{Escape}Rosch";

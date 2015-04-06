@@ -57,7 +57,6 @@ namespace Pulse.UI
             if (wpdLeaf != null)
             {
                 OnWpdLeafSelected(wpdLeaf);
-                return;
             }
         }
 

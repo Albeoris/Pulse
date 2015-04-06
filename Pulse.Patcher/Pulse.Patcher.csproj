@@ -122,7 +122,7 @@
     <Compile Include="Downloader.cs" />
     <Compile Include="PatchFormatVersion.cs" />
     <Compile Include="UiPatcherDownloadButton.cs" />
-    <Compile Include="XgrPatchData.cs" />
+    <Compile Include="ImgbPatchData.cs" />
     <Page Include="Controls\UiProgressButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

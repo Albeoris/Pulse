@@ -71,6 +71,11 @@
       Header = "Game Resources"
       Unpack = "Unpack"
       Pack = "Pack"
+      ArchivesNode ="Archives"
+      />
+
+    <GameFilePreview
+      Header="Preview"
       />
     
   </Dockable>

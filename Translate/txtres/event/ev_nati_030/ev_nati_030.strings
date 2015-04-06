@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_nati_030/txtres_us.ztr*/
-/*0004*/
-"0000║$enati030_010sz" = "Hey, loosen up!{Text NewLine}Gotta make the most of this!";
-"0001║$enati030_011sz" = "Right?";
-"0002║$enati030_020" = "{Italic}I knew we'd be saying good-bye soon.{Italic}{End}{Escape}";
-"0003║$enati030_030" = "{Italic}Better to do it with a smile.{Italic}{End}{Escape}";

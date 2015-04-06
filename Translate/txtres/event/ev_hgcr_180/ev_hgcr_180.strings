@@ -1,8 +1,0 @@
-﻿/*txtres/event/ev_hgcr_180/txtres_us.ztr*/
-/*0006*/
-"0000║$ehgcr180_000va" = "Check it out!";
-"0001║$ehgcr180_005sz" = "Come on. Hop to it, let's go!";
-"0002║$ehgcr180_010va" = "This will make things easier.";
-"0003║$ehgcr180_020sz" = "Yeah, knowing our luck,{Text NewLine}it's probably missing an engine.";
-"0004║$ehgcr180_030va" = "You shouldn't be so negative.";
-"0005║$ehgcr180_040sz" = "And you shouldn't get your hopes up.";

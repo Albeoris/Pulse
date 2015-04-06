@@ -1,6 +1,0 @@
-﻿/*D:\Temp\FFXIII\txtres\zone\z021\txtres_us.ztr*/
-/*0004*/
-"0000║$m_z021_to_lasd" = "WARP{End}{Escape}";
-"0001║$m_z021fl_sl000" = "Return to Orphan's Cradle?{End}{Escape}";
-"0002║$m_z021fl_sl001" = "Yes{End}{Escape}";
-"0003║$m_z021fl_sl002" = "No{End}{Escape}";

@@ -1,5 +1,0 @@
-﻿/*txtres/event/ev_eden_150/txtres_us.ztr*/
-/*0003*/
-"0000║$eeden150_030s1" = "Hey! Wait! Open up!{Text NewLine}Open up, let me in!{End}{Escape}Soldier";
-"0001║$eeden155_010s1" = "Fall back! Suppressing fire!{End}{Escape}Soldier";
-"0002║$eeden155_020s1" = "They're closing the gate! Disengage!{End}{Escape}Soldier";

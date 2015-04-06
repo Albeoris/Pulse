@@ -1,0 +1,29 @@
+﻿/*D:\Temp\FFXIII\txtres\zone\z026\txtres_us.ztr*/
+/*0027*/
+"0000║$m_z016fl_canc" = "Отмена{End}{Escape}";
+"0001║$m_z016fl_elvT0" = "Вы находитесь на первом ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0002║$m_z016fl_elvT1" = "Вы находитесь на втором ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0003║$m_z016fl_elvT2" = "Вы находитесь на третьем ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0004║$m_z016fl_elvT3" = "Вы находитесь на четвёртом ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0005║$m_z016fl_elvT4" = "Вы находитесь на пятом ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0006║$m_z016fl_elvT5" = "Вы находитесь на шестом ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0007║$m_z016fl_elvT6" = "Вы находитесь на седьмом ярусе.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0008║$m_z016fl_elvT7" = "Вы находитесь на вершине.{Text NewLine}Куда хотите отправиться?{End}{Escape}";
+"0009║$m_z016fl_flr0" = "Первый ярус{End}{Escape}";
+"0010║$m_z016fl_flr1" = "Второй ярус{End}{Escape}";
+"0011║$m_z016fl_flr2" = "Третий ярус{End}{Escape}";
+"0012║$m_z016fl_flr3" = "Четвёртый ярус{End}{Escape}";
+"0013║$m_z016fl_flr4" = "Пятый ярус{End}{Escape}";
+"0014║$m_z016fl_flr5" = "Шестой ярус{End}{Escape}";
+"0015║$m_z016fl_flr6" = "Седьмой ярус{End}{Escape}";
+"0016║$m_z016fl_flr7" = "Вершина{End}{Escape}";
+"0017║$m_z016fl_k002" = "Теперь центральный лифт может добраться до {Color BlizzardBlue}четвёртого яруса{Color SkyBlue}.{End}{Escape}";
+"0018║$m_z016fl_k004" = "Теперь центральный лифт может добраться до {Color BlizzardBlue}шестого яруса{Color SkyBlue}.{End}{Escape}";
+"0019║$m_z016fl_k005" = "Теперь вы получили доступ к {Color BlizzardBlue}новой комнате{Color SkyBlue} в башне.{End}{Escape}";
+"0020║$m_z016fl_k006" = "Теперь центральный лифт может добраться до {Color BlizzardBlue}любого яруса{Color SkyBlue}.{End}{Escape}";
+"0021║$m_z026fl_ac000" = "ПОСАДКА{End}{Escape}";
+"0022║$m_z026fl_sl000" = "Сесть в лифт?{End}{Escape}";
+"0023║$m_z026fl_sl001" = "Да{End}{Escape}";
+"0024║$m_z026fl_sl002" = "Нет{End}{Escape}";
+"0025║$m_z026fl_tg000" = "АКТИВИРОВАТЬ{End}{Escape}";
+"0026║$m_z026fl_tg001" = "ИССЛЕДОВАТЬ{End}{Escape}";

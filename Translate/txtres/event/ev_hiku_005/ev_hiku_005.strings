@@ -1,7 +1,0 @@
-﻿/*txtres/event/ev_hiku_005/txtres_us.ztr*/
-/*0005*/
-"0000║$ehiku005_010w1" = "";
-"0001║$ehiku005_020w1" = "{Italic}There she is.{Italic}{End}{Escape}Reporter";
-"0002║$ehiku005_030w1" = "{Italic}The {Italic}Palamecia{Italic}, pride of the Sanctum Skyfleet!{Italic}{End}{Escape}Reporter";
-"0003║$ehiku005_040w1" = "{Italic}This mighty flagship currently serves as a prison{Text NewLine}for the l'Cie apprehended in Nautilus.{Italic}{End}{Escape}Reporter";
-"0004║$ehiku005_050w1" = "{End}{Escape}";

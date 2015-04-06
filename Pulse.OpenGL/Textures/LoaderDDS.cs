@@ -735,7 +735,7 @@ dwReserved2 = new UInt32[3]; // offset is 4+112 here, + 12 = 4+124
         /// <summary> Returns true if the flag is set, false otherwise</summary>
         private static bool CheckFlag(uint variable, uint flag)
         {
-            return (variable & flag) > 0 ? true : false;
+            return (variable & flag) > 0;
         }
 
         private static string GetString(ref byte[] input, uint offset)
@@ -758,7 +758,6 @@ dwReserved2 = new UInt32[3]; // offset is 4+112 here, + 12 = 4+124
             input[offset + 0] = (byte)(splitme & 0x000000ff);
             input[offset + 1] = (byte)((splitme & 0x0000ff00) >> 8);
             input[offset + 2] = (byte)((splitme & 0x00ff0000) >> 16);
-            return;
         }
 
         /// <summary>DXT5 Alpha block flipping, inspired by code from Evan Hart (nVidia SDK)</summary>

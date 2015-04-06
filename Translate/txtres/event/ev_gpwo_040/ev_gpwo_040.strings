@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_gpwo_040/txtres_us.ztr*/
-/*0004*/
-"0000║$egpwo040_010" = "The time has come.{End}{Escape}Barthandelus";
-"0001║$egpwo040_020" = "Allow me to extend my invitation.{End}{Escape}Barthandelus";
-"0002║$egpwo040_030" = "To save a people beyond salvation,{Text NewLine}there is only Ragnarok.{End}{Escape}Barthandelus";
-"0003║$egpwo040_040" = "Cocoon suffers. Release her from the pain.{End}{Escape}Barthandelus";

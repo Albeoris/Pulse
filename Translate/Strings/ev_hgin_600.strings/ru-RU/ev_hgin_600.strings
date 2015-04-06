@@ -1,0 +1,16 @@
+﻿/*txtres/event/ev_hgin_600/txtres_us.ztr*/
+/*0014*/
+"0000║$ehgin600_010va" = "Фан!";
+
+"0002║$ehgin600_020va" = "{Italic}Мы очнулись... на Коконе,{Text NewLine}получив новое Предназначение.{Italic}{End}{Escape}";
+"0003║$ehgin600_030va" = "{End}{Escape}";
+"0004║$ehgin600_040va" = "{Italic}Фан, она забыла всё.{Italic}{End}{Escape}";
+
+"0006║$ehgin600_060va" = "{Italic}А для меня...{Italic}{End}{Escape}";
+"0007║$ehgin600_070va" = "{Italic}Даже мысли о том, чтобы снова причинять людям боль...{Italic}{End}{Escape}";
+"0008║$ehgin600_080va" = "{Italic}Это было слишком.{Italic}{End}{Escape}";
+"0009║$ehgin600_090va" = "{Italic}Так что я солгала.{Italic}{End}{Escape}";
+
+"0011║$ehgin600_100va" = "{Italic}Я притворилась, будто потеряла память.{Italic}{End}{Escape}";
+"0012║$ehgin600_110va" = "{Italic}Я хотела избежать своей судьбы л'Си.{Italic}{End}{Escape}";
+"0013║$ehgin600_120va" = "{Italic}И я бежала от неё{Text NewLine}до сих пор.{Italic}{End}{Escape}";

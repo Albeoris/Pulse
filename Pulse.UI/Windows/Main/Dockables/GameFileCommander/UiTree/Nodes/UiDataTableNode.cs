@@ -45,7 +45,7 @@ namespace Pulse.UI
             for (int i = 0; i < result.Length; i++)
             {
                 WpdEntry xgrEntry = wpdListing[i];
-                result[i] = new UiWpdTableLeaf(xgrEntry.GetNameWithExtension(), xgrEntry, wpdListing) {Parent = this};
+                result[i] = new UiWpdTableLeaf(xgrEntry.Name, xgrEntry, wpdListing) {Parent = this};
             }
             return result;
         }
