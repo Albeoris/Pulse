@@ -19,7 +19,7 @@ namespace Pulse.FS
         public YkdFrame this[int index]
         {
             get { return Frames[index]; }
-            set { Frames[index] = value;] }
+            set { Frames[index] = value; }
         }
 
         public int CalcSize()
