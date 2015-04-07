@@ -111,6 +111,11 @@ namespace Pulse.FS
             if (uncompressedSize == 0)
                 return new MemoryStream(0);
 
+            if (uncompressedSize == 4)
+            {
+                Console.WriteLine(entry.Name);
+            }
+
             Stream writer, reader;
             Flute.CreatePipe(uncompressedSize, out writer, out reader);
 

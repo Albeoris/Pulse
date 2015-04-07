@@ -59,6 +59,7 @@ namespace Pulse.Core
             {
                 if (Interlocked.Decrement(ref _counter) == 0)
                     _mmf.Dispose();
+                Monitor.PulseAll(_lock);
             }
         }
 
@@ -66,8 +67,11 @@ namespace Pulse.Core
         {
             lock (_lock)
             {
-                if (Interlocked.Read(ref _counter) != 0)
-                    throw new NotSupportedException();
+                while (Interlocked.Read(ref _counter) != 0)
+                {
+                    if (!Monitor.Wait(_lock, 10000, true))
+                        throw new NotSupportedException();
+                }
 
                 FileStream file = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
                 try
