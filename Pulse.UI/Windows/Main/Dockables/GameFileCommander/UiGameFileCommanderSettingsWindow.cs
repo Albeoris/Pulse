@@ -52,7 +52,8 @@ namespace Pulse.UI
                     _convertBox = UiCheckBoxFactory.Create("Конвертировать", false);
                     {
                         _convertBox.Margin = margin;
-                        _convertBox.IsChecked = true;
+                        _compressBox.IsThreeState = true;
+                        _convertBox.IsChecked = null;
                         settingsPanel.AddUiElement(_convertBox);
                     }
 
@@ -94,13 +95,13 @@ namespace Pulse.UI
 
         public string Wildcard { get; private set; }
         public bool? Compression { get; private set; }
-        public bool Convert { get; private set; }
+        public bool? Convert { get; private set; }
 
         private void OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             Wildcard = _wildcardBox.Text;
             if (_compressBox != null) Compression = _compressBox.IsChecked;
-            if (_convertBox != null) Convert = _convertBox.IsChecked == true;
+            if (_convertBox != null) Convert = _convertBox.IsChecked;
             
             DialogResult = true;
         }

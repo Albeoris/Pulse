@@ -38,7 +38,7 @@ namespace Pulse.UI
 
                 Wildcard wildcard = new Wildcard(settingsDlg.Wildcard, false);
                 bool? compression = settingsDlg.Compression;
-                bool conversion = settingsDlg.Convert;
+                bool? conversion = settingsDlg.Convert;
 
                 UiInjectionManager manager = new UiInjectionManager();
                 FileSystemInjectionSource source = new FileSystemInjectionSource();

@@ -35,7 +35,7 @@ namespace Pulse.UI
                     return;
 
                 Wildcard wildcard = new Wildcard(settingsDlg.Wildcard, false);
-                bool conversion = settingsDlg.Convert;
+                bool? conversion = settingsDlg.Convert;
                 //string targetDir = InteractionService.WorkingLocation.Provide().ProvideExtractedDirectory();
 
                 FileSystemExtractionTarget target = new FileSystemExtractionTarget();
