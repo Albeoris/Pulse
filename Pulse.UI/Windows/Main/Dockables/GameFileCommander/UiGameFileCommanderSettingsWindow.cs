@@ -52,7 +52,7 @@ namespace Pulse.UI
                     _convertBox = UiCheckBoxFactory.Create("Конвертировать", false);
                     {
                         _convertBox.Margin = margin;
-                        _compressBox.IsThreeState = true;
+                        _convertBox.IsThreeState = true;
                         _convertBox.IsChecked = null;
                         settingsPanel.AddUiElement(_convertBox);
                     }
