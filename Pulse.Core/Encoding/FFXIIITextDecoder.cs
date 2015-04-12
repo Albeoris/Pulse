@@ -1,12 +1,9 @@
-using System;
-using System.Text;
-
 namespace Pulse.Core
 {
     public sealed class FFXIIITextDecoder
     {
         private readonly FFXIIICodePage _codepage;
-
+        
         public FFXIIITextDecoder(FFXIIICodePage codepage)
         {
             _codepage = Exceptions.CheckArgumentNull(codepage, "codepage");
@@ -65,7 +62,7 @@ namespace Pulse.Core
                     byteCount--;
                     if (value >= 0x80)
                     {
-                        value = ValueToIndex(value, bytes[byteIndex++]);
+                        value = FFXIIIEncodingMap.ValueToIndex(value, bytes[byteIndex++]);
                         byteCount--;
                     }
                     chars[charIndex++] = _codepage[(short)value];
@@ -75,29 +72,6 @@ namespace Pulse.Core
             }
 
             return result;
-        }
-
-        public static int ValueToIndex(int hight, int low)
-        {
-            switch (hight)
-            {
-                case 0x81:
-                    if (low >= 0x80) low--;
-                    return 256 + low - 0x40;
-                case 0x85:
-                    return low < 0x9E ? low + 0x40 : low + 0x21;
-                    //return low < 0x80 ? low + 0x40 : low + 0x21;
-            }
-
-            throw new NotSupportedException(String.Format("{0}, {1}", hight, low));
-        }
-
-        public static int ValueToIndex(int value)
-        {
-            if (value <= 0xFF)
-                return value;
-
-            return ValueToIndex(value >> 8, value & 0xFF);
         }
     }
 }

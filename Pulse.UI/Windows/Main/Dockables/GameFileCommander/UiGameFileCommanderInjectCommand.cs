@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Pulse.Core;
-using Pulse.FS;
 
 namespace Pulse.UI
 {
@@ -36,6 +34,9 @@ namespace Pulse.UI
                 if (settingsDlg.ShowDialog() != true)
                     return;
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
                 Wildcard wildcard = new Wildcard(settingsDlg.Wildcard, false);
                 bool? compression = settingsDlg.Compression;
                 bool? conversion = settingsDlg.Convert;
@@ -46,59 +47,13 @@ namespace Pulse.UI
                     accessor.Inject(source, manager);
                 manager.WriteListings();
 
-
-                //foreach (IArchiveListing listing in archives.EnumerateCheckedEntries(wildcard).Order(ArchiveListingInjectComparer.Instance))
-                //{
-                //    XgrArchiveListing xgrArchiveListing = listing as XgrArchiveListing;
-                //    if (xgrArchiveListing != null)
-                //    {
-                //        string archivePath = Path.Combine(sourceDir, Path.ChangeExtension(xgrArchiveListing.Name, ".unpack"));
-                //        XgrArchiveInjector injector = new XgrArchiveInjector(xgrArchiveListing, compress, entry => ProvideXgrEntryInjector(entry, archivePath, convert));
-                //        UiProgressWindow.Execute("”паковка файлов", injector, injector.Inject, UiProgressUnits.Bytes);
-                //    }
-                //    else
-                //    {
-                //        ArchiveInjector injector = new ArchiveInjector((ArchiveListing)listing, compress, entry => ProvideEntryInjector(entry, sourceDir, convert));
-                //        UiProgressWindow.Execute("”паковка файлов", injector, injector.Inject, UiProgressUnits.Bytes);
-                //    }
-                //}
+                if (sw.ElapsedMilliseconds / 1000 > 2)
+                    MessageBox.Show("”паковка завершена за {0}.", sw.Elapsed.ToString("hh:mm:ss"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "ќшибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        //private IArchiveEntryInjector ProvideEntryInjector(ArchiveEntry entry, string sourceDir, bool convert)
-        //{
-        //    if (!convert)
-        //        return ArchiveEntryInjectorPack.TryCreate(sourceDir, entry);
-
-        //    IArchiveEntryInjector result = null;
-        //    switch (PathEx.GetMultiDotComparableExtension(entry.Name))
-        //    {
-        //        case ".ztr":
-        //            result = ArchiveEntryInjectorStringsToZtr.TryCreate(sourceDir, entry);
-        //            break;
-        //    }
-
-        //    return result ?? ArchiveEntryInjectorPack.TryCreate(sourceDir, entry);
-        //}
-
-        //private IXgrArchiveEntryInjector ProvideXgrEntryInjector(WpdEntry entry, string sourceDir, bool convert)
-        //{
-        //    if (!convert)
-        //        return XgrArchiveEntryInjectorPack.TryCreate(sourceDir, entry);
-
-        //    IXgrArchiveEntryInjector result = null;
-        //    switch (entry.Extension.ToLower())
-        //    {
-        //        case "txbh":
-        //            result = XgrArchiveEntryInjectorDdsToTxb.TryCreate(sourceDir, entry);
-        //            break;
-        //    }
-
-        //    return result ?? XgrArchiveEntryInjectorPack.TryCreate(sourceDir, entry);
-        //}
     }
 }

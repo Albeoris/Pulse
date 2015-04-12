@@ -280,7 +280,6 @@ namespace Pulse.UI
             {
                 menu.AddChild(UiMenuItemFactory.Create(Lang.Dockable.GameFileCommander.Unpack, new UiGameFileCommanderExtractCommand(() => _treeNodes)));
                 menu.AddChild(UiMenuItemFactory.Create(Lang.Dockable.GameFileCommander.Pack, new UiGameFileCommanderInjectCommand(() => _treeNodes)));
-                menu.AddChild(UiMenuItemFactory.Create("Pack for rhadamants", new UiGameFileCommanderTempRhadamantsInjectCommand(() => _treeNodes)));
             }
             return menu;
         }

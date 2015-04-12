@@ -11,7 +11,7 @@ namespace Pulse.FS
         public int Magic;
         public int Unknown1;
         public byte Unknown2, Unknown3, Unknown4, Unknown5;
-        public int Dummy;
+        public int Dummy; // Always 0
 
         public void ReadFromStream(Stream stream)
         {

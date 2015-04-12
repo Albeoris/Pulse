@@ -11,7 +11,7 @@ namespace Pulse.FS
 
         public readonly int Size;
 
-        public int Dummy1;
+        public int Unknown1;
         public int Index;
         public int Dummy2;
         public int Dummy3;
@@ -22,8 +22,8 @@ namespace Pulse.FS
         public int SourceHeight;
         public int ViewportWidth;
         public int ViewportHeight;
-        public int Dummy4;
-        public int Dummy5;
+        public int Unknown4;
+        public int Unknown5;
         public int Color1;
         public int Color2;
         public int Color3;
@@ -41,14 +41,14 @@ namespace Pulse.FS
                 throw new InvalidDataException();
 
             BinaryReader br = new BinaryReader(stream);
-            Dummy1 = br.ReadInt32();
+            Unknown1 = br.ReadInt32();
             Index = br.ReadInt32();
-            Dummy2 = br.ReadInt32();
-            Dummy3 = br.ReadInt32();
+            Dummy2 = br.Check(r=> r.ReadInt32(), 0);
+            Dummy3 = br.Check(r=> r.ReadInt32(), 0);
 
             byte[] name = stream.EnsureRead(NameSize);
             fixed (byte* namePtr = &name[0])
-                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding);
+                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding).TrimEnd('\0');
 
             if (Size >= 80)
             {
@@ -58,8 +58,8 @@ namespace Pulse.FS
                 SourceHeight = br.ReadInt32();
                 ViewportWidth = br.ReadInt32();
                 ViewportHeight = br.ReadInt32();
-                Dummy4 = br.ReadInt32();
-                Dummy5 = br.ReadInt32();
+                Unknown4 = br.ReadInt32();
+                Unknown5 = br.ReadInt32();
                 Color1 = br.ReadInt32();
                 Color2 = br.ReadInt32();
                 Color3 = br.ReadInt32();
@@ -77,7 +77,7 @@ namespace Pulse.FS
 
             BinaryWriter bw = new BinaryWriter(stream);
 
-            bw.Write(Dummy1);
+            bw.Write(Unknown1);
             bw.Write(Index);
             bw.Write(Dummy2);
             bw.Write(Dummy3);
@@ -94,8 +94,8 @@ namespace Pulse.FS
                 bw.Write(SourceHeight);
                 bw.Write(ViewportWidth);
                 bw.Write(ViewportHeight);
-                bw.Write(Dummy4);
-                bw.Write(Dummy5);
+                bw.Write(Unknown4);
+                bw.Write(Unknown5);
                 bw.Write(Color1);
                 bw.Write(Color2);
                 bw.Write(Color3);

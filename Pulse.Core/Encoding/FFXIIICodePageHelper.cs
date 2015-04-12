@@ -49,46 +49,46 @@ namespace Pulse.Core
 
         private static void CreateAdditionalCharacters(char[] chars)
         {
-            chars[256] = 's'; // Spanish
+            //chars[256] = 's'; // Spanish
 
-            chars[FFXIIITextDecoder.ValueToIndex(0x8141)] = '､';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8142)] = '｡';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8145)] = '･';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8146)] = '︓';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8148)] = '︖';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8149)] = '︕';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8151)] = '＿';
-            chars[FFXIIITextDecoder.ValueToIndex(0x815B)] = '—';
-            chars[FFXIIITextDecoder.ValueToIndex(0x815C)] = '―';
-            chars[FFXIIITextDecoder.ValueToIndex(0x815E)] = '／';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8160)] = '〜';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8163)] = '…';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8169)] = '（';
-            chars[FFXIIITextDecoder.ValueToIndex(0x816A)] = '）';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8173)] = '《';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8174)] = '》';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8175)] = '「';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8176)] = '」';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8179)] = '【';
-            chars[FFXIIITextDecoder.ValueToIndex(0x817A)] = '】';
-            chars[FFXIIITextDecoder.ValueToIndex(0x817B)] = '＋';
-            chars[FFXIIITextDecoder.ValueToIndex(0x817C)] = '－';
-            chars[FFXIIITextDecoder.ValueToIndex(0x817E)] = '✕';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8181)] = '＝';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8183)] = '＜';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8184)] = '＞';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8193)] = '％';
-            chars[FFXIIITextDecoder.ValueToIndex(0x8195)] = '＆';
-            chars[FFXIIITextDecoder.ValueToIndex(0x819A)] = '★';
-            chars[FFXIIITextDecoder.ValueToIndex(0x819B)] = '◯';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81A0)] = '⬜';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81A2)] = '△';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81A6)] = '⁜';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81A8)] = '→';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81A9)] = '←';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81AA)] = '↑';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81AB)] = '↓';
-            chars[FFXIIITextDecoder.ValueToIndex(0x81F4)] = '♬';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8141)] = '､';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8142)] = '｡';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8145)] = '･';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8146)] = '︓';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8148)] = '︖';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8149)] = '︕';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8151)] = '＿';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x815B)] = '—';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x815C)] = '―';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x815E)] = '／';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8160)] = '〜';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8163)] = '…';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8169)] = '（';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x816A)] = '）';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8173)] = '《';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8174)] = '》';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8175)] = '「';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8176)] = '」';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8179)] = '【';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x817A)] = '】';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x817B)] = '＋';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x817C)] = '－';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x817E)] = '✕';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8181)] = '＝';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8183)] = '＜';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8184)] = '＞';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8193)] = '％';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8195)] = '＆';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x819A)] = '★';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x819B)] = '◯';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81A0)] = '⬜';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81A2)] = '△';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81A6)] = '⁜';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81A8)] = '→';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81A9)] = '←';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81AA)] = '↑';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81AB)] = '↓';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x81F4)] = '♬';
         }
 
         public static void ToXml(FFXIIICodePage codepage, XmlElement node)

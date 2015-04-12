@@ -6,6 +6,18 @@ namespace Pulse.UI
 {
     public class UiGrid : Grid
     {
+        public void SetRows(int count)
+        {
+            count -= RowDefinitions.Count;
+            if (count > 1) while (count-- > 0) RowDefinitions.Add(new RowDefinition());
+        }
+
+        public void SetCols(int count)
+        {
+            count -= ColumnDefinitions.Count;
+            if (count > 1) while (count-- > 0) ColumnDefinitions.Add(new ColumnDefinition());
+        }
+
         public void SetRowsHeight(GridLength height)
         {
             foreach (RowDefinition row in RowDefinitions)

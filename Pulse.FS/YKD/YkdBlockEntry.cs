@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace Pulse.FS
         {
             byte[] name = stream.EnsureRead(NameSize);
             fixed (byte* namePtr = &name[0])
-                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding);
+                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding).TrimEnd('\0');
 
             Offsets = stream.ReadContent<YkdOffsets>();
             Frames = new YkdFrames[Offsets.Count];

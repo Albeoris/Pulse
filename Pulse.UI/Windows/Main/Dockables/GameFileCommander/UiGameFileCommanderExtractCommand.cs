@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Pulse.Core;
@@ -34,14 +35,20 @@ namespace Pulse.UI
                 if (settingsDlg.ShowDialog() != true)
                     return;
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
                 Wildcard wildcard = new Wildcard(settingsDlg.Wildcard, false);
                 bool? conversion = settingsDlg.Convert;
-                //string targetDir = InteractionService.WorkingLocation.Provide().ProvideExtractedDirectory();
 
                 FileSystemExtractionTarget target = new FileSystemExtractionTarget();
 
                 foreach (IUiLeafsAccessor accessor in archives.AccessToCheckedLeafs(wildcard, conversion, null))
                     accessor.Extract(target);
+                
+                sw.Stop();
+                if (sw.ElapsedMilliseconds / 1000 > 2)
+                    MessageBox.Show("Распаковка завершена за {0}.", sw.Elapsed.ToString(@"d\.hh\:mm\:ss"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

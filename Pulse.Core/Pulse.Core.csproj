@@ -96,6 +96,8 @@
     <Compile Include="Components\ProgressArgs.cs" />
     <Compile Include="Components\SharedMemoryMappedFile.cs" />
     <Compile Include="Components\StreamSegment.cs" />
+    <Compile Include="Encoding\FFXIIIEncodingMap.cs" />
+    <Compile Include="Encoding\FFXIIIEncodingTest.cs" />
     <Compile Include="Encoding\FFXIIICodePage.cs" />
     <Compile Include="Encoding\FFXIIICodePageHelper.cs" />
     <Compile Include="Encoding\FFXIIITextDecoder.cs" />

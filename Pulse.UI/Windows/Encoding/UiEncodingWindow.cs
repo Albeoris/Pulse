@@ -358,42 +358,49 @@ quick brown fox jumps over the lazy dog
             if (current == null)
                 return;
 
-            using (_glEditControl.AcquireContext())
+            try
             {
-                GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-                GL.MatrixMode(MatrixMode.Modelview);
-                GL.LoadIdentity();
-                GL.Scale(1, 1, 1);
+                using (_glEditControl.AcquireContext())
+                {
+                    GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+                    GL.MatrixMode(MatrixMode.Modelview);
+                    GL.LoadIdentity();
+                    GL.Scale(1, 1, 1);
 
-                GL.Enable(EnableCap.Blend);
-                GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-                GL.Color3(Color.Transparent);
+                    current.Texture.Draw(0, 0, 0);
 
-                current.Texture.Draw(0, 0, 0);
+                    GL.Enable(EnableCap.Blend);
+                    GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+                    GL.Color3(Color.Transparent);
 
-                DrawCharacters(current);
+                    DrawCharacters(current);
 
-                GL.Disable(EnableCap.Blend);
+                    GL.Disable(EnableCap.Blend);
 
-                _glEditControl.SwapBuffers();
+                    _glEditControl.SwapBuffers();
+                }
+
+                using (_glPreviewControl.AcquireContext())
+                {
+                    GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+                    GL.MatrixMode(MatrixMode.Modelview);
+                    GL.LoadIdentity();
+                    GL.Scale(_scale, _scale, _scale);
+
+                    //GL.Enable(EnableCap.Blend);
+                    //GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+                    //GL.Color3(Color.Transparent);
+
+                    DrawPreview(current, _previewText);
+
+                    //GL.Disable(EnableCap.Blend);
+
+                    _glPreviewControl.SwapBuffers();
+                }
             }
-
-            using (_glPreviewControl.AcquireContext())
+            catch (Exception ex)
             {
-                GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-                GL.MatrixMode(MatrixMode.Modelview);
-                GL.LoadIdentity();
-                GL.Scale(_scale, _scale, _scale);
-
-                GL.Enable(EnableCap.Blend);
-                GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-                GL.Color3(Color.Transparent);
-
-                DrawPreview(current, _previewText);
-
-                GL.Disable(EnableCap.Blend);
-
-                _glPreviewControl.SwapBuffers();
+                Log.Error(ex);
             }
         }
 

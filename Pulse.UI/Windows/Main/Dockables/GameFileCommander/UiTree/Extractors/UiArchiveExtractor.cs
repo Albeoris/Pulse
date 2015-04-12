@@ -40,7 +40,7 @@ namespace Pulse.UI
                 String targetExtension;
                 IArchiveEntryExtractor extractor = GetExtractor(entry, out targetExtension);
                 if (extractor == null)
-                    return;
+                    continue;
                 
                 String targetPath = Path.Combine(root, PathEx.ChangeMultiDotExtension(entry.Name, targetExtension));
                 String directoryPath = Path.GetDirectoryName(targetPath);
@@ -54,13 +54,13 @@ namespace Pulse.UI
 
         private IArchiveEntryExtractor GetExtractor(ArchiveEntry entry, out String targetExtension)
         {
+            IArchiveEntryExtractor result;
             targetExtension = PathEx.GetMultiDotComparableExtension(entry.Name);
 
-            IArchiveEntryExtractor result;
-            if (_extractors.TryGetValue(targetExtension, out result))
-                targetExtension = result.TargetExtension;
-            else if (_conversion != true)
+            if (_conversion != true || entry.Name.Contains("_jp") || entry.Name.Contains("_kr"))
                 result = DefaultExtractor;
+            else if (_extractors.TryGetValue(targetExtension, out result))
+                targetExtension = result.TargetExtension;
 
             return result;
         }

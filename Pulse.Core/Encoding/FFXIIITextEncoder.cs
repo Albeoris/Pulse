@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace Pulse.Core
+﻿namespace Pulse.Core
 {
     public sealed class FFXIIITextEncoder
     {
@@ -35,7 +32,7 @@ namespace Pulse.Core
                     short value = _codepage[chars[index++]];
 
                     int hight, low;
-                    IndexToValue(value, out hight, out low);
+                    FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
 
                     if (hight != 0)
                         result++;
@@ -64,7 +61,7 @@ namespace Pulse.Core
                     short value = _codepage[chars[charIndex++]];
 
                     int hight, low;
-                    IndexToValue(value, out hight, out low);
+                    FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
 
                     if (hight != 0)
                     {
@@ -79,38 +76,6 @@ namespace Pulse.Core
             }
 
             return result;
-        }
-
-        public static void IndexToValue(int value, out int hight, out int low)
-        {
-            if (value <= 0xFF)
-            {
-                if (value < 0x80)
-                {
-                    hight = 0;
-                    low = value;
-                    return;
-                }
-
-                hight = 0x85;
-                if (value >= 0xDE)
-                {
-                    low = value - 0x21;
-                    return;
-                }
-
-                if (value >= 0x40)
-                {
-                    low = value - 0x40;
-                    return;
-                }
-
-                throw new NotImplementedException();
-            }
-            
-            value = 0x8180 + value - 0xFF;
-            hight = (value & 0xFF00) >> 8;
-            low = value & 0x00FF;
         }
     }
 }

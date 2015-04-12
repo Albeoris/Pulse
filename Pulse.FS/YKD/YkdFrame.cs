@@ -8,26 +8,26 @@ namespace Pulse.FS
         public const int Size = 32;
 
         public int Unknown1;
-        public int Unknown2;
+        public float Unknown2;
         public int Unknown3;
         public int Unknown4;
-        public int Unknown5;
-        public int Unknown6;
-        public int X;
-        public int Y;
+        public float Unknown5;
+        public float Unknown6;
+        public float X;
+        public float Y;
 
         public void ReadFromStream(Stream stream)
         {
             BinaryReader br = new BinaryReader(stream);
 
             Unknown1 = br.ReadInt32();
-            Unknown2 = br.ReadInt32();
+            Unknown2 = br.ReadSingle();
             Unknown3 = br.ReadInt32();
             Unknown4 = br.ReadInt32();
-            Unknown5 = br.ReadInt32();
-            Unknown6 = br.ReadInt32();
-            X = br.ReadInt32();
-            Y = br.ReadInt32();
+            Unknown5 = br.ReadSingle();
+            Unknown6 = br.ReadSingle();
+            X = br.ReadSingle();
+            Y = br.ReadSingle();
         }
 
         public void WriteToStream(Stream stream)

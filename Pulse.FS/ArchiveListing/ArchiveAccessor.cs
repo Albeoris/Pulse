@@ -111,15 +111,11 @@ namespace Pulse.FS
             if (uncompressedSize == 0)
                 return new MemoryStream(0);
 
-            if (uncompressedSize == 4)
-            {
-                Console.WriteLine(entry.Name);
-            }
-
             Stream writer, reader;
             Flute.CreatePipe(uncompressedSize, out writer, out reader);
 
-            ThreadHelper.Start("UncompressAndDisposeSourceAsync", () => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None));
+            if (!ThreadPool.QueueUserWorkItem((o) => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None)))
+                ThreadHelper.Start("UncompressAndDisposeSourceAsync", () => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None));
             return reader;
         }
 
