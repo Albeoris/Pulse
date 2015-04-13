@@ -5,9 +5,11 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
 using Pulse.FS;
+using Pulse.OpenGL;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
@@ -608,6 +610,122 @@ namespace Pulse.UI
             {
                 get { return Native.Unknown1; }
                 set { Native.Unknown1 = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Координата X")]
+            [Description("Координата X верхнего-левого угла фрагмента текстуры.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int SourceX
+            {
+                get { return Native.SourceX; }
+                set { Native.SourceX = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Исходная Y")]
+            [Description("Координата Y верхнего-левого угла фрагмента текстуры.")]
+            public int SourceY
+            {
+                get { return Native.SourceY; }
+                set { Native.SourceY = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Ширина")]
+            [Description("Ширина фрагмента текстуры.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int SourceWidth
+            {
+                get { return Native.SourceWidth; }
+                set { Native.SourceWidth = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Высота")]
+            [Description("Высота фрагмента текстуры.")]
+            public int SourceHeight
+            {
+                get { return Native.SourceHeight; }
+                set { Native.SourceHeight = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Ширина")]
+            [Description("Ширина отображения.")]
+            public int ViewportWidth
+            {
+                get { return Native.ViewportWidth; }
+                set { Native.ViewportWidth = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Высота")]
+            [Description("Высота отображения.")]
+            public int ViewportHeight
+            {
+                get { return Native.ViewportHeight; }
+                set { Native.ViewportHeight = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно 4")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown4
+            {
+                get { return Native.Unknown4; }
+                set { Native.Unknown4 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно 5")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown5
+            {
+                get { return Native.Unknown5; }
+                set { Native.Unknown5 = value; }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-левый")]
+            [Description("Цвет верхнего-левого угла представления.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Native.UpperLeftColor); }
+                set { Native.UpperLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-левый")]
+            [Description("Цвет нижнего-левого угла представления.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Native.BottomLeftColor); }
+                set { Native.BottomLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-правый")]
+            [Description("Цвет верхнего-правого угла представления.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Native.UpperRightColor); }
+                set { Native.UpperRightColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-правый")]
+            [Description("Цвет нижнего-правого угла представления.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Native.BottomRightColor); }
+                set { Native.BottomRightColor = ColorsHelper.GetBGRA(value); }
             }
         }
     }

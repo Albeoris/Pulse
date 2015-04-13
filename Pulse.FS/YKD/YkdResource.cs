@@ -24,10 +24,10 @@ namespace Pulse.FS
         public int ViewportHeight;
         public int Unknown4;
         public int Unknown5;
-        public int Color1;
-        public int Color2;
-        public int Color3;
-        public int Color4;
+        public int UpperLeftColor;
+        public int BottomLeftColor;
+        public int UpperRightColor;
+        public int BottomRightColor;
         public byte[] Tail;
 
         public YkdResource(int size)
@@ -60,10 +60,10 @@ namespace Pulse.FS
                 ViewportHeight = br.ReadInt32();
                 Unknown4 = br.ReadInt32();
                 Unknown5 = br.ReadInt32();
-                Color1 = br.ReadInt32();
-                Color2 = br.ReadInt32();
-                Color3 = br.ReadInt32();
-                Color4 = br.ReadInt32();
+                UpperLeftColor = br.ReadInt32();
+                BottomLeftColor = br.ReadInt32();
+                UpperRightColor = br.ReadInt32();
+                BottomRightColor = br.ReadInt32();
             }
 
             if (Size >= 96)
@@ -96,10 +96,10 @@ namespace Pulse.FS
                 bw.Write(ViewportHeight);
                 bw.Write(Unknown4);
                 bw.Write(Unknown5);
-                bw.Write(Color1);
-                bw.Write(Color2);
-                bw.Write(Color3);
-                bw.Write(Color4);
+                bw.Write(UpperLeftColor);
+                bw.Write(BottomLeftColor);
+                bw.Write(UpperRightColor);
+                bw.Write(BottomRightColor);
             }
 
             if (Size >= 96)
