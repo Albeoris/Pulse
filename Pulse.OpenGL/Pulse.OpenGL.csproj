@@ -136,16 +136,8 @@
     <Compile Include="Textures\GLFramebuffer.cs" />
     <Compile Include="Textures\GLRectangle.cs" />
     <Compile Include="Textures\GLTexture.cs" />
-    <Compile Include="Textures\GLTextureFactory.cs" />
     <Compile Include="Textures\LoaderDDS.cs" />
     <Compile Include="Textures\LoaderStatics.cs" />
-    <Compile Include="Textures\Readers\BitmapGLTextureReader.cs" />
-    <Compile Include="Textures\Readers\BitmapPalettesGLTextureReader.cs" />
-    <Compile Include="Textures\Readers\GLTextureReader.cs" />
-    <Compile Include="Textures\Readers\ImageFileGLTextureReader.cs" />
-    <Compile Include="Textures\Readers\StreamGLTextureReader.cs" />
-    <Compile Include="Textures\Writers\IGLTextureWriter.cs" />
-    <Compile Include="Textures\Writers\ImageFileGLTextureWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

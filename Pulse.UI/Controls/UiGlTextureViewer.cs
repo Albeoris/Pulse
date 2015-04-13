@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Examples.TextureLoaders;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using Pulse.Core;
+using Pulse.FS;
 using Pulse.OpenGL;
 
 namespace Pulse.UI.Controls
@@ -40,7 +44,7 @@ namespace Pulse.UI.Controls
             {
                 if (value != null)
                     GLService.SetViewportDesiredSize(value.Width, value.Height);
-                
+
                 _texture = value;
                 ConfigGlControl();
             }
@@ -87,6 +91,37 @@ namespace Pulse.UI.Controls
                 texture.Draw(0, 0, 0);
 
             _glControl.SwapBuffers();
+        }
+
+        public void Show(WpdArchiveListing listing, WpdEntry entry)
+        {
+            using (Stream headers = listing.Accessor.ExtractHeaders())
+            using (Stream content = listing.Accessor.ExtractContent())
+            {
+                headers.SetPosition(entry.Offset);
+
+                SectionHeader sectionHeader = headers.ReadContent<SectionHeader>();
+                TextureHeader textureHeader = headers.ReadContent<TextureHeader>();
+                GtexData gtex = headers.ReadContent<GtexData>();
+                if (gtex.Header.LayerCount == 0)
+                    return;
+
+                int offset = 0;
+                byte[] rawData = new byte[gtex.MipMapData.Sum(d => d.Length)];
+                foreach (GtexMipMapLocation mimMap in gtex.MipMapData)
+                {
+                    using (StreamSegment textureInput = new StreamSegment(content, mimMap.Offset, mimMap.Length, FileAccess.Read))
+                    {
+                        textureInput.EnsureRead(rawData, offset, mimMap.Length);
+                        offset += mimMap.Length;
+                    }
+                }
+
+                using (GLService.AcquireContext())
+                    Texture = ImageDDS.LoadFromStream(rawData, gtex);
+
+                Visibility = Visibility.Visible;
+            }
         }
     }
 }

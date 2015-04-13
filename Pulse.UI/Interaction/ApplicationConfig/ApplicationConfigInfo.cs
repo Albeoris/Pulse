@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 using Pulse.Core;
 
@@ -6,18 +9,26 @@ namespace Pulse.UI.Interaction
 {
     public sealed class ApplicationConfigInfo
     {
+        private static readonly object FileLock = new object();
+        private static readonly object ScheduleLock = new object();
+
         public const string ConfigurationDirectory = ".\\Configuration";
         public const string ConfigurationFile = "Pulse.cfg";
         public const string LayoutConfigurationFile = "Layout.cfg";
 
         public GameLocationInfo GameLocation;
         public WorkingLocationInfo WorkingLocation;
+        public String FileCommanderSelectedNodePath;
 
         public void Load()
         {
-            XmlElement config = XmlHelper.LoadDocument(ConfigurationFilePath);
-            GameLocation = GameLocationInfo.FromXml(config["GameLocation"]);
-            WorkingLocation = WorkingLocationInfo.FromXml(config["WorkingLocation"]);
+            lock (FileLock)
+            {
+                XmlElement config = XmlHelper.LoadDocument(ConfigurationFilePath);
+                GameLocation = GameLocationInfo.FromXml(config["GameLocation"]);
+                WorkingLocation = WorkingLocationInfo.FromXml(config["WorkingLocation"]);
+                FileCommanderSelectedNodePath = config.FindString("FileCommanderSelectedNodePath");
+            }
         }
 
         public static string ConfigurationFilePath
@@ -32,13 +43,36 @@ namespace Pulse.UI.Interaction
 
         public void Save()
         {
-            Directory.CreateDirectory(ConfigurationDirectory);
-            XmlElement config = XmlHelper.CreateDocument("Configuration");
-            
-            if (GameLocation != null) GameLocation.ToXml(config.CreateChildElement("GameLocation"));
-            if (WorkingLocation != null) WorkingLocation.ToXml(config.CreateChildElement("WorkingLocation"));
+            lock (FileLock)
+            {
+                Directory.CreateDirectory(ConfigurationDirectory);
+                XmlElement config = XmlHelper.CreateDocument("Configuration");
 
-            config.GetOwnerDocument().Save(ConfigurationFilePath);
+                if (GameLocation != null) GameLocation.ToXml(config.CreateChildElement("GameLocation"));
+                if (WorkingLocation != null) WorkingLocation.ToXml(config.CreateChildElement("WorkingLocation"));
+                if (FileCommanderSelectedNodePath != null) config.SetString("FileCommanderSelectedNodePath", FileCommanderSelectedNodePath);
+
+                config.GetOwnerDocument().Save(ConfigurationFilePath);
+            }
+        }
+
+        public void ScheduleSave()
+        {
+            Task.Run(() =>
+            {
+                if (!Monitor.TryEnter(ScheduleLock, 0))
+                    return;
+
+                try
+                {
+                    Thread.Sleep(5000);
+                    Save();
+                }
+                finally
+                {
+                    Monitor.Exit(ScheduleLock);
+                }
+            });
         }
     }
 }

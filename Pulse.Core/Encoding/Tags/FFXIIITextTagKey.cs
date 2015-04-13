@@ -39,8 +39,11 @@
         Analog = 0x5B, // Analog, Zoom in map in texttagkey.
         LStick = 0x5C, // Move character
         NPad = 0x5D, // Rotate camera
+        
+        //todo UpDownPad
         LeftRightAnalogic = 0x5E, // LeftRight Analogic
         LeftRightPad = 0x5F, //LeftRight Pad
+
         Arrows = 0x60 
     }
 }

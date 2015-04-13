@@ -229,6 +229,23 @@ private static UInt32[] dwReserved2; // 3 = 2 + 1 UInt32
             }
         }
 
+        public static GLTexture LoadFromStream(byte[] rawDataFromFile, GtexData header)
+        {
+            TextureTarget dimension;
+            uint texturehandle;
+            PrepareData(out dimension, out texturehandle);
+
+            try
+            {
+                TranslateHeader(header, out dimension);
+                return TranslateTexture(rawDataFromFile, 0, out texturehandle, ref dimension);
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("ERROR: Exception caught when attempting to load file.", e);
+            }
+        }
+
         private static GLTexture TranslateTexture(byte[] rawDataFromFile, int offset, out uint texturehandle, ref TextureTarget dimension)
         {
             #region send the Texture to GL
@@ -259,7 +276,7 @@ private static UInt32[] dwReserved2; // 3 = 2 + 1 UInt32
 
 // If it made it here without throwing any Exception the result is a valid Texture.
             PixelFormatDescriptor descriptor = new PixelFormatDescriptor(System.Drawing.Imaging.PixelFormat.Undefined, _PixelInternalFormat, PixelFormat.Bgra, PixelType.UnsignedByte);
-            return new GLTexture(unchecked ((int)texturehandle), _Width, _Height, descriptor);
+            return new GLTexture(unchecked ((int)texturehandle), _Width, _Height, descriptor, dimension);
 
             #endregion send the Texture to GL
         }

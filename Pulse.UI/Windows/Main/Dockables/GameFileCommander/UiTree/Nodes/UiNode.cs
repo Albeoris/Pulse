@@ -1,8 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Windows.Media;
+using Pulse.Core;
 using Pulse.UI.Annotations;
+using Pulse.UI.Interaction;
 
 namespace Pulse.UI
 {
@@ -44,9 +48,37 @@ namespace Pulse.UI
             set
             {
                 _isSelected = value;
-                if (_isSelected && _isChecked != null)
-                    SetIsChecked(_isChecked);
+                if (_isSelected)
+                {
+                    SaveFileCommanderSelectedNodePath();
+
+                    if (_isChecked != null)
+                        SetIsChecked(_isChecked);
+                }
                 OnPropertyChanged();
+            }
+        }
+
+        private void SaveFileCommanderSelectedNodePath()
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder(256);
+                UiNode node = this;
+                while (node != null)
+                {
+                    sb.Append(node.Name);
+                    node = node.Parent;
+                    if (node != null)
+                        sb.Append('|');
+                }
+                ApplicationConfigInfo configuration = InteractionService.Configuration.Provide();
+                configuration.FileCommanderSelectedNodePath = sb.ToString();
+                configuration.ScheduleSave();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
             }
         }
 

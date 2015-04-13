@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Pulse.Core;
-using Pulse.FS;
 
 namespace Pulse.UI
 {
@@ -31,6 +29,8 @@ namespace Pulse.UI
         {
             Stream result;
             if (_streams.TryGetValue(sourcePath, out result))
+                return new StreamSegment(result, 0, result.Length, FileAccess.Read);
+            if (_streams.Count == 1 && _streams.TryGetValue(String.Empty, out result))
                 return new StreamSegment(result, 0, result.Length, FileAccess.Read);
             return null;
         }

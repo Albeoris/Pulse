@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
 using Pulse.FS;
 using Xceed.Wpf.Toolkit.PropertyGrid;
@@ -18,52 +19,59 @@ namespace Pulse.UI
         private readonly PropertyGrid _propertyGrid;
         private UiButton _rollbackButton;
         private UiButton _injectButton;
-        private UiButton _extractButton;
+        private UiButton _saveAsButton;
 
         public UiGameFilePreviewYkd()
         {
             #region Constructor
 
-            _treeView = new Tree();
-            _treeView.SelectedItemChanged += OnTreeViewSelectedItemChanged;
-
-            _propertyGrid = new PropertyGrid {AutoGenerateProperties = false};
-            
-            _rollbackButton = UiButtonFactory.Create("Отменить");
-            _rollbackButton.Width = 200;
-            _rollbackButton.Margin = new Thickness(5);
-            _rollbackButton.HorizontalAlignment = HorizontalAlignment.Left;
-            _rollbackButton.VerticalAlignment = VerticalAlignment.Center;
-            _rollbackButton.Click += OnRolbackButtonClick;
-
-            _injectButton = UiButtonFactory.Create("Вставить");
-            _injectButton.Width = 200;
-            _injectButton.Margin = new Thickness(5, 5, 210, 5);
-            _injectButton.HorizontalAlignment = HorizontalAlignment.Right;
-            _injectButton.VerticalAlignment = VerticalAlignment.Center;
-            _injectButton.Click += OnInjectButtonClick;
-
-            _extractButton = UiButtonFactory.Create("Извлечь");
-            _extractButton.Width = 200;
-            _extractButton.Margin = new Thickness(5);
-            _extractButton.HorizontalAlignment = HorizontalAlignment.Right;
-            _extractButton.VerticalAlignment = VerticalAlignment.Center;
-            _extractButton.Click += OnExtractButtonClick;
-
             SetCols(2);
             SetRows(2);
             RowDefinitions[1].Height = new GridLength();
+
+            _treeView = new Tree();
+            _treeView.SelectedItemChanged += OnTreeViewSelectedItemChanged;
             AddUiElement(_treeView, 0, 0);
+
+            _propertyGrid = new PropertyGrid {AutoGenerateProperties = true};
             AddUiElement(_propertyGrid, 0, 1);
-            AddUiElement(_rollbackButton, 1, 0, 0, 2);
-            AddUiElement(_injectButton, 1, 0, 0, 2);
-            AddUiElement(_extractButton, 1, 0, 0, 2);
+
+            _rollbackButton = UiButtonFactory.Create("Отменить");
+            {
+                _rollbackButton.Width = 200;
+                _rollbackButton.Margin = new Thickness(5);
+                _rollbackButton.HorizontalAlignment = HorizontalAlignment.Left;
+                _rollbackButton.VerticalAlignment = VerticalAlignment.Center;
+                _rollbackButton.Click += OnRolbackButtonClick;
+                AddUiElement(_rollbackButton, 1, 0, 0, 2);
+            }
+
+            _injectButton = UiButtonFactory.Create("Вставить");
+            {
+                _injectButton.Width = 200;
+                _injectButton.Margin = new Thickness(5, 5, 210, 5);
+                _injectButton.HorizontalAlignment = HorizontalAlignment.Right;
+                _injectButton.VerticalAlignment = VerticalAlignment.Center;
+                _injectButton.Click += OnInjectButtonClick;
+                AddUiElement(_injectButton, 1, 0, 0, 2);
+            }
+
+            _saveAsButton = UiButtonFactory.Create("Сохранить как...");
+            {
+                _saveAsButton.Width = 200;
+                _saveAsButton.Margin = new Thickness(5);
+                _saveAsButton.HorizontalAlignment = HorizontalAlignment.Right;
+                _saveAsButton.VerticalAlignment = VerticalAlignment.Center;
+                _saveAsButton.Click += OnSaveAsButtonClick;
+                AddUiElement(_saveAsButton, 1, 0, 0, 2);
+            }
 
             #endregion
         }
 
         private WpdArchiveListing _listing;
         private WpdEntry _entry;
+        private YkdFile _ykdFile;
 
         public void Show(WpdArchiveListing listing, WpdEntry entry)
         {
@@ -75,9 +83,14 @@ namespace Pulse.UI
                 _treeView.ItemsSource = null;
                 return;
             }
-            
+
             using (Stream headers = listing.Accessor.ExtractHeaders())
-                _treeView.ItemsSource = new[] {new YkdFileView(new StreamSegment(headers, entry.Offset, entry.Length, FileAccess.Read).ReadContent<YkdFile>())};
+            {
+                _ykdFile = new StreamSegment(headers, entry.Offset, entry.Length, FileAccess.Read).ReadContent<YkdFile>();
+                _treeView.ItemsSource = new[] {new YkdFileView(_ykdFile)};
+            }
+
+            Visibility = Visibility.Visible;
         }
 
         private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -104,14 +117,48 @@ namespace Pulse.UI
 
         private void OnInjectButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_ykdFile == null)
+                    return;
+
+                MemoryStream output = new MemoryStream(32 * 1024);
+                _ykdFile.WriteToStream(output);
+
+                UiWpdInjector.InjectSingle(_listing, _entry, output);
+            }
+            catch (Exception ex)
+            {
+                UiHelper.ShowError(this, ex);
+            }
         }
 
-        private void OnExtractButtonClick(object sender, RoutedEventArgs e)
+        private void OnSaveAsButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_ykdFile == null)
+                    return;
+
+                String targetPath;
+                using (CommonSaveFileDialog dlg = new CommonSaveFileDialog("Сохранить как..."))
+                {
+                    dlg.DefaultFileName = _entry.Name;
+                    if (dlg.ShowDialog() != CommonFileDialogResult.Ok)
+                        return;
+
+                    targetPath = dlg.FileName;
+                }
+
+                using (FileStream output = File.Create(targetPath))
+                    _ykdFile.WriteToStream(output);
+            }
+            catch (Exception ex)
+            {
+                UiHelper.ShowError(this, ex);
+            }
         }
-        
+
 
         // =======================================================================
 
@@ -134,9 +181,11 @@ namespace Pulse.UI
 
         private abstract class View
         {
+            [Browsable(false)]
             public abstract DataTemplate TreeViewTemplate { get; }
 
             // Binding
+            [Browsable(false)]
             public IEnumerable<View> BindableChilds
             {
                 get { return EnumerateChilds(); }
@@ -160,6 +209,7 @@ namespace Pulse.UI
                 get { return TypeCache<TNative>.Type.Name; }
             }
 
+            [Browsable(false)]
             public override DataTemplate TreeViewTemplate
             {
                 get { return LazyTreeViewTemplate.Value; }

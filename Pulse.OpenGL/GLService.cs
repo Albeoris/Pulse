@@ -152,7 +152,7 @@ namespace Pulse.OpenGL
             if (1 == ++ContextReferenceCount.Value)
                 GLGraphicsContext.MakeCurrent(windowInfo ?? GLControl.WindowInfo);
 
-            return new DisposableAction(FreeContext);
+            return new DisposableAction(FreeContext, true);
         }
 
         private static void FreeContext()

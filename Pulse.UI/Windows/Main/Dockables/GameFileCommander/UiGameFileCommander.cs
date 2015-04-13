@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using Pulse.Core;
+using Pulse.UI.Interaction;
 
 namespace Pulse.UI
 {
@@ -58,15 +60,21 @@ namespace Pulse.UI
             Loaded += OnLoaded;
         }
 
+        protected override int Index
+        {
+            get { return 1; }
+        }
+
+        //Binding
+        public UiNode ListViewSelectedItem
+        {
+            set { InteractionService.RaiseSelectedNodeChanged(value); }
+        }
+
         private void OnListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UiNode node = e.AddedItems.OfType<UiNode>().FirstOrDefault();
             InteractionService.RaiseSelectedNodeChanged(node);
-        }
-
-        protected override int Index
-        {
-            get { return 1; }
         }
 
         private void OnListViewKeyDown(object sender, KeyEventArgs e)
@@ -86,12 +94,6 @@ namespace Pulse.UI
             {
                 GoToChild(selectedChild);
             }
-        }
-
-        //Binding
-        public UiNode ListViewSelectedItem
-        {
-            set { InteractionService.RaiseSelectedNodeChanged(value); }
         }
 
         private void GoToParent(UiNode current)
@@ -260,6 +262,8 @@ namespace Pulse.UI
                     _treeNodes = await UiArchiveTreeBuilder.BuildAsync(obj);
                     _treeView.ItemsSource = _treeNodes;
 
+                    SelectNode();
+
                     IsEnabled = true;
                 }
                 else
@@ -271,6 +275,38 @@ namespace Pulse.UI
             {
                 ClearContent();
                 UiHelper.ShowError(this, ex);
+            }
+        }
+
+        private void SelectNode()
+        {
+            try
+            {
+                string selectedPath = InteractionService.Configuration.Provide().FileCommanderSelectedNodePath;
+                if (selectedPath == null)
+                    return;
+
+                string[] names = selectedPath.Split('|');
+                int index = names.Length - 1;
+
+                IEnumerable<UiNode> current = _treeNodes;
+                while (index >= 0)
+                {
+                    string name = names[index--];
+                    UiNode node = current.FirstOrDefault(n => n.Name == name);
+                    if (node == null)
+                        break;
+
+                    node.IsExpanded = true;
+                    if (index == -1)
+                        node.IsSelected = true;
+                    else
+                        current = node.GetChilds();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
             }
         }
 

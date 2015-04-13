@@ -123,6 +123,7 @@ namespace Pulse.UI
 
             return result;
         }
+
         private Stream AcquireContent()
         {
             int uncompressedSize = (int)_listing.Accessor.XgrContentEntry.UncompressedSize;
@@ -154,5 +155,18 @@ namespace Pulse.UI
         }
 
         #endregion
+
+        public static void InjectSingle(WpdArchiveListing listing, WpdEntry entry, MemoryStream output)
+        {
+            using (MemoryInjectionSource source = new MemoryInjectionSource())
+            {
+                source.RegisterStream(String.Empty, output);
+                UiWpdInjector injector = new UiWpdInjector(listing, new[] {entry}, false, source);
+
+                UiInjectionManager manager = new UiInjectionManager();
+                injector.Inject(manager);
+                manager.WriteListings();
+            }
+        }
     }
 }
