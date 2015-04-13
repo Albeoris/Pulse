@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using Pulse.Core;
 
 namespace Pulse.FS
@@ -22,7 +20,7 @@ namespace Pulse.FS
         public int SourceHeight;
         public int ViewportWidth;
         public int ViewportHeight;
-        public int Unknown4;
+        public YkdResourceFlags Flags;
         public int Unknown5;
         public int UpperLeftColor;
         public int BottomLeftColor;
@@ -58,7 +56,7 @@ namespace Pulse.FS
                 SourceHeight = br.ReadInt32();
                 ViewportWidth = br.ReadInt32();
                 ViewportHeight = br.ReadInt32();
-                Unknown4 = br.ReadInt32();
+                Flags = (YkdResourceFlags)br.ReadInt32();
                 Unknown5 = br.ReadInt32();
                 UpperLeftColor = br.ReadInt32();
                 BottomLeftColor = br.ReadInt32();
@@ -94,7 +92,7 @@ namespace Pulse.FS
                 bw.Write(SourceHeight);
                 bw.Write(ViewportWidth);
                 bw.Write(ViewportHeight);
-                bw.Write(Unknown4);
+                bw.Write((int)Flags);
                 bw.Write(Unknown5);
                 bw.Write(UpperLeftColor);
                 bw.Write(BottomLeftColor);

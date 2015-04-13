@@ -135,6 +135,7 @@
     <Compile Include="YKD\YkdHeader.cs" />
     <Compile Include="YKD\YkdOffsets.cs" />
     <Compile Include="YKD\YkdResource.cs" />
+    <Compile Include="YKD\YkdResourceFlags.cs" />
     <Compile Include="YKD\YkdResources.cs" />
     <Compile Include="ZLibHelper.cs" />
     <Compile Include="ZTR\IZtrFormatter.cs" />

@@ -408,8 +408,8 @@ namespace Pulse.UI
             }
 
             [Category("Заголовок")]
-            [DisplayName("Неизвестно 2")]
-            [Description("Неизвестное значение.")]
+            [DisplayName("Флаги?")]
+            [Description("Разворачивает анимацию колебания курсора.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int HUnknown2
             {
@@ -613,7 +613,7 @@ namespace Pulse.UI
             }
 
             [Category("Текстура")]
-            [DisplayName("Координата X")]
+            [DisplayName("X")]
             [Description("Координата X верхнего-левого угла фрагмента текстуры.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int SourceX
@@ -623,7 +623,7 @@ namespace Pulse.UI
             }
 
             [Category("Текстура")]
-            [DisplayName("Исходная Y")]
+            [DisplayName("Y")]
             [Description("Координата Y верхнего-левого угла фрагмента текстуры.")]
             public int SourceY
             {
@@ -668,14 +668,14 @@ namespace Pulse.UI
                 set { Native.ViewportHeight = value; }
             }
 
-            [Category("Неизвестные")]
-            [DisplayName("Неизвестно 4")]
-            [Description("Неизвестное значение.")]
+            [Category("Отображение")]
+            [DisplayName("Флаги")]
+            [Description("Различные модификаторы отображения.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
-            public int Unknown4
+            public int Flags
             {
-                get { return Native.Unknown4; }
-                set { Native.Unknown4 = value; }
+                get { return (int)Native.Flags; }
+                set { Native.Flags = (YkdResourceFlags)value; }
             }
 
             [Category("Неизвестные")]
@@ -690,7 +690,7 @@ namespace Pulse.UI
 
             [Category("Градиент")]
             [DisplayName("Верхний-левый")]
-            [Description("Цвет верхнего-левого угла представления.")]
+            [Description("Цвет верхнего-левого угла отображения.")]
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color UpperLeftColor
             {
@@ -700,7 +700,7 @@ namespace Pulse.UI
 
             [Category("Градиент")]
             [DisplayName("Нижний-левый")]
-            [Description("Цвет нижнего-левого угла представления.")]
+            [Description("Цвет нижнего-левого угла отображения.")]
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color BottomLeftColor
             {
@@ -710,7 +710,7 @@ namespace Pulse.UI
 
             [Category("Градиент")]
             [DisplayName("Верхний-правый")]
-            [Description("Цвет верхнего-правого угла представления.")]
+            [Description("Цвет верхнего-правого угла отображения.")]
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color UpperRightColor
             {
@@ -720,7 +720,7 @@ namespace Pulse.UI
 
             [Category("Градиент")]
             [DisplayName("Нижний-правый")]
-            [Description("Цвет нижнего-правого угла представления.")]
+            [Description("Цвет нижнего-правого угла отображения.")]
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color BottomRightColor
             {
