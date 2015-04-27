@@ -2,7 +2,7 @@
 /*0014*/
 "0000║$ehgin600_010va" = "Фан!";
 
-"0002║$ehgin600_020va" = "{Italic}Мы очнулись... на Коконе,{Text NewLine}получив новое Предназначение.{Italic}{End}{Escape}";
+"0002║$ehgin600_020va" = "{Italic}Мы очнулись... в Коконе,{Text NewLine}получив новое Предназначения.{Italic}{End}{Escape}";
 "0003║$ehgin600_030va" = "{End}{Escape}";
 "0004║$ehgin600_040va" = "{Italic}Фан, она забыла всё.{Italic}{End}{Escape}";
 

@@ -18,7 +18,7 @@ namespace Pulse.Core
         {
             _action = action;
             _millisecondsTimeout = millisecondsTimeout;
-            _thread = new Thread(OnTick) {Name = GetThreadName()};
+            _thread = new Thread(OnTick) {IsBackground = true, Name = GetThreadName()};
             _thread.Start();
         }
 
