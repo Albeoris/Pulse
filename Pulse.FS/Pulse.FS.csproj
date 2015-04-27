@@ -125,6 +125,11 @@
     <Compile Include="IMGB\ImgbArchiveAccessor.cs" />
     <Compile Include="IMGB\WPD\WpdArchiveListing.cs" />
     <Compile Include="IMGB\WPD\WpdArchiveListingReader.cs" />
+    <Compile Include="YKD\ResourceViewports\EmptyYkdResourceViewport.cs" />
+    <Compile Include="YKD\ResourceViewports\ExtraYkdResourceViewport.cs" />
+    <Compile Include="YKD\ResourceViewports\FragmentYkdResourceViewport.cs" />
+    <Compile Include="YKD\ResourceViewports\FullYkdResourceViewport.cs" />
+    <Compile Include="YKD\ResourceViewports\YkdResourceViewport.cs" />
     <Compile Include="YKD\YkdBlockEntry.cs" />
     <Compile Include="YKD\YkdBlockHeader.cs" />
     <Compile Include="YKD\YkdBlockOptionalTail.cs" />
@@ -137,6 +142,7 @@
     <Compile Include="YKD\YkdResource.cs" />
     <Compile Include="YKD\YkdResourceFlags.cs" />
     <Compile Include="YKD\YkdResources.cs" />
+    <Compile Include="YKD\ResourceViewports\YkdResourceViewportType.cs" />
     <Compile Include="ZLibHelper.cs" />
     <Compile Include="ZTR\IZtrFormatter.cs" />
     <Compile Include="ZTR\StringsZtrFormatter.cs" />
@@ -172,6 +178,7 @@
     </None>
     <Content Include="IMGB\Sections\Partially Stolen.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

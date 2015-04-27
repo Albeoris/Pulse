@@ -46,8 +46,10 @@ namespace Pulse.Patcher
             Position += value;
         }
 
+        private string _userName;
         private async Task<SafeUnmanagedArray> Decompress()
         {
+            _userName = ((MainWindow)this.GetRootElement()).GetUserName();
             string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(true);
             if (CancelEvent.IsSet())
                 return null;
@@ -142,6 +144,7 @@ namespace Pulse.Patcher
                 return;
 
             Dictionary<string, string> dic = ReadStrings(br);
+            dic["$title_newgame"] = _userName;
             if (CancelEvent.IsSet())
                 return;
 

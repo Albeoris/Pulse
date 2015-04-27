@@ -148,6 +148,7 @@
     <Compile Include="Controls\Extended\UiWindow.cs" />
     <Compile Include="Controls\UiGlControl.cs" />
     <Compile Include="Controls\UiGlTextureViewer.cs" />
+    <Compile Include="Controls\UiGlViewport.cs" />
     <Compile Include="Controls\UiScrollableGlControl.cs" />
     <Compile Include="DispatcherExm.cs" />
     <Compile Include="Factories\Extended\UiCheckBoxFactory.cs" />

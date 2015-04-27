@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Threading;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
 
@@ -8,6 +10,10 @@ namespace Pulse.UI
     {
         public GameLocationInfo Provide()
         {
+            Dispatcher dispatcher = Application.Current.Dispatcher;
+            if (!dispatcher.CheckAccess())
+                return dispatcher.Invoke(() => Provide());
+
             using (CommonOpenFileDialog dlg = new CommonOpenFileDialog("Укажите каталог Final Fantasy XIII..."))
             {
                 dlg.IsFolderPicker = true;

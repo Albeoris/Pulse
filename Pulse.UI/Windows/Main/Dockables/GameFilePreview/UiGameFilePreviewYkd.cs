@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,12 +14,15 @@ using Pulse.OpenGL;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
+// ReSharper disable UnusedMember.Local
+
 namespace Pulse.UI
 {
     public sealed class UiGameFilePreviewYkd : UiGrid
     {
         private readonly Tree _treeView;
         private readonly PropertyGrid _propertyGrid;
+        private readonly UiGlViewport _viewer;
         private UiButton _rollbackButton;
         private UiButton _injectButton;
         private UiButton _saveAsButton;
@@ -28,15 +32,19 @@ namespace Pulse.UI
             #region Constructor
 
             SetCols(2);
-            SetRows(2);
+            SetRows(3);
             RowDefinitions[1].Height = new GridLength();
+            RowDefinitions[2].Height = new GridLength();
 
             _treeView = new Tree();
             _treeView.SelectedItemChanged += OnTreeViewSelectedItemChanged;
-            AddUiElement(_treeView, 0, 0);
+            AddUiElement(_treeView, 0, 0, 2);
 
             _propertyGrid = new PropertyGrid {AutoGenerateProperties = true};
             AddUiElement(_propertyGrid, 0, 1);
+
+            _viewer = new UiGlViewport(Draw);
+            AddUiElement(_viewer, 1, 1);
 
             _rollbackButton = UiButtonFactory.Create("Отменить");
             {
@@ -45,7 +53,7 @@ namespace Pulse.UI
                 _rollbackButton.HorizontalAlignment = HorizontalAlignment.Left;
                 _rollbackButton.VerticalAlignment = VerticalAlignment.Center;
                 _rollbackButton.Click += OnRolbackButtonClick;
-                AddUiElement(_rollbackButton, 1, 0, 0, 2);
+                AddUiElement(_rollbackButton, 2, 0, 0, 2);
             }
 
             _injectButton = UiButtonFactory.Create("Вставить");
@@ -55,7 +63,7 @@ namespace Pulse.UI
                 _injectButton.HorizontalAlignment = HorizontalAlignment.Right;
                 _injectButton.VerticalAlignment = VerticalAlignment.Center;
                 _injectButton.Click += OnInjectButtonClick;
-                AddUiElement(_injectButton, 1, 0, 0, 2);
+                AddUiElement(_injectButton, 2, 0, 0, 2);
             }
 
             _saveAsButton = UiButtonFactory.Create("Сохранить как...");
@@ -65,7 +73,7 @@ namespace Pulse.UI
                 _saveAsButton.HorizontalAlignment = HorizontalAlignment.Right;
                 _saveAsButton.VerticalAlignment = VerticalAlignment.Center;
                 _saveAsButton.Click += OnSaveAsButtonClick;
-                AddUiElement(_saveAsButton, 1, 0, 0, 2);
+                AddUiElement(_saveAsButton, 2, 0, 0, 2);
             }
 
             #endregion
@@ -74,11 +82,20 @@ namespace Pulse.UI
         private WpdArchiveListing _listing;
         private WpdEntry _entry;
         private YkdFile _ykdFile;
+        private Dictionary<string, GLTexture> _textures;
 
         public void Show(WpdArchiveListing listing, WpdEntry entry)
         {
             _listing = listing;
             _entry = entry;
+
+            if (_textures != null)
+            {
+                foreach (GLTexture texture in _textures.Values)
+                    texture.Dispose();
+
+                _textures = null;
+            }
 
             if (listing == null || entry == null)
             {
@@ -89,10 +106,77 @@ namespace Pulse.UI
             using (Stream headers = listing.Accessor.ExtractHeaders())
             {
                 _ykdFile = new StreamSegment(headers, entry.Offset, entry.Length, FileAccess.Read).ReadContent<YkdFile>();
+                _textures = _ykdFile.Resources.Resources
+                    .Select(r => _listing.FirstOrDefault(e => e.NameWithoutExtension == r.Name))
+                    .Distinct()
+                    .Where(e => e != null)
+                    .ToDictionary(wpdEntry => wpdEntry.NameWithoutExtension, e => GLTextureReader.ReadFromWpd(listing, e));
+
                 _treeView.ItemsSource = new[] {new YkdFileView(_ykdFile)};
             }
 
             Visibility = Visibility.Visible;
+            _viewer.DrawEvent.Set();
+        }
+
+        private int _w, _h;
+
+        private void Draw()
+        {
+            YkdFile file = _ykdFile;
+            if (file == null)
+                return;
+
+            int w = 0, h = 0;
+            using (_viewer.AcquireContext())
+            {
+                foreach (YkdResource resource in file.Resources.Resources)
+                {
+                    GLTexture texture = _textures.TryGetValue(resource.Name);
+                    if (texture == null)
+                        continue;
+
+                    DrawTexture(ref w, ref h, resource);
+                }
+            }
+
+            if (_w != w || _h != h)
+            {
+                _w = w;
+                _h = h;
+                GLService.SetViewportDesiredSize(_w, _h);
+            }
+
+            _viewer.SwapBuffers();
+        }
+
+        private void DrawTexture(ref int w, ref int h, YkdResource resource)
+        {
+            GLTexture texture = _textures.TryGetValue(resource.Name);
+            if (texture == null)
+                return;
+
+            switch (resource.Viewport.Type)
+            {
+                case YkdResourceViewportType.Fragment:
+                    FragmentYkdResourceViewport fragment = (FragmentYkdResourceViewport)resource.Viewport;
+                    texture.Draw(w, 0, 0, fragment.SourceX, fragment.SourceY, fragment.SourceWidth, fragment.SourceHeight);
+                    w += fragment.SourceWidth;
+                    h = Math.Max(h, fragment.SourceHeight);
+                    break;
+                case YkdResourceViewportType.Full:
+                    FullYkdResourceViewport full = (FullYkdResourceViewport)resource.Viewport;
+                    texture.Draw(w, 0, 0, 0, 0, full.ViewportWidth, full.ViewportHeight);
+                    w += full.ViewportWidth;
+                    h = Math.Max(h, full.ViewportHeight);
+                    break;
+                case YkdResourceViewportType.Extra:
+                    ExtraYkdResourceViewport extra = (ExtraYkdResourceViewport)resource.Viewport;
+                    texture.Draw(w, 0, 0, 0, 0, extra.SourceWidth, extra.SourceHeight);
+                    w += extra.SourceWidth;
+                    h = Math.Max(h, extra.SourceHeight);
+                    break;
+            }
         }
 
         private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -206,6 +290,7 @@ namespace Pulse.UI
             }
 
             // Binding
+            // ReSharper disable once MemberCanBeProtected.Global
             public virtual String Title
             {
                 get { return TypeCache<TNative>.Type.Name; }
@@ -217,6 +302,7 @@ namespace Pulse.UI
                 get { return LazyTreeViewTemplate.Value; }
             }
 
+            // ReSharper disable once StaticMemberInGenericType
             private static readonly Lazy<DataTemplate> LazyTreeViewTemplate = new Lazy<DataTemplate>(CreateTemplate);
 
             private static DataTemplate CreateTemplate()
@@ -536,7 +622,7 @@ namespace Pulse.UI
             protected override IEnumerable<View> EnumerateChilds()
             {
                 foreach (YkdResource resource in Native.Resources)
-                    yield return new YkdResourceView(resource);
+                    yield return YkdResourceView.FromResource(resource);
             }
 
             public override string Title
@@ -575,9 +661,9 @@ namespace Pulse.UI
             }
         }
 
-        private sealed class YkdResourceView : View<YkdResourceView, YkdResource>
+        private abstract class YkdResourceView : View<YkdResourceView, YkdResource>
         {
-            public YkdResourceView(YkdResource native)
+            protected YkdResourceView(YkdResource native)
                 : base(native)
             {
             }
@@ -589,7 +675,7 @@ namespace Pulse.UI
 
             public override string Title
             {
-                get { return String.Format("{0:D3} {1} (Size: {2})", Native.Index, String.IsNullOrEmpty(Native.Name) ? "<empty>" : Native.Name, Native.Size); }
+                get { return String.Format("{0:D3} {1} {2}", Native.Index, Native.Type, String.IsNullOrEmpty(Native.Name) ? "<empty>" : Native.Name); }
             }
 
             [Category("Текстура")]
@@ -602,14 +688,65 @@ namespace Pulse.UI
                 set { Native.Name = value; }
             }
 
-            [Category("Неизвестные")]
-            [DisplayName("Неизвестно 1")]
-            [Description("Неизвестное значение.")]
-            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
-            public int Unknown1
+            [Category("Текстура")]
+            [DisplayName("Тип")]
+            [Description("Тип ресурса.")]
+            public String Type
             {
-                get { return Native.Unknown1; }
-                set { Native.Unknown1 = value; }
+                get { return Native.Type.ToString(); }
+            }
+
+            public static YkdResourceView FromResource(YkdResource resource)
+            {
+                switch (resource.Type)
+                {
+                    case YkdResourceViewportType.Empty:
+                        return new EmptyYkdResourceView(resource);
+                    case YkdResourceViewportType.Fragment:
+                        return new FragmentYkdResourceView(resource);
+                    case YkdResourceViewportType.Full:
+                        return new FullYkdResourceView(resource);
+                    case YkdResourceViewportType.Extra:
+                        return new ExtraYkdResourceView(resource);
+                    default:
+                        throw new NotImplementedException(resource.Type.ToString());
+                }
+            }
+        }
+
+        private class EmptyYkdResourceView : YkdResourceView
+        {
+            public EmptyYkdResourceView(YkdResource native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                yield break;
+            }
+
+            private EmptyYkdResourceViewport Viewport
+            {
+                get { return (EmptyYkdResourceViewport)Native.Viewport; }
+            }
+        }
+
+        private class FragmentYkdResourceView : YkdResourceView
+        {
+            public FragmentYkdResourceView(YkdResource native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                yield break;
+            }
+
+            private FragmentYkdResourceViewport Viewport
+            {
+                get { return (FragmentYkdResourceViewport)Native.Viewport; }
             }
 
             [Category("Текстура")]
@@ -618,8 +755,8 @@ namespace Pulse.UI
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int SourceX
             {
-                get { return Native.SourceX; }
-                set { Native.SourceX = value; }
+                get { return Viewport.SourceX; }
+                set { Viewport.SourceX = value; }
             }
 
             [Category("Текстура")]
@@ -627,8 +764,8 @@ namespace Pulse.UI
             [Description("Координата Y верхнего-левого угла фрагмента текстуры.")]
             public int SourceY
             {
-                get { return Native.SourceY; }
-                set { Native.SourceY = value; }
+                get { return Viewport.SourceY; }
+                set { Viewport.SourceY = value; }
             }
 
             [Category("Текстура")]
@@ -637,8 +774,8 @@ namespace Pulse.UI
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int SourceWidth
             {
-                get { return Native.SourceWidth; }
-                set { Native.SourceWidth = value; }
+                get { return Viewport.SourceWidth; }
+                set { Viewport.SourceWidth = value; }
             }
 
             [Category("Текстура")]
@@ -646,8 +783,8 @@ namespace Pulse.UI
             [Description("Высота фрагмента текстуры.")]
             public int SourceHeight
             {
-                get { return Native.SourceHeight; }
-                set { Native.SourceHeight = value; }
+                get { return Viewport.SourceHeight; }
+                set { Viewport.SourceHeight = value; }
             }
 
             [Category("Отображение")]
@@ -655,8 +792,8 @@ namespace Pulse.UI
             [Description("Ширина отображения.")]
             public int ViewportWidth
             {
-                get { return Native.ViewportWidth; }
-                set { Native.ViewportWidth = value; }
+                get { return Viewport.ViewportWidth; }
+                set { Viewport.ViewportWidth = value; }
             }
 
             [Category("Отображение")]
@@ -664,8 +801,8 @@ namespace Pulse.UI
             [Description("Высота отображения.")]
             public int ViewportHeight
             {
-                get { return Native.ViewportHeight; }
-                set { Native.ViewportHeight = value; }
+                get { return Viewport.ViewportHeight; }
+                set { Viewport.ViewportHeight = value; }
             }
 
             [Category("Отображение")]
@@ -674,8 +811,8 @@ namespace Pulse.UI
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int Flags
             {
-                get { return (int)Native.Flags; }
-                set { Native.Flags = (YkdResourceFlags)value; }
+                get { return (int)Viewport.Flags; }
+                set { Viewport.Flags = (YkdResourceFlags)value; }
             }
 
             [Category("Неизвестные")]
@@ -684,8 +821,8 @@ namespace Pulse.UI
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int Unknown5
             {
-                get { return Native.Unknown5; }
-                set { Native.Unknown5 = value; }
+                get { return Viewport.Unknown5; }
+                set { Viewport.Unknown5 = value; }
             }
 
             [Category("Градиент")]
@@ -694,8 +831,8 @@ namespace Pulse.UI
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color UpperLeftColor
             {
-                get { return ColorsHelper.GetBGRA(Native.UpperLeftColor); }
-                set { Native.UpperLeftColor = ColorsHelper.GetBGRA(value); }
+                get { return ColorsHelper.GetBGRA(Viewport.UpperLeftColor); }
+                set { Viewport.UpperLeftColor = ColorsHelper.GetBGRA(value); }
             }
 
             [Category("Градиент")]
@@ -704,8 +841,8 @@ namespace Pulse.UI
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color BottomLeftColor
             {
-                get { return ColorsHelper.GetBGRA(Native.BottomLeftColor); }
-                set { Native.BottomLeftColor = ColorsHelper.GetBGRA(value); }
+                get { return ColorsHelper.GetBGRA(Viewport.BottomLeftColor); }
+                set { Viewport.BottomLeftColor = ColorsHelper.GetBGRA(value); }
             }
 
             [Category("Градиент")]
@@ -714,8 +851,8 @@ namespace Pulse.UI
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color UpperRightColor
             {
-                get { return ColorsHelper.GetBGRA(Native.UpperRightColor); }
-                set { Native.UpperRightColor = ColorsHelper.GetBGRA(value); }
+                get { return ColorsHelper.GetBGRA(Viewport.UpperRightColor); }
+                set { Viewport.UpperRightColor = ColorsHelper.GetBGRA(value); }
             }
 
             [Category("Градиент")]
@@ -724,8 +861,236 @@ namespace Pulse.UI
             [Editor(typeof(ColorEditor), typeof(ColorEditor))]
             public Color BottomRightColor
             {
-                get { return ColorsHelper.GetBGRA(Native.BottomRightColor); }
-                set { Native.BottomRightColor = ColorsHelper.GetBGRA(value); }
+                get { return ColorsHelper.GetBGRA(Viewport.BottomRightColor); }
+                set { Viewport.BottomRightColor = ColorsHelper.GetBGRA(value); }
+            }
+        }
+
+        private class FullYkdResourceView : YkdResourceView
+        {
+            public FullYkdResourceView(YkdResource native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                yield break;
+            }
+
+            private FullYkdResourceViewport Viewport
+            {
+                get { return (FullYkdResourceViewport)Native.Viewport; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Ширина")]
+            [Description("Ширина отображения.")]
+            public int ViewportWidth
+            {
+                get { return Viewport.ViewportWidth; }
+                set { Viewport.ViewportWidth = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Высота")]
+            [Description("Высота отображения.")]
+            public int ViewportHeight
+            {
+                get { return Viewport.ViewportHeight; }
+                set { Viewport.ViewportHeight = value; }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-левый")]
+            [Description("Цвет верхнего-левого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.UpperLeftColor); }
+                set { Viewport.UpperLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-левый")]
+            [Description("Цвет нижнего-левого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.BottomLeftColor); }
+                set { Viewport.BottomLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-правый")]
+            [Description("Цвет верхнего-правого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.UpperRightColor); }
+                set { Viewport.UpperRightColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-правый")]
+            [Description("Цвет нижнего-правого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.BottomRightColor); }
+                set { Viewport.BottomRightColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Неизвестно 1")]
+            [Description("Неизвестное значение.")]
+            public int Unknown1
+            {
+                get { return Viewport.Unknown1; }
+                set { Viewport.Unknown1 = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Неизвестно 2")]
+            [Description("Неизвестное значение.")]
+            public int Unknown2
+            {
+                get { return Viewport.Unknown2; }
+                set { Viewport.Unknown2 = value; }
+            }
+        }
+
+        private class ExtraYkdResourceView : YkdResourceView
+        {
+            public ExtraYkdResourceView(YkdResource native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                yield break;
+            }
+
+            private ExtraYkdResourceViewport Viewport
+            {
+                get { return (ExtraYkdResourceViewport)Native.Viewport; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("X")]
+            [Description("Координата X верхнего-левого угла фрагмента текстуры.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int SourceX
+            {
+                get { return Viewport.SourceX; }
+                set { Viewport.SourceX = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Y")]
+            [Description("Координата Y верхнего-левого угла фрагмента текстуры.")]
+            public int SourceY
+            {
+                get { return Viewport.SourceY; }
+                set { Viewport.SourceY = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Ширина")]
+            [Description("Ширина фрагмента текстуры.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int SourceWidth
+            {
+                get { return Viewport.SourceWidth; }
+                set { Viewport.SourceWidth = value; }
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Высота")]
+            [Description("Высота фрагмента текстуры.")]
+            public int SourceHeight
+            {
+                get { return Viewport.SourceHeight; }
+                set { Viewport.SourceHeight = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Ширина")]
+            [Description("Ширина отображения.")]
+            public int ViewportWidth
+            {
+                get { return Viewport.ViewportWidth; }
+                set { Viewport.ViewportWidth = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Высота")]
+            [Description("Высота отображения.")]
+            public int ViewportHeight
+            {
+                get { return Viewport.ViewportHeight; }
+                set { Viewport.ViewportHeight = value; }
+            }
+
+            [Category("Отображение")]
+            [DisplayName("Флаги")]
+            [Description("Различные модификаторы отображения.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Flags
+            {
+                get { return (int)Viewport.Flags; }
+                set { Viewport.Flags = (YkdResourceFlags)value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно 5")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown5
+            {
+                get { return Viewport.Unknown5; }
+                set { Viewport.Unknown5 = value; }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-левый")]
+            [Description("Цвет верхнего-левого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.UpperLeftColor); }
+                set { Viewport.UpperLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-левый")]
+            [Description("Цвет нижнего-левого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomLeftColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.BottomLeftColor); }
+                set { Viewport.BottomLeftColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Верхний-правый")]
+            [Description("Цвет верхнего-правого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color UpperRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.UpperRightColor); }
+                set { Viewport.UpperRightColor = ColorsHelper.GetBGRA(value); }
+            }
+
+            [Category("Градиент")]
+            [DisplayName("Нижний-правый")]
+            [Description("Цвет нижнего-правого угла отображения.")]
+            [Editor(typeof(ColorEditor), typeof(ColorEditor))]
+            public Color BottomRightColor
+            {
+                get { return ColorsHelper.GetBGRA(Viewport.BottomRightColor); }
+                set { Viewport.BottomRightColor = ColorsHelper.GetBGRA(value); }
             }
         }
     }

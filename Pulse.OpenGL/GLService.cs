@@ -136,6 +136,9 @@ namespace Pulse.OpenGL
 
         public static void SetViewportDesiredSize(int width, int height)
         {
+            Exceptions.CheckArgumentOutOfRangeException(width, "width", 0, int.MaxValue);
+            Exceptions.CheckArgumentOutOfRangeException(height, "height", 0, int.MaxValue);
+                
             Action<int, int> handler = ViewportDesiredSizeChanged;
             if (handler != null) handler(width, height);
         }
@@ -203,12 +206,6 @@ namespace Pulse.OpenGL
             {
                 WorkingThread.Start(this);
             }
-        }
-
-        public static bool CheckVersion(int major, int minor)
-        {
-            long version = checked(((long)GL.GetInteger(GetPName.MajorVersion) << 32) | (GL.GetInteger(GetPName.MinorVersion)));
-            return checked(version >= (((long)major << 32) | minor));
         }
     }
 }

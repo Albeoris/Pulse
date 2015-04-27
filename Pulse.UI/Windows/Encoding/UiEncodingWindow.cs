@@ -10,7 +10,6 @@ using OpenTK.Graphics.OpenGL;
 using Pulse.Core;
 using Pulse.FS;
 using Pulse.OpenGL;
-using Pulse.UI.Controls;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
 
 namespace Pulse.UI.Encoding

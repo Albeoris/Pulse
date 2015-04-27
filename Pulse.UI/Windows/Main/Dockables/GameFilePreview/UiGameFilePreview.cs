@@ -1,7 +1,6 @@
 using System.Windows;
 using Pulse.Core;
 using Pulse.FS;
-using Pulse.UI.Controls;
 
 namespace Pulse.UI
 {

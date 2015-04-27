@@ -4,7 +4,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using Pulse.OpenGL;
 
-namespace Pulse.UI.Controls
+namespace Pulse.UI
 {
     public class UiGlControl : WindowsFormsHost
     {

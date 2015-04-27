@@ -91,6 +91,7 @@ namespace Pulse.UI
         {
             try
             {
+                Directory.CreateDirectory(ApplicationConfigInfo.ConfigurationDirectory);
                 _layoutSerializer.Serialize(ApplicationConfigInfo.LayoutConfigurationFilePath);
             }
             catch (Exception ex)

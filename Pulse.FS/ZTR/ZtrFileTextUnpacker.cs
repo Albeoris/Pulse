@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Text;
-using Pulse.Core;
 using Pulse.Core;
 
 namespace Pulse.FS

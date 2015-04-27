@@ -57,6 +57,11 @@ namespace Pulse.Patcher
             }
         }
 
+        public string GetUserName()
+        {
+            return Dispatcher.Invoke(()=>NameTextBox.Text);
+        }
+
         public async Task<string> GetSecurityKeyAsync(bool log)
         {
             string name = Dispatcher.Invoke(()=>NameTextBox.Text);

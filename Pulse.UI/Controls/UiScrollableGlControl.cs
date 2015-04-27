@@ -6,7 +6,7 @@ using System.Windows.Media;
 using Pulse.Core;
 using Size = System.Windows.Size;
 
-namespace Pulse.UI.Controls
+namespace Pulse.UI
 {
     public sealed class UiScrollableGlControl : UiGlControl
     {

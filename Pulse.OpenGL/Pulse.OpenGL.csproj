@@ -136,6 +136,7 @@
     <Compile Include="Textures\GLFramebuffer.cs" />
     <Compile Include="Textures\GLRectangle.cs" />
     <Compile Include="Textures\GLTexture.cs" />
+    <Compile Include="Textures\GLTextureReader.cs" />
     <Compile Include="Textures\LoaderDDS.cs" />
     <Compile Include="Textures\LoaderStatics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
