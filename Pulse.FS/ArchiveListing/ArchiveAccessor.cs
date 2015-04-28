@@ -114,8 +114,8 @@ namespace Pulse.FS
             Stream writer, reader;
             Flute.CreatePipe(uncompressedSize, out writer, out reader);
 
-            if (!ThreadPool.QueueUserWorkItem((o) => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None)))
-                ThreadHelper.Start("UncompressAndDisposeSourceAsync", () => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None));
+            //if (!ThreadPool.QueueUserWorkItem((o) => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None)))
+                ThreadHelper.StartBackground("UncompressAndDisposeSourceAsync", () => ZLibHelper.UncompressAndDisposeStreams(input, writer, uncompressedSize, CancellationToken.None));
             return reader;
         }
 

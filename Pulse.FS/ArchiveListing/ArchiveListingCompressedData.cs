@@ -24,7 +24,7 @@ namespace Pulse.FS
             stream.Position = _header.BlockOffset;
             ArchiveListingBlockInfo[] blocks = stream.ReadStructs<ArchiveListingBlockInfo>(_header.BlocksCount);
 
-            ThreadHelper.Start("ArchiveListingCompressedData.ReadFromStream", () => UncompressBlocks(blocks, stream));
+            ThreadHelper.StartBackground("ArchiveListingCompressedData.ReadFromStream", () => UncompressBlocks(blocks, stream));
         }
 
         public byte[] AcquireData(int blockNumber)

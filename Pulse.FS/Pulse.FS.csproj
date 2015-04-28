@@ -113,6 +113,7 @@
     <Compile Include="IMGB\Sections\Textures\GtexMipMapLocation.cs" />
     <Compile Include="IMGB\Sections\Textures\TextureSection.cs" />
     <Compile Include="IMGB\SeDb\SeDbResEntry.cs" />
+    <Content Include="SCD\Class1.cpp" />
     <Compile Include="WFL\WflContent.cs" />
     <Compile Include="WFL\WflFileReader.cs" />
     <Compile Include="WFL\WflFileWriter.cs" />

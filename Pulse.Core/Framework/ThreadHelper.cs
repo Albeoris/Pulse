@@ -4,9 +4,9 @@ namespace Pulse.Core
 {
     public static class ThreadHelper
     {
-        public static Thread Start(string name, ThreadStart action)
+        public static Thread StartBackground(string name, ThreadStart action)
         {
-            Thread result = new Thread(action) {Name = name};
+            Thread result = new Thread(action) {Name = name, IsBackground = true};
             result.Start();
             return result;
         }
