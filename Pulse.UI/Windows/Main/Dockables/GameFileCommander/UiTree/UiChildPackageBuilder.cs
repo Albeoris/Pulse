@@ -136,6 +136,7 @@ namespace Pulse.UI
             string ext = PathEx.GetMultiDotComparableExtension(entryName);
             switch (ext)
             {
+                case ".win32.xfv":
                 case ".win32.xgr":
                 case ".win32.xwb":
                 case ".win32.trb":

@@ -6,6 +6,7 @@ namespace Pulse.UI
         Grs,
         Xgr,
         Xwb,
+        Xfv,
         Trb
     }
 }

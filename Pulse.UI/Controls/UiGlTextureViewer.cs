@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
+using Pulse.Core;
 using Pulse.FS;
 using Pulse.OpenGL;
 
@@ -24,6 +26,9 @@ namespace Pulse.UI
             get { return _texture; }
             set
             {
+                if (_texture != null)
+                    _texture.SafeDispose();
+
                 if (value != null)
                     GLService.SetViewportDesiredSize(value.Width, value.Height);
 
@@ -46,8 +51,8 @@ namespace Pulse.UI
 
         public void Show(WpdArchiveListing listing, WpdEntry entry)
         {
-            Texture = GLTextureReader.ReadFromWpd(listing, entry);
             Visibility = Visibility.Visible;
+            Texture = GLTextureReader.ReadFromWpd(listing, entry);
         }
     }
 }

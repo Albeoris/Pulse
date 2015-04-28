@@ -24,9 +24,16 @@ namespace Pulse.Core
             if (string.IsNullOrEmpty(fileName))
                 return string.Empty;
 
-            int index = fileName.IndexOf('.');
+            int index = fileName.LastIndexOf('.');
             if (index < 0)
                 return string.Empty;
+
+            if (index > 0)
+            {
+                int secondIndex = fileName.LastIndexOf('.', index - 1);
+                if (secondIndex > 0)
+                    return fileName.Substring(secondIndex).ToLower();
+            }
 
             return fileName.Substring(index).ToLower();
         }
