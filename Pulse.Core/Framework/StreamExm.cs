@@ -211,5 +211,64 @@ namespace Pulse.Core
         {
             return new StreamSegment(output, offset, size < 0 ? output.Length - offset : size, FileAccess.ReadWrite);
         }
+
+        #region Strings
+
+        public static string ReadFixedSizeString(this Stream input, int size, Encoding encoding)
+        {
+            unsafe
+            {
+                byte[] name = input.EnsureRead(size);
+                fixed (byte* namePtr = &name[0])
+                    return new string((sbyte*)namePtr, 0, size, encoding).TrimEnd('\0');
+            }
+        }
+
+        public static void WriteFixedSizeString(this Stream output, String str, int size, Encoding encoding)
+        {
+            byte[] name = new byte[size];
+            encoding.GetBytes(str, 0, str.Length, name, 0);
+            output.Write(name, 0, name.Length);
+        }
+
+        public static string ReadNullTerminatedString(this Stream input, Encoding encoding, int zeroCount)
+        {
+            using (MemoryStream ms = new MemoryStream(4096))
+            {
+                int nc, count = 0;
+                while ((nc = input.ReadByte()) != -1)
+                {
+                    if (nc == 0)
+                    {
+                        if (++count == zeroCount)
+                        {
+                            count = 0;
+                            break;
+                        }
+
+                        continue;
+                    }
+
+                    while (count > 0)
+                    {
+                        count--;
+                        ms.WriteByte(0);
+                    }
+
+                    ms.WriteByte((byte)nc);
+                }
+
+                while (count > 0)
+                {
+                    count--;
+                    ms.WriteByte(0);
+                }
+
+                byte[] array = ms.ToArray();
+                return encoding.GetString(array, 0, array.Length);
+            }
+        }
+
+        #endregion
     }
 }

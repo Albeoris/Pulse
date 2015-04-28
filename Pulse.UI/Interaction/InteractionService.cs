@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Pulse.Core;
 using Pulse.UI.Interaction;
 
@@ -32,7 +33,14 @@ namespace Pulse.UI
 
         public static void RaiseSelectedNodeChanged(UiNode node)
         {
-            SelectedLeafChanged.NullSafeInvoke(node as IUiLeaf);
+            try
+            {
+                SelectedLeafChanged.NullSafeInvoke(node as IUiLeaf);
+            }
+            catch (Exception ex)
+            {
+                UiHelper.ShowError(Application.Current.MainWindow, ex);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using Examples.TextureLoaders;
 using Pulse.Core;
@@ -15,9 +16,20 @@ namespace Pulse.OpenGL
             {
                 headers.SetPosition(entry.Offset);
 
+                GtexData gtex;
                 SectionHeader sectionHeader = headers.ReadContent<SectionHeader>();
-                TextureHeader textureHeader = headers.ReadContent<TextureHeader>();
-                GtexData gtex = headers.ReadContent<GtexData>();
+                switch (sectionHeader.Type)
+                {
+                    case SectionType.Txb:
+                        gtex = ReadGtexFromTxb(headers);
+                        break;
+                    case SectionType.Vtex:
+                        gtex = ReadGtexFromVtex(headers);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
                 if (gtex.Header.LayerCount == 0)
                     return null;
 
@@ -35,6 +47,20 @@ namespace Pulse.OpenGL
                 using (GLService.AcquireContext())
                     return ImageDDS.LoadFromStream(rawData, gtex);
             }
+        }
+
+        private static GtexData ReadGtexFromTxb(Stream headers)
+        {
+            TextureHeader textureHeader = headers.ReadContent<TextureHeader>();
+            return headers.ReadContent<GtexData>();
+
+        }
+
+        private static GtexData ReadGtexFromVtex(Stream headers)
+        {
+            VtexHeader textureHeader = headers.ReadContent<VtexHeader>();
+            headers.Seek(textureHeader.GtexOffset - VtexHeader.Size, SeekOrigin.Current);
+            return headers.ReadContent<GtexData>();
         }
     }
 }

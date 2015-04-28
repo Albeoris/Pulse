@@ -60,6 +60,7 @@ namespace Pulse.UI
             switch (entry.Extension)
             {
                 case "txbh":
+                case "vtex":
                     _textureViewer.Show(listing, entry);
                     break;
                 case "ykd":

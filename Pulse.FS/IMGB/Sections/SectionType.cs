@@ -22,7 +22,9 @@ namespace Pulse.FS
         Veff = 0x76666665,
         Vins = 0x76736E69,
         Vmdl = 0x766C646D,
-        Vtex = 0x76786574,
+        
+        Vtex = 0x78657476,
+        
         Leaf = 0x6C666165,
         Acb = 0x00626361,
         Ciba = 0x63616269,

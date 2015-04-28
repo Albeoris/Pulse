@@ -120,7 +120,7 @@ namespace Pulse.Core
             private readonly Flute _flute;
             private readonly MemoryMappedViewStream _output;
             private readonly Queue<long> _writingQueue = new Queue<long>();
-            private int _disposed;
+            private long _disposed;
 
             public FluteWriter(Flute flute, long offset = 0, long size = 0)
             {
@@ -150,6 +150,9 @@ namespace Pulse.Core
 
             public override void Write(byte[] buffer, int offset, int count)
             {
+                if (Interlocked.Read(ref _disposed) == 1)
+                    throw new ObjectDisposedException("Поток был освобождён.");
+
                 long position = _output.PointerOffset + Position;
                 _output.Write(buffer, offset, count);
                 _writingQueue.Enqueue(position);
@@ -158,14 +161,17 @@ namespace Pulse.Core
 
             public override void Flush()
             {
-                _output.Flush();
-
-                while (_writingQueue.Count > 0)
+                lock (_writingQueue)
                 {
-                    long position = _writingQueue.Dequeue();
-                    long count = _writingQueue.Dequeue();
+                    _output.Flush();
 
-                    _flute.SetReadableSize(position, count);
+                    while (_writingQueue.Count > 0)
+                    {
+                        long position = _writingQueue.Dequeue();
+                        long count = _writingQueue.Dequeue();
+
+                        _flute.SetReadableSize(position, count);
+                    }
                 }
             }
 
@@ -210,7 +216,7 @@ namespace Pulse.Core
         {
             private readonly Flute _flute;
             private readonly MemoryMappedViewStream _input;
-            private int _disposed;
+            private long _disposed;
 
             public FluteReader(Flute flute, long offset = 0, long size = 0)
             {
@@ -232,6 +238,9 @@ namespace Pulse.Core
 
             public override int Read(byte[] buffer, int offset, int count)
             {
+                if (Interlocked.Read(ref _disposed) == 1)
+                    throw new ObjectDisposedException("Поток был освобождён.");
+
                 if (count == 0)
                     return 0;
 

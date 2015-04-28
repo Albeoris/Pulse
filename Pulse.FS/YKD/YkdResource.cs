@@ -26,11 +26,7 @@ namespace Pulse.FS
             Index = br.ReadInt32();
             Dummy2 = br.Check(r => r.ReadInt32(), 0);
             Dummy3 = br.Check(r => r.ReadInt32(), 0);
-
-            byte[] name = stream.EnsureRead(NameSize);
-            fixed (byte* namePtr = &name[0])
-                Name = new string((sbyte*)namePtr, 0, NameSize, YkdFile.NamesEncoding).TrimEnd('\0');
-
+            Name = stream.ReadFixedSizeString(NameSize, YkdFile.NamesEncoding);
             Viewport = YkdResourceViewport.ReadFromStream(Type, stream);
         }
 
