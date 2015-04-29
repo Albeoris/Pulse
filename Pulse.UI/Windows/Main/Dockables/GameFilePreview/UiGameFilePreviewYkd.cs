@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -319,6 +320,11 @@ namespace Pulse.UI
                 template.VisualTree = textBlock;
                 return template;
             }
+
+            public override string ToString()
+            {
+                return Title;
+            }
         }
 
         private sealed class YkdFileView : View<YkdFileView, YkdFile>
@@ -385,6 +391,11 @@ namespace Pulse.UI
                 get { return Native.Header.Unknown5; }
                 set { Native.Header.Unknown5 = value; }
             }
+
+            public override string Title
+            {
+                get { return String.Format("{0} (Count: {1})", base.Title, Native.Blocks.Length); }
+            }
         }
 
         private sealed class YkdBlockView : View<YkdBlockView, YkdBlock>
@@ -403,6 +414,68 @@ namespace Pulse.UI
             public override string Title
             {
                 get { return String.Format("{0} (Count: {1})", base.Title, Native.Entries.Length); }
+            }
+
+            [Category("Заголовок")]
+            [DisplayName("Тип")]
+            [Description("Тип блока.")]
+            public uint Type
+            {
+                get { return Native.Type; }
+            }
+
+            [Category("Заголовок")]
+            [DisplayName("Неизвестно 2")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown2
+            {
+                get { return (int)Native.Unknown2; }
+                set { Native.Unknown2 = (uint)value; }
+            }
+
+            [Category("Заголовок")]
+            [DisplayName("Связанный блок?")]
+            [Description("Возможно, номер связанного блока.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int ParentMaybe
+            {
+                get { return (int)Native.ParentMaybe; }
+                set { Native.ParentMaybe = (uint)value; }
+            }
+
+            [Category("Заголовок")]
+            [DisplayName("Неизвестно 4")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown4
+            {
+                get { return (int)Native.Unknown4; }
+                set { Native.Unknown4 = (uint)value; }
+            }
+
+            [Category("Заголовок")]
+            [DisplayName("Неизвестно 5")]
+            [Description("Константный массив неизвестных 4-байтовых чисел.")]
+            [Editor(typeof(TextBoxEditor), typeof(TextBoxEditor))]
+            public String Data
+            {
+                get { return String.Join(", ", Native.Data.Select(v => v.ToString("X8"))); }
+                set
+                {
+                    int index = 0;
+                    foreach (string val in (value ?? string.Empty).Split(','))
+                    {
+                        if (index >= Native.Data.Length)
+                            break;
+
+                        int number;
+                        if (int.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out number))
+                            Native.Data[index] = number;
+
+                        index++;
+                    }
+                }
             }
         }
 

@@ -11,7 +11,7 @@ namespace Pulse.FS
 
         public bool IsFirstBlock;
         public uint Type, Unknown2, ParentMaybe, Unknown4;
-        public readonly byte[] Data = new byte[DataSize];
+        public readonly int[] Data = new int[DataSize / 4];
 
         public YkdOffsets Offsets;
         public YkdBlockEntry[] Entries;
@@ -47,7 +47,8 @@ namespace Pulse.FS
             ParentMaybe = br.ReadUInt32();
             Unknown4 = br.ReadUInt32();
 
-            stream.EnsureRead(Data, 0, Data.Length);
+            for (int i = 0; i < Data.Length; i++)
+                Data[i] = br.ReadInt32();
 
             Offsets = stream.ReadContent<YkdOffsets>();
             Entries = new YkdBlockEntry[Offsets.Count];
@@ -84,7 +85,9 @@ namespace Pulse.FS
             bw.Write(ParentMaybe);
             bw.Write(Unknown4);
 
-            stream.Write(Data, 0, Data.Length);
+            for (int i = 0; i < Data.Length; i++)
+                bw.Write(Data[i]);
+            
             YkdOffsets.WriteToStream(stream, ref Offsets, ref Entries, b => b.CalcSize());
             stream.WriteContent(Entries);
 
