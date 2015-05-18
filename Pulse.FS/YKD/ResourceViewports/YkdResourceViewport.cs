@@ -11,6 +11,7 @@ namespace Pulse.FS
 
         public abstract void ReadFromStream(Stream stream);
         public abstract void WriteToStream(Stream stream);
+        public abstract YkdResourceViewport Clone();
 
         public static YkdResourceViewport ReadFromStream(YkdResourceViewportType type, Stream stream)
         {

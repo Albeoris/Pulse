@@ -83,10 +83,20 @@ namespace Pulse.FS
                     info = new string((sbyte*)ptr).Split(':');
             }
 
-            sector = long.Parse(info[0], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
-            uncompressedSize = long.Parse(info[1], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
-            compressedSize = long.Parse(info[2], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
-            name = info[3];
+            if (info.Length < 4)
+            {
+                name = String.Join(":", info);
+                sector = -1;
+                uncompressedSize = -1;
+                compressedSize = -1;
+            }
+            else
+            {
+                sector = long.Parse(info[0], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
+                uncompressedSize = long.Parse(info[1], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
+                compressedSize = long.Parse(info[2], NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
+                name = info[3];
+            }
         }
     }
 }

@@ -1,0 +1,76 @@
+//--------------------------------------
+//--- 010 Editor v6.0.2 Binary Template
+//
+// File: .scd
+// Author: Albeoris
+// Revision: 1
+//--------------------------------------
+
+typedef struct
+{
+    int Magic;
+    int Type;
+    int Version;
+    int Unknown2;
+    int SectionLength;
+    byte Junk[28];
+} SeDbHeader;
+
+typedef struct
+{
+    short Unknown0; // 0x1
+    short NumTracks;
+    short NumWaves;
+    short Unknown1; // 0x100F, 0x1389, 0x138A  -- possible flags, format?
+    int OffsetA;
+    int WavesOffset; // offset to list of wave offsets
+    long OffsetC;
+    long OffsetD;
+    long OffsetE;
+    long Unused; // 0x0
+} SscfHeader;
+
+typedef struct
+{
+    int DataLength;
+    int NumChannels;
+    int SamplingRate;
+    int Format;
+    int NumSamples;
+    int F;
+    int FormatHeaderLength;
+    int H;
+} SscfWaveHeader;
+
+typedef struct
+{
+    short FormatTag;
+    short Channels;
+    int SamplesPerSec;
+    int AverageBytesPerSecond;
+    short BlockAlign;
+    short BitsPerSample;
+    short ExtraDataSize;
+    byte ExtraData[ExtraDataSize];
+} WaveFormatEx;
+
+SeDbHeader dbHeader;
+SscfHeader sscfHeader;
+
+FSeek(sscfHeader.WavesOffset);
+int offsets[sscfHeader.NumWaves];
+
+local int i;
+for (i = 0; i < sscfHeader.NumWaves; i++)
+{
+    FSeek(offsets[i]);
+    SscfWaveHeader waveHeader;
+    switch (waveHeader.Format)
+    {
+        case 0x0C: // MS AdPCM
+            WaveFormatEx waveFormatEx;
+            break;
+        default:
+            Printf( "Encountered unknown format '%d' at position %Ld.\n", waveHeader.Format, FTell() );
+    }
+}

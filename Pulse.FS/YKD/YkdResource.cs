@@ -19,7 +19,7 @@ namespace Pulse.FS
             return 32 + Viewport.Size;
         }
 
-        public unsafe void ReadFromStream(Stream stream)
+        public void ReadFromStream(Stream stream)
         {
             BinaryReader br = new BinaryReader(stream);
             Type = (YkdResourceViewportType)br.ReadInt32();
@@ -44,6 +44,19 @@ namespace Pulse.FS
             stream.Write(name, 0, name.Length);
 
             Viewport.WriteToStream(stream);
+        }
+
+        public YkdResource Clone()
+        {
+            return new YkdResource
+            {
+                Type = Type,
+                Index = Index,
+                Dummy2 = Dummy2,
+                Dummy3 = Dummy3,
+                Name = Name,
+                Viewport = Viewport.Clone()
+            };
         }
     }
 }

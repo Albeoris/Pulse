@@ -60,6 +60,13 @@
       UserTitle = "Edit"
       UserDescription = "Change the current encoding."
     />
+
+    <AudioSettings
+      Title="Audio Settings"
+      Description="Settings of audio device."
+      NewTitle="New"
+      NewDescription="Initialize all settings default values."
+    />
     
   </InfoProvider>
 

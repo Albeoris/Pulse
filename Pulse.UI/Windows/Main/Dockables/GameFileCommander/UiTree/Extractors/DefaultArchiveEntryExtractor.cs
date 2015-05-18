@@ -12,7 +12,7 @@ namespace Pulse.UI
             get { return String.Empty; }
         }
 
-        public void Extract(ArchiveEntry entry, Stream output, Stream input, Byte[] buff)
+        public void Extract(ArchiveEntry entry, StreamSequence output, Stream input, Byte[] buff)
         {
             int size = (int)entry.UncompressedSize;
             if (size == 0)

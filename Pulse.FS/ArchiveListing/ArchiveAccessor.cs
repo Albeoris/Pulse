@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Threading;
-using System.Threading.Tasks;
 using Pulse.Core;
 
 namespace Pulse.FS
@@ -31,7 +30,14 @@ namespace Pulse.FS
             ListingEntry = listingEntry;
         }
 
-        public ArchiveAccessor CreateChild(string binaryFile, ArchiveEntry entry)
+        public ArchiveAccessor CreateDescriptor(ArchiveEntry entry)
+        {
+            ArchiveAccessor result = new ArchiveAccessor(null, _binaryFile, entry);
+            result._level = _level + 1;
+            return result;
+        }
+
+        public ArchiveAccessor CreateDescriptor(string binaryFile, ArchiveEntry entry)
         {
             ArchiveAccessor result = new ArchiveAccessor(new SharedMemoryMappedFile(binaryFile), _binaryFile, entry);
             result._level = _level + 1;
@@ -41,6 +47,11 @@ namespace Pulse.FS
         public int Level
         {
             get { return _level; }
+        }
+
+        public bool IsDescriptor
+        {
+            get { return _binaryFile == null; }
         }
 
         public Stream ExtractListing()

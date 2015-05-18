@@ -5,10 +5,11 @@ using Pulse.UI.Interaction;
 
 namespace Pulse.UI
 {
-    public sealed class InteractionService
+    public static class InteractionService
     {
         public static FFXIIIGamePart GamePart { get; private set; }
         public static ApplicationConfigProviders Configuration { get; private set; }
+        public static AudioSettingsProviders AudioSettings { get; private set; }
         public static GameLocationProviders GameLocation { get; private set; }
         public static WorkingLocationProviders WorkingLocation { get; private set; }
         public static TextEncodingProviders TextEncoding { get; private set; }
@@ -18,6 +19,7 @@ namespace Pulse.UI
         static InteractionService()
         {
             Configuration = new ApplicationConfigProviders();
+            AudioSettings = new AudioSettingsProviders();
             GameLocation = new GameLocationProviders();
             WorkingLocation = new WorkingLocationProviders();
             TextEncoding = new TextEncodingProviders();

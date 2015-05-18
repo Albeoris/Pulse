@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
@@ -266,7 +268,7 @@ namespace Pulse.UI
             }
         }
 
-        private abstract class View
+        private abstract class View : INotifyPropertyChanged
         {
             [Browsable(false)]
             public abstract DataTemplate TreeViewTemplate { get; }
@@ -279,11 +281,65 @@ namespace Pulse.UI
             }
 
             protected abstract IEnumerable<View> EnumerateChilds();
+
+
+            protected delegate Boolean StringToValueConverter<T>(String value, out T result);
+
+            protected String ReadArrayAsString<T>(T[] array, Func<T, String> valueToString)
+            {
+                if (array == null)
+                    return null;
+
+                return String.Join(", ", array.Select(valueToString));
+            }
+
+            protected void WriteArrayFromString<T>(T[] array, String value, StringToValueConverter<T> stringToValue)
+            {
+                if (array == null)
+                    return;
+
+                int index = 0;
+                foreach (string val in (value ?? string.Empty).Split(','))
+                {
+                    if (index >= array.Length)
+                        break;
+
+                    T number;
+                    if (stringToValue(val, out number))
+                        array[index] = number;
+
+                    index++;
+                }
+            }
+
+            protected string ReadInt32ArrayAsString(int[] array)
+            {
+                return ReadArrayAsString(array, v => v.ToString("X8"));
+            }
+
+            protected void WriteInt32ArrayFromString(int[] array, String value)
+            {
+                WriteArrayFromString(array, value, TryParseInt32);
+            }
+
+            private static bool TryParseInt32(string value, out int result)
+            {
+                return int.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out result);
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected internal void RaisePropertyChanged(string propertyName)
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private abstract class View<TView, TNative> : View
         {
-            protected readonly TNative Native;
+            protected internal readonly TNative Native;
 
             protected View(TNative native)
             {
@@ -295,6 +351,11 @@ namespace Pulse.UI
             public virtual String Title
             {
                 get { return TypeCache<TNative>.Type.Name; }
+            }
+
+            public virtual ContextMenu ContextMenu
+            {
+                get { return null; }
             }
 
             [Browsable(false)]
@@ -316,6 +377,7 @@ namespace Pulse.UI
 
                 FrameworkElementFactory textBlock = new FrameworkElementFactory(typeof(TextBlock));
                 textBlock.SetBinding(TextBlock.TextProperty, new Binding("Title"));
+                textBlock.SetBinding(TextBlock.ContextMenuProperty, new Binding("ContextMenu"));
 
                 template.VisualTree = textBlock;
                 return template;
@@ -407,6 +469,9 @@ namespace Pulse.UI
 
             protected override IEnumerable<View> EnumerateChilds()
             {
+                if (Native.ZeroTail != null)
+                    yield return new YkdBlockOptionalTailView(Native.ZeroTail);
+
                 foreach (YkdBlockEntry entry in Native.Entries)
                     yield return new YkdBlockEntryView(entry);
             }
@@ -425,57 +490,155 @@ namespace Pulse.UI
             }
 
             [Category("Заголовок")]
-            [DisplayName("Неизвестно 2")]
-            [Description("Неизвестное значение.")]
+            [DisplayName("Индекс")]
+            [Description("Нечто, похожее на уникальный номер блока.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
-            public int Unknown2
+            public int Index
             {
-                get { return (int)Native.Unknown2; }
-                set { Native.Unknown2 = (uint)value; }
+                get { return (int)Native.Index; }
+                set { Native.Index = (uint)value; }
             }
 
             [Category("Заголовок")]
-            [DisplayName("Связанный блок?")]
-            [Description("Возможно, номер связанного блока.")]
+            [DisplayName("Связанный блок")]
+            [Description("Индекс связанного блока.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
-            public int ParentMaybe
+            public int AssociatedIndex
             {
-                get { return (int)Native.ParentMaybe; }
-                set { Native.ParentMaybe = (uint)value; }
+                get { return (int)Native.AssociatedIndex; }
+                set { Native.AssociatedIndex = (uint)value; }
             }
 
             [Category("Заголовок")]
-            [DisplayName("Неизвестно 4")]
+            [DisplayName("Неизвестно")]
             [Description("Неизвестное значение.")]
             [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
             public int Unknown4
             {
-                get { return (int)Native.Unknown4; }
-                set { Native.Unknown4 = (uint)value; }
+                get { return (int)Native.Unknown; }
+                set { Native.Unknown = (uint)value; }
             }
 
-            [Category("Заголовок")]
-            [DisplayName("Неизвестно 5")]
-            [Description("Константный массив неизвестных 4-байтовых чисел.")]
-            [Editor(typeof(TextBoxEditor), typeof(TextBoxEditor))]
-            public String Data
+            [Category("Отображение")]
+            [DisplayName("Матрица преобразования")]
+            [Description("Массив 4-байтовых чисел, описывающих трансформирование изображения.")]
+            [Editor(typeof(WrapTextBoxEditor), typeof(WrapTextBoxEditor))]
+            public String TransformationMatrix
             {
-                get { return String.Join(", ", Native.Data.Select(v => v.ToString("X8"))); }
-                set
-                {
-                    int index = 0;
-                    foreach (string val in (value ?? string.Empty).Split(','))
-                    {
-                        if (index >= Native.Data.Length)
-                            break;
+                get { return ReadInt32ArrayAsString(Native.TransformationMatrix); }
+                set { WriteInt32ArrayFromString(Native.TransformationMatrix, value); }
+            }
 
-                        int number;
-                        if (int.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out number))
-                            Native.Data[index] = number;
+            [Category("Хвост")]
+            [DisplayName("Хвост (Типы 5,6)")]
+            [Description("Константный массив из 48 байт.")]
+            [Editor(typeof(WrapTextBoxEditor), typeof(WrapTextBoxEditor))]
+            public String Tail56
+            {
+                get { return ReadInt32ArrayAsString(Native.Tail56); }
+                set { WriteInt32ArrayFromString(Native.Tail56, value); }
+            }
+        }
 
-                        index++;
-                    }
-                }
+        private sealed class YkdBlockOptionalTailView : View<YkdBlockOptionalTailView, YkdBlockOptionalTail>
+        {
+            public YkdBlockOptionalTailView(YkdBlockOptionalTail native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                yield break;
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown1
+            {
+                get { return Native.Unknown1; }
+                set { Native.Unknown1 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown2
+            {
+                get { return Native.Unknown2; }
+                set { Native.Unknown2 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown3
+            {
+                get { return Native.Unknown3; }
+                set { Native.Unknown3 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown4
+            {
+                get { return Native.Unknown4; }
+                set { Native.Unknown4 = value; }
+            }
+        }
+
+        private sealed class YkdBlockOptionalTailsView : View<YkdBlockOptionalTailsView, YkdBlockOptionalTails>
+        {
+            public YkdBlockOptionalTailsView(YkdBlockOptionalTails native)
+                : base(native)
+            {
+            }
+
+            protected override IEnumerable<View> EnumerateChilds()
+            {
+                foreach (var tail in Native.Tails)
+                    yield return new YkdBlockOptionalTailView(tail);
+            }
+
+            public override string Title
+            {
+                get { return String.Format("{0} (Count: {1})", base.Title, Native.Tails.Length); }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown1
+            {
+                get { return Native.Unknown1; }
+                set { Native.Unknown1 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown2
+            {
+                get { return Native.Unknown2; }
+                set { Native.Unknown2 = value; }
+            }
+
+            [Category("Неизвестные")]
+            [DisplayName("Неизвестно1")]
+            [Description("Неизвестное значение.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Unknown3
+            {
+                get { return Native.Unknown3; }
+                set { Native.Unknown3 = value; }
             }
         }
 
@@ -695,7 +858,7 @@ namespace Pulse.UI
             protected override IEnumerable<View> EnumerateChilds()
             {
                 foreach (YkdResource resource in Native.Resources)
-                    yield return YkdResourceView.FromResource(resource);
+                    yield return YkdResourceView.FromResource(resource, this);
             }
 
             public override string Title
@@ -736,9 +899,12 @@ namespace Pulse.UI
 
         private abstract class YkdResourceView : View<YkdResourceView, YkdResource>
         {
-            protected YkdResourceView(YkdResource native)
+            private readonly YkdResourcesView _parent;
+
+            protected YkdResourceView(YkdResource native, YkdResourcesView parent)
                 : base(native)
             {
+                _parent = parent;
             }
 
             protected override IEnumerable<View> EnumerateChilds()
@@ -749,6 +915,80 @@ namespace Pulse.UI
             public override string Title
             {
                 get { return String.Format("{0:D3} {1} {2}", Native.Index, Native.Type, String.IsNullOrEmpty(Native.Name) ? "<empty>" : Native.Name); }
+            }
+
+            public override ContextMenu ContextMenu
+            {
+                get
+                {
+                    UiContextMenu menu = UiContextMenuFactory.Create();
+                    menu.AddChild(UiMenuItemFactory.Create("Сдублировать", new YkdResourceViewDuplicateCommand(this, _parent)));
+                    menu.AddChild(UiMenuItemFactory.Create("Удалить", new YkdResourceViewRemoveCommand(this, _parent)));
+                    return menu;
+                }
+            }
+
+            private class YkdResourceViewRemoveCommand : ICommand
+            {
+                private YkdResourceView _resource;
+                private YkdResourcesView _collection;
+
+                public YkdResourceViewRemoveCommand(YkdResourceView ykdResourceView, YkdResourcesView parent)
+                {
+                    _resource = ykdResourceView;
+                    _collection = parent;
+                }
+                
+                public bool CanExecute(object parameter)
+                {
+                    return true;
+                }
+
+                public void Execute(object parameter)
+                {
+                    if (MessageBox.Show(Application.Current.MainWindow, "Вы уверены, что хотите удалить этот ресурс?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                        return;
+
+                    _collection.Native.Remove(_resource.Native);
+                    _collection.RaisePropertyChanged("BindableChilds");
+                }
+
+                public event EventHandler CanExecuteChanged;
+            }
+
+            private class YkdResourceViewDuplicateCommand : ICommand
+            {
+                private YkdResourceView _resource;
+                private YkdResourcesView _collection;
+
+                public YkdResourceViewDuplicateCommand(YkdResourceView ykdResourceView, YkdResourcesView parent)
+                {
+                    _resource = ykdResourceView;
+                    _collection = parent;
+                }
+
+                public bool CanExecute(object parameter)
+                {
+                    return true;
+                }
+
+                public void Execute(object parameter)
+                {
+                    _collection.Native.Duplicate(_resource.Native);
+                    _collection.RaisePropertyChanged("BindableChilds");
+                }
+
+                public event EventHandler CanExecuteChanged;
+            }
+
+            [Category("Текстура")]
+            [DisplayName("Индекс")]
+            [Description("Какой-то номер.")]
+            [Editor(typeof(IntegerUpDownEditor), typeof(IntegerUpDownEditor))]
+            public int Index
+            {
+                get { return Native.Index; }
+                set { Native.Index = value; }
             }
 
             [Category("Текстура")]
@@ -769,18 +1009,18 @@ namespace Pulse.UI
                 get { return Native.Type.ToString(); }
             }
 
-            public static YkdResourceView FromResource(YkdResource resource)
+            public static YkdResourceView FromResource(YkdResource resource, YkdResourcesView parent)
             {
                 switch (resource.Type)
                 {
                     case YkdResourceViewportType.Empty:
-                        return new EmptyYkdResourceView(resource);
+                        return new EmptyYkdResourceView(resource, parent);
                     case YkdResourceViewportType.Fragment:
-                        return new FragmentYkdResourceView(resource);
+                        return new FragmentYkdResourceView(resource, parent);
                     case YkdResourceViewportType.Full:
-                        return new FullYkdResourceView(resource);
+                        return new FullYkdResourceView(resource, parent);
                     case YkdResourceViewportType.Extra:
-                        return new ExtraYkdResourceView(resource);
+                        return new ExtraYkdResourceView(resource, parent);
                     default:
                         throw new NotImplementedException(resource.Type.ToString());
                 }
@@ -789,8 +1029,8 @@ namespace Pulse.UI
 
         private class EmptyYkdResourceView : YkdResourceView
         {
-            public EmptyYkdResourceView(YkdResource native)
-                : base(native)
+            public EmptyYkdResourceView(YkdResource native, YkdResourcesView parent)
+                : base(native, parent)
             {
             }
 
@@ -807,8 +1047,8 @@ namespace Pulse.UI
 
         private class FragmentYkdResourceView : YkdResourceView
         {
-            public FragmentYkdResourceView(YkdResource native)
-                : base(native)
+            public FragmentYkdResourceView(YkdResource native, YkdResourcesView parent)
+                : base(native, parent)
             {
             }
 
@@ -941,8 +1181,8 @@ namespace Pulse.UI
 
         private class FullYkdResourceView : YkdResourceView
         {
-            public FullYkdResourceView(YkdResource native)
-                : base(native)
+            public FullYkdResourceView(YkdResource native, YkdResourcesView parent)
+                : base(native, parent)
             {
             }
 
@@ -1035,8 +1275,8 @@ namespace Pulse.UI
 
         private class ExtraYkdResourceView : YkdResourceView
         {
-            public ExtraYkdResourceView(YkdResource native)
-                : base(native)
+            public ExtraYkdResourceView(YkdResource native, YkdResourcesView parent)
+                : base(native, parent)
             {
             }
 

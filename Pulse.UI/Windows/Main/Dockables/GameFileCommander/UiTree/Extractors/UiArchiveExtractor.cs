@@ -47,7 +47,7 @@ namespace Pulse.UI
                 _target.CreateDirectory(directoryPath);
 
                 using (Stream input = _listing.Accessor.ExtractBinary(entry))
-                using (Stream output = _target.Create(targetPath))
+                using (StreamSequence output = _target.Create(targetPath))
                     extractor.Extract(entry, output, input, buff);
             }
         }
@@ -57,10 +57,12 @@ namespace Pulse.UI
             IArchiveEntryExtractor result;
             targetExtension = PathEx.GetMultiDotComparableExtension(entry.Name);
 
-            if (_conversion != true || entry.Name.Contains("_jp") || entry.Name.Contains("_kr"))
+            if (entry.Name.Contains("_jp") || entry.Name.Contains("_kr"))
                 result = DefaultExtractor;
             else if (_extractors.TryGetValue(targetExtension, out result))
                 targetExtension = result.TargetExtension;
+            else if (_conversion != true)
+                result = DefaultExtractor;
 
             return result;
         }
@@ -85,7 +87,8 @@ namespace Pulse.UI
         {
             return new Dictionary<String, IArchiveEntryExtractor>
             {
-                {".ztr", new ZtrToStringsArchiveEntryExtractor()}
+                {".ztr", new ZtrToStringsArchiveEntryExtractor()},
+                {".win32.scd", new ScdToWaveArchiveEntryExtractor()}
             };
         }
 

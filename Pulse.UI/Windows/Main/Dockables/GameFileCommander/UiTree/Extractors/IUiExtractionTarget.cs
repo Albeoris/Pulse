@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using Pulse.Core;
 
 namespace Pulse.UI
 {
     public interface IUiExtractionTarget
     {
-        Stream Create(String targetPath);
+        StreamSequence Create(String targetPath);
         void CreateDirectory(string directoryPath);
     }
 }

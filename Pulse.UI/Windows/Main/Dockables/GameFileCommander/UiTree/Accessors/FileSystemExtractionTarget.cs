@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Pulse.Core;
 
 namespace Pulse.UI
 {
@@ -11,13 +12,14 @@ namespace Pulse.UI
                 Directory.CreateDirectory(directoryPath);
         }
 
-        public Stream Create(string targetPath)
+        public StreamSequence Create(string targetPath)
         {
             String directoryPath = Path.GetDirectoryName(targetPath);
             if (!String.IsNullOrEmpty(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            return File.Create(targetPath);
+            FileSequencedStreamFactory factory = new FileSequencedStreamFactory(targetPath, FileMode.Create, FileAccess.Write);
+            return new StreamSequence(factory);
         }
     }
 }

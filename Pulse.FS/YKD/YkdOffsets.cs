@@ -83,5 +83,24 @@ namespace Pulse.FS
 
             stream.WriteContent(self);
         }
+
+        public void Insert(int index, int size)
+        {
+            int[] offsets = new int[Offsets.Length + 1];
+            Array.Copy(Offsets, offsets, index);
+            for (int i = index + 1; i < offsets.Length; i++)
+                offsets[i] = Offsets[i - 1] + size;
+            Offsets = offsets;
+        }
+
+        public void Remove(int index)
+        {
+            int[] offsets = new int[Offsets.Length - 1];
+            int size = Offsets[index];
+            Array.Copy(Offsets, offsets, index);
+            for (int i = index; i < offsets.Length - 1; i++)
+                offsets[i] = Offsets[i + 1] - size;
+            Offsets = offsets;
+        }
     }
 }

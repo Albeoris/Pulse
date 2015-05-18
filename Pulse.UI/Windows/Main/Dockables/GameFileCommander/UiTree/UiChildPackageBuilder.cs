@@ -25,6 +25,10 @@ namespace Pulse.UI
             if (TryAddZoneListing(listing, entry, entryPath))
                 return true;
 
+            // Списки имён файлов без возможности их извлучь
+            //if (TryAddSoundListing(listing, entry, entryName))
+            //    return true;
+
             if (TryAddImgbPair(listing, entry, entryPath, entryName))
                 return true;
 
@@ -124,7 +128,25 @@ namespace Pulse.UI
             if (!File.Exists(binaryPath))
                 return false;
 
-            ArchiveAccessor accessor = parentListing.Accessor.CreateChild(binaryPath, entry);
+            ArchiveAccessor accessor = parentListing.Accessor.CreateDescriptor(binaryPath, entry);
+            ConcurrentBag<UiNode> container = ProvideRootNodeChilds(UiArchiveExtension.Bin);
+            container.Add(new UiArchiveNode(accessor, parentListing));
+
+            return true;
+        }
+
+        private bool TryAddSoundListing(ArchiveListing parentListing, ArchiveEntry entry, String entryName)
+        {
+            switch (entryName)
+            {
+                case "filelist_sound_pack.win32.bin":
+                case "filelist_sound_pack.win32_us.bin":
+                    break;
+                default:
+                    return false;
+            }
+
+            ArchiveAccessor accessor = parentListing.Accessor.CreateDescriptor(entry);
             ConcurrentBag<UiNode> container = ProvideRootNodeChilds(UiArchiveExtension.Bin);
             container.Add(new UiArchiveNode(accessor, parentListing));
 

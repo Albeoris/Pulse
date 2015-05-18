@@ -21,5 +21,10 @@ namespace Pulse.FS
         public override void WriteToStream(Stream stream)
         {
         }
+
+        public override YkdResourceViewport Clone()
+        {
+            return new EmptyYkdResourceViewport();
+        }
     }
 }

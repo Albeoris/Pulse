@@ -62,5 +62,24 @@ namespace Pulse.FS
             bw.Write(UpperRightColor);
             bw.Write(BottomRightColor);
         }
+
+        public override YkdResourceViewport Clone()
+        {
+            return new FragmentYkdResourceViewport
+            {
+                SourceX = SourceX,
+                SourceY = SourceY,
+                SourceWidth = SourceWidth,
+                SourceHeight = SourceHeight,
+                ViewportWidth = ViewportWidth,
+                ViewportHeight = ViewportHeight,
+                Flags = Flags,
+                Unknown5 = Unknown5,
+                UpperLeftColor = UpperLeftColor,
+                BottomLeftColor = BottomLeftColor,
+                UpperRightColor = UpperRightColor,
+                BottomRightColor = BottomRightColor
+            };
+        }
     }
 }

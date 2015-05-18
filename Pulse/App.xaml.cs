@@ -17,6 +17,8 @@ namespace Pulse
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Log.Message("Приложение запущено.");
+
             // book.strings => review.strings
             //ZtrFileEntry[] books, reviews;
             //using (Stream book = File.OpenRead(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Pack\Strings\book.strings\ru-RU\book.strings"))

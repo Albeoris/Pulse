@@ -25,6 +25,21 @@ namespace Pulse.UI
             get { return LazyPendingIcon.Value; }
         }
 
+        public static DrawingImage PlayIcon
+        {
+            get { return LazyPlayIcon.Value; }
+        }
+
+        public static DrawingImage PauseIcon
+        {
+            get { return LazyPauseIcon.Value; }
+        }
+
+        public static DrawingImage StopIcon
+        {
+            get { return LazyStopIcon.Value; }
+        }
+
         public static DrawingImage PackageIcon
         {
             get { return LazyPackageIcon.Value; }
@@ -48,6 +63,10 @@ namespace Pulse.UI
         private static readonly Lazy<DrawingImage> LazyOkIcon = new Lazy<DrawingImage>(CreateGreenOkIcon);
         private static readonly Lazy<DrawingImage> LazyCrossIcon = new Lazy<DrawingImage>(CreateRedCrossIcon);
         private static readonly Lazy<DrawingImage> LazyPendingIcon = new Lazy<DrawingImage>(CreatePendingIcon);
+
+        private static readonly Lazy<DrawingImage> LazyPlayIcon = new Lazy<DrawingImage>(CreatePlayIcon);
+        private static readonly Lazy<DrawingImage> LazyPauseIcon = new Lazy<DrawingImage>(CreatePauseIcon);
+        private static readonly Lazy<DrawingImage> LazyStopIcon = new Lazy<DrawingImage>(CreateStopIcon);
 
         private static readonly Lazy<DrawingImage> LazyPackageIcon = new Lazy<DrawingImage>(CreatePackageIcon);
         private static readonly Lazy<BitmapSource> LazyDiskIcon = new Lazy<BitmapSource>(CreateDiskIcon);
@@ -81,6 +100,39 @@ namespace Pulse.UI
             Pen pen = new Pen(Brushes.DimGray, 3);
             PathGeometry geometry = (PathGeometry)Application.Current.FindResource("ClockIconGeometry");
             GeometryDrawing drawning = new GeometryDrawing(Brushes.DarkGray, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreatePlayIcon()
+        {
+            Pen pen = new Pen(Brushes.Green, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("PlayIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.LimeGreen, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreatePauseIcon()
+        {
+            Pen pen = new Pen(Brushes.Black, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("PauseIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.OrangeRed, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateStopIcon()
+        {
+            Pen pen = new Pen(Brushes.Black, 3);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("StopIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.Black, pen, geometry);
             DrawingImage imageSource = new DrawingImage(drawning);
 
             imageSource.Freeze();

@@ -25,7 +25,7 @@
     <ApplicationConfig
       Title="Настройки"
       Description="Различные настройки приложения."
-      NewTitle="Новый"
+      NewTitle="Новые"
       NewDescription="Инициализирует все настройки значениями по умолчанию."
       FileTitle="Из файла"
       FileDescription="Считывает настройки приложения из файла {0}"
@@ -60,6 +60,13 @@
       WorkingLocationDescription="Считывает кодировку из рабочего каталога."
       UserTitle="Редактировать"
       UserDescription="Изменить текущую кодировку."
+    />
+
+    <AudioSettings
+      Title="Настройки звука"
+      Description="Настройки аудио-устройства, используемого для воспроизведения звука."
+      NewTitle="Новые"
+      NewDescription="Инициализирует стандартные настройки аудио-устройства."
     />
     
   </InfoProvider>

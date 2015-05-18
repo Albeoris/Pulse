@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows;
 using Pulse.Core;
 using Pulse.FS;
@@ -8,6 +9,7 @@ namespace Pulse.UI
     {
         private readonly UiGlTextureViewer _textureViewer;
         private readonly UiGrid _grid;
+        private readonly UiAudioPlayback _sound;
         private readonly UiGameFilePreviewYkd _ykd;
 
         public UiGameFilePreview()
@@ -19,10 +21,12 @@ namespace Pulse.UI
             _grid = UiGridFactory.Create(1, 1);
 
             _textureViewer = new UiGlTextureViewer();
+            _sound = new UiAudioPlayback();
             _ykd = new UiGameFilePreviewYkd();
             HideControls();
 
             _grid.AddUiElement(_textureViewer, 0, 0);
+            _grid.AddUiElement(_sound, 0, 0);
             _grid.AddUiElement(_ykd, 0, 0);
 
             Content = _grid;
@@ -40,6 +44,7 @@ namespace Pulse.UI
         private void HideControls()
         {
             _textureViewer.Visibility = Visibility.Hidden;
+            _sound.Visibility = Visibility.Hidden;
             _ykd.Visibility = Visibility.Hidden;
         }
 
@@ -49,7 +54,14 @@ namespace Pulse.UI
 
             UiWpdTableLeaf wpdLeaf = leaf as UiWpdTableLeaf;
             if (wpdLeaf != null)
+            {
                 OnWpdLeafSelected(wpdLeaf);
+                return;
+            }
+
+            UiArchiveLeaf archiveLeaf = leaf as UiArchiveLeaf;
+            if (archiveLeaf != null)
+                OnArchiveLeafSelected(archiveLeaf);
         }
 
         private void OnWpdLeafSelected(UiWpdTableLeaf wpdLeaf)
@@ -65,6 +77,19 @@ namespace Pulse.UI
                     break;
                 case "ykd":
                     _ykd.Show(listing, entry);
+                    break;
+            }
+        }
+
+        private void OnArchiveLeafSelected(UiArchiveLeaf archiveLeaf)
+        {
+            ArchiveEntry entry = archiveLeaf.Entry;
+            ArchiveListing listing = archiveLeaf.Listing;
+
+            switch (Path.GetExtension(entry.Name))
+            {
+                case ".scd":
+                    _sound.Show(listing, entry);
                     break;
             }
         }

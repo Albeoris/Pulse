@@ -85,9 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\StreamSequence\FileSequencedStreamFactory.cs" />
     <Compile Include="Components\Flute.cs" />
+    <Compile Include="Components\StreamSequence\ISequencedStreamFactory.cs" />
     <Compile Include="Components\LazyArray.cs" />
     <Compile Include="Components\CircularBuffer.cs" />
+    <Compile Include="Components\StreamSequence\StreamSequence.cs" />
     <Compile Include="Components\Wildcard.cs" />
     <Compile Include="Components\DisposableStream.cs" />
     <Compile Include="Components\Endian.cs" />

@@ -122,30 +122,5 @@ namespace Pulse.UI
 
             return result;
         }
-
-        //public virtual IEnumerable<IArchiveListing> CreateChildListing(ArchiveListing parentListing, Wildcard wildcard)
-        //{
-        //    foreach (UiNode child in GetChilds())
-        //    {
-        //        if (child.IsChecked == false)
-        //            continue;
-        //    }
-        //    ArchiveListing listing = new ArchiveListing() {FullListing = archiveListing};
-        //    foreach (UiArchiveNodeOld child in EnumerateChilds())
-        //    {
-        //        ArchiveEntry entry = child.Entry as ArchiveEntry;
-        //        if (entry != null)
-        //        {
-        //            if (wildcard == null || wildcard.IsMatch(entry.Name))
-        //                listing.Add(entry);
-        //        }
-
-        //        XgrArchiveListing xgr = child.Listing as XgrArchiveListing;
-        //        if (xgr != null)
-        //            yield return CreateXgrChildListing(child, wildcard, archiveListing);
-        //    }
-        //    listing.TrimExcess();
-        //    yield return listing;
-        //}
     }
 }

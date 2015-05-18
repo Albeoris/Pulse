@@ -7,31 +7,31 @@ namespace Pulse.FS
 {
     public sealed class YkdBlock : IStreamingContent
     {
-        public const int DataSize = 0x50;
+        public const int TransformationMatrixSize = 0x50;
 
         public bool IsFirstBlock;
-        public uint Type, Unknown2, ParentMaybe, Unknown4;
-        public readonly int[] Data = new int[DataSize / 4];
+        public uint Type, Index, AssociatedIndex, Unknown;
+        public readonly int[] TransformationMatrix = new int[TransformationMatrixSize / 4];
 
         public YkdOffsets Offsets;
         public YkdBlockEntry[] Entries;
         public YkdBlockOptionalTail ZeroTail;
         public YkdBlockOptionalTails Tails4;
-        public byte[] Tail56;
+        public int[] Tail56;
 
         public int CalcSize()
         {
             YkdBlockEntry[] entries = Entries ?? new YkdBlockEntry[0];
             YkdOffsets offsets = new YkdOffsets {Offsets = new int[entries.Length]};
 
-            int result = 4 * 4 + DataSize + offsets.CalcSize() + entries.Sum(t => t.CalcSize());
-            
+            int result = 4 * 4 + TransformationMatrixSize + offsets.CalcSize() + entries.Sum(t => t.CalcSize());
+
             if (ZeroTail != null)
                 result += YkdBlockOptionalTail.Size;
             else if (Tails4 != null)
                 result += Tails4.CalcSize();
             else if (Tail56 != null)
-                result += Tail56.Length;
+                result += Tail56.Length * 4;
 
             return result;
         }
@@ -43,12 +43,12 @@ namespace Pulse.FS
             IsFirstBlock = stream.Position == YkdHeader.Size;
 
             Type = br.ReadUInt32();
-            Unknown2 = br.ReadUInt32();
-            ParentMaybe = br.ReadUInt32();
-            Unknown4 = br.ReadUInt32();
+            Index = br.ReadUInt32();
+            AssociatedIndex = br.ReadUInt32();
+            Unknown = br.ReadUInt32();
 
-            for (int i = 0; i < Data.Length; i++)
-                Data[i] = br.ReadInt32();
+            for (int i = 0; i < TransformationMatrix.Length; i++)
+                TransformationMatrix[i] = br.ReadBigInt32();
 
             Offsets = stream.ReadContent<YkdOffsets>();
             Entries = new YkdBlockEntry[Offsets.Count];
@@ -70,7 +70,9 @@ namespace Pulse.FS
                         break;
                     case 5:
                     case 6:
-                        Tail56 = stream.EnsureRead(48);
+                        Tail56 = new int[12];
+                        for (int i = 0; i < Tail56.Length; i++)
+                            Tail56[i] = br.ReadInt32();
                         break;
                 }
             }
@@ -81,13 +83,13 @@ namespace Pulse.FS
             BinaryWriter bw = new BinaryWriter(stream);
 
             bw.Write(Type);
-            bw.Write(Unknown2);
-            bw.Write(ParentMaybe);
-            bw.Write(Unknown4);
+            bw.Write(Index);
+            bw.Write(AssociatedIndex);
+            bw.Write(Unknown);
 
-            for (int i = 0; i < Data.Length; i++)
-                bw.Write(Data[i]);
-            
+            for (int i = 0; i < TransformationMatrix.Length; i++)
+                bw.WriteBig(TransformationMatrix[i]);
+
             YkdOffsets.WriteToStream(stream, ref Offsets, ref Entries, b => b.CalcSize());
             stream.WriteContent(Entries);
 
@@ -96,7 +98,8 @@ namespace Pulse.FS
             else if (Tails4 != null)
                 stream.WriteContent(Tails4);
             else if (Tail56 != null)
-                stream.Write(Tail56, 0, Tail56.Length);
+                for (int i = 0; i < Tail56.Length; i++)
+                    bw.Write(Tail56[i]);
         }
     }
 }

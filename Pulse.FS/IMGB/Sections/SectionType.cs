@@ -2,6 +2,9 @@ namespace Pulse.FS
 {
     public enum SectionType
     {
+        Sscf = 0x46435353,
+        Vtex = 0x78657476,
+        
         SKL = 0x204C4B53,
         PHP = 0x00424850,
         
@@ -11,7 +14,6 @@ namespace Pulse.FS
         Bin = 0x006E6962,
         Skl = 0x006C6B73,
         Shd = 0x00646873,
-        Sscf = 0x46535343,
         Txb = 0x00627874,
         Eqp = 0x00707165,
         Phb = 0x00626870,
@@ -23,7 +25,7 @@ namespace Pulse.FS
         Vins = 0x76736E69,
         Vmdl = 0x766C646D,
         
-        Vtex = 0x78657476,
+        
         
         Leaf = 0x6C666165,
         Acb = 0x00626361,

@@ -224,6 +224,19 @@ namespace Pulse.Core
                 public static readonly string UserTitle = GetTextEncoding("UserTitle");
                 public static readonly string UserDescription = GetTextEncoding("UserDescription");
             }
+
+            public static class AudioSettings
+            {
+                private static string GetAudioSettings(string name)
+                {
+                    return GetInfoProvider(name, "AudioSettings");
+                }
+
+                public static readonly string Title = GetAudioSettings("Title");
+                public static readonly string Description = GetAudioSettings("Description");
+                public static readonly string NewTitle = GetAudioSettings("NewTitle");
+                public static readonly string NewDescription = GetAudioSettings("NewDescription");
+            }
         }
 
         public static class Dockable
