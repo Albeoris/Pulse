@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Text;
 using Pulse.Core;
 
 namespace Pulse.FS
@@ -80,7 +82,10 @@ namespace Pulse.FS
             unsafe
             {
                 fixed (byte* ptr = &uncompressedData[entryInfo.Offset])
-                    info = new string((sbyte*)ptr).Split(':');
+                {
+                    string str = new string((sbyte*)ptr);
+                    info = str.Split(':');
+                }
             }
 
             if (info.Length < 4)

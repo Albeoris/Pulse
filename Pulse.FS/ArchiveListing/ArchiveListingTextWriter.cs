@@ -33,7 +33,7 @@ namespace Pulse.FS
 
                         if (blockNumber != entriesInfoV1[i].BlockNumber)
                         {
-                            sw.Write("end\0");
+                            //sw.Write("end\0");
                             int blockSize = (int)(ms.Position - unpackedBlockOffset);
                             ms.Position = unpackedBlockOffset;
                             ArchiveListingBlockInfo block = new ArchiveListingBlockInfo {Offset = (int)_output.Position, UncompressedSize = blockSize};
