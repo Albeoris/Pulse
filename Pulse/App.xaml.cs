@@ -19,7 +19,7 @@ namespace Pulse
         {
             Log.Message("Приложение запущено.");
 
-            // book.strings => review.strings
+            //// book.strings => review.strings
             //ZtrFileEntry[] books, reviews;
             //using (Stream book = File.OpenRead(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Pack\Strings\book.strings\ru-RU\book.strings"))
             //using (Stream review = File.OpenRead(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Pack\Strings\review.strings\ru-RU\review.strings"))
@@ -34,7 +34,7 @@ namespace Pulse
             //foreach (ZtrFileEntry entrie in reviews)
             //{
             //    string postfix = entrie.Key.Substring(6);
-            //    Wildcard wc = new Wildcard("*" + postfix + "p?");
+            //    Wildcard wc = new Wildcard("$atar_" + postfix + "p?");
             //    entrie.Value =
             //        String.Join("{Text NewLine}{Text NewLine}", books.Where((k, v) => wc.IsMatch(k.Key)).OrderBy(z => z.Key).Select(z => z.Value))
             //        .Replace("{Text 112}", String.Empty)

@@ -41,7 +41,7 @@ namespace Pulse.FS
             {
                 ZtrFileEntry entry = entries[i];
                 keys[i] = Encoding.ASCII.GetBytes(entry.Key);
-                values[i] = _encoding.GetBytes(entry.Value);
+                values[i] = (entry.IsAnimatedText ? FFXIIITextEncodingFactory.DefaultEuroEncoding.Value : _encoding).GetBytes(entry.Value);
                 offsets[index + 1] = offsets[index++] + keys[i].Length + 1;
                 if (index + 1 < offsets.Length)
                     offsets[index + 1] = offsets[index++] + values[i].Length + 2;
@@ -65,7 +65,7 @@ namespace Pulse.FS
             _bw.Write((int)ZtrFileType.LittleEndianUncompressedPair);
 
             byte[] key = Encoding.ASCII.GetBytes(entry.Key);
-            byte[] value = _encoding.GetBytes(entry.Value);
+            byte[] value = (entry.IsAnimatedText ? FFXIIITextEncodingFactory.DefaultEuroEncoding.Value : _encoding).GetBytes(entry.Value);
 
             _bw.Write(12);
             _bw.Write(12 + key.Length + 1);

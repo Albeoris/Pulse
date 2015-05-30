@@ -6,5 +6,6 @@ namespace Pulse.FS
     {
         public string Key;
         public string Value;
+        public bool IsAnimatedText;
     }
 }

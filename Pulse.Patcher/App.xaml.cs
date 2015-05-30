@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Pulse.UI;
 
 namespace Pulse.Patcher
 {
@@ -16,5 +17,11 @@ namespace Pulse.Patcher
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            StringsToZtrArchiveEntryInjector.ReplaceAnimatedText = true;
+
+            base.OnStartup(e);
+        }
     }
 }

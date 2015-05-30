@@ -47,6 +47,7 @@ namespace Pulse.Patcher
         }
 
         private string _userName;
+
         private async Task<SafeUnmanagedArray> Decompress()
         {
             _userName = ((MainWindow)this.GetRootElement()).GetUserName();
