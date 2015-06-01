@@ -63,7 +63,7 @@ namespace Pulse.UI
                     }
                     case UiNodeType.DataTableLeaf:
                     {
-                        foreach (UiWpdLeafsAccessor accessor in GroupWpdLeafs(group.OfType<UiWpdTableLeaf>(), conversion))
+                        foreach (UiWpdLeafsAccessor accessor in GroupWpdLeafs(group.OfType<UiWpdTableLeaf>(), conversion)) // TODO: SEDBLeafs
                             yield return accessor;
                         break;
                     }

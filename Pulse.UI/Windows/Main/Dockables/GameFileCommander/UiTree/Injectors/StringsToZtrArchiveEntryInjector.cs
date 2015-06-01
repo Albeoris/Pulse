@@ -240,6 +240,7 @@ namespace Pulse.UI
 
             {"$libra_00", "LEVEL"},
             {"$pause_00", "PAUSED"},
+            {"$tutorial_00", "TUTORIAL"},
 
             {"$m_atcl_chpt00", "CHAPTER"},
             {"$m_atcl_head00", "LOG ENTRY"},
@@ -306,6 +307,10 @@ namespace Pulse.UI
             {"$f_mtxt_03", "CRYSTARIUM"},
             {"$f_mtxt_04", "TECHNICAL POINTS"},
 
+            {"$f_opt_mtxt_00", "PARADIGMS"},
+            {"$f_opt_mtxt_01", "ROLE LEVEL"},
+            {"$f_opt_mtxt_02", "ROLE BONUS"},
+            {"$f_opt_mtxt_03", "LV."},
             {"$f_opt_mtxt_04", "LEADER"},
             {"$f_opt_mtxt_05", "MEMBER"},
 
