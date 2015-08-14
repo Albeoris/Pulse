@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Pulse.UI
@@ -8,5 +9,6 @@ namespace Pulse.UI
         String ProvideRootDirectory();
         Boolean DirectoryIsExists(string directoryPath);
         Stream TryOpen(String sourcePath);
+        Dictionary<string, string> TryProvideStrings();
     }
 }

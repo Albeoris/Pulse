@@ -30,7 +30,7 @@ namespace Pulse.UI
                 col.Width = width;
         }
 
-        public void AddUiElement(UIElement uiElement, int row, int col, int rowSpan = 0, int colSpan = 0)
+        public T AddUiElement<T>(T uiElement, int row, int col, int rowSpan = 0, int colSpan = 0) where T : UIElement
         {
             if (row > 0) uiElement.SetValue(RowProperty, row);
             if (col > 0) uiElement.SetValue(ColumnProperty, col);
@@ -38,6 +38,7 @@ namespace Pulse.UI
             if (colSpan > 0) uiElement.SetValue(ColumnSpanProperty, colSpan);
 
             Children.Add(uiElement);
+            return uiElement;
         }
 
         public UiGridSplitter AddVerticalSplitter(int col, int row = 0, int rowSpan = 0)

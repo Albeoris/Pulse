@@ -30,7 +30,18 @@ namespace Pulse.UI
         {
             UiChildPackageBuilder childPackages = new UiChildPackageBuilder(InteractionService.GameLocation.Provide().AreasDirectory);
 
-            _listing = ArchiveListingReaderV1.Read(_accessor, null, null);
+            switch (InteractionService.GamePart)
+            {
+                case FFXIIIGamePart.Part1:
+                    _listing = ArchiveListingReaderV1.Read(_accessor, null, null);
+                    break;
+                case FFXIIIGamePart.Part2:
+                    _listing = ArchiveListingReaderV2.Read(_accessor, null, null);
+                    break;
+                default:
+                    throw new NotSupportedException(InteractionService.GamePart.ToString());
+            }
+
             _listing.Parent = _parentListing;
             
             HashSet<string> set = new HashSet<string>();
@@ -98,7 +109,7 @@ namespace Pulse.UI
                 }
             }
 
-            UiNode[] result = null;
+            UiNode[] result = EmptyChilds;
             foreach (IGrouping<UiNode, UiNode> group in dic.Values.GroupBy(n => n.Parent))
             {
                 if (group.Key == this)

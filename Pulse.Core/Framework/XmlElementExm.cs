@@ -29,6 +29,17 @@ namespace Pulse.Core
             return child;
         }
 
+        public static XmlElement GetChildElement(this XmlElement self, int index)
+        {
+            Exceptions.CheckArgumentNull(self, "self");
+
+            XmlElement child = self.ChildNodes[index] as XmlElement;
+            if (child == null)
+                throw Exceptions.CreateArgumentException("self", "Дочерний XmlElement '{0}' не найден.", index);
+
+            return child;
+        }
+
         public static XmlAttribute GetChildAttribute(this XmlElement self, string name)
         {
             Exceptions.CheckArgumentNull(self, "self");

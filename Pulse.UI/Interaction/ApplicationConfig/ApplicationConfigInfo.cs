@@ -19,6 +19,7 @@ namespace Pulse.UI.Interaction
         public GameLocationInfo GameLocation;
         public WorkingLocationInfo WorkingLocation;
         public String FileCommanderSelectedNodePath;
+        public LocalizatorEnvironmentInfo LocalizatorEnvironment;
 
         public void Load()
         {
@@ -28,6 +29,7 @@ namespace Pulse.UI.Interaction
                 GameLocation = GameLocationInfo.FromXml(config["GameLocation"]);
                 WorkingLocation = WorkingLocationInfo.FromXml(config["WorkingLocation"]);
                 FileCommanderSelectedNodePath = config.FindString("FileCommanderSelectedNodePath");
+                LocalizatorEnvironment = LocalizatorEnvironmentInfo.FromXml(config["LocalizatorEnvironment"]);
             }
         }
 
@@ -51,6 +53,7 @@ namespace Pulse.UI.Interaction
                 if (GameLocation != null) GameLocation.ToXml(config.CreateChildElement("GameLocation"));
                 if (WorkingLocation != null) WorkingLocation.ToXml(config.CreateChildElement("WorkingLocation"));
                 if (FileCommanderSelectedNodePath != null) config.SetString("FileCommanderSelectedNodePath", FileCommanderSelectedNodePath);
+                if (LocalizatorEnvironment != null) LocalizatorEnvironment.ToXml(config.CreateChildElement("LocalizatorEnvironment"));
 
                 config.GetOwnerDocument().Save(ConfigurationFilePath);
             }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Pulse.UI
@@ -12,7 +13,8 @@ namespace Pulse.UI
             Image = new Image();
             Background = Brushes.Transparent;
             BorderBrush = Brushes.Transparent;
-            
+            Template = StaticTemplate;
+
             Content = Image;
         }
 
@@ -20,6 +22,18 @@ namespace Pulse.UI
         {
             get { return Image.Source; }
             set { Image.Source = value; }
+        }
+
+        private static readonly ControlTemplate StaticTemplate = CreateTemplate();
+
+        private static ControlTemplate CreateTemplate()
+        {
+            ControlTemplate result = new ControlTemplate(typeof(UiImageButton));
+
+            FrameworkElementFactory contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
+
+            result.VisualTree = contentPresenter;
+            return result;
         }
     }
 }

@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using NAudio.FileFormats.Mp3;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Navigation;
 using NAudio.Wave;
 using Pulse.Core;
 using Pulse.UI;
+using Shazzam.Shaders;
 
 namespace Pulse.Patcher
 {
@@ -16,12 +22,29 @@ namespace Pulse.Patcher
     public partial class MainWindow
     {
         private readonly DisposableStack _disposables = new DisposableStack();
+        private readonly BackgroundMusicPlayer _player;
 
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += OnLoaded;
             Unloaded += OnUnloaded;
+            MouseDown += OnMouseDown;
+
+            _player = _disposables.Add(BackgroundMusicPlayer.TryCreateAndPlay());
+            PlayButton.GameSettings = GameSettings;
+            PlayButton.MusicPlayer = _player;
+
+            LocalizatorEnvironmentInfo info = InteractionService.LocalizatorEnvironment.Provide();
+            if (!info.PlayMusic)
+                OnMusicButtonClick(MusicButton, new RoutedEventArgs());
+            if (!info.ExitAfterRunGame)
+                OnSwitchButtonClick(SwitchButton, new RoutedEventArgs());
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -29,15 +52,26 @@ namespace Pulse.Patcher
             _disposables.Dispose();
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnMusicButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                Stream stream = _disposables.Add(Assembly.GetExecutingAssembly().GetManifestResourceStream("Pulse.Patcher.Background.mp3"));
-                IWavePlayer waveOutDevice = _disposables.Add(new WaveOut());
-                Mp3FileReader audioFileReader = _disposables.Add(new Mp3FileReader(stream, CreateMp3Decompressor));
-                waveOutDevice.Init(audioFileReader);
-                waveOutDevice.Play();
+                if (_player == null)
+                    return;
+
+                UiImageButton button = (UiImageButton)sender;
+                if (_player.PlaybackState == PlaybackState.Playing)
+                {
+                    InteractionService.LocalizatorEnvironment.Provide().PlayMusic = false;
+                    button.ImageSource = Icons.DisabledMusicIcon;
+                    _player.Pause();
+                }
+                else
+                {
+                    InteractionService.LocalizatorEnvironment.Provide().PlayMusic = true;
+                    button.ImageSource = Icons.EnabledMusicIcon;
+                    _player.Play();
+                }
             }
             catch (Exception ex)
             {
@@ -45,38 +79,53 @@ namespace Pulse.Patcher
             }
         }
 
-        private IMp3FrameDecompressor CreateMp3Decompressor(WaveFormat mp3Format)
+        private void OnSwitchButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                return new AcmMp3FrameDecompressor(mp3Format);
+                UiImageButton button = (UiImageButton)sender;
+                if (ReferenceEquals(button.ImageSource, Icons.DisabledSwitchIcon))
+                {
+                    button.ImageSource = Icons.EnabledSwitchIcon;
+                    InteractionService.LocalizatorEnvironment.Provide().ExitAfterRunGame = true;
+                }
+                else
+                {
+                    button.ImageSource = Icons.DisabledSwitchIcon;
+                    InteractionService.LocalizatorEnvironment.Provide().ExitAfterRunGame = false;
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return new DmoMp3FrameDecompressor(mp3Format);
+                UiHelper.ShowError(this, ex);
             }
         }
 
-        public string GetUserName()
-        {
-            return Dispatcher.Invoke(()=>NameTextBox.Text);
-        }
+//        public string GetUserName()
+//        {
+//            return Dispatcher.Invoke(()=>NameTextBox.Text);
+//        }
 
-        public async Task<string> GetSecurityKeyAsync(bool log)
+//        public async Task<string> GetSecurityKeyAsync(bool log)
+//        {
+//            string name = Dispatcher.Invoke(()=>NameTextBox.Text);
+//            string password = Dispatcher.Invoke(()=>PasswordBox.Password);
+//
+//            return await Task.Factory.StartNew(() => GetSecurityKey(name, password, log));
+//        }
+//
+//        public string GetSecurityKey(string name, string password, bool log)
+//        {
+//            ForumAccessor forumAccessor = new ForumAccessor();
+//            forumAccessor.Login(name, password);
+//            if (log)
+//                forumAccessor.Log("Установка патча", "Коварно пытаюсь поставить патч.");
+//            return forumAccessor.ReadSecurityKey();
+//        }
+        private void OnHyperlinkClick(object sender, RequestNavigateEventArgs e)
         {
-            string name = Dispatcher.Invoke(()=>NameTextBox.Text);
-            string password = Dispatcher.Invoke(()=>PasswordBox.Password);
-
-            return await Task.Factory.StartNew(() => GetSecurityKey(name, password, log));
-        }
-
-        public string GetSecurityKey(string name, string password, bool log)
-        {
-            ForumAccessor forumAccessor = new ForumAccessor();
-            forumAccessor.Login(name, password);
-            if (log)
-                forumAccessor.Log("Установка патча", "Коварно пытаюсь поставить патч.");
-            return forumAccessor.ReadSecurityKey();
+            Process.Start(e.Uri.AbsoluteUri);
+            e.Handled = true;
         }
     }
 }

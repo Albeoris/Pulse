@@ -7,10 +7,11 @@ namespace Pulse.UI
 {
     public sealed class UiGameFilePreview : UiMainDockableControl
     {
-        private readonly UiGlTextureViewer _textureViewer;
+        private readonly UiDxTextureViewer _textureViewer;
         private readonly UiGrid _grid;
         private readonly UiAudioPlayback _sound;
         private readonly UiGameFilePreviewYkd _ykd;
+        private readonly UiGameFilePreviewZtr _ztr;
 
         public UiGameFilePreview()
         {
@@ -20,14 +21,16 @@ namespace Pulse.UI
 
             _grid = UiGridFactory.Create(1, 1);
 
-            _textureViewer = new UiGlTextureViewer();
+            _textureViewer = new UiDxTextureViewer();
             _sound = new UiAudioPlayback();
             _ykd = new UiGameFilePreviewYkd();
+            _ztr = new UiGameFilePreviewZtr();
             HideControls();
 
             _grid.AddUiElement(_textureViewer, 0, 0);
             _grid.AddUiElement(_sound, 0, 0);
             _grid.AddUiElement(_ykd, 0, 0);
+            _grid.AddUiElement(_ztr, 0, 0);
 
             Content = _grid;
 
@@ -46,6 +49,7 @@ namespace Pulse.UI
             _textureViewer.Visibility = Visibility.Hidden;
             _sound.Visibility = Visibility.Hidden;
             _ykd.Visibility = Visibility.Hidden;
+            _ztr.Visibility = Visibility.Hidden;
         }
 
         private void OnSelectedLeafChanged(IUiLeaf leaf)
@@ -90,6 +94,9 @@ namespace Pulse.UI
             {
                 case ".scd":
                     _sound.Show(listing, entry);
+                    break;
+                case ".ztr":
+                    _ztr.Show(listing, entry);
                     break;
             }
         }

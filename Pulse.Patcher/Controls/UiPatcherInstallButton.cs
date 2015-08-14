@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using Pulse.Core;
 using Pulse.FS;
@@ -15,6 +17,7 @@ namespace Pulse.Patcher
     {
         private const string InstallLabel = "Установить";
         private const string InstallationLabel = "Установка...";
+        private const string DownloadingLabel = "Скачивание...";
 
         public UiPatcherInstallButton()
         {
@@ -24,20 +27,21 @@ namespace Pulse.Patcher
         protected override async Task DoAction()
         {
             Label = InstallationLabel;
+            DirectoryInfo dir = null;
             try
             {
-                using (SafeUnmanagedArray buff = await Decompress())
-                {
-                    if (CancelEvent.IsSet())
-                        return;
+                dir = ExtractZipToTempFolder(PatcherService.ArchiveFileName);
 
-                    using (Stream input = buff.OpenStream(FileAccess.Read))
-                        await PatchAsync(input);
-                }
+                if (CancelEvent.IsSet())
+                    return;
+
+                await Patch(dir);
             }
             finally
             {
                 Label = InstallLabel;
+                if (dir != null)
+                    dir.Delete(true);
             }
         }
 
@@ -46,155 +50,159 @@ namespace Pulse.Patcher
             Position += value;
         }
 
-        private string _userName;
-
-        private async Task<SafeUnmanagedArray> Decompress()
+        private async Task<string> DownloadLatestPatcher()
         {
-            _userName = ((MainWindow)this.GetRootElement()).GetUserName();
-            string securityKey = await ((MainWindow)this.GetRootElement()).GetSecurityKeyAsync(true);
-            if (CancelEvent.IsSet())
-                return null;
+            Label = DownloadingLabel;
+            try
+            {
+                if (CancelEvent.WaitOne(0))
+                    return null;
 
-            using (FileStream input = File.OpenRead(PatcherService.ArchiveFileName))
-            using (MemoryStream ms = new MemoryStream((int)input.Length))
+                Downloader downloader = new Downloader(CancelEvent);
+                downloader.DownloadProgress += OnDownloadProgress;
+
+                HttpFileInfo latest = await GetLatestPatcherUrl(downloader);
+                if (latest == null)
+                    throw new Exception("Не удалось найти свежую версию программы установки. Проверьте файл конфигурации.");
+
+                Maximum = latest.ContentLength;
+
+                string filePath = Path.GetTempFileName();
+                await downloader.Download(latest.Url, filePath);
+                return filePath;
+            }
+            finally
+            {
+                Label = InstallLabel;
+            }
+        }
+
+        private async Task<HttpFileInfo> GetLatestPatcherUrl(Downloader downloader)
+        {
+            LocalizatorEnvironmentInfo info = InteractionService.LocalizatorEnvironment.Provide();
+
+            HttpFileInfo latest = null;
+            foreach (string url in info.PatherUrls)
+            {
+                try
+                {
+                    HttpFileInfo fileInfo = await downloader.GetRemoteFileInfo(url);
+                    if (latest == null || latest.LastModified < fileInfo.LastModified)
+                        latest = fileInfo;
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning(ex, "Не удалось получить информацию о файле: [{0}]", url);
+                }
+            }
+            return latest;
+        }
+
+        private void OnDownloadProgress(long value)
+        {
+            Position += value;
+        }
+
+        private DirectoryInfo ExtractZipToTempFolder(string zipPath)
+        {
+            using (ZipArchive zipFile = ZipFile.OpenRead(zipPath))
             {
                 if (CancelEvent.IsSet())
                     return null;
 
-                Maximum = input.Length;
-                using (CryptoProvider cryptoProvider = new CryptoProvider(securityKey, CancelEvent))
-                {
-                    cryptoProvider.Progress += OnProgress;
-                    await cryptoProvider.Decrypt(input, ms);
-                }
+                DirectoryInfo dir = Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()));
+                zipFile.ExtractToDirectory(dir.FullName);
 
-                if (CancelEvent.IsSet())
-                    return null;
-
-                Position = ms.Position = 0;
-                BinaryReader br = new BinaryReader(ms);
-                int uncompressedSize = br.ReadInt32();
-                byte[] buff = new byte[Math.Min(32 * 1024, uncompressedSize)];
-
-                if (CancelEvent.IsSet())
-                    return null;
-
-                SafeUnmanagedArray result = new SafeUnmanagedArray(uncompressedSize);
-                try
-                {
-                    if (CancelEvent.IsSet())
-                        return null;
-
-                    Maximum = uncompressedSize;
-                    using (UnmanagedMemoryStream output = result.OpenStream(FileAccess.Write))
-                        ZLibHelper.Uncompress(ms, output, uncompressedSize, buff, CancellationToken.None, OnProgress);
-                }
-                catch
-                {
-                    result.SafeDispose();
-                    throw;
-                }
-
-                return result;
+                return dir;
             }
         }
 
-        private async Task PatchAsync(Stream input)
-        {
-            await Task.Factory.StartNew(() => Patch(input));
-        }
-
-        private void Patch(Stream input)
+        private async Task Patch(DirectoryInfo translationDir)
         {
             Position = 0;
-            Maximum = input.Length;
 
             if (CancelEvent.IsSet())
                 return;
 
-            BinaryReader br = new BinaryReader(input);
-
-            PatchFormatVersion fileVersion = (PatchFormatVersion)input.ReadByte();
-            if (fileVersion > PatcherService.Version)
-                throw new NotSupportedException("Пожалуйста, обновите программу установки.");
-            OnProgress(1);
-
-            if (CancelEvent.IsSet())
-                return;
-
-            FFXIIIGamePart gamePart = (FFXIIIGamePart)input.ReadByte();
+            FFXIIIGamePart gamePart = FFXIIIGamePart.Part1; // TODO
             InteractionService.SetGamePart(gamePart);
-            OnProgress(1);
+
+            String configurationFilePath = Path.Combine(translationDir.FullName, PatcherService.ConfigurationFileName);
+            XmlElement config = XmlHelper.LoadDocument(configurationFilePath);
+            LocalizatorEnvironmentInfo info = LocalizatorEnvironmentInfo.FromXml(config["LocalizatorEnvironment"]);
+            info.Validate();
+
+            LocalizatorEnvironmentInfo currentInfo = InteractionService.LocalizatorEnvironment.Provide();
+            currentInfo.UpdateUrls(info);
+
+            InteractionService.LocalizatorEnvironment.SetValue(currentInfo);
+            InteractionService.WorkingLocation.SetValue(new WorkingLocationInfo(translationDir.FullName));
+
+            if (currentInfo.IsIncompatible(typeof(App).Assembly.GetName().Version))
+            {
+                if (MessageBox.Show(this.GetParentElement<Window>(), "Ваша версия программы установки несовместима с текущим перевод. Обновить?", "Ошибка!", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                    return;
+
+                string path = await DownloadLatestPatcher();
+                DirectoryInfo updatePath = ExtractZipToTempFolder(path);
+                string destination = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
+
+                string patcherPath = Path.Combine(updatePath.FullName, "Pulse.Patcher.exe");
+                ProcessStartInfo procInfo = new ProcessStartInfo(patcherPath, String.Format("/u \"{0}\"", destination))
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    WorkingDirectory = updatePath.FullName
+                };
+                
+                Process.Start(procInfo);
+                Environment.Exit(0);
+            }
 
             if (CancelEvent.IsSet())
                 return;
 
             GameLocationInfo gameLocation = PatcherService.GetGameLocation(gamePart);
-            Patch(br, gameLocation);
+            await Task.Run(() => Patch(translationDir, gameLocation));
         }
 
-        private void Patch(BinaryReader br, GameLocationInfo gameLocation)
+        private void Patch(DirectoryInfo translationDir, GameLocationInfo gameLocation)
         {
             if (CancelEvent.IsSet())
                 return;
 
-            FFXIIITextEncoding encoding = ReadEncoding(br);
-            TextEncodingInfo encodingInfo = new TextEncodingInfo(encoding);
-            InteractionService.TextEncoding.SetValue(encodingInfo);
+            Dictionary<string, string> dic = ReadStrings(translationDir);
             if (CancelEvent.IsSet())
                 return;
 
-            Dictionary<string, string> dic = ReadStrings(br);
-            dic["$title_newgame"] = _userName;
-            if (CancelEvent.IsSet())
-                return;
+            FileSystemInjectionSource source = new FileSystemInjectionSource();
+            source.RegisterStrings(dic);
 
-            using (DisposableStack disposables = new DisposableStack())
+            UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
+            UiArchives archives = builder.Build();
+            Position = 0;
+            Maximum = archives.Count;
+            foreach (UiContainerNode archive in archives)
             {
-                MemoryInjectionSource source = disposables.Add(new MemoryInjectionSource());
-                source.RegisterStrings(dic);
-                if (CancelEvent.IsSet())
-                    return;
-
-                int count = br.ReadInt32();
-                OnProgress(4);
-
-                for (int i = 0; i < count; i++)
-                {
-                    long position = br.BaseStream.Position;
-                    ImgbPatchData imgb = disposables.Add(ImgbPatchData.ReadFrom(br));
-                    foreach (KeyValuePair<string, SafeUnmanagedArray> data in imgb)
-                        source.RegisterStream(Path.Combine(imgb.XgrArchiveUnpackName, data.Key), data.Value.OpenStream(FileAccess.Read));
-                    OnProgress(br.BaseStream.Position - position);
-                    if (CancelEvent.IsSet())
-                        return;
-                }
-
-                UiArchiveTreeBuilder builder = new UiArchiveTreeBuilder(gameLocation);
-                UiArchives archives = builder.Build();
-                Position = 0;
-                Maximum = archives.Count;
-                foreach (UiContainerNode archive in archives)
-                {
-                    Check(archive);
-                    OnProgress(1);
-                }
-
-                if (CancelEvent.IsSet())
-                    return;
-
-                IUiLeafsAccessor[] accessors = archives.AccessToCheckedLeafs(new Wildcard("*"), null, false).ToArray();
-                Position = 0;
-                Maximum = accessors.Length;
-
-                UiInjectionManager manager = new UiInjectionManager();
-                foreach (IUiLeafsAccessor accessor in accessors)
-                {
-                    accessor.Inject(source, manager);
-                    OnProgress(1);
-                }
-                manager.WriteListings();
+                Check(archive);
+                OnProgress(1);
             }
+
+            if (CancelEvent.IsSet())
+                return;
+
+            IUiLeafsAccessor[] accessors = archives.AccessToCheckedLeafs(new Wildcard("*"), null, false).ToArray();
+            Position = 0;
+            Maximum = accessors.Length;
+
+            UiInjectionManager manager = new UiInjectionManager();
+            foreach (IUiLeafsAccessor accessor in accessors)
+            {
+                accessor.Inject(source, manager);
+                OnProgress(1);
+            }
+
+            manager.WriteListings();
         }
 
         private void Check(UiNode node)
@@ -244,46 +252,31 @@ namespace Pulse.Patcher
             }
         }
 
-        private FFXIIITextEncoding ReadEncoding(BinaryReader br)
+        private Dictionary<string, string> ReadStrings(DirectoryInfo translationDir)
         {
-            int length = br.ReadInt32();
-            OnProgress(4);
+            String[] strings = Directory.GetFiles(Path.Combine(translationDir.FullName, "Strings"), "*.strings", SearchOption.AllDirectories);
 
-            using (MemoryStream ms = new MemoryStream(length))
-            {
-                byte[] buff = new byte[4096];
-                br.BaseStream.CopyToStream(ms, length, buff);
-                ms.Position = 0;
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(ms);
-
-                OnProgress(length);
-
-                FFXIIICodePage codepage = FFXIIICodePageHelper.FromXml(doc.GetDocumentElement());
-                return new FFXIIITextEncoding(codepage);
-            }
-        }
-
-        private Dictionary<string, string> ReadStrings(BinaryReader br)
-        {
             Dictionary<string, string> result = new Dictionary<string, string>(16000);
-            OnProgress(4);
+            Maximum = strings.Length;
 
-            for (int count = br.ReadInt32(); count > 0; count = br.ReadInt32())
+            for (int i = 0; i < strings.Length; i++)
             {
-                long position = br.BaseStream.Position;
                 if (CancelEvent.IsSet())
                     return result;
 
-                for (int i = 0; i < count; i++)
+                using (FileStream input = File.OpenRead(strings[i]))
                 {
-                    string key = br.ReadString();
-                    string value = br.ReadString();
-                    result[key] = value;
+                    string name;
+                    ZtrTextReader unpacker = new ZtrTextReader(input, StringsZtrFormatter.Instance);
+                    ZtrFileEntry[] entries = unpacker.Read(out name);
+
+                    foreach (ZtrFileEntry entry in entries)
+                    {
+                        string key = entry.Key;
+                        string value = entry.Value;
+                        result[key] = value;
+                    }
                 }
-                OnProgress(br.BaseStream.Position - position);
-                OnProgress(4);
             }
 
             return result;

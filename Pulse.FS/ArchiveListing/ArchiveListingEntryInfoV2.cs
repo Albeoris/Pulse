@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using Pulse.Core;
 
 namespace Pulse.FS
 {
@@ -6,12 +9,34 @@ namespace Pulse.FS
     /// Borrowed: http://forum.xentax.com/viewtopic.php?f=10&t=10985&start=15
     /// Thank you rhadamants
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct ArchiveListingEntryInfoV2
+    public sealed class ArchiveListingEntryInfoV2 : IStreamingContent
     {
         public short UnknownValue;
         public short UnknownNumber;
-        public short Offset; // Exact position in file chunk with info about this file. Offsets are funky and doesn't always reset to 0 for each file chunk.
-        public short Unknown3; // Supposed to be fileChunk? Don't know how it works.
+        public short RawOffset; // Exact position in file chunk with info about this file. Offsets are funky and doesn't always reset to 0 for each file chunk.
+        public short UnknownData; // Supposed to be fileChunk? Don't know how it works.
+
+        public short BlockNumber;
+        public Boolean Flag => (RawOffset & 0x8000) == 0x8000;
+        public short Offset => (short)(RawOffset & 0x7FFF);
+
+        public void ReadFromStream(Stream stream)
+        {
+            BinaryReader br = new BinaryReader(stream);
+
+            UnknownValue = br.ReadInt16();
+            UnknownNumber = br.ReadInt16();
+            RawOffset = br.ReadInt16();
+            UnknownData = br.ReadInt16();
+        }
+
+        public void WriteToStream(Stream stream)
+        {
+            BinaryWriter bw = new BinaryWriter(stream);
+            bw.Write(UnknownValue);
+            bw.Write(UnknownNumber);
+            bw.Write(RawOffset);
+            bw.Write(UnknownData);
+        }
     }
 }

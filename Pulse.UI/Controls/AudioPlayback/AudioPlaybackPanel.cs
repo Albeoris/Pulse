@@ -10,7 +10,6 @@ namespace NAudioDemo.AudioPlaybackDemo
     {
         private IWavePlayer _waveOut;
         private WaveStream _waveProvider;
-        private Action<float> _setVolumeDelegate;
 
         public AudioPlaybackPanel(IEnumerable<IOutputAudioDeviceFactory> outputDevicePlugins)
         {
@@ -137,10 +136,6 @@ namespace NAudioDemo.AudioPlaybackDemo
             if (_waveOut != null)
             {
                 _waveOut.Stop();
-            }
-            if (_waveProvider != null)
-            {
-                _setVolumeDelegate = null;
             }
             if (_waveOut != null)
             {

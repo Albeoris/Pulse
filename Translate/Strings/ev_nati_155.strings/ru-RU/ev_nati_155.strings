@@ -1,7 +1,0 @@
-﻿/*txtres/event/ev_nati_155/txtres_us.ztr*/
-/*0005*/
-"0000║$enati155_010nb" = "Поосторожней с ними.{End}{Escape}Набат";
-"0001║$enati155_020nb" = "Для каждой задачи{Text NewLine}есть свой идеальный инструмент.{End}{Escape}Набат";
-
-"0003║$enati155_040va" = "{Italic}Весь Кокон ополчился против нас.{Italic}{End}{Escape}";
-"0004║$enati155_050va" = "{Italic}Они даже не сомневались - убьют нас -{Text NewLine}и всё станет как прежде, всё вернётся на круги своя.{Italic}{End}{Escape}";

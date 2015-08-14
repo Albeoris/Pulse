@@ -66,8 +66,9 @@ namespace Pulse.UI
                 if (e.Model.Title != (string)item.Header)
                     continue;
 
-                e.Model.Content = item.CommandParameter;
-                e.Cancel = true;
+                e.Content = item.CommandParameter;
+                //e.Model.Content = item.CommandParameter;
+                e.Cancel = false;
                 return;
             }
         }

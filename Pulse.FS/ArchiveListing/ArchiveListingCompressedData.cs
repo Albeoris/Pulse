@@ -8,12 +8,12 @@ namespace Pulse.FS
 {
     public sealed class ArchiveListingCompressedData : IStreamingContent
     {
-        private readonly ArchiveListingHeader _header;
+        private readonly IArchiveListingHeader _header;
 
         private readonly byte[][] _uncompressedBlocks;
         private volatile Exception _exception;
 
-        public ArchiveListingCompressedData(ArchiveListingHeader header)
+        public ArchiveListingCompressedData(IArchiveListingHeader header)
         {
             _header = header;
             _uncompressedBlocks = new byte[_header.BlocksCount][];

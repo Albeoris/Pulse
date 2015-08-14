@@ -9,10 +9,7 @@ namespace Pulse.UI
         private readonly WpdEntry[] _leafs;
         private readonly bool? _conversion;
 
-        public UiNodeType Type
-        {
-            get { return UiNodeType.DataTable; }
-        }
+        public UiNodeType Type => UiNodeType.DataTable;
 
         public UiWpdLeafsAccessor(WpdArchiveListing listing, bool? conversion, params WpdEntry[] leafs)
         {

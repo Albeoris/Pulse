@@ -68,7 +68,7 @@ namespace Pulse.UI
                     memorySource.RegisterStream(entry.Name, _content.Value);
                 }
 
-                using (UiArchiveInjector injector = new UiArchiveInjector(_listing.Accessor.Parent, entries.ToArray(), false, false, memorySource))
+                using (UiArchiveInjector injector = new UiArchiveInjector(_listing.Accessor.Parent, entries.ToArray(), _conversion, false, memorySource))
                     injector.Inject(manager);
 
                 manager.Enqueue(_listing.Accessor.Parent);
@@ -150,7 +150,8 @@ namespace Pulse.UI
         {
             return new Dictionary<String, IWpdEntryInjector>
             {
-                {"txbh", new DdsToTxbhWpdEntryInjector()}
+                {"txbh", new DdsToTxbhWpdEntryInjector()},
+                {"vtex", new DdsToVtexWpdEntryInjector()}
             };
         }
 

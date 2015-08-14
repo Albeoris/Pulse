@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows;
-using System.Xml;
+using System.Windows.Threading;
 using Pulse.Core;
-using Pulse.FS;
 using Pulse.UI;
 
 namespace Pulse
@@ -18,6 +14,9 @@ namespace Pulse
         protected override void OnStartup(StartupEventArgs e)
         {
             Log.Message("Приложение запущено.");
+
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            DispatcherUnhandledException += OnDispatcherUnhandledException;
 
             //// book.strings => review.strings
             //ZtrFileEntry[] books, reviews;
@@ -51,7 +50,6 @@ namespace Pulse
             //
             //Environment.Exit(1);
 
-
             UiMainWindow main = new UiMainWindow();
             UiGamePartSelectDialog dlg = new UiGamePartSelectDialog();
             if (dlg.ShowDialog() != true)
@@ -59,6 +57,23 @@ namespace Pulse
 
             InteractionService.SetGamePart(dlg.Result);
             main.Show();
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Log.Error((Exception)e.ExceptionObject, "Unexpected error");
+        }
+
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                UiHelper.ShowError(null, e.Exception, "Unexpected error");
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

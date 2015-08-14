@@ -1,6 +1,9 @@
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows;
 using Pulse.Core;
+using Pulse.Patcher.Controls;
 using Pulse.UI;
 
 namespace Pulse.Patcher
@@ -9,6 +12,9 @@ namespace Pulse.Patcher
     {
         private const string PlayLabel = "Играть";
         private const string PlayingLabel = "Запуск...";
+
+        public GameSettingsControl GameSettings { get; set; }
+        public BackgroundMusicPlayer MusicPlayer { get; set; }
 
         public UiPatcherPlayButton()
         {
@@ -22,7 +28,6 @@ namespace Pulse.Patcher
             {
                 Maximum = 2;
 
-                InteractionService.SetGamePart(FFXIIIGamePart.Part1);
                 GameLocationInfo gameLocation = PatcherService.GetGameLocation(FFXIIIGamePart.Part1);
                 gameLocation.Validate();
                 Position = 1;
@@ -30,8 +35,16 @@ namespace Pulse.Patcher
                 if (CancelEvent.WaitOne(0))
                     return;
 
-                await Task.Factory.StartNew(() => Process.Start(gameLocation.ExecutablePath));
+                if (MusicPlayer != null && MusicPlayer.PlaybackState == NAudio.Wave.PlaybackState.Playing)
+                    MusicPlayer.Pause();
+
+                String args = GameSettings.GetGameProcessArguments();
+
+                await Task.Factory.StartNew(() => Process.Start(gameLocation.ExecutablePath, args));
                 Position = 2;
+
+                if (InteractionService.LocalizatorEnvironment.Provide().ExitAfterRunGame)
+                    Application.Current.MainWindow.Close();
             }
             finally
             {

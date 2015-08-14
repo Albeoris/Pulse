@@ -14,7 +14,8 @@ namespace Pulse.Patcher
     public static class PatcherService
     {
         public const PatchFormatVersion Version = PatchFormatVersion.V1;
-        public const string ArchiveFileName = "ff13.ffrtt.ru";
+        public const string ArchiveFileName = "translation.zip";
+        public const string ConfigurationFileName = "config.xml";
 
         private static readonly ConcurrentDictionary<FrameworkElement, FrameworkElement> Controls = new ConcurrentDictionary<FrameworkElement, FrameworkElement>();
 

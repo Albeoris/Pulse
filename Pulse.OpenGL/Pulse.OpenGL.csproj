@@ -39,6 +39,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -71,6 +72,18 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedSquish, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fac8b2bfeda84eab, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedSquish.2.0.0.0\lib\net40\ManagedSquish.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NativeSquish_x64, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fac8b2bfeda84eab, processorArchitecture=AMD64">
+      <HintPath>..\packages\ManagedSquish.2.0.0.0\lib\net40\NativeSquish_x64.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NativeSquish_x86, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fac8b2bfeda84eab, processorArchitecture=x86">
+      <HintPath>..\packages\ManagedSquish.2.0.0.0\lib\net40\NativeSquish_x86.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
@@ -116,9 +129,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorsHelper.cs" />
     <Compile Include="GLService.cs" />
-    <Compile Include="PixelFormatDescriptor.cs" />
     <Compile Include="Textures\DDS\D3D10ResourceDimension.cs" />
     <Compile Include="Textures\DDS\D3D10ResourceMisc.cs" />
     <Compile Include="Textures\DDS\DdsAlphaMode.cs" />
@@ -133,12 +144,7 @@
     <Compile Include="Textures\DDS\DdsPixelFormatFlags.cs" />
     <Compile Include="Textures\DDS\DXGIFormat.cs" />
     <Compile Include="Textures\DDS\DdsPixelFormatFourDescriptor.cs" />
-    <Compile Include="Textures\GLFramebuffer.cs" />
     <Compile Include="Textures\GLRectangle.cs" />
-    <Compile Include="Textures\GLTexture.cs" />
-    <Compile Include="Textures\GLTextureReader.cs" />
-    <Compile Include="Textures\LoaderDDS.cs" />
-    <Compile Include="Textures\LoaderStatics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

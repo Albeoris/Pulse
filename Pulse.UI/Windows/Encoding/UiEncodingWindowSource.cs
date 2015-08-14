@@ -1,19 +1,20 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Pulse.Core;
+using Pulse.DirectX;
 using Pulse.FS;
-using Pulse.OpenGL;
+using SharpDX.Direct3D9;
 
 namespace Pulse.UI.Encoding
 {
     public sealed class UiEncodingWindowSource
     {
-        public readonly GLTexture Texture;
+        public readonly DxTexture Texture;
         public readonly WflContent Info;
         public readonly char[] Chars;
         public readonly ConcurrentDictionary<char, short> Codes;
 
-        public UiEncodingWindowSource(string displayName, GLTexture texture, WflContent info, char[] chars, ConcurrentDictionary<char, short> codes)
+        public UiEncodingWindowSource(string displayName, DxTexture texture, WflContent info, char[] chars, ConcurrentDictionary<char, short> codes)
         {
             DisplayName = displayName;
             Texture = texture;

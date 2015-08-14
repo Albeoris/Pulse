@@ -1,6 +1,0 @@
-﻿/*D:\Temp\FFXIII\txtres\zone\z021\txtres_us.ztr*/
-/*0004*/
-"0000║$m_z021_to_lasd" = "ПЕРЕМЕСТИТЬСЯ{End}{Escape}";
-"0001║$m_z021fl_sl000" = "Вернуться в Колыбель Обездоленного?{End}{Escape}";
-"0002║$m_z021fl_sl001" = "Да{End}{Escape}";
-"0003║$m_z021fl_sl002" = "Нет{End}{Escape}";

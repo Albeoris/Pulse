@@ -35,7 +35,7 @@ namespace Pulse.FS
 
         public ArchiveListing Read()
         {
-            ArchiveListingHeader header = _input.ReadStruct<ArchiveListingHeader>();
+            ArchiveListingHeaderV1 header = _input.ReadStruct<ArchiveListingHeaderV1>();
             _progressTotalChanged.NullSafeInvoke(header.EntriesCount);
 
             ArchiveListingEntryInfoV1[] entries = _input.ReadStructs<ArchiveListingEntryInfoV1>(header.EntriesCount);

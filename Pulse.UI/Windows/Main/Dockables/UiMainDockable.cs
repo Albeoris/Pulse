@@ -66,6 +66,7 @@ namespace Pulse.UI
                     {
                         layout = new LayoutAnchorable
                         {
+                            ContentId = window.Header,
                             Title = window.Header,
                             FloatingWidth = window.Width,
                             FloatingHeight = window.Height,

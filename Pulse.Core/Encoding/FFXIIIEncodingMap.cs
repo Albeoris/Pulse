@@ -85,6 +85,8 @@ namespace Pulse.Core
                 {0x8174, 0x134},
                 {0x8175, 0x135},
                 {0x8176, 0x136},
+                {0x8177, 0x137}, // 13-2
+                {0x8178, 0x138}, // 13-2
                 {0x8179, 0x139},
                 {0x817A, 0x13A},
                 {0x817B, 0x13B},
@@ -94,6 +96,7 @@ namespace Pulse.Core
                 {0x8183, 0x142},
                 {0x8184, 0x143},
                 {0x8185, 0x144},
+                {0x8187, 0x146}, // 13-2
                 {0x8193, 0x152},
                 {0x8195, 0x154},
                 {0x819A, 0x159},
@@ -108,7 +111,7 @@ namespace Pulse.Core
                 {0x81F4, 0x1B3}
             };
 
-            // Height ANSI
+            // High ANSI
             for (int i = 0x41; i <= 0x9D; i++)
                 dic.Add(0x8500 + i, 0x40 + i);
             for (int i = 0xA0; i <= 0xDE; i++)

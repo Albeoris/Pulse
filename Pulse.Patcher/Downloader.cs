@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Pulse.Core;
 
 namespace Pulse.Patcher
 {
     public sealed class Downloader
     {
-        private const string RawArchiveLink = "http://rawgit.com/Albeoris/Pulse/master/Translate/FF13TranslationAlpha.ecp";
-
         private readonly ManualResetEvent _cancelEvent;
 
         public event Action<long> DownloadProgress;
@@ -22,45 +18,42 @@ namespace Pulse.Patcher
             _cancelEvent = cancelEvent;
         }
 
-        public async Task<long> GetRemoteFileSize()
+        public async Task<HttpFileInfo> GetRemoteFileInfo(string url)
         {
-            if (_cancelEvent.WaitOne(0))
-                return -1;
+            HttpFileInfo result = new HttpFileInfo();
 
-            WebRequest request = WebRequest.Create(RawArchiveLink);
+            if (_cancelEvent.WaitOne(0))
+                return result;
+
+            WebRequest request = WebRequest.Create(url);
             request.Method = "HEAD";
 
             using (WebResponse resp = await request.GetResponseAsync())
             {
                 if (_cancelEvent.WaitOne(0))
-                    return -1;
+                    return result;
 
-                string header = resp.Headers.Get("Content-Length");
-
-                long contentLength;
-                if (long.TryParse(header, NumberStyles.Integer, CultureInfo.InvariantCulture, out contentLength))
-                    return contentLength;
-
-                return -1;
+                result.ReadFromResponse(url, resp);
+                return result;
             }
         }
 
-        public async Task Download(string fileName)
+        public async Task Download(string url, string fileName)
         {
             if (_cancelEvent.WaitOne(0))
                 return;
 
             using (Stream output = File.Create(fileName))
-                await Download(output);
+                await Download(url, output);
         }
 
-        private async Task Download(Stream output)
+        private async Task Download(String url, Stream output)
         {
             if (_cancelEvent.WaitOne(0))
                 return;
 
             using (HttpClient client = new HttpClient())
-            using (Stream input = await client.GetStreamAsync(RawArchiveLink))
+            using (Stream input = await client.GetStreamAsync(url))
                 await PatcherService.CopyAsync(input, output, _cancelEvent, DownloadProgress);
         }
     }

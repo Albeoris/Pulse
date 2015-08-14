@@ -40,7 +40,7 @@ namespace Pulse.FS
                 int blocksSize = (int)textBuff.Position;
                 textBuff.Position = 0;
 
-                ArchiveListingHeader header = new ArchiveListingHeader();
+                ArchiveListingHeaderV1 header = new ArchiveListingHeaderV1();
                 header.EntriesCount = entriesInfoV1.Length;
                 header.BlockOffset = entriesInfoV1.Length * 8 + 12;
                 header.InfoOffset = header.BlockOffset + blocksInfo.Length * 12;

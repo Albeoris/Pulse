@@ -123,7 +123,19 @@ namespace Pulse.UI
             if (entryPath.EndsWith("2"))
                 return false;
 
-            string binaryName = String.Format("white_{0}_img{1}.win32.bin", entryPath.Substring(14, 5), entryPath.EndsWith("2") ? "2" : string.Empty);
+            string binaryName;
+            switch (InteractionService.GamePart)
+            {
+                case FFXIIIGamePart.Part1:
+                    binaryName = $"white_{entryPath.Substring(14, 5)}_img{(entryPath.EndsWith("2") ? "2" : string.Empty)}.win32.bin";
+                    break;
+                case FFXIIIGamePart.Part2:
+                    binaryName = $"white_{entryPath.Substring(14, 6)}_img{(entryPath.EndsWith("2") ? "2" : string.Empty)}.win32.bin";
+                    break;
+                default:
+                    throw new NotSupportedException("InteractionService.GamePart");
+            }
+
             string binaryPath = Path.Combine(_areasDirectory, binaryName);
             if (!File.Exists(binaryPath))
                 return false;
@@ -156,12 +168,18 @@ namespace Pulse.UI
         private bool TryAddImgbPair(ArchiveListing listing, ArchiveEntry entry, string entryPath, string entryName)
         {
             string ext = PathEx.GetMultiDotComparableExtension(entryName);
+            //if (entryName.StartsWith("block") && ext.Contains(".win32."))
+            //{
+            //    Console.WriteLine();
+            //}
             switch (ext)
             {
                 case ".win32.xfv":
                 case ".win32.xgr":
                 case ".win32.xwb":
+                    break;
                 case ".win32.trb":
+                    break;
                 case ".win32.imgb":
                     break;
                 default:
@@ -207,6 +225,9 @@ namespace Pulse.UI
 
         private bool IsUnexpectedEntry(string listingName, string longName)
         {
+            if (InteractionService.GamePart != FFXIIIGamePart.Part1)
+                return false;
+
             const string zoneFileListPrefix = @"zone/filelist_z";
             const string zoneBgLogPrefix = @"bg/loc";
 

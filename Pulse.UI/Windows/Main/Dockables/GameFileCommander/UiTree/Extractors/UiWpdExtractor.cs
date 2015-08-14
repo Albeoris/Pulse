@@ -99,7 +99,8 @@ namespace Pulse.UI
         {
             return new Dictionary<String, IWpdEntryExtractor>
             {
-                {"txbh", new TxbhToDdsWpdEntryExtractor()}
+                {"txbh", new TxbhToDdsWpdEntryExtractor()},
+                {"vtex", new VtexToDdsWpdEntryExtractor()}
             };
         }
 

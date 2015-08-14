@@ -40,6 +40,26 @@ namespace Pulse.UI
             get { return LazyStopIcon.Value; }
         }
 
+        public static DrawingImage EnabledMusicIcon
+        {
+            get { return LazyEnabledMusicIcon.Value; }
+        }
+
+        public static DrawingImage DisabledMusicIcon
+        {
+            get { return LazyDisabledMusicIcon.Value; }
+        }
+
+        public static DrawingImage EnabledSwitchIcon
+        {
+            get { return LazyEnabledSwitchIcon.Value; }
+        }
+
+        public static DrawingImage DisabledSwitchIcon
+        {
+            get { return LazyDisabledSwitchIcon.Value; }
+        }
+
         public static DrawingImage PackageIcon
         {
             get { return LazyPackageIcon.Value; }
@@ -67,6 +87,11 @@ namespace Pulse.UI
         private static readonly Lazy<DrawingImage> LazyPlayIcon = new Lazy<DrawingImage>(CreatePlayIcon);
         private static readonly Lazy<DrawingImage> LazyPauseIcon = new Lazy<DrawingImage>(CreatePauseIcon);
         private static readonly Lazy<DrawingImage> LazyStopIcon = new Lazy<DrawingImage>(CreateStopIcon);
+        
+        private static readonly Lazy<DrawingImage> LazyEnabledMusicIcon = new Lazy<DrawingImage>(CreateEnabledMusicIcon);
+        private static readonly Lazy<DrawingImage> LazyDisabledMusicIcon = new Lazy<DrawingImage>(CreateDisabledMusicIcon);
+        private static readonly Lazy<DrawingImage> LazyEnabledSwitchIcon = new Lazy<DrawingImage>(CreateEnabledSwitchIcon);
+        private static readonly Lazy<DrawingImage> LazyDisabledSwitchIcon = new Lazy<DrawingImage>(CreateDisabledSwitchIcon);
 
         private static readonly Lazy<DrawingImage> LazyPackageIcon = new Lazy<DrawingImage>(CreatePackageIcon);
         private static readonly Lazy<BitmapSource> LazyDiskIcon = new Lazy<BitmapSource>(CreateDiskIcon);
@@ -133,6 +158,50 @@ namespace Pulse.UI
             Pen pen = new Pen(Brushes.Black, 3);
             PathGeometry geometry = (PathGeometry)Application.Current.FindResource("StopIconGeometry");
             GeometryDrawing drawning = new GeometryDrawing(Brushes.Black, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateEnabledMusicIcon()
+        {
+            Pen pen = new Pen(Brushes.Black, 0);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("MusicIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.Black, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateDisabledMusicIcon()
+        {
+            Pen pen = new Pen(Brushes.LightGray, 0);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("MusicIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.LightGray, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateEnabledSwitchIcon()
+        {
+            Pen pen = new Pen(Brushes.Black, 0);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("SwitchIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.Black, pen, geometry);
+            DrawingImage imageSource = new DrawingImage(drawning);
+
+            imageSource.Freeze();
+            return imageSource;
+        }
+
+        private static DrawingImage CreateDisabledSwitchIcon()
+        {
+            Pen pen = new Pen(Brushes.LightGray, 0);
+            PathGeometry geometry = (PathGeometry)Application.Current.FindResource("SwitchIconGeometry");
+            GeometryDrawing drawning = new GeometryDrawing(Brushes.LightGray, pen, geometry);
             DrawingImage imageSource = new DrawingImage(drawning);
 
             imageSource.Freeze();

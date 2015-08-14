@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_hgin_295/txtres_us.ztr*/
-/*0004*/
-"0000║$ehgin295_010a" = "{Italic}Цель почти на месте.{Text NewLine}Наземная команда, каков ваш статус?{Italic}{End}{Escape}Капитан";
-"0001║$ehgin295_020b" = "{Italic}Готовы к выполнению. Сопротивление под контролем.{Text NewLine}Штурм проходит по плану.{Italic}{End}{Escape}Солдат";
-"0002║$ehgin295_030a" = "{Italic}Не оставляйте следов.{Text NewLine}Реликт Пульса никогда не существовал.{Italic}{End}{Escape}Капитан";
-"0003║$ehgin295_040ph" = "Огонь!{End}{Escape}Солдат";

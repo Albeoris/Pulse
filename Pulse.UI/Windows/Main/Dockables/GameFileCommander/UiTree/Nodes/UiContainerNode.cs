@@ -55,6 +55,35 @@ namespace Pulse.UI
             return Childs;
         }
 
+        public IEnumerable<UiNode> EnumerateNodes(UiNodePath path)
+        {
+            return (EnumerateNodes(path, 0));
+        }
+
+        private IEnumerable<UiNode> EnumerateNodes(UiNodePath path, int level)
+        {
+            UiNodePathElement element = path[level];
+            if (element == null)
+                yield break;
+
+            foreach (UiNode node in GetChilds().Where(node => element.IsMatch(node)))
+            {
+                if (path.IsLast(level))
+                {
+                    yield return node;
+                }
+                else
+                {
+                    UiContainerNode container = node as UiContainerNode;
+                    if (container == null)
+                        continue;
+
+                    foreach (UiNode child in container.EnumerateNodes(path, level + 1))
+                        yield return child;
+                }
+            }
+        }
+
         public IEnumerable<IUiLeaf> EnumerateCheckedLeafs(Wildcard wildcard, bool parentChecked)
         {
             foreach (UiNode node in GetChilds())

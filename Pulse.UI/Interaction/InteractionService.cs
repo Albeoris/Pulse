@@ -13,6 +13,7 @@ namespace Pulse.UI
         public static GameLocationProviders GameLocation { get; private set; }
         public static WorkingLocationProviders WorkingLocation { get; private set; }
         public static TextEncodingProviders TextEncoding { get; private set; }
+        public static LocalizatorEnvironmentProviders LocalizatorEnvironment { get; private set; }
 
         public static event Action<IUiLeaf> SelectedLeafChanged;
 
@@ -23,9 +24,11 @@ namespace Pulse.UI
             GameLocation = new GameLocationProviders();
             WorkingLocation = new WorkingLocationProviders();
             TextEncoding = new TextEncodingProviders();
+            LocalizatorEnvironment = new LocalizatorEnvironmentProviders();
 
             GameLocation.InfoProvided += Configuration.GameLocationProvided;
             WorkingLocation.InfoProvided += Configuration.WorkingLocationProvided;
+            LocalizatorEnvironment.InfoProvided += Configuration.LocalizatorEnvironmentProvided;
         }
 
         public static void SetGamePart(FFXIIIGamePart result)

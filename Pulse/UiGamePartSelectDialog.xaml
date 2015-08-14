@@ -7,7 +7,7 @@
         <Button Background="White" Click="OnPart1ButtonClick">
             <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-1.png"/>
         </Button>
-        <Button Background="White" Click="OnPart2ButtonClick" IsEnabled="False">
+        <Button Background="White" Click="OnPart2ButtonClick">
             <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-2.png"/>
         </Button>
         <Button Background="White" Click="OnPart3ButtonClick" IsEnabled="False">

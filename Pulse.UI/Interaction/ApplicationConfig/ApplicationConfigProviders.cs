@@ -25,5 +25,12 @@ namespace Pulse.UI.Interaction
             config.WorkingLocation = obj;
             config.Save();
         }
+
+        public void LocalizatorEnvironmentProvided(LocalizatorEnvironmentInfo obj)
+        {
+            ApplicationConfigInfo config = Provide();
+            config.LocalizatorEnvironment = obj;
+            config.Save();
+        }
     }
 }

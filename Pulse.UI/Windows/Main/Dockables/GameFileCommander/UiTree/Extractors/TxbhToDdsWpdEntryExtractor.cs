@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Pulse.Core;
 using Pulse.FS;
-using Pulse.OpenGL;
+using Pulse.DirectX;
 
 namespace Pulse.UI
 {

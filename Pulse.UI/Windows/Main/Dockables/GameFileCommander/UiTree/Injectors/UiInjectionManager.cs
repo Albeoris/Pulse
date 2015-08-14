@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pulse.Core;
 using Pulse.FS;
 
 namespace Pulse.UI
@@ -7,6 +9,12 @@ namespace Pulse.UI
     public sealed class UiInjectionManager
     {
         private readonly HashSet<ArchiveListing> _set = new HashSet<ArchiveListing>();
+
+        public UiInjectionManager()
+        {
+            if (InteractionService.GamePart != FFXIIIGamePart.Part1)
+                throw new NotSupportedException($"Injection to the Final Fantasty 13-{(Int32)InteractionService.GamePart} has not yet supported.");
+        }
 
         public void Enqueue(ArchiveListing parent)
         {

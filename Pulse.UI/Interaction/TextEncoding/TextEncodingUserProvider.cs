@@ -3,11 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Examples.TextureLoaders;
 using Pulse.Core;
 using Pulse.FS;
-using Pulse.OpenGL;
+using Pulse.DirectX;
 using Pulse.UI.Encoding;
+using SharpDX.Direct3D11;
+using SharpDX.Direct3D9;
 
 namespace Pulse.UI
 {
@@ -36,7 +37,7 @@ namespace Pulse.UI
             string[] names;
             ReadXgrContent(accessor, out listing, out fontEntries, out fontContent, out textureHeaders, out names);
 
-            GLTexture[] textures = ReadTextures(accessor, textureHeaders);
+            DxTexture[] textures = ReadTextures(accessor, textureHeaders);
             try
             {
                 char[] chars = new char[256 + WflContent.AdditionalTableCount];
@@ -209,7 +210,7 @@ namespace Pulse.UI
         //    source.Info.Sizes.Swap(eng + 256, rus + 256);
         //}
 
-        private UiEncodingWindowSource[] PrepareWindowSources(WflContent[] wflContents, GLTexture[] textures, string[] names, char[] chars, ConcurrentDictionary<char, short> codes)
+        private UiEncodingWindowSource[] PrepareWindowSources(WflContent[] wflContents, DxTexture[] textures, string[] names, char[] chars, ConcurrentDictionary<char, short> codes)
         {
             if (_oldEncoding != null)
             {
@@ -227,6 +228,51 @@ namespace Pulse.UI
         }
 
         private ImgbArchiveAccessor CreateAccessor()
+        {
+            UiArchives archives = InteractionService.GameLocation.Provide().ArchivesTree.Result;
+
+            UiNodePathBuilder pathBuilder = new UiNodePathBuilder(5);
+            pathBuilder.Add(UiNodeType.Group);
+            pathBuilder.Add(UiNodeType.Group, new Wildcard(UiArchiveExtension.Xgr.ToString()));
+            pathBuilder.Add(UiNodeType.Directory, new Wildcard("gui"));
+            pathBuilder.Add(UiNodeType.Directory, new Wildcard("resident"));
+            pathBuilder.Add(UiNodeType.DataTable, new Wildcard("system.win32.xgr"));
+            UiNodePath path = pathBuilder.Build();
+
+            foreach (UiContainerNode archive in archives)
+            {
+                foreach (UiWpdTableLeaf leaf in (archive.EnumerateNodes(path)).SelectMany(system => system.GetChilds()).OfType<UiWpdTableLeaf>())
+                {
+                    return leaf.Listing.Accessor;
+                }
+            }
+
+            switch (InteractionService.GamePart)
+            {
+                case FFXIIIGamePart.Part1:
+                    return CreateAccessorV1();
+                case FFXIIIGamePart.Part2:
+                    return CreateAccessorV2();
+                default:
+                    throw new NotSupportedException(InteractionService.GamePart.ToString());
+            }
+        }
+
+        private ImgbArchiveAccessor CreateAccessorV1()
+        {
+            GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
+            string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imgc.win32.bin");
+            string listingPath = Path.Combine(gameLocation.SystemDirectory, "filelistc.win32.bin");
+
+            ArchiveAccessor accessor = new ArchiveAccessor(binaryPath, listingPath);
+            ArchiveListing listing = ArchiveListingReaderV1.Read(accessor, null, null);
+            ArchiveEntry xgrEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.xgr"));
+            ArchiveEntry imgbEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.imgb"));
+
+            return new ImgbArchiveAccessor(listing, xgrEntry, imgbEntry);
+        }
+
+        private ImgbArchiveAccessor CreateAccessorV2()
         {
             GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
             string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imgc.win32.bin");
@@ -351,9 +397,9 @@ namespace Pulse.UI
             return result;
         }
 
-        private static GLTexture[] ReadTextures(ImgbArchiveAccessor accessor, TextureSection[] gtexDatas)
+        private static DxTexture[] ReadTextures(ImgbArchiveAccessor accessor, TextureSection[] gtexDatas)
         {
-            GLTexture[] textures = new GLTexture[gtexDatas.Length];
+            DxTexture[] textures = new DxTexture[gtexDatas.Length];
 
             using (Stream imgbStream = accessor.ExtractContent())
             using (DisposableStack insurance = new DisposableStack())
@@ -370,20 +416,38 @@ namespace Pulse.UI
             return textures;
         }
 
-        private static GLTexture ReadTexture(Stream imgbStream, GtexData data)
+        private static DxTexture ReadTexture(Stream imgbStream, GtexData gtex)
         {
-            if (data.Header.LayerCount == 0)
+            if (gtex.Header.LayerCount == 0)
                 return null;
 
-            GtexMipMapLocation mimMap = data.MipMapData[0];
-            using (StreamSegment textureInput = new StreamSegment(imgbStream, mimMap.Offset, mimMap.Length, FileAccess.Read))
-            using (GLService.AcquireContext())
-                return ImageDDS.LoadFromStream(textureInput, data);
+            return DxTextureReader.LoadFromStream(gtex, imgbStream);
         }
 
         public void EncodingProvided(TextEncodingInfo encoding)
         {
             _oldEncoding = encoding;
+        }
+
+        private sealed class SequencedStreamFactory : ISequencedStreamFactory
+        {
+            private readonly Stream _resourceStream;
+            private GtexData _data;
+            private int _index;
+
+            public SequencedStreamFactory(Stream resourceStream, GtexData data)
+            {
+                _resourceStream = resourceStream;
+                _data = data;
+            }
+
+            public bool TryCreateNextStream(string key, out Stream result, out Exception ex)
+            {
+                GtexMipMapLocation data = _data.MipMapData[_index++];
+                result = new StreamSegment(_resourceStream, data.Offset, data.Length, FileAccess.Read);
+                ex = null;
+                return true;
+            }
         }
     }
 }

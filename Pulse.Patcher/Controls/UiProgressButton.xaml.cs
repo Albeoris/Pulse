@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Pulse.Core;
 using Pulse.UI;
 
@@ -85,11 +86,25 @@ namespace Pulse.Patcher
         public static readonly DependencyProperty RedGreenRectVisibilityProperty = DependencyProperty.Register("RedGreenRectVisibility", typeof(Visibility), typeof(UiProgressButton), new PropertyMetadata(Visibility.Visible));
         public static readonly DependencyProperty BlueRectVisibilityProperty = DependencyProperty.Register("BlueRectVisibility", typeof(Visibility), typeof(UiProgressButton), new PropertyMetadata(Visibility.Hidden));
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(UiProgressButton), new PropertyMetadata("Button Label"));
+        public static readonly DependencyProperty SubLabelProperty = DependencyProperty.Register("SubLabel", typeof(string), typeof(UiProgressButton), new PropertyMetadata(null));
+        public static readonly DependencyProperty SubLabelColorProperty = DependencyProperty.Register("SubLabelColor", typeof(Brush), typeof(UiProgressButton), new PropertyMetadata(Brushes.DarkGray));
 
         public string Label
         {
             get { return (string)GetValue(LabelProperty); }
             set { SetValue(LabelProperty, value); }
+        }
+
+        public string SubLabel
+        {
+            get { return (string)GetValue(SubLabelProperty); }
+            set { SetValue(SubLabelProperty, value); }
+        }
+
+        public Brush SubLabelColor
+        {
+            get { return (Brush)GetValue(SubLabelColorProperty); }
+            set { SetValue(SubLabelColorProperty, value); }
         }
 
         public void BeginProcess()

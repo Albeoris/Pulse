@@ -24,8 +24,8 @@
                     <!--Red-->
                     <Rectangle.Fill>
                         <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.4,1.0" EndPoint="0.8,-0.4">
-                            <GradientStop Color="#FFE14471"/>
-                            <GradientStop Color="#FF652836" Offset="1"/>
+                            <GradientStop Color="#DDE14471"/>
+                            <GradientStop Color="#DD652836" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                     <Rectangle.OpacityMask>
@@ -40,8 +40,8 @@
                     <!--Green-->
                     <Rectangle.Fill>
                         <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.4,1.0" EndPoint="0.8,-0.4">
-                            <GradientStop Color="#FF44C171"/>
-                            <GradientStop Color="#FF286536" Offset="1"/>
+                            <GradientStop Color="#DD44C171"/>
+                            <GradientStop Color="#DD286536" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                     <Rectangle.OpacityMask>
@@ -56,20 +56,21 @@
                     <!--Blue-->
                     <Rectangle.Fill>
                         <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.4,1.0" EndPoint="0.8,-0.4">
-                            <GradientStop Color="#FF4471C1"/>
-                            <GradientStop Color="#FF283665" Offset="1"/>
+                            <GradientStop Color="#DD4471C1"/>
+                            <GradientStop Color="#DD283665" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Label, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type patcher:UiProgressButton}}}" FontSize="32" Height="45" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,3">
                     <TextBlock.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" Opacity="0.885">
-                            <GradientStop Color="#FFAEB1B1" Offset="0.000"/>
-                            <GradientStop Color="#FFF2F2F2" Offset="0.504"/>
-                            <GradientStop Color="#FF616161" Offset="1.000"/>
+                            <GradientStop Color="#DDAEB1B1" Offset="0.000"/>
+                            <GradientStop Color="#DDF2F2F2" Offset="0.504"/>
+                            <GradientStop Color="#DD616161" Offset="1.000"/>
                         </LinearGradientBrush>
                     </TextBlock.Foreground>
                 </TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SubLabel, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type patcher:UiProgressButton}}}" Foreground="{Binding SubLabelColor, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type patcher:UiProgressButton}}}" FontSize="10" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,7"/>
             </Grid>
         </ControlTemplate>
     </Button.Template>

@@ -1,6 +1,0 @@
-﻿/*txtres/event/ev_gpwo_060/txtres_us.ztr*/
-/*0004*/
-"0000║$egpwo060_001va" = "{Italic}Даже если мы гнались за несбыточными грёзами,{Text NewLine}это не имело значения.{Italic}{End}{Escape}";
-"0001║$egpwo060_002va" = "{Italic}Потому что во время путешествия мы поняли:{Text NewLine}свобода выбора - единственное, что у нас осталось.{Italic}{End}{Escape}";
-"0002║$egpwo060_003va" = "{Italic}Пусть бы мы провалились.{Text NewLine}Пусть даже не приблизились к цели.{Italic}{End}{Escape}";
-"0003║$egpwo060_004va" = "{Italic}Но кто-нибудь когда-нибудь узнал бы, что мы пытались.{Italic}{End}{Escape}";

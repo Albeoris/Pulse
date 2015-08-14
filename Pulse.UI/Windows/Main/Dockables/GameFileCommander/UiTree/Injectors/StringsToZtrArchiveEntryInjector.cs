@@ -34,11 +34,7 @@ namespace Pulse.UI
                 }
             }
 
-            MemoryInjectionSource memorySource = source as MemoryInjectionSource;
-            if (memorySource == null)
-                return false;
-
-            sourceEntries = memorySource.TryProvideStrings();
+            sourceEntries = source.TryProvideStrings();
             if (sourceEntries == null)
                 return false;
 
@@ -222,6 +218,9 @@ namespace Pulse.UI
             {"$btl_mtxt_09", "SUMMON"},
             {"$btl_mtxt_10", "PARADIGM SHIFT"},
 
+            {"$target", "TARGET"},
+            {"$pre_mtxt_01" ,"PREEMPTIVE STRIKE!"},
+
             {"$f_abi_mtxt_00", "ABILITIES"},
             {"$f_abi_mtxt_01", "ABILITY"},
             {"$f_abi_mtxt_02", "ATB Cost"},
@@ -281,6 +280,9 @@ namespace Pulse.UI
             {"$resms_txt00", "MISSION COMPLETE!"},
             {"$resms_txt01", "MISSION RESULTS"},
 
+            {"$role_change", "PARADIGM SHIFT"},
+            {"$role_lv", "LEVEL"},
+
             {"$growth_00", "CRYSTARIUM EXPANDED!"},
             {"$growth_01", "ROLE DEVELOPMENT UNLOCKED!"},
 
@@ -290,7 +292,17 @@ namespace Pulse.UI
             {"$f_cus_def_02", "LEVEL IMPROVED"},
             {"$f_cus_def_03", "TYPE MODIFIED"},
 
-            {"$f_cus_mtxt_13", "EXP BONUS"},
+            {"$f_cus_mtxt_00", "INVENTORY"},
+            {"$f_cus_mtxt_01", "POWER"},
+            {"$f_cus_mtxt_02", "CUSTOMIZATION"},
+            {"$f_cus_mtxt_03", "BONUS:"},
+            {"$f_cus_mtxt_04", "EXP:"},
+            {"$f_cus_mtxt_06", "METHOD"},
+            {"$f_cus_mtxt_07", "WEAPONS"},
+            {"$f_cus_mtxt_08", "ACCESSORIES"},
+            {"$f_cus_mtxt_09", "COMPONENTS"},
+
+            {"$f_cus_mtxt_13", "EXP BONUS:"},
             {"$f_cus_mtxt_14", "NEXT BONUS!"},
 
             {"$f_cry_inf_01", "CRYSTARIUM"},

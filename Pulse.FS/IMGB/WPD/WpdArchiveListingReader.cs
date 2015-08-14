@@ -24,7 +24,8 @@ namespace Pulse.FS
             {
                 WpdHeader header = input.ReadContent<WpdHeader>();
                 WpdArchiveListing result = new WpdArchiveListing(_accessor, header.Count);
-                result.AddRange(header.Entries);
+                if (header.Entries != null)
+                    result.AddRange(header.Entries);
                 return result;
             }
         }

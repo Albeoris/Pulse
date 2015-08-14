@@ -12,6 +12,7 @@ namespace Pulse.Core
 
         public event Action<Exception> ErrorHandled;
 
+        public readonly ManualResetEvent StopEvent = new ManualResetEvent(false);
         public readonly AutoResetEvent WorkEvent = new AutoResetEvent(false);
 
         public TimeoutAction(Action action, int millisecondsTimeout)
@@ -26,7 +27,7 @@ namespace Pulse.Core
         {
             try
             {
-                _thread.Abort();
+                StopEvent.Set();
             }
             catch (Exception ex)
             {
@@ -36,11 +37,11 @@ namespace Pulse.Core
 
         private void OnTick()
         {
-            while (true)
+            WaitHandle[] handles = {StopEvent, WorkEvent};
+            while (WaitHandle.WaitAny(handles) != 0)
             {
                 try
                 {
-                    WorkEvent.WaitOne();
                     DateTime begin = DateTime.Now;
 
                     _action();

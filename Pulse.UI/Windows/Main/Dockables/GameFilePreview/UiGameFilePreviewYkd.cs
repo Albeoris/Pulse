@@ -9,13 +9,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
 using Pulse.FS;
-using Pulse.OpenGL;
+using Pulse.DirectX;
+using SharpDX;
+using SharpDX.Direct3D9;
+using SharpDX.Toolkit.Graphics;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+using Color = System.Windows.Media.Color;
+using Device = SharpDX.Direct3D11.Device;
 
 // ReSharper disable UnusedMember.Local
 
@@ -25,7 +29,7 @@ namespace Pulse.UI
     {
         private readonly Tree _treeView;
         private readonly PropertyGrid _propertyGrid;
-        private readonly UiGlViewport _viewer;
+        private readonly UiDxViewport _viewer;
         private UiButton _rollbackButton;
         private UiButton _injectButton;
         private UiButton _saveAsButton;
@@ -46,7 +50,10 @@ namespace Pulse.UI
             _propertyGrid = new PropertyGrid {AutoGenerateProperties = true};
             AddUiElement(_propertyGrid, 0, 1);
 
-            _viewer = new UiGlViewport(Draw);
+            _viewer = new UiDxViewport();
+            _viewer.MinWidth = 320;
+            _viewer.MinHeight = 240;
+            _viewer.DrawSprites += DrawSprites;
             AddUiElement(_viewer, 1, 1);
 
             _rollbackButton = UiButtonFactory.Create("Отменить");
@@ -85,7 +92,7 @@ namespace Pulse.UI
         private WpdArchiveListing _listing;
         private WpdEntry _entry;
         private YkdFile _ykdFile;
-        private Dictionary<string, GLTexture> _textures;
+        private Dictionary<string, DxTexture> _textures;
 
         public void Show(WpdArchiveListing listing, WpdEntry entry)
         {
@@ -94,7 +101,7 @@ namespace Pulse.UI
 
             if (_textures != null)
             {
-                foreach (GLTexture texture in _textures.Values)
+                foreach (DxTexture texture in _textures.Values)
                     texture.Dispose();
 
                 _textures = null;
@@ -113,72 +120,69 @@ namespace Pulse.UI
                     .Select(r => _listing.FirstOrDefault(e => e.NameWithoutExtension == r.Name))
                     .Distinct()
                     .Where(e => e != null)
-                    .ToDictionary(wpdEntry => wpdEntry.NameWithoutExtension, e => GLTextureReader.ReadFromWpd(listing, e));
+                    .ToDictionary(wpdEntry => wpdEntry.NameWithoutExtension, e => DxTextureReader.ReadFromWpd(listing, e));
 
                 _treeView.ItemsSource = new[] {new YkdFileView(_ykdFile)};
             }
 
             Visibility = Visibility.Visible;
-            _viewer.DrawEvent.Set();
+            _viewer.Refresh();
         }
 
         private int _w, _h;
 
-        private void Draw()
+        private void DrawSprites(Device device, SpriteBatch spriteBatch, Rectangle cliprectangle)
         {
             YkdFile file = _ykdFile;
             if (file == null)
                 return;
 
             int w = 0, h = 0;
-            using (_viewer.AcquireContext())
-            {
-                foreach (YkdResource resource in file.Resources.Resources)
-                {
-                    GLTexture texture = _textures.TryGetValue(resource.Name);
-                    if (texture == null)
-                        continue;
-
-                    DrawTexture(ref w, ref h, resource);
-                }
-            }
+            foreach (YkdResource resource in file.Resources.Resources)
+                DrawTexture(ref w, ref h, resource, device, spriteBatch, cliprectangle);
 
             if (_w != w || _h != h)
             {
                 _w = w;
                 _h = h;
-                GLService.SetViewportDesiredSize(_w, _h);
+                _viewer.SetDesiredSize(_w, _h);
             }
-
-            _viewer.SwapBuffers();
         }
 
-        private void DrawTexture(ref int w, ref int h, YkdResource resource)
+        private void DrawTexture(ref int w, ref int h, YkdResource resource, Device device, SpriteBatch spriteBatch, Rectangle cliprectangle)
         {
-            GLTexture texture = _textures.TryGetValue(resource.Name);
+            DxTexture texture = _textures.TryGetValue(resource.Name);
             if (texture == null)
                 return;
 
-            switch (resource.Viewport.Type)
+            spriteBatch.Begin();
+            try
             {
-                case YkdResourceViewportType.Fragment:
-                    FragmentYkdResourceViewport fragment = (FragmentYkdResourceViewport)resource.Viewport;
-                    texture.Draw(w, 0, 0, fragment.SourceX, fragment.SourceY, fragment.SourceWidth, fragment.SourceHeight);
-                    w += fragment.SourceWidth;
-                    h = Math.Max(h, fragment.SourceHeight);
-                    break;
-                case YkdResourceViewportType.Full:
-                    FullYkdResourceViewport full = (FullYkdResourceViewport)resource.Viewport;
-                    texture.Draw(w, 0, 0, 0, 0, full.ViewportWidth, full.ViewportHeight);
-                    w += full.ViewportWidth;
-                    h = Math.Max(h, full.ViewportHeight);
-                    break;
-                case YkdResourceViewportType.Extra:
-                    ExtraYkdResourceViewport extra = (ExtraYkdResourceViewport)resource.Viewport;
-                    texture.Draw(w, 0, 0, 0, 0, extra.SourceWidth, extra.SourceHeight);
-                    w += extra.SourceWidth;
-                    h = Math.Max(h, extra.SourceHeight);
-                    break;
+                switch (resource.Viewport.Type)
+                {
+                    case YkdResourceViewportType.Fragment:
+                        FragmentYkdResourceViewport fragment = (FragmentYkdResourceViewport)resource.Viewport;
+                        texture.Draw(device, spriteBatch, new Vector2(w, 0), new Rectangle(fragment.SourceX, fragment.SourceY, fragment.SourceWidth, fragment.SourceHeight), 1.0f, cliprectangle);
+                        w += fragment.SourceWidth;
+                        h = Math.Max(h, fragment.SourceHeight);
+                        break;
+                    case YkdResourceViewportType.Full:
+                        FullYkdResourceViewport full = (FullYkdResourceViewport)resource.Viewport;
+                        texture.Draw(device, spriteBatch, new Vector2(w, 0), new Rectangle(0, 0, full.ViewportWidth, full.ViewportHeight), 1.0f, cliprectangle);
+                        w += full.ViewportWidth;
+                        h = Math.Max(h, full.ViewportHeight);
+                        break;
+                    case YkdResourceViewportType.Extra:
+                        ExtraYkdResourceViewport extra = (ExtraYkdResourceViewport)resource.Viewport;
+                        texture.Draw(device, spriteBatch, new Vector2(w, 0), new Rectangle(0, 0, extra.SourceWidth, extra.SourceHeight), 1.0f, cliprectangle);
+                        w += extra.SourceWidth;
+                        h = Math.Max(h, extra.SourceHeight);
+                        break;
+                }
+            }
+            finally
+            {
+                spriteBatch.End();
             }
         }
 
@@ -1405,6 +1409,87 @@ namespace Pulse.UI
                 get { return ColorsHelper.GetBGRA(Viewport.BottomRightColor); }
                 set { Viewport.BottomRightColor = ColorsHelper.GetBGRA(value); }
             }
+        }
+    }
+
+    public static class ColorsHelper
+    {
+        private const double ColorRate = 255 / 31;
+
+        public static bool IsBlack(Color color)
+        {
+            return (0 == color.R && color.R == color.G && color.G == color.B);
+        }
+
+        public static Color ReadColor(Stream input, byte[] buff)
+        {
+            switch (buff.Length)
+            {
+                case 2:
+                    return ReadA1B5G5R5Color(input, buff);
+                case 3:
+                    return ReadB8G8R8Color(input, buff);
+                case 4:
+                    return ReadBGRAColor(input, buff);
+                default:
+                    throw new NotSupportedException(buff.Length.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        private static Color ReadA1B5G5R5Color(Stream input, byte[] buff)
+        {
+            input.EnsureRead(buff, 0, 2);
+            ushort color = BitConverter.ToUInt16(buff, 0);
+
+            return Color.FromArgb(
+                (byte)(((color >> 15) & 1) * 255),
+                (byte)Math.Round((color & 31) * ColorRate),
+                (byte)Math.Round((color >> 5 & 31) * ColorRate),
+                (byte)Math.Round((color >> 10 & 31) * ColorRate));
+        }
+
+        private static Color ReadB8G8R8Color(Stream input, byte[] buff)
+        {
+            input.EnsureRead(buff, 0, 3);
+            return Color.FromArgb(255, buff[2], buff[1], buff[0]);
+        }
+
+        private static Color ReadBGRAColor(Stream input, byte[] buff)
+        {
+            input.EnsureRead(buff, 0, 4);
+            return Color.FromArgb(buff[3], buff[2], buff[1], buff[0]);
+        }
+
+        public static Color GetBGRA(int value)
+        {
+            unsafe
+            {
+                byte[] numArray = new byte[4];
+                fixed (byte* numPtr = numArray)
+                    *(int*)numPtr = value;
+
+                return Color.FromArgb(numArray[3], numArray[2], numArray[1], numArray[0]);
+            }
+        }
+
+        public static int GetBGRA(Color value)
+        {
+            return (value.A << 24) | (value.R << 16) | (value.G << 8) | value.B;
+        }
+
+        public static void WriteBgra(Stream output, Color color)
+        {
+            output.WriteByte(color.B);
+            output.WriteByte(color.G);
+            output.WriteByte(color.R);
+            output.WriteByte(color.A);
+        }
+
+        public static void WriteBgr(Stream output, Color color)
+        {
+            output.WriteByte(color.B);
+            output.WriteByte(color.G);
+            output.WriteByte(color.R);
         }
     }
 }

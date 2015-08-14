@@ -12,8 +12,8 @@ namespace Pulse.FS
 {
     public enum GtexPixelFromat : byte
     {
-        A8R8G8B8 = 0x03,
-        X8R8G8B8 = 0x04,
+        X8R8G8B8 = 0x03,
+        A8R8G8B8 = 0x04,
         Dxt1 = 0x18,
         Dxt3 = 0x19,
         Dxt5 = 0x1A
@@ -38,7 +38,7 @@ namespace Pulse.FS
 
         public int LayerCount
         {
-            get { return IsCubeMap ? 6 : MipMapCount; }
+          get { return IsCubeMap ? 6 * MipMapCount : MipMapCount; }
         }
 
         public void ReadFromStream(Stream stream)

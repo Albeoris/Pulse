@@ -1,4 +1,4 @@
-using System.Windows;
+Ôªøusing System.Windows;
 using System.Windows.Controls;
 
 namespace Pulse.UI
@@ -19,7 +19,7 @@ namespace Pulse.UI
 
                 UiStackPanel maskPanel = UiStackPanelFactory.Create(Orientation.Horizontal);
                 {
-                    UiTextBlock maskLabel = UiTextBlockFactory.Create("Ã‡ÒÍ‡: ");
+                    UiTextBlock maskLabel = UiTextBlockFactory.Create("–ú–∞—Å–∫–∞: ");
                     {
                         maskLabel.Margin = margin;
                         maskLabel.VerticalAlignment = VerticalAlignment.Center;
@@ -40,7 +40,7 @@ namespace Pulse.UI
                 {
                     if (!isExtracting)
                     {
-                        _compressBox = UiCheckBoxFactory.Create("—Ê‡Ú¸", false);
+                        _compressBox = UiCheckBoxFactory.Create("–°–∂–∞—Ç—å", false);
                         {
                             _compressBox.Margin = margin;
                             _compressBox.IsThreeState = true;
@@ -49,7 +49,7 @@ namespace Pulse.UI
                         }
                     }
 
-                    _convertBox = UiCheckBoxFactory.Create(" ÓÌ‚ÂÚËÓ‚‡Ú¸", false);
+                    _convertBox = UiCheckBoxFactory.Create("–ö–æ–Ω–≤–µ—Ä—Ç–∏—Ä–æ–≤–∞—Ç—å", false);
                     {
                         _convertBox.Margin = margin;
                         _convertBox.IsThreeState = true;
@@ -72,7 +72,7 @@ namespace Pulse.UI
                         buttonsPanel.AddUiElement(okButton);
                     }
 
-                    UiButton cancelButton = UiButtonFactory.Create("ŒÚÏÂÌ‡");
+                    UiButton cancelButton = UiButtonFactory.Create("–û—Ç–º–µ–Ω–∞");
                     {
                         cancelButton.Width = 100;
                         cancelButton.Margin = margin;
