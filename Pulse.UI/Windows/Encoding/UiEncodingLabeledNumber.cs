@@ -51,8 +51,7 @@ namespace Pulse.UI.Encoding
                 return;
             }
 
-            if (_onValueChanged != null)
-                _onValueChanged.Invoke(this, e);
+            _onValueChanged?.Invoke(this, e);
         }
     }
 }

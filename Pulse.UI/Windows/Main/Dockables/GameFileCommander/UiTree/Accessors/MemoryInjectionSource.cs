@@ -8,7 +8,7 @@ namespace Pulse.UI
     public class MemoryInjectionSource : IUiInjectionSource, IDisposable
     {
         private readonly Dictionary<string, Stream> _streams = new Dictionary<string, Stream>();
-        private Dictionary<string,string> _strings = null;
+        private Dictionary<string,string> _strings;
 
         public void RegisterStream(string sourcePath, Stream stream)
         {

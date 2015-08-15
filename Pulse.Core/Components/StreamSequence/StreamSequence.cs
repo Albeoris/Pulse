@@ -28,14 +28,12 @@ namespace Pulse.Core
 
         public override void Close()
         {
-            if (_current != null)
-                _current.Close();
+            _current?.Close();
         }
 
         public override void Flush()
         {
-            if (_current != null)
-                _current.Flush();
+            _current?.Flush();
         }
 
         public override long Seek(long offset, SeekOrigin origin)

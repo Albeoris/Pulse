@@ -6,8 +6,7 @@ namespace Pulse.Core
     {
         public static void NullSafeSet(this EventWaitHandle handle)
         {
-            if (handle != null)
-                handle.Set();
+            handle?.Set();
         }
     }
 }

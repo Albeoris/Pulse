@@ -37,7 +37,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             for (int deviceId = 0; deviceId < WaveOut.DeviceCount; deviceId++)
             {
                 var capabilities = WaveOut.GetCapabilities(deviceId);
-                comboBoxWaveOutDevice.Items.Add(String.Format("Device {0} ({1})", deviceId, capabilities.ProductName));
+                comboBoxWaveOutDevice.Items.Add($"Device {deviceId} ({capabilities.ProductName})");
             }
             if (comboBoxWaveOutDevice.Items.Count > 0)
             {

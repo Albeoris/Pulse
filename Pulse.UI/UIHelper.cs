@@ -56,7 +56,7 @@ namespace Pulse.UI
                 case 6:
                     return string.Format("{0:F2} " + Lang.Measurement.EByteAbbr, dec);
                 default:
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
             }
         }
 

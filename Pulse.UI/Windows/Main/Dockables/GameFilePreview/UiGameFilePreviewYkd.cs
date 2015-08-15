@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,7 +13,6 @@ using Pulse.Core;
 using Pulse.FS;
 using Pulse.DirectX;
 using SharpDX;
-using SharpDX.Direct3D9;
 using SharpDX.Toolkit.Graphics;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
@@ -50,9 +48,11 @@ namespace Pulse.UI
             _propertyGrid = new PropertyGrid {AutoGenerateProperties = true};
             AddUiElement(_propertyGrid, 0, 1);
 
-            _viewer = new UiDxViewport();
-            _viewer.MinWidth = 320;
-            _viewer.MinHeight = 240;
+            _viewer = new UiDxViewport
+            {
+                MinWidth = 320,
+                MinHeight = 240
+            };
             _viewer.DrawSprites += DrawSprites;
             AddUiElement(_viewer, 1, 1);
 
@@ -267,7 +267,7 @@ namespace Pulse.UI
                 public override DataTemplate SelectTemplate(object item, DependencyObject container)
                 {
                     View view = item as View;
-                    return view == null ? null : view.TreeViewTemplate;
+                    return view?.TreeViewTemplate;
                 }
             }
         }
@@ -335,9 +335,7 @@ namespace Pulse.UI
 
             protected internal void RaisePropertyChanged(string propertyName)
             {
-                PropertyChangedEventHandler handler = PropertyChanged;
-                if (handler != null)
-                    handler(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -381,7 +379,7 @@ namespace Pulse.UI
 
                 FrameworkElementFactory textBlock = new FrameworkElementFactory(typeof(TextBlock));
                 textBlock.SetBinding(TextBlock.TextProperty, new Binding("Title"));
-                textBlock.SetBinding(TextBlock.ContextMenuProperty, new Binding("ContextMenu"));
+                textBlock.SetBinding(ContextMenuProperty, new Binding("ContextMenu"));
 
                 template.VisualTree = textBlock;
                 return template;
@@ -458,10 +456,7 @@ namespace Pulse.UI
                 set { Native.Header.Unknown5 = value; }
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (Count: {1})", base.Title, Native.Blocks.Length); }
-            }
+            public override string Title => $"{base.Title} (Count: {Native.Blocks.Length})";
         }
 
         private sealed class YkdBlockView : View<YkdBlockView, YkdBlock>
@@ -480,10 +475,7 @@ namespace Pulse.UI
                     yield return new YkdBlockEntryView(entry);
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (Count: {1})", base.Title, Native.Entries.Length); }
-            }
+            public override string Title => $"{base.Title} (Count: {Native.Entries.Length})";
 
             [Category("Заголовок")]
             [DisplayName("Тип")]
@@ -610,10 +602,7 @@ namespace Pulse.UI
                     yield return new YkdBlockOptionalTailView(tail);
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (Count: {1})", base.Title, Native.Tails.Length); }
-            }
+            public override string Title => $"{base.Title} (Count: {Native.Tails.Length})";
 
             [Category("Неизвестные")]
             [DisplayName("Неизвестно1")]
@@ -718,10 +707,7 @@ namespace Pulse.UI
                     yield return new YkdFrameView(frame);
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (Count: {1})", base.Title, Native.Count); }
-            }
+            public override string Title => $"{base.Title} (Count: {Native.Count})";
 
             [Category("Заголовок")]
             [DisplayName("Неизвестно 1")]
@@ -766,10 +752,7 @@ namespace Pulse.UI
                 yield break;
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (X: {1}, Y:{2})", base.Title, Native.X, Native.Y); }
-            }
+            public override string Title => $"{base.Title} (X: {Native.X}, Y:{Native.Y})";
 
             [Category("Расположение")]
             [DisplayName("X")]
@@ -865,10 +848,7 @@ namespace Pulse.UI
                     yield return YkdResourceView.FromResource(resource, this);
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0} (Count: {1})", base.Title, Native.Count); }
-            }
+            public override string Title => $"{base.Title} (Count: {Native.Count})";
 
             [Category("События")]
             [DisplayName("Неизвестно 1")]
@@ -916,10 +896,7 @@ namespace Pulse.UI
                 yield break;
             }
 
-            public override string Title
-            {
-                get { return String.Format("{0:D3} {1} {2}", Native.Index, Native.Type, String.IsNullOrEmpty(Native.Name) ? "<empty>" : Native.Name); }
-            }
+            public override string Title => $"{Native.Index:D3} {Native.Type} {(String.IsNullOrEmpty(Native.Name) ? "<empty>" : Native.Name)}";
 
             public override ContextMenu ContextMenu
             {
@@ -1414,7 +1391,7 @@ namespace Pulse.UI
 
     public static class ColorsHelper
     {
-        private const double ColorRate = 255 / 31;
+        private const double ColorRate = 255.0 / 31;
 
         public static bool IsBlack(Color color)
         {

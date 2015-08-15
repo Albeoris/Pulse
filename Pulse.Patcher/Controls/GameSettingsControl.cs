@@ -123,12 +123,12 @@ namespace Pulse.Patcher.Controls
         {
             _info = obj;
             
-            OnPropertyChanged("IsFullScreen");
-            OnPropertyChanged("IsFullHd");
-            OnPropertyChanged("IsNihonVoice");
-            OnPropertyChanged("SwitchButtons");
-            OnPropertyChanged("AntiAliasing");
-            OnPropertyChanged("ShadowResolution");
+            OnPropertyChanged(nameof(IsFullScreen));
+            OnPropertyChanged(nameof(IsFullHd));
+            OnPropertyChanged(nameof(IsNihonVoice));
+            OnPropertyChanged(nameof(SwitchButtons));
+            OnPropertyChanged(nameof(AntiAliasing));
+            OnPropertyChanged(nameof(ShadowResolution));
         }
 
         #region Properties
@@ -258,8 +258,7 @@ namespace Pulse.Patcher.Controls
         [NotifyPropertyChangedInvocator]
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
             InteractionService.Configuration.Provide().ScheduleSave();
         }

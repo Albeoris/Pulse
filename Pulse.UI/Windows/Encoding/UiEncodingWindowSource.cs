@@ -1,9 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using Pulse.Core;
 using Pulse.DirectX;
 using Pulse.FS;
-using SharpDX.Direct3D9;
 
 namespace Pulse.UI.Encoding
 {

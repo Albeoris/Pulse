@@ -8,7 +8,7 @@ namespace Pulse.Core
     {
         public static IEnumerable<TResult> SafeSelect<TSource, TResult>(this IEnumerable<TSource> self, Func<TSource, TResult> selector)
         {
-            return self == null ? new TResult[0] : self.Select(selector);
+            return self?.Select(selector) ?? new TResult[0];
         }
 
         public static IEnumerable<TResult> SelectWhere<TSource, TResult>(this IEnumerable<TSource> self, Func<TSource, bool> predicate, Func<TSource, TResult> selector)

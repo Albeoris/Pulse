@@ -101,7 +101,7 @@ namespace Pulse.UI
         public void Incremented(long processedCount)
         {
             if (Interlocked.Add(ref _processedCount, processedCount) < 0)
-                throw new ArgumentOutOfRangeException("processedCount");
+                throw new ArgumentOutOfRangeException(nameof(processedCount));
         }
 
         #region Internal Logic
@@ -136,9 +136,9 @@ namespace Pulse.UI
             if (speed < 1) speed = 1;
             TimeSpan left = TimeSpan.FromSeconds((_totalCount - _processedCount) / speed);
 
-            _progressTextBlock.Text = String.Format("{0:F2}%", percents);
+            _progressTextBlock.Text = $"{percents:F2}%";
             _elapsedTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", elapsed, Lang.Measurement.Elapsed);
-            _processedTextBlock.Text = String.Format("{0} / {1}", FormatValue(_processedCount), FormatValue(_totalCount));
+            _processedTextBlock.Text = $"{FormatValue(_processedCount)} / {FormatValue(_totalCount)}";
             _remainingTextBlock.Text = String.Format("{1}: {0:mm\\:ss}", left, Lang.Measurement.Remaining);
 
             _timer.Elapsed += OnTimer;

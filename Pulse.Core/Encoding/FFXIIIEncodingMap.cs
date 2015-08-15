@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 
 namespace Pulse.Core
 {
-    public sealed class FFXIIIEncodingMap
+    public static class FFXIIIEncodingMap
     {
         private static readonly Dictionary<int, int> IndexToValueDic;
         private static readonly Dictionary<int, int> ValueToIndexDic;

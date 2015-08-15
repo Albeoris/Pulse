@@ -86,15 +86,14 @@ namespace NAudioDemo.AudioPlaybackDemo
             }
             catch (Exception driverCreateException)
             {
-                MessageBox.Show(String.Format("{0}", driverCreateException.Message));
+                MessageBox.Show($"{driverCreateException.Message}");
                 return;
             }
 
             WaveStream conversionStream = WaveFormatConversionStream.CreatePcmStream(_waveProvider);
 
 
-            labelTotalTime.Text = String.Format("{0:00}:{1:00}", (int)_waveProvider.TotalTime.TotalMinutes,
-                _waveProvider.TotalTime.Seconds);
+            labelTotalTime.Text = $"{(int)_waveProvider.TotalTime.TotalMinutes:00}:{_waveProvider.TotalTime.Seconds:00}";
 
             try
             {
@@ -102,7 +101,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             }
             catch (Exception initException)
             {
-                MessageBox.Show(String.Format("{0}", initException.Message), "Error Initializing Output");
+                MessageBox.Show($"{initException.Message}", "Error Initializing Output");
                 return;
             }
 
@@ -133,10 +132,8 @@ namespace NAudioDemo.AudioPlaybackDemo
 
         private void CloseWaveOut()
         {
-            if (_waveOut != null)
-            {
-                _waveOut.Stop();
-            }
+            _waveOut?.Stop();
+
             if (_waveOut != null)
             {
                 _waveOut.Dispose();
@@ -146,21 +143,13 @@ namespace NAudioDemo.AudioPlaybackDemo
 
         private void OnButtonPauseClick(object sender, EventArgs e)
         {
-            if (_waveOut != null)
-            {
-                if (_waveOut.PlaybackState == PlaybackState.Playing)
-                {
-                    _waveOut.Pause();
-                }
-            }
+            if (_waveOut?.PlaybackState == PlaybackState.Playing)
+                _waveOut.Pause();
         }
 
         private void OnButtonStopClick(object sender, EventArgs e)
         {
-            if (_waveOut != null)
-            {
-                _waveOut.Stop();
-            }
+            _waveOut?.Stop();
         }
 
         private void OnTimerTick(object sender, EventArgs e)
@@ -169,8 +158,7 @@ namespace NAudioDemo.AudioPlaybackDemo
             {
                 TimeSpan currentTime = (_waveOut.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : _waveProvider.CurrentTime;
                 trackBarPosition.Value = Math.Min(trackBarPosition.Maximum, (int)(100 * currentTime.TotalSeconds / _waveProvider.TotalTime.TotalSeconds));
-                labelCurrentTime.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes,
-                    currentTime.Seconds);
+                labelCurrentTime.Text = $"{(int)currentTime.TotalMinutes:00}:{currentTime.Seconds:00}";
             }
             else
             {

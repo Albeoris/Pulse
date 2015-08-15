@@ -23,7 +23,7 @@ namespace Pulse.UI
 
             Assembly assembly = Assembly.GetEntryAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            Title = String.Format("{0} {1} {2}", fvi.ProductName, fvi.FileVersion, fvi.LegalCopyright);
+            Title = $"{fvi.ProductName} {fvi.FileVersion} {fvi.LegalCopyright}";
 
             Width = 640;
             Height = 480;

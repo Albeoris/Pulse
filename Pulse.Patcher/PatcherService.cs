@@ -58,7 +58,7 @@ namespace Pulse.Patcher
             {
                 return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog(String.Format("Укажите каталог Final Fantasy XIII-{0}...", (int)gamePart)))
+                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog($"Укажите каталог Final Fantasy XIII-{(int)gamePart}..."))
                     {
                         dlg.IsFolderPicker = true;
                         if (dlg.ShowDialog() != CommonFileDialogResult.Ok)

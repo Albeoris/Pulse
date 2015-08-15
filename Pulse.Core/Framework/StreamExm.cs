@@ -47,12 +47,9 @@ namespace Pulse.Core
 
         public static void CopyToStream(this Stream input, Stream output, int size, byte[] buff, Action<long> progress = null, bool flush = true)
         {
-            if (input == null)
-                throw new ArgumentNullException("input");
-            if (output == null)
-                throw new ArgumentNullException("output");
-            if (buff == null)
-                throw new ArgumentNullException("buff");
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            if (output == null) throw new ArgumentNullException(nameof(output));
+            if (buff == null) throw new ArgumentNullException(nameof(buff));
 
             if (!input.CanRead)
             {
@@ -78,7 +75,7 @@ namespace Pulse.Core
             }
 
             if (left != 0)
-                throw new Exception(String.Format("Unexpected end of stream: {0}/{1}", size - left, size));
+                throw new Exception($"Unexpected end of stream: {size - left}/{size}");
 
             if (flush)
                 output.Flush();
@@ -87,7 +84,7 @@ namespace Pulse.Core
         public static T[] ReadStructs<T>(this Stream input, int count) where T : new()
         {
             if (input == null)
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
 
             T[] result = new T[count];
 
@@ -108,7 +105,7 @@ namespace Pulse.Core
         public static T ReadStruct<T>(this Stream input) where T : new()
         {
             if (input == null)
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
 
             return ReadStructs<T>(input, 1)[0];
         }
@@ -138,7 +135,7 @@ namespace Pulse.Core
         {
             try
             {
-                using (UnmanagedMemoryStream output = new UnmanagedMemoryStream(buffer, 0, length, FileAccess.Write))
+                using (UnmanagedMemoryStream output = new UnmanagedMemoryStream(buffer, offset, length, FileAccess.Write))
                 {
                     byte[] buff = new byte[Math.Min(32 * 1024, length)];
                     input.CopyToStream(output, length, buff);
@@ -180,7 +177,7 @@ namespace Pulse.Core
         public static void WriteStruct(this Stream output, object pack)
         {
             if (output == null)
-                throw new ArgumentNullException("output");
+                throw new ArgumentNullException(nameof(output));
 
             int size = Marshal.SizeOf(pack);
             byte[] buff = new byte[size];

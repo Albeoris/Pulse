@@ -39,7 +39,7 @@ namespace Pulse.FS
         private ZtrFileEntry[] ExtractLittleEndianUncompressedDictionary(int count)
         {
             if (count < 0 || count > 102400)
-                throw new ArgumentOutOfRangeException("count", count.ToString());
+                throw new ArgumentOutOfRangeException(nameof(count), count.ToString());
 
             ZtrFileEntry[] entries = new ZtrFileEntry[count];
             entries.InitializeElements();
@@ -61,7 +61,7 @@ namespace Pulse.FS
 
         private ZtrFileEntry[] ExtractLittleEndianUncompressedPair()
         {
-            ZtrFileEntry result = new ZtrFileEntry();;
+            ZtrFileEntry result = new ZtrFileEntry();
 
             int keyOffset = _br.ReadInt32();
             int textOffset = _br.ReadInt32();

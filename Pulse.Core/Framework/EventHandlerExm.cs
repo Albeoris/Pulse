@@ -6,16 +6,12 @@ namespace Pulse.Core
     {
         public static void NullSafeInvoke(this EventHandler self, object sender, EventArgs args)
         {
-            EventHandler h = self;
-            if (h != null)
-                h(sender, args);
+            self?.Invoke(sender, args);
         }
 
         public static void NullSafeInvoke<T>(this EventHandler<T> self, object sender, T args)
         {
-            EventHandler<T> h = self;
-            if (h != null)
-                h(sender, args);
+            self?.Invoke(sender, args);
         }
     }
 }

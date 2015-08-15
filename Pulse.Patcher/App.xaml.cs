@@ -118,7 +118,7 @@ namespace Pulse.Patcher
                 for (int i = 0; i < sourceFiles.Count; i++)
                     File.Copy(sourceFiles[i], targetFiles[i], true);
 
-                ProcessStartInfo procInfo = new ProcessStartInfo(Path.Combine(destination, "Pulse.Patcher.exe"), string.Format("/d \"{0}\"", source.TrimEnd('\\')))
+                ProcessStartInfo procInfo = new ProcessStartInfo(Path.Combine(destination, "Pulse.Patcher.exe"), $"/d \"{source.TrimEnd('\\')}\"")
                 {
                     CreateNoWindow = true,
                     UseShellExecute = false,

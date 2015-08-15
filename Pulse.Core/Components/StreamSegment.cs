@@ -16,9 +16,9 @@ namespace Pulse.Core
         {
             Exceptions.CheckArgumentNull(stream, "stream");
             if (offset < 0 || offset >= stream.Length)
-                throw new ArgumentOutOfRangeException("offset", offset, "Смещение выходит за границы потока.");
+                throw new ArgumentOutOfRangeException(nameof(offset), offset, "Смещение выходит за границы потока.");
             if (offset + length > stream.Length)
-                throw new ArgumentOutOfRangeException("length", length, "Недопустимая длина.");
+                throw new ArgumentOutOfRangeException(nameof(length), length, "Недопустимая длина.");
 
             _offset = offset;
             _length = length;

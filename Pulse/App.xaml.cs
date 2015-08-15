@@ -71,7 +71,7 @@ namespace Pulse
                 UiHelper.ShowError(null, e.Exception, "Unexpected error");
                 e.Handled = true;
             }
-            catch (Exception ex)
+            catch
             {
             }
         }

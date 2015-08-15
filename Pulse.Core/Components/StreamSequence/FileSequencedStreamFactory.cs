@@ -25,7 +25,7 @@ namespace Pulse.Core
         {
             try
             {
-                String path = string.IsNullOrEmpty(key) ? _filePath + _extension : String.Format("{0}_{1}{2}", _filePath, key, _extension);
+                String path = string.IsNullOrEmpty(key) ? _filePath + _extension : $"{_filePath}_{key}{_extension}";
                 result = new FileStream(path, _mode, _access);
                 
                 exception = null;

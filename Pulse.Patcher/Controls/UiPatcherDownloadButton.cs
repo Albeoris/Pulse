@@ -105,7 +105,7 @@ namespace Pulse.Patcher
             {
                 try
                 {
-                    HttpFileInfo fileInfo = downloader.GetRemoteFileInfo(url).ContinueWith((t) => t.Result).Result;
+                    HttpFileInfo fileInfo = downloader.GetRemoteFileInfo(url).ContinueWith(t => t.Result).Result;
                     if (latest == null || latest.LastModified < fileInfo.LastModified)
                         latest = fileInfo;
                 }

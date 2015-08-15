@@ -36,7 +36,7 @@ namespace Pulse.UI
         private void OnListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListItem item = (e.AddedItems.Count > 0 ? e.AddedItems[0] : null) as ListItem;
-            _audioPlayer.SetWave(item == null ? null : item.Provider);
+            _audioPlayer.SetWave(item?.Provider);
         }
 
         private ArchiveListing _listing;

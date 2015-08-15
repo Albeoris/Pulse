@@ -115,7 +115,7 @@ namespace Pulse.Core
                     break;
             }
 
-            return result == null ? null : result.FindString(arg);
+            return result?.FindString(arg);
         }
 
         #endregion

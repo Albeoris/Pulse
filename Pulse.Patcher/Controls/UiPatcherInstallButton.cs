@@ -40,8 +40,7 @@ namespace Pulse.Patcher
             finally
             {
                 Label = InstallLabel;
-                if (dir != null)
-                    dir.Delete(true);
+                dir?.Delete(true);
             }
         }
 
@@ -148,7 +147,7 @@ namespace Pulse.Patcher
                 string destination = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
 
                 string patcherPath = Path.Combine(updatePath.FullName, "Pulse.Patcher.exe");
-                ProcessStartInfo procInfo = new ProcessStartInfo(patcherPath, String.Format("/u \"{0}\"", destination))
+                ProcessStartInfo procInfo = new ProcessStartInfo(patcherPath, $"/u \"{destination}\"")
                 {
                     CreateNoWindow = true,
                     UseShellExecute = false,

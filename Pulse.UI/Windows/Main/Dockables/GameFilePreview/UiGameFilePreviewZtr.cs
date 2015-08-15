@@ -1,25 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using Pulse.Core;
 using Pulse.FS;
-using Pulse.DirectX;
-using SharpDX;
-using SharpDX.Direct3D9;
-using SharpDX.Toolkit.Graphics;
-using Xceed.Wpf.Toolkit.PropertyGrid;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
-using Color = System.Windows.Media.Color;
-using Device = SharpDX.Direct3D11.Device;
 
 // ReSharper disable UnusedMember.Local
 

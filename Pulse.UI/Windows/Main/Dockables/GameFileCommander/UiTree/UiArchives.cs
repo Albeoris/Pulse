@@ -100,7 +100,7 @@ namespace Pulse.UI
             if (_nodes == null)
                 yield break;
 
-            foreach (UiContainerNode node in _nodes)
+            foreach (UiArchiveNode node in _nodes)
                 yield return node;
         }
 

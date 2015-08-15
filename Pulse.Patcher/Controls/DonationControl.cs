@@ -67,10 +67,9 @@ namespace Pulse.Patcher.Controls
             {
                 if (!ReferenceEquals(child, backround))
                 {
-                    if (GetColumn(child) == 0)
-                    child.Margin = new Thickness(child.Margin.Left + 8, child.Margin.Top, child.Margin.Right, child.Margin.Bottom);
-                    else
-                        child.Margin = new Thickness(child.Margin.Left, child.Margin.Top, child.Margin.Right + 8, child.Margin.Bottom);
+                    child.Margin = GetColumn(child) == 0 
+                        ? new Thickness(child.Margin.Left + 8, child.Margin.Top, child.Margin.Right, child.Margin.Bottom) 
+                        : new Thickness(child.Margin.Left, child.Margin.Top, child.Margin.Right + 8, child.Margin.Bottom);
                 }
 
                 TextBlock textBlock = child as TextBlock;

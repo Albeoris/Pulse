@@ -86,7 +86,7 @@ namespace Pulse.Core
         {
             CheckArgumentNull(node, "node");
             if (node.Name != nodeName)
-                throw new XmlException(String.Format("Неверное имя узла: '{0}'. Ожидается: '{1}'.", node.Name, nodeName));
+                throw new XmlException($"Неверное имя узла: '{node.Name}'. Ожидается: '{nodeName}'.");
 
             return node;
         }
@@ -96,7 +96,7 @@ namespace Pulse.Core
         public static T CheckArgumentOutOfRangeException<T>(T value, string name, T minValue, T maxValue) where T : IComparable<T>
         {
             if (value.CompareTo(minValue) < 0 || value.CompareTo(maxValue) > 0)
-                throw new ArgumentOutOfRangeException(name, value, String.Format("Значение аргумента ({0} = {1}) выходит за пределы допустимого диапазона: ({2}~{3}).", name, value, minValue, maxValue));
+                throw new ArgumentOutOfRangeException(name, value, $"Значение аргумента ({name} = {value}) выходит за пределы допустимого диапазона: ({minValue}~{maxValue}).");
             return value;
         }
 

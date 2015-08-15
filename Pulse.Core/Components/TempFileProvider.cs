@@ -10,7 +10,7 @@ namespace Pulse.Core
         public readonly String FilePrefix;
         public readonly String Extension;
 
-        private long _counter = 0;
+        private long _counter;
 
         public TempFileProvider()
             : this(String.Empty, String.Empty)

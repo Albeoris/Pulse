@@ -50,10 +50,10 @@ namespace Pulse.UI.Interaction
                 Directory.CreateDirectory(ConfigurationDirectory);
                 XmlElement config = XmlHelper.CreateDocument("Configuration");
 
-                if (GameLocation != null) GameLocation.ToXml(config.CreateChildElement("GameLocation"));
-                if (WorkingLocation != null) WorkingLocation.ToXml(config.CreateChildElement("WorkingLocation"));
+                GameLocation?.ToXml(config.CreateChildElement("GameLocation"));
+                WorkingLocation?.ToXml(config.CreateChildElement("WorkingLocation"));
                 if (FileCommanderSelectedNodePath != null) config.SetString("FileCommanderSelectedNodePath", FileCommanderSelectedNodePath);
-                if (LocalizatorEnvironment != null) LocalizatorEnvironment.ToXml(config.CreateChildElement("LocalizatorEnvironment"));
+                LocalizatorEnvironment?.ToXml(config.CreateChildElement("LocalizatorEnvironment"));
 
                 config.GetOwnerDocument().Save(ConfigurationFilePath);
             }

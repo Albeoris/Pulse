@@ -7,8 +7,6 @@ using Pulse.Core;
 using Pulse.FS;
 using Pulse.DirectX;
 using Pulse.UI.Encoding;
-using SharpDX.Direct3D11;
-using SharpDX.Direct3D9;
 
 namespace Pulse.UI
 {

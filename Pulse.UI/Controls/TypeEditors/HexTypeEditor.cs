@@ -33,7 +33,7 @@ namespace Pulse.UI
     {
         private readonly HexBox _hexBox;
         private readonly object _lock = new object();
-        private bool _isInternalCall = false;
+        private bool _isInternalCall;
 
         public UiHexControl()
         {
@@ -167,10 +167,8 @@ namespace Pulse.UI
         /// </summary>
         private void OnChanged(EventArgs e)
         {
-            this._hasChanges = true;
-            if (this.Changed == null)
-                return;
-            this.Changed((object)this, e);
+            _hasChanges = true;
+            Changed?.Invoke(this, e);
         }
 
         /// <summary>
@@ -179,9 +177,7 @@ namespace Pulse.UI
         /// </summary>
         private void OnLengthChanged(EventArgs e)
         {
-            if (this.LengthChanged == null)
-                return;
-            this.LengthChanged((object)this, e);
+            LengthChanged?.Invoke(this, e);
         }
 
         /// <summary>

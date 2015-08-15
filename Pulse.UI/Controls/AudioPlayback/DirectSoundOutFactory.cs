@@ -10,11 +10,10 @@ namespace NAudioDemo.AudioPlaybackDemo
     class DirectSoundOutFactory : IOutputAudioDeviceFactory
     {
         private DirectSoundOutSettingsPanel settingsPanel;
-        private bool isAvailable;
 
         public DirectSoundOutFactory()
         {
-            this.isAvailable = DirectSoundOut.Devices.Count() > 0;
+            this.IsAvailable = DirectSoundOut.Devices.Any();
         }
 
         public IWavePlayer CreateDevice(int latency)
@@ -28,19 +27,8 @@ namespace NAudioDemo.AudioPlaybackDemo
             return this.settingsPanel;
         }
 
-        public string Name
-        {
-            get { return "DirectSound"; }
-        }
-
-        public bool IsAvailable
-        {
-            get { return isAvailable; }
-        }
-
-        public int Priority
-        {
-            get { return 2; } 
-        }
+        public string Name => "DirectSound";
+        public bool IsAvailable { get; }
+        public int Priority => 2;
     }
 }

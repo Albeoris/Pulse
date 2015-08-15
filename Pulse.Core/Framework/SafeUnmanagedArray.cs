@@ -10,7 +10,7 @@ namespace Pulse.Core
             : base(true)
         {
             if (size < 0)
-                throw new ArgumentOutOfRangeException("size");
+                throw new ArgumentOutOfRangeException(nameof(size));
 
             SetHandle(Marshal.AllocHGlobal(size));
             Initialize((ulong)size);

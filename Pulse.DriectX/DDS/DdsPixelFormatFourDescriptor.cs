@@ -19,7 +19,7 @@ namespace Pulse.DirectX
         public DdsPixelFormatFourDescriptor(string ddsPixelFormatFourDescriptor)
         {
             if (ddsPixelFormatFourDescriptor.Length != 4)
-                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Invalid length for FourCC(\"{0}\". Must be be 4 characters long ", ddsPixelFormatFourDescriptor), "ddsPixelFormatFourDescriptor");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Invalid length for FourCC(\"{0}\". Must be be 4 characters long ", ddsPixelFormatFourDescriptor), nameof(ddsPixelFormatFourDescriptor));
             _value = ((uint)ddsPixelFormatFourDescriptor[3]) << 24 | ((uint)ddsPixelFormatFourDescriptor[2]) << 16 | ((uint)ddsPixelFormatFourDescriptor[1]) << 8 | ddsPixelFormatFourDescriptor[0];
         }
 
@@ -85,13 +85,13 @@ namespace Pulse.DirectX
 
         public override string ToString()
         {
-            return string.Format("{0}", new string(new[]
+            return new string(new[]
             {
                 (char)(_value & 0xFF),
                 (char)((_value >> 8) & 0xFF),
                 (char)((_value >> 16) & 0xFF),
                 (char)((_value >> 24) & 0xFF)
-            }));
+            });
         }
 
         public bool Equals(DdsPixelFormatFourDescriptor other)

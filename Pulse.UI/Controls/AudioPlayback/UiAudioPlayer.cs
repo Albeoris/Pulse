@@ -172,9 +172,7 @@ namespace NAudioDemo.AudioPlaybackDemo
                 TimeSpan currentTime = (_wavePlayer.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : _waveProvider.CurrentTime;
                 TimeSpan totalTime = _waveProvider.TotalTime;
 
-                _timeTextBlock.Dispatcher.Invoke(() => _timeTextBlock.Text = String.Format("{0:00}:{1:00} / {2:00}:{3:00}",
-                    (int)currentTime.TotalMinutes, currentTime.Seconds,
-                    (int)totalTime.TotalMinutes, totalTime.Seconds));
+                _timeTextBlock.Dispatcher.Invoke(() => _timeTextBlock.Text = $"{(int)currentTime.TotalMinutes:00}:{currentTime.Seconds:00} / {(int)totalTime.TotalMinutes:00}:{totalTime.Seconds:00}");
             }
             catch
             {

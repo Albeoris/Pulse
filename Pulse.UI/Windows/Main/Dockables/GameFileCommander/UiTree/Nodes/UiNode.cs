@@ -144,8 +144,7 @@ namespace Pulse.UI
                 }
             }
 
-            if (Parent != null)
-                Parent.OnChildCheckedChanged(_isChecked, value);
+            Parent?.OnChildCheckedChanged(_isChecked, value);
 
             _isChecked = value;
         }
@@ -198,8 +197,7 @@ namespace Pulse.UI
         [NotifyPropertyChangedInvocator]
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

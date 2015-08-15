@@ -63,7 +63,7 @@ namespace Pulse.Core
             if (blockOffset < GetReadableSize(offset))
                 return new FluteWriter(this, offset, size);
 
-            String error = String.Format("Запись по смещению {0} невозможна, так как блок данных содержит пустоты.", offset);
+            String error = $"Запись по смещению {offset} невозможна, так как блок данных содержит пустоты.";
             throw new NotSupportedException(error);
         }
 

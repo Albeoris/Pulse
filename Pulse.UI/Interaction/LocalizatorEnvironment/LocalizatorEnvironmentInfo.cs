@@ -13,7 +13,7 @@ namespace Pulse.UI
         public bool IsFullScreen = true;
         public bool IsFullHd = true;
         public bool IsNihonVoice = true;
-        public bool? SwitchButtons = null;
+        public bool? SwitchButtons;
         public int AntiAliasing = 1;
         public int ShadowResolution = 1;
 
