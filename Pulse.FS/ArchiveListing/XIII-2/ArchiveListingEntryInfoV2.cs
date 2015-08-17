@@ -17,8 +17,24 @@ namespace Pulse.FS
         public short UnknownData; // Supposed to be fileChunk? Don't know how it works.
 
         public short BlockNumber;
-        public Boolean Flag => (RawOffset & 0x8000) == 0x8000;
-        public short Offset => (short)(RawOffset & 0x7FFF);
+
+        public Boolean Flag
+        {
+            get { return (RawOffset & 0x8000) == 0x8000; }
+            set
+            {
+                if (value)
+                    RawOffset = (short)(RawOffset | 0x8000);
+                else
+                    RawOffset = (short)(RawOffset & ~0x8000);
+            }
+        }
+
+        public short Offset
+        {
+            get { return (short)(RawOffset & 0x7FFF); }
+            set { RawOffset = (short)((value & 0x7FFF) | (RawOffset & 0x8000)); }
+        }
 
         public void ReadFromStream(Stream stream)
         {

@@ -8,7 +8,7 @@
         public long Sector;
         public long Size;
         public long UncompressedSize;
-        public short UnknownNumber, UnknownValue, UnknownValueV2;
+        public short UnknownNumber, UnknownValue, UnknownData;
 
         public ArchiveEntry(string name, long sector, long size, long uncompressedSize)
         {

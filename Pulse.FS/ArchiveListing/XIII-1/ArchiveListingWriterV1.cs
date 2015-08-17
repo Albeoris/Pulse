@@ -3,18 +3,18 @@ using Pulse.Core;
 
 namespace Pulse.FS
 {
-    public sealed class ArchiveListingWriter
+    public sealed class ArchiveListingWriterV1
     {
         public static void Write(ArchiveListing listing)
         {
-            ArchiveListingWriter writer = new ArchiveListingWriter(listing);
+            ArchiveListingWriterV1 writer = new ArchiveListingWriterV1(listing);
             writer.Write();
         }
 
         private readonly ArchiveListing _listing;
         private readonly ArchiveAccessor _accessor;
 
-        private ArchiveListingWriter(ArchiveListing listing)
+        private ArchiveListingWriterV1(ArchiveListing listing)
         {
             _listing = listing;
             _accessor = _listing.Accessor;
@@ -27,7 +27,7 @@ namespace Pulse.FS
             {
                 ArchiveListingBlockInfo[] blocksInfo;
                 ArchiveListingEntryInfoV1[] entriesInfoV1;
-                ArchiveListingTextWriter textWriter = new ArchiveListingTextWriter(textBuff);
+                ArchiveListingTextWriterV1 textWriter = new ArchiveListingTextWriterV1(textBuff);
                 textWriter.Write(_listing, out blocksInfo, out entriesInfoV1);
 
                 for (int i = 0; i < entriesInfoV1.Length; i++)

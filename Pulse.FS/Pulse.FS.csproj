@@ -107,18 +107,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveListing\ArchiveListingCompressedData.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingEntryInfoV2.cs" />
+    <Compile Include="ArchiveListing\XIII-2\ArchiveListingEntryInfoV2.cs" />
     <Compile Include="ArchiveListing\ArchiveAccessor.cs" />
     <Compile Include="ArchiveListing\ArchiveListing.cs" />
     <Compile Include="ArchiveListing\ArchiveEntry.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingEntryInfoV1.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingHeaderV1.cs" />
+    <Compile Include="ArchiveListing\XIII-1\ArchiveListingEntryInfoV1.cs" />
+    <Compile Include="ArchiveListing\XIII-1\ArchiveListingHeaderV1.cs" />
     <Compile Include="ArchiveListing\ArchiveListingBlockInfo.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingHeaderV2.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingReaderV2.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingReaderV1.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingTextWriter.cs" />
-    <Compile Include="ArchiveListing\ArchiveListingWriter.cs" />
+    <Compile Include="ArchiveListing\XIII-2\ArchiveListingHeaderV2.cs" />
+    <Compile Include="ArchiveListing\XIII-2\ArchiveListingReaderV2.cs" />
+    <Compile Include="ArchiveListing\XIII-1\ArchiveListingReaderV1.cs" />
+    <Compile Include="ArchiveListing\XIII-2\ArchiveListingTextWriterV2.cs" />
+    <Compile Include="ArchiveListing\XIII-1\ArchiveListingTextWriterV1.cs" />
+    <Compile Include="ArchiveListing\XIII-2\ArchiveListingWriterV2.cs" />
+    <Compile Include="ArchiveListing\XIII-1\ArchiveListingWriterV1.cs" />
     <Compile Include="ArchiveListing\IArchiveEntry.cs" />
     <Compile Include="ArchiveListing\IArchiveListing.cs" />
     <Compile Include="ArchiveListing\IArchiveListingHeader.cs" />
@@ -175,7 +177,9 @@
     <Compile Include="ZTR\IZtrFormatter.cs" />
     <Compile Include="ZTR\StringsZtrFormatter.cs" />
     <Compile Include="ZTR\TxtZtrFormatter.cs" />
+    <Compile Include="ZTR\ZtrFileKeysPacker.cs" />
     <Compile Include="ZTR\ZtrFilePacker.cs" />
+    <Compile Include="ZTR\ZtrFileTextPacker.cs" />
     <Compile Include="ZTR\ZtrTextWriter.cs" />
     <Compile Include="ZTR\ZtrFileEncoding.cs" />
     <Compile Include="ZTR\ZtrFileEntry.cs" />
@@ -197,9 +201,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ArchiveListing\XIII-2\format.h" />
-    <Content Include="ArchiveListing\XIII-2\main.cpp" />
-    <Content Include="ArchiveListing\XIII-2\misc.cpp" />
     <None Include="Resources\Executable\ffxiiicrypt.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

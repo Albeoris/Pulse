@@ -4,19 +4,16 @@ namespace Pulse.FS
 {
     public sealed class ArchiveListing : List<ArchiveEntry>, IArchiveListing
     {
-        public ArchiveListing(ArchiveAccessor accessor)
+        public ArchiveListing(ArchiveAccessor accessor, IArchiveListingHeader header)
+            : base(header.EntriesCount)
         {
             Accessor = accessor;
-        }
-
-        public ArchiveListing(ArchiveAccessor accessor, int entriesCount)
-            : base(entriesCount)
-        {
-            Accessor = accessor;
+            Header = header;
         }
 
         public readonly ArchiveAccessor Accessor;
-        
+        public readonly IArchiveListingHeader Header;
+
         public ArchiveListing Parent { get; set; }
 
         public string Name

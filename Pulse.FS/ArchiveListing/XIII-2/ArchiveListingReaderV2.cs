@@ -14,7 +14,10 @@ namespace Pulse.FS
         public static ArchiveListing Read(ArchiveAccessor accessor, Action<long> progressIncrement, Action<long> progressTotalChanged)
         {
             using (ArchiveListingReaderV2 reader = new ArchiveListingReaderV2(accessor, progressIncrement, progressTotalChanged))
-                return reader.Read();
+            {
+                ArchiveListing result = reader.Read();
+                return result;
+            }
         }
 
         private readonly ArchiveAccessor _accessor;
@@ -35,31 +38,33 @@ namespace Pulse.FS
         public ArchiveListing Read()
         {
             ArchiveListingHeaderV2 header;
-            Stream input = Decrypt(out header);
-
-            _progressTotalChanged.NullSafeInvoke(header.EntriesCount);
-
-            short blockNumber = -1;
-            bool? flag = null;
-
-            ArchiveListingEntryInfoV2[] entries = new ArchiveListingEntryInfoV2[header.EntriesCount];
-            for (int i = 0; i < entries.Length; i++)
+            using (Stream input = Decrypt(out header))
             {
-                entries[i] = input.ReadContent<ArchiveListingEntryInfoV2>();
-                if (entries[i].Flag != flag)
+
+                _progressTotalChanged.NullSafeInvoke(header.EntriesCount);
+
+                short blockNumber = -1;
+                bool? flag = null;
+
+                ArchiveListingEntryInfoV2[] entries = new ArchiveListingEntryInfoV2[header.EntriesCount];
+                for (int i = 0; i < entries.Length; i++)
                 {
-                    flag = entries[i].Flag;
-                    blockNumber++;
+                    entries[i] = input.ReadContent<ArchiveListingEntryInfoV2>();
+                    if (entries[i].Flag != flag)
+                    {
+                        flag = entries[i].Flag;
+                        blockNumber++;
+                    }
+                    entries[i].BlockNumber = blockNumber;
                 }
-                entries[i].BlockNumber = blockNumber;
+
+                ArchiveListingCompressedData data = new ArchiveListingCompressedData(header);
+                data.ReadFromStream(input);
+
+                ArchiveListing result = new ArchiveListing(_accessor, header);
+                ParseEntries(entries, data, result);
+                return result;
             }
-
-            ArchiveListingCompressedData data = new ArchiveListingCompressedData(header);
-            data.ReadFromStream(input);
-
-            ArchiveListing result = new ArchiveListing(_accessor, header.EntriesCount);
-            ParseEntries(entries, data, result);
-            return result;
         }
 
         private Stream Decrypt(out ArchiveListingHeaderV2 header)
@@ -67,15 +72,19 @@ namespace Pulse.FS
             Stream result = _accessor.ExtractListing();
             try
             {
-                header = result.ReadStruct<ArchiveListingHeaderV2>();
+                header = result.ReadContent<ArchiveListingHeaderV2>();
                 if (header.IsValid(result.Length))
+                {
+                    header.IsEncrypted = false;
                     return result;
+                }
 
-                using (TempFileProvider tmpProvider = new TempFileProvider("filelist", ".win32.bin"))
+                /*using (*/
+                TempFileProvider tmpProvider = new TempFileProvider(_accessor.ListingEntry.Name /*"filelist"*/, ".win32.bin");/*)*/
                 {
                     using (Stream output = tmpProvider.Create())
                     {
-                        output.WriteStruct(header);
+                        output.WriteContent(header);
                         result.CopyTo(output);
                         result.SafeDispose();
                     }
@@ -109,7 +118,8 @@ namespace Pulse.FS
                     }
 
                     result = tmpProvider.OpenRead();
-                    header = result.ReadStruct<ArchiveListingHeaderV2>();
+                    header = result.ReadContent<ArchiveListingHeaderV2>();
+                    header.IsEncrypted = true;
                     if (!header.IsValid(result.Length))
                         throw new InvalidDataException();
                 }
@@ -143,7 +153,8 @@ namespace Pulse.FS
                 ArchiveEntry entry = new ArchiveEntry(name, sector, compressedSize, uncompressedSize)
                 {
                     UnknownNumber = entryInfoV2.UnknownNumber,
-                    UnknownValue = entryInfoV2.UnknownValue
+                    UnknownValue = entryInfoV2.UnknownValue,
+                    UnknownData = entryInfoV2.UnknownData
                 };
 
                 result.Add(entry);

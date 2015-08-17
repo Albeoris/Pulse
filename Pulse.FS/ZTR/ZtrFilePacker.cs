@@ -82,6 +82,29 @@ namespace Pulse.FS
                 throw new NotImplementedException();
 
             _bw.Write((int)ZtrFileType.BigEndianCompressedDictionary);
+
+            ZtrFileHeader header = new ZtrFileHeader();
+            header.Version = 1;
+            header.Count = entries.Length;
+
+            using (MemoryStream ms = new MemoryStream(32 * 1024))
+            {
+                ZtrFileKeysPacker keyPacker = new ZtrFileKeysPacker(ms, entries);
+                keyPacker.Pack(header);
+
+                ZtrFileTextPacker textPacker = new ZtrFileTextPacker(ms, entries, header, _encoding);
+                textPacker.Pack();
+            }
+
+            long headerPosition = _output.Position;
+
+            
+
+            //_output.Seek(entries.Length * 8)
+
+
+
+            
         }
     }
 }

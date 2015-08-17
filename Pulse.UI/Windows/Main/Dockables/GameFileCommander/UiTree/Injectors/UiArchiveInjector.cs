@@ -47,14 +47,11 @@ namespace Pulse.UI
 
                 if (entry.Name.EndsWith(".ztr"))
                 {
-                    if (_source.TryProvideStrings() == null)
+                    if (_source.TryProvideStrings() == null && !_source.DirectoryIsExists(directoryPath))
                         continue;
                 }
-                else
-                {
-                    if (!_source.DirectoryIsExists(directoryPath))
-                        continue;
-                }
+                else if (!_source.DirectoryIsExists(directoryPath))
+                    continue;
 
                 Inject(entry, sourcePath);
             }

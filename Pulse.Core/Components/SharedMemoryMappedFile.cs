@@ -17,14 +17,6 @@ namespace Pulse.Core
             _filePath = filePath;
         }
 
-        public Stream CreateViewStream()
-        {
-            IDisposable context = Acquire();
-            DisposableStream result = new DisposableStream(_mmf.CreateViewStream(0L, 0L, MemoryMappedFileAccess.ReadWrite));
-            result.AfterDispose.Add(context);
-            return result;
-        }
-
         public Stream RecreateFile()
         {
             lock (_lock)

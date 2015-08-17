@@ -43,7 +43,7 @@ namespace Pulse.FS
             ArchiveListingCompressedData data = new ArchiveListingCompressedData(header);
             data.ReadFromStream(_input);
 
-            ArchiveListing result = new ArchiveListing(_accessor, header.EntriesCount);
+            ArchiveListing result = new ArchiveListing(_accessor, header);
             ParseEntries(entries, data, result);
             return result;
         }

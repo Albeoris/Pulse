@@ -44,15 +44,8 @@ namespace Pulse.FS
             return result;
         }
 
-        public int Level
-        {
-            get { return _level; }
-        }
-
-        public bool IsDescriptor
-        {
-            get { return _binaryFile == null; }
-        }
+        public int Level => _level;
+        public bool IsDescriptor => _binaryFile == null;
 
         public Stream ExtractListing()
         {

@@ -240,9 +240,7 @@ namespace Pulse.UI
             foreach (UiContainerNode archive in archives)
             {
                 foreach (UiWpdTableLeaf leaf in (archive.EnumerateNodes(path)).SelectMany(system => system.GetChilds()).OfType<UiWpdTableLeaf>())
-                {
                     return leaf.Listing.Accessor;
-                }
             }
 
             switch (InteractionService.GamePart)
