@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,8 +10,8 @@ namespace Pulse.Patcher
 {
     public sealed class UiPatcherPlayButton : UiProgressButton
     {
-        private const string PlayLabel = "Играть";
-        private const string PlayingLabel = "Запуск...";
+        private const string PlayLabel = "РРіСЂР°С‚СЊ";
+        private const string PlayingLabel = "Р—Р°РїСѓСЃРє...";
 
         public GameSettingsControl GameSettings { get; set; }
         public BackgroundMusicPlayer MusicPlayer { get; set; }

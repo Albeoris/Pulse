@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Threading;
 using Pulse.Core;
 using Pulse.FS;
@@ -20,6 +26,11 @@ namespace Pulse
 
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             DispatcherUnhandledException += OnDispatcherUnhandledException;
+
+            //using (Stream book = File.OpenRead(@"D:\Steam\SteamApps\common\FINAL FANTASY XIII\Work\Extracted\db\resident\movie_items_us.win32.wdb"))
+            //{
+            //    WdbMovieHeader header = book.ReadContent<WdbMovieHeader>();
+            //}
 
             //// book.strings => review.strings
             //ZtrFileEntry[] books, reviews;
@@ -80,3 +91,4 @@ namespace Pulse
         }
     }
 }
+

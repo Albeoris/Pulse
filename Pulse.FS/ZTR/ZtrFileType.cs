@@ -1,4 +1,4 @@
-namespace Pulse.FS
+﻿namespace Pulse.FS
 {
     public enum ZtrFileType
     {

@@ -137,9 +137,15 @@ namespace Pulse.UI
                         yield return accessor;
                     break;
                 }
-                case UiNodeType.DataTableLeaf:
+                case UiNodeType.FileTableLeaf:
                 {
                     foreach (UiWpdLeafsAccessor accessor in GroupWpdLeafs(group.OfType<UiWpdTableLeaf>(), conversion)) // TODO: SEDBLeafs
+                        yield return accessor;
+                    break;
+                }
+                case UiNodeType.DataTableLeaf:
+                {
+                    foreach (UiWdbMovieLeafsAccessor accessor in GroupWdbLeafs(group.OfType<UiWdbMovieLeaf>(), conversion))
                         yield return accessor;
                     break;
                 }
@@ -153,13 +159,19 @@ namespace Pulse.UI
         private IEnumerable<UiArciveLeafsAccessor> GroupArchiveLeafs(IEnumerable<UiArchiveLeaf> leafs, bool? conversion, bool? compression)
         {
             foreach (IGrouping<ArchiveListing, UiArchiveLeaf> group in leafs.GroupBy(l => l.Listing))
-                yield return new UiArciveLeafsAccessor(group.Key, conversion, compression, group.Select(l=>l.Entry).ToArray());
+                yield return new UiArciveLeafsAccessor(group.Key, conversion, compression, group.Select(l => l.Entry).ToArray());
         }
 
         private IEnumerable<UiWpdLeafsAccessor> GroupWpdLeafs(IEnumerable<UiWpdTableLeaf> leafs, bool? conversion)
         {
             foreach (IGrouping<WpdArchiveListing, UiWpdTableLeaf> group in leafs.GroupBy(l => l.Listing))
-                yield return new UiWpdLeafsAccessor(group.Key, conversion, group.Select(l=>l.Entry).ToArray());
+                yield return new UiWpdLeafsAccessor(group.Key, conversion, group.Select(l => l.Entry).ToArray());
+        }
+
+        private IEnumerable<UiWdbMovieLeafsAccessor> GroupWdbLeafs(IEnumerable<UiWdbMovieLeaf> leafs, bool? conversion)
+        {
+            foreach (IGrouping<WdbMovieArchiveListing, UiWdbMovieLeaf> group in leafs.GroupBy(l => l.Listing))
+                yield return new UiWdbMovieLeafsAccessor(group.Key, conversion, group.Select(l => l.Entry).ToArray());
         }
     }
 }

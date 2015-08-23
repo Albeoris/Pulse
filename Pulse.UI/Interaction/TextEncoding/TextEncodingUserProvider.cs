@@ -234,7 +234,7 @@ namespace Pulse.UI
             pathBuilder.Add(UiNodeType.Group, new Wildcard(UiArchiveExtension.Xgr.ToString()));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("gui"));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("resident"));
-            pathBuilder.Add(UiNodeType.DataTable, new Wildcard("system.win32.xgr"));
+            pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system.win32.xgr"));
             UiNodePath path = pathBuilder.Build();
 
             foreach (UiContainerNode archive in archives)

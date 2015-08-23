@@ -29,6 +29,12 @@ namespace Pulse.Core
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void SwapUInt32(uint* v)
+        {
+            *v = SwapUInt32(*v);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static long SwapInt64(long v)
         {
             return (long)(((SwapInt32((int)v) & 0xffffffffL) << 0x20) | (SwapInt32((int)(v >> 0x20)) & 0xffffffffL));
@@ -58,6 +64,12 @@ namespace Pulse.Core
         public static unsafe uint ToBigUInt32(byte* b)
         {
             return (uint)(*b << 24 | *(b + 1) << 16 | *(b + 2) << 8 | *(b + 3));
+        }
+
+        public static unsafe uint ToBigUInt32(byte[] array, int index)
+        {
+            fixed (byte* b = &array[index])
+                return ToBigUInt32(b);
         }
     }
 }

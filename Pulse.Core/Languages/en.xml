@@ -2,21 +2,27 @@
 <Data>
 
   <Measurement
-    Elapsed="Elapsed"
-    Remaining="Remaining"
-    SecondAbbr="sec"
-    ByteAbbr="B"
-    KByteAbbr="KB"
-    MByteAbbr="MB"
-    GByteAbbr="GB"
-    TByteAbbr="TB"
-    PByteAbbr="PB"
-    EByteAbbr="EB"
+    Elapsed = "Elapsed"
+    Remaining = "Remaining"
+    SecondAbbr = "sec"
+    ByteAbbr = "B"
+    KByteAbbr = "KB"
+    MByteAbbr = "MB"
+    GByteAbbr = "GB"
+    TByteAbbr = "TB"
+    PByteAbbr = "PB"
+    EByteAbbr = "EB"
     />
   
   <Button
     OK = "OK"
     Cancel = "Cancel"
+    Continue = "Continue"
+    Clone = "Clone"
+    Remove = "Remove"
+    Rollback = "Cancel"
+    Inject = "Inject"
+    SaveAs = "Save as..."
     />
 
   <InfoProvider>
@@ -83,8 +89,72 @@
 
     <GameFilePreview
       Header="Preview"
+      >
+
+      <Ykd
+        ResourceRemovingTitle = "Removing"
+        ConfirmResourceRemoving = "Are you sure you want to delete this resource?"
+        />
+      
+    </GameFilePreview>
+
+  </Dockable>
+
+  <EncodingEditor>
+
+    <Main
+      Before = "Before:"
+      Width = "Width:"
+      After = "After:"
+      FromText = "From text:"
+      ToText = "To text:"
       />
     
-  </Dockable>
+    <Extra
+      Row = "Row:"
+      Column = "Column:"
+      FromText = "From text:"
+      ToText = "To text:"
+      />
+
+  </EncodingEditor>
+
+  <Dialogue>
+    
+    <SaveAs
+      Title = "Save as..."
+      />
+    
+  </Dialogue>
+
+  <Message>
+
+    <Done
+      Title = "Done!"
+      ExtractionCompleteFormat = "Extraction complete for {0:d\.hh\:mm\:ss}}."
+      InjectionCompleteFormat = "Injection complete for {0:d\.hh\:mm\:ss}}."
+      />
+
+    <Error
+      Title = "Error!"
+      />
+
+  </Message>
+
+  <Error>  
+    
+    <File
+      UnknownFormat = "Unknown file format."
+      />
+
+    <Process
+      CannotGetExecutablePath = "Cannot get a path of the executable assembly."
+      />
+    
+    <Text
+      TooLongTagNameFormat = "Too long name of tag: {0}"
+      />
+
+  </Error>
 
 </Data>

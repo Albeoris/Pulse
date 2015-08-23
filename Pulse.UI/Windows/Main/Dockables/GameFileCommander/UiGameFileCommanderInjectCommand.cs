@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -48,11 +48,11 @@ namespace Pulse.UI
                 manager.WriteListings();
 
                 if (sw.ElapsedMilliseconds / 1000 > 2)
-                    MessageBox.Show($"Упаковка завершена за {sw.Elapsed.ToString(@"d\.hh\:mm\:ss")}.", "Готово!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(String.Format(Lang.Message.Done.InjectionCompleteFormat, sw.Elapsed), Lang.Message.Done.Title, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), Lang.Message.Error.Title, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

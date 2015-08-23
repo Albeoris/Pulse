@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Globalization;
 using System.Text;
 
@@ -43,7 +43,7 @@ namespace Pulse.Core
             sb.Append('}');
 
             if (sb.Length > MaxTagLength)
-                throw Exceptions.CreateException("Слишком длинное имя тэга: {0}", sb.ToString());
+                throw Exceptions.CreateException(Lang.Error.Text.TooLongTagNameFormat, sb.ToString());
 
             for (int i = 0; i < sb.Length; i++)
                 chars[offset++] = sb[i];

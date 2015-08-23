@@ -1,4 +1,4 @@
-namespace Pulse.FS
+п»їnamespace Pulse.FS
 {
     public sealed class WflContent
     {
@@ -8,7 +8,7 @@ namespace Pulse.FS
         public readonly WflHeader Header;
         public readonly int[] Sizes;
         public readonly int[] Offsets;
-        public readonly int[] Colors; // Не используется?
+        public readonly int[] Colors; // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
         public readonly short[] AdditionalTable;
 
         public WflContent(WflHeader header, int[] sizes, int[] offsets, int[] colors, short[] additionalTable)

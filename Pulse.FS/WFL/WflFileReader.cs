@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Globalization;
 using System.IO;
 using Pulse.Core;
@@ -35,7 +35,7 @@ namespace Pulse.FS
 
             int unknownValue = _br.ReadInt32();
             if (unknownValue != ColorTableMagic)
-                throw Exceptions.CreateException("Неизвестный формат файла.");
+                throw Exceptions.CreateException(Lang.Error.File.UnknownFormat);
 
             int colorsCount = 0;
             switch (header.ColorTableType)

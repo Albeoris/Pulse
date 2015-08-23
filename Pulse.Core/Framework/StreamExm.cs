@@ -102,6 +102,19 @@ namespace Pulse.Core
             return result;
         }
 
+        public static T[] DungerousReadStructs<T>(this Stream input, int count) where T : struct
+        {
+            if (count < 1)
+                return new T[0];
+
+            Array result = new T[count];
+            Int32 entrySize = UnsafeTypeCache<T>.UnsafeSize;
+            using (UnsafeTypeCache<byte>.ChangeArrayType(result, entrySize))
+                input.EnsureRead((byte[])result, 0, result.Length);
+
+            return (T[])result;
+        }
+
         public static T ReadStruct<T>(this Stream input) where T : new()
         {
             if (input == null)

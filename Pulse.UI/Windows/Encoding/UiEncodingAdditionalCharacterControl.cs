@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -37,7 +37,7 @@ namespace Pulse.UI.Encoding
                 Children.Add(_indexLabel);
             }
 
-            UiTextBlock rowLabel = UiTextBlockFactory.Create("Ряд:");
+            UiTextBlock rowLabel = UiTextBlockFactory.Create(Lang.EncodingEditor.Extra.Row);
             {
                 rowLabel.Margin = new Thickness(5, 5, 2, 5);
                 rowLabel.VerticalAlignment = VerticalAlignment.Center;
@@ -52,7 +52,7 @@ namespace Pulse.UI.Encoding
                 Children.Add(_rowNumber);
             }
 
-            UiTextBlock colLabel = UiTextBlockFactory.Create("Колонка:");
+            UiTextBlock colLabel = UiTextBlockFactory.Create(Lang.EncodingEditor.Extra.Column);
             {
                 colLabel.Margin = new Thickness(5, 5, 2, 5);
                 colLabel.VerticalAlignment = VerticalAlignment.Center;
@@ -67,7 +67,7 @@ namespace Pulse.UI.Encoding
                 Children.Add(_colNumber);
             }
 
-            UiTextBlock outputLabel = UiTextBlockFactory.Create("В текст:");
+            UiTextBlock outputLabel = UiTextBlockFactory.Create(Lang.EncodingEditor.Extra.ToText);
             {
                 outputLabel.Margin = new Thickness(5, 5, 2, 5);
                 outputLabel.VerticalAlignment = VerticalAlignment.Center;
@@ -82,7 +82,7 @@ namespace Pulse.UI.Encoding
                 Children.Add(_output);
             }
 
-            UiTextBlock inputLabel = UiTextBlockFactory.Create("Из текста:");
+            UiTextBlock inputLabel = UiTextBlockFactory.Create(Lang.EncodingEditor.Extra.FromText);
             {
                 inputLabel.Margin = new Thickness(5, 5, 2, 5);
                 inputLabel.VerticalAlignment = VerticalAlignment.Center;

@@ -5,7 +5,7 @@ using Pulse.Core;
 
 namespace Pulse.FS
 {
-    public sealed class WpdHeader : IStreamingContent
+    public class WpdHeader : IStreamingContent
     {
         public const int MagicNumber = 0x00445057; // WPD
 
@@ -13,7 +13,7 @@ namespace Pulse.FS
         public int Count;
         public WpdEntry[] Entries;
 
-        public unsafe void ReadFromStream(Stream input)
+        public virtual unsafe void ReadFromStream(Stream input)
         {
             if (input.Length - input.Position < 16)
                 return;
@@ -46,7 +46,7 @@ namespace Pulse.FS
             }
         }
 
-        public void WriteToStream(Stream stream)
+        public virtual void WriteToStream(Stream stream)
         {
             if (Entries == null)
                 return;

@@ -1,4 +1,4 @@
-using SharpDX;
+﻿using SharpDX;
 using SharpDX.Toolkit.Graphics;
 
 namespace Pulse.DirectX

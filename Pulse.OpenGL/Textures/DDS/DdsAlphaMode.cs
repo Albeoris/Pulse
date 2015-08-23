@@ -1,4 +1,4 @@
-namespace Pulse.OpenGL
+﻿namespace Pulse.OpenGL
 {
     /// <summary>
     /// Contains additional metadata (formerly was reserved). The lower 3 bits indicate the alpha mode of the associated resource. The upper 29 bits are reserved and are typically 0.

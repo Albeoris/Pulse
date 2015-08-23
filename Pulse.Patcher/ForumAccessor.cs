@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -33,7 +33,7 @@ namespace Pulse.Patcher
             {
                 {"username", userName},
                 {"password", password},
-                {"login", "Вход"},
+                {"login", "Р’С…РѕРґ"},
                 {"redirect", "./index.php?"}
             };
 
@@ -47,7 +47,7 @@ namespace Pulse.Patcher
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
-                    if (line != null && line.Contains("Закрытая разработка"))
+                    if (line != null && line.Contains("Р—Р°РєСЂС‹С‚Р°СЏ СЂР°Р·СЂР°Р±РѕС‚РєР°"))
                     {
                         _sessionId = FindCookieValue("phpbb3_2vxwe_sid");
                         return;
@@ -55,7 +55,7 @@ namespace Pulse.Patcher
                 }
             }
 
-            throw new Exception("Ошибка входа... или недостаточно прав... или что-то ещё...");
+            throw new Exception("РћС€РёР±РєР° РІС…РѕРґР°... РёР»Рё РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ... РёР»Рё С‡С‚Рѕ-С‚Рѕ РµС‰С‘...");
         }
 
         public void Log(string subject, string message)
@@ -83,7 +83,7 @@ namespace Pulse.Patcher
                             {"subject", new StringContent(subject)},
                             {"addbbcode20", new StringContent("100")},
                             {"message", new StringContent(message)},
-                            {"post", new StringContent("Отправить")},
+                            {"post", new StringContent("РћС‚РїСЂР°РІРёС‚СЊ")},
                             {"attach_sig", new StringContent("on")},
                             {"fileupload", new StreamContent(ms)},
                             {"filecomment", new StringContent(string.Empty)},
@@ -114,7 +114,7 @@ namespace Pulse.Patcher
                         content.Add(dic["fileupload"]);
                         content.Add(dic["filecomment"]);
 
-                        Thread.Sleep(1500); // Без таймаута не работает
+                        Thread.Sleep(1500); // Р‘РµР· С‚Р°Р№РјР°СѓС‚Р° РЅРµ СЂР°Р±РѕС‚Р°РµС‚
                         client.PostAsync(topicUrl, content).Result.EnsureSuccessStatusCode();
                     }
                 }
@@ -124,7 +124,7 @@ namespace Pulse.Patcher
         public string ReadSecurityKey()
         {
             const string topicUrl = "http://ff13.ffrtt.ru/viewtopic.php?f=9&t=21";
-            const string tag = "<div class=\"content\">«Этому наверняка есть какое-то естественное объяснение.";
+            const string tag = "<div class=\"content\">В«Р­С‚РѕРјСѓ РЅР°РІРµСЂРЅСЏРєР° РµСЃС‚СЊ РєР°РєРѕРµ-С‚Рѕ РµСЃС‚РµСЃС‚РІРµРЅРЅРѕРµ РѕР±СЉСЏСЃРЅРµРЅРёРµ.";
 
             using (HttpClientHandler handler = new HttpClientHandler())
             {
@@ -148,7 +148,7 @@ namespace Pulse.Patcher
                 }
             }
 
-            throw new Exception("Не удалось получить ключ безопасности.");
+            throw new Exception("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РєР»СЋС‡ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё.");
         }
 
         private HttpWebRequest CreatePostRequest(string url)

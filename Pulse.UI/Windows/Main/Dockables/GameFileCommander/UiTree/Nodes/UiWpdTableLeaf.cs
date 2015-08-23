@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pulse.FS;
 
 namespace Pulse.UI
@@ -9,7 +9,7 @@ namespace Pulse.UI
         public WpdArchiveListing Listing { get; private set; }
 
         public UiWpdTableLeaf(string name, WpdEntry entry, WpdArchiveListing listing)
-            : base(name, UiNodeType.DataTableLeaf)
+            : base(name, UiNodeType.FileTableLeaf)
         {
             Entry = entry;
             Listing = listing;

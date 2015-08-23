@@ -1,4 +1,4 @@
-using Pulse.FS;
+﻿using Pulse.FS;
 
 namespace Pulse.UI
 {
@@ -8,7 +8,7 @@ namespace Pulse.UI
         public SeDbArchiveListing Listing { get; private set; }
 
         public UiSeDbTableLeaf(string name, SeDbResEntry entry, SeDbArchiveListing listing)
-            : base(name, UiNodeType.DataTableLeaf)
+            : base(name, UiNodeType.FileTableLeaf)
         {
             Entry = entry;
             Listing = listing;

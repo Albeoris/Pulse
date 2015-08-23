@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Threading;
@@ -46,7 +46,7 @@ namespace Pulse.Patcher
                 using (RegistryKey registryKey = localMachine.OpenSubKey(GetSteamRegistyPath(gamePart)))
                 {
                     if (registryKey == null)
-                        throw Exceptions.CreateException("Запись в реестре не обнаружена.");
+                        throw Exceptions.CreateException("Р—Р°РїРёСЃСЊ РІ СЂРµРµСЃС‚СЂРµ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅР°.");
 
                     GameLocationInfo result = new GameLocationInfo((string)registryKey.GetValue(GameLocationSteamRegistryProvider.SteamGamePathTag));
                     result.Validate();
@@ -58,7 +58,7 @@ namespace Pulse.Patcher
             {
                 return Application.Current.Dispatcher.Invoke(() =>
                 {
-                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog($"Укажите каталог Final Fantasy XIII-{(int)gamePart}..."))
+                    using (CommonOpenFileDialog dlg = new CommonOpenFileDialog($"РЈРєР°Р¶РёС‚Рµ РєР°С‚Р°Р»РѕРі Final Fantasy XIII-{(int)gamePart}..."))
                     {
                         dlg.IsFolderPicker = true;
                         if (dlg.ShowDialog() != CommonFileDialogResult.Ok)

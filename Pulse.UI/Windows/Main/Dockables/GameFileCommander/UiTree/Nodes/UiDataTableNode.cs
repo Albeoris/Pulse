@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using Pulse.Core;
 using Pulse.FS;
 
 namespace Pulse.UI
@@ -10,85 +8,39 @@ namespace Pulse.UI
         private readonly ArchiveListing _listing;
         private readonly UiArchiveExtension _extension;
         private readonly ArchiveEntry _indices;
-        private readonly ArchiveEntry _binary;
 
-        public UiDataTableNode(ArchiveListing listing, UiArchiveExtension extension, ArchiveEntry indices, ArchiveEntry binary)
+        public UiDataTableNode(ArchiveListing listing, UiArchiveExtension extension, ArchiveEntry indices)
             : base(indices.Name, UiNodeType.DataTable)
         {
             _listing = listing;
             _extension = extension;
             _indices = indices;
-            _binary = binary;
         }
 
         protected override UiNode[] ExpandChilds()
         {
-            switch (_extension)
+            switch (Name)
             {
-                case UiArchiveExtension.Grs:
-                case UiArchiveExtension.Xgr:
-                case UiArchiveExtension.Xwb:
-                case UiArchiveExtension.Xfv:
-                    return ExpandWpdChilds();
-                case UiArchiveExtension.Trb:
-                    return ExpandTrbChilds();
+                case "movie_items.win32.wdb":
+                case "movie_items_us.win32.wdb":
+                    return ExpandMovieChilds();
                 default:
-                    throw new NotImplementedException(_extension.ToString());
+                    throw new NotImplementedException(Name);
             }
         }
 
-        private UiNode[] ExpandWpdChilds()
+        private UiNode[] ExpandMovieChilds()
         {
-            ImgbArchiveAccessor imgbAccessor = new ImgbArchiveAccessor(_listing, _indices, _binary);
-            WpdArchiveListing wpdListing = WpdArchiveListingReader.Read(imgbAccessor);
+            DbArchiveAccessor dbAccessor = new DbArchiveAccessor(_listing, _indices);
+            WdbMovieArchiveListing wpdListing = WdbMovieArchiveListingReader.Read(dbAccessor);
 
             UiNode[] result = new UiNode[wpdListing.Count];
             for (int i = 0; i < result.Length; i++)
             {
-                WpdEntry xgrEntry = wpdListing[i];
-                result[i] = new UiWpdTableLeaf(xgrEntry.Name, xgrEntry, wpdListing) {Parent = this};
+                WdbMovieEntry movieEntry = wpdListing[i];
+                result[i] = new UiWdbMovieLeaf(movieEntry.Name, movieEntry, wpdListing) { Parent = this };
             }
             return result;
-        }
-
-        private UiNode[] ExpandTrbChilds()
-        {
-            ImgbArchiveAccessor imgbAccessor = new ImgbArchiveAccessor(_listing, _indices, _binary);
-
-            SeDbArchiveListing sedbListing = SeDbArchiveListingReader.Read(imgbAccessor);
-            UiNode[] result = new UiNode[sedbListing.Count];
-            int offset = sedbListing.Count * 16 + 0x40;
-            using (Stream headers = imgbAccessor.ExtractHeaders())
-            using (BinaryReader br = new BinaryReader(headers))
-            {
-                for (int i = 0; i < result.Length; i++)
-                {
-                    SeDbResEntry entry = sedbListing[i];
-                    String name = entry.Index.ToString();
-
-                    SectionType type;
-                    if (TryReadSectionType(br, offset, entry, out type))
-                        name = name + "." + type.ToString().ToLower();
-
-                    result[i] = new UiSeDbTableLeaf(name, entry, sedbListing) {Parent = this};
-                }
-            }
-            return result;
-        }
-
-        private static bool TryReadSectionType(BinaryReader br, int offset, SeDbResEntry entry, out SectionType type)
-        {
-            br.BaseStream.SetPosition(entry.Offset + offset);
-
-            int magic = br.ReadInt32();
-            if (magic != SectionHeader.MagicNumber)
-            {
-                type = 0;
-                return false;
-            }
-
-            type = (SectionType)br.ReadInt32();
-            return true;
         }
     }
 }

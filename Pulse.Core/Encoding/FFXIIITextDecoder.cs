@@ -1,4 +1,4 @@
-namespace Pulse.Core
+﻿namespace Pulse.Core
 {
     public sealed class FFXIIITextDecoder
     {

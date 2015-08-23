@@ -33,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -124,7 +125,13 @@
     <Compile Include="ArchiveListing\IArchiveEntry.cs" />
     <Compile Include="ArchiveListing\IArchiveListing.cs" />
     <Compile Include="ArchiveListing\IArchiveListingHeader.cs" />
+    <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieArchiveListingReader.cs" />
+    <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieArchiveListing.cs" />
+    <Compile Include="IMGB\WPD\WDB\DbArchiveAccessor.cs" />
     <Compile Include="IMGB\Sections\Textures\VTEX\VtexHeader.cs" />
+    <Compile Include="IMGB\WPD\WDB\WdbHeader.cs" />
+    <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieHeader.cs" />
+    <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IMGB\Sections\GtexHeader.cs" />
     <Compile Include="IMGB\Sections\SectionBase.cs" />
@@ -206,9 +213,7 @@
     </None>
     <Content Include="IMGB\Sections\Partially Stolen.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WPD\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

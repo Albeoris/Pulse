@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -25,9 +25,12 @@ namespace Pulse.UI
             if (TryAddZoneListing(listing, entry, entryPath))
                 return true;
 
-            // Списки имён файлов без возможности их извлучь
+            // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             //if (TryAddSoundListing(listing, entry, entryName))
             //    return true;
+
+            if (TryAddMoviesListing(listing, entry, entryName))
+                return true;
 
             if (TryAddImgbPair(listing, entry, entryPath, entryName))
                 return true;
@@ -119,7 +122,7 @@ namespace Pulse.UI
             if (!entryPath.StartsWith("zone/filelist"))
                 return false;
 
-            // Пропускаем пустые архивы
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             if (entryPath.EndsWith("2"))
                 return false;
 
@@ -147,20 +150,22 @@ namespace Pulse.UI
             return true;
         }
 
-        private bool TryAddSoundListing(ArchiveListing parentListing, ArchiveEntry entry, String entryName)
+        private bool TryAddMoviesListing(ArchiveListing parentListing, ArchiveEntry entry, String entryName)
         {
             switch (entryName)
             {
-                case "filelist_sound_pack.win32.bin":
-                case "filelist_sound_pack.win32_us.bin":
+                case "movie_items.win32.wdb":
+                case "movie_items_us.win32.wdb":
                     break;
                 default:
                     return false;
             }
 
-            ArchiveAccessor accessor = parentListing.Accessor.CreateDescriptor(entry);
-            ConcurrentBag<UiNode> container = ProvideRootNodeChilds(UiArchiveExtension.Bin);
-            container.Add(new UiArchiveNode(accessor, parentListing));
+            UiArchiveExtension extension = GetArchiveExtension(entry);
+
+            UiDataTableNode node = new UiDataTableNode(parentListing, extension, entry);
+            ConcurrentBag<UiNode> container = ProvideRootNodeChilds(extension);
+            container.Add(node);
 
             return true;
         }
@@ -168,10 +173,6 @@ namespace Pulse.UI
         private bool TryAddImgbPair(ArchiveListing listing, ArchiveEntry entry, string entryPath, string entryName)
         {
             string ext = PathEx.GetMultiDotComparableExtension(entryName);
-            //if (entryName.StartsWith("block") && ext.Contains(".win32."))
-            //{
-            //    Console.WriteLine();
-            //}
             switch (ext)
             {
                 case ".win32.xfv":
@@ -206,7 +207,7 @@ namespace Pulse.UI
             {
                 UiArchiveExtension extension = GetArchiveExtension(pair.Item1);
 
-                UiDataTableNode node = new UiDataTableNode(listing, extension, pair.Item1, pair.Item2);
+                UiFileTableNode node = new UiFileTableNode(listing, extension, pair.Item1, pair.Item2);
                 ConcurrentBag<UiNode> container = ProvideRootNodeChilds(extension);
                 container.Add(node);
             }

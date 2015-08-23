@@ -1,17 +1,12 @@
-using System;
+﻿using System;
 using System.Windows.Media;
-using SharpDX;
 using SharpDX.Direct2D1;
-using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
-using SharpDX.Toolkit.Graphics;
 using Device = SharpDX.Direct3D11.Device;
 using Factory = SharpDX.Direct2D1.Factory;
 using PixelFormat = SharpDX.Direct2D1.PixelFormat;
 using Resource = SharpDX.Direct3D11.Resource;
-using Texture2D = SharpDX.Direct3D11.Texture2D;
-using Color = System.Windows.Media.Color;
 
 namespace Pulse.DirectX
 {

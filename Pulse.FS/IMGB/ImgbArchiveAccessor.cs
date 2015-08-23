@@ -2,42 +2,24 @@
 
 namespace Pulse.FS
 {
-    public sealed class ImgbArchiveAccessor
+    public sealed class ImgbArchiveAccessor : DbArchiveAccessor
     {
-        public readonly ArchiveListing Parent;
-        public readonly ArchiveEntry XgrHeadersEntry;
-        public readonly ArchiveEntry XgrContentEntry;
+        public readonly ArchiveEntry ContentEntry;
 
-        public ImgbArchiveAccessor(ArchiveListing parent, ArchiveEntry xgrHeadersEntry, ArchiveEntry xgrContentEntry)
+        public ImgbArchiveAccessor(ArchiveListing parent, ArchiveEntry headersEntry, ArchiveEntry contentEntry)
+            : base(parent, headersEntry)
         {
-            Parent = parent;
-            XgrHeadersEntry = xgrHeadersEntry;
-            XgrContentEntry = xgrContentEntry;
-        }
-
-        public string Name
-        {
-            get { return XgrHeadersEntry.Name; }
-        }
-
-        public Stream ExtractHeaders()
-        {
-            return Parent.Accessor.ExtractBinary(XgrHeadersEntry);
+            ContentEntry = contentEntry;
         }
 
         public Stream ExtractContent()
         {
-            return Parent.Accessor.ExtractBinary(XgrContentEntry);
-        }
-
-        public Stream RecreateIndices(int newSize)
-        {
-            return Parent.Accessor.OpenOrAppendBinary(XgrHeadersEntry, newSize);
+            return Parent.Accessor.ExtractBinary(ContentEntry);
         }
 
         public Stream RecreateContent(int newSize)
         {
-            return Parent.Accessor.OpenOrAppendBinary(XgrContentEntry, newSize);
+            return Parent.Accessor.OpenOrAppendBinary(ContentEntry, newSize);
         }
     }
 }

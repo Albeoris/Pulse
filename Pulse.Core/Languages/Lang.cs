@@ -19,7 +19,7 @@ namespace Pulse.Core
                 DirectoryInfo dir = new DirectoryInfo("Languages");
                 if (!dir.Exists)
                     dir.Create();
-                
+
                 FileInfo currentLang = null;
 
                 FileInfo[] files = dir.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
@@ -151,6 +151,12 @@ namespace Pulse.Core
 
             public static readonly string OK = GetButton("OK");
             public static readonly string Cancel = GetButton("Cancel");
+            public static readonly string Continue = GetButton("Continue");
+            public static readonly string Clone = GetButton("Clone");
+            public static readonly string Remove = GetButton("Remove");
+            public static readonly string Rollback = GetButton("Rollback");
+            public static readonly string Inject = GetButton("Inject");
+            public static readonly string SaveAs = GetButton("SaveAs");
         }
 
         public static class InfoProvider
@@ -246,6 +252,11 @@ namespace Pulse.Core
                 return Instance.Value.GetString(name, "Dockable", dockableName);
             }
 
+            private static string GetDockable(string name, string dockableName, string childName)
+            {
+                return Instance.Value.GetString(name, "Dockable", dockableName, childName);
+            }
+
             public static class DataSources
             {
                 private static string GetDockableInfoProviders(string name)
@@ -276,7 +287,144 @@ namespace Pulse.Core
                     return GetDockable(name, "GameFilePreview");
                 }
 
+                private static string GetDockableInfoProviders(string name, string childName)
+                {
+                    return GetDockable(name, "GameFilePreview", childName);
+                }
+
                 public static readonly string Header = GetDockableInfoProviders("Header");
+
+                public static class Ykd
+                {
+                    private static string GetDockableInfoProvidersYkd(string name)
+                    {
+                        return GetDockableInfoProviders(name, "Ykd");
+                    }
+
+                    public static readonly string ResourceRemovingTitle = GetDockableInfoProvidersYkd("ResourceRemovingTitle");
+                    public static readonly string ConfirmResourceRemoving = GetDockableInfoProvidersYkd("ConfirmResourceRemoving");
+                }
+            }
+        }
+
+        public static class EncodingEditor
+        {
+            private static string GetEncodingEditor(string name, string childName)
+            {
+                return Instance.Value.GetString(name, "EncodingEditor", childName);
+            }
+
+            public static class Main
+            {
+                private static string GetEncodingEditorMain(string name)
+                {
+                    return GetEncodingEditor(name, "Main");
+                }
+
+                public static readonly string Before = GetEncodingEditorMain("Before");
+                public static readonly string Width = GetEncodingEditorMain("Width");
+                public static readonly string After = GetEncodingEditorMain("After");
+                public static readonly string FromText = GetEncodingEditorMain("FromText");
+                public static readonly string ToText = GetEncodingEditorMain("ToText");
+            }
+
+            public static class Extra
+            {
+                private static string GetEncodingEditorExtra(string name)
+                {
+                    return GetEncodingEditor(name, "Extra");
+                }
+
+                public static readonly string Row = GetEncodingEditorExtra("Row");
+                public static readonly string Column = GetEncodingEditorExtra("Column");
+                public static readonly string FromText = GetEncodingEditorExtra("FromText");
+                public static readonly string ToText = GetEncodingEditorExtra("ToText");
+            }
+        }
+
+        public static class Dialogue
+        {
+            private static string GetDialogue(string name, string attrName)
+            {
+                return Instance.Value.GetString(name, "Dialogue", attrName);
+            }
+
+            public static class SaveAs
+            {
+                private static string GetDialogueSaveAs(string name)
+                {
+                    return GetDialogue(name, "SaveAs");
+                }
+
+                public static readonly string Title = GetDialogueSaveAs("Title");
+            }
+        }
+
+        public static class Message
+        {
+            private static string GetMessage(string name, string attrName)
+            {
+                return Instance.Value.GetString(name, "Message", attrName);
+            }
+
+            public static class Done
+            {
+                private static string GetMessageDone(string name)
+                {
+                    return GetMessage(name, "Done");
+                }
+
+                public static readonly string Title = GetMessageDone("Title");
+                public static readonly string ExtractionCompleteFormat = GetMessageDone("ExtractionCompleteFormat");
+                public static readonly string InjectionCompleteFormat = GetMessageDone("InjectionCompleteFormat");
+            }
+
+            public static class Error
+            {
+                private static string GetMessageError(string name)
+                {
+                    return GetMessage(name, "Error");
+                }
+
+                public static readonly string Title = GetMessageError("Title");
+            }
+        }
+
+        public static class Error
+        {
+            private static string GetError(string name, string dockableName)
+            {
+                return Instance.Value.GetString(name, "Error", dockableName);
+            }
+
+            public static class File
+            {
+                private static string GetErrorFile(string name)
+                {
+                    return GetError(name, "File");
+                }
+
+                public static readonly string UnknownFormat = GetErrorFile("UnknownFormat");
+            }
+
+            public static class Process
+            {
+                private static string GetErrorProcess(string name)
+                {
+                    return GetError(name, "Process");
+                }
+
+                public static readonly string CannotGetExecutablePath = GetErrorProcess("CannotGetExecutablePath");
+            }
+
+            public static class Text
+            {
+                private static string GetErrorText(string name)
+                {
+                    return GetError(name, "Text");
+                }
+
+                public static readonly string TooLongTagNameFormat = GetErrorText("TooLongTagNameFormat");
             }
         }
     }

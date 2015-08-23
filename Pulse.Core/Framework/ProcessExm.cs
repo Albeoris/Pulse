@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Diagnostics;
 using System.Management;
 
@@ -41,7 +41,7 @@ namespace Pulse.Core.WinAPI
             }
             catch (Exception ex)
             {
-                Log.Warning(ex, "Не удаётся получить путь к исполняемому модулю процесса.");
+                Log.Warning(ex, Lang.Error.Process.CannotGetExecutablePath);
             }
 
             return string.Empty;

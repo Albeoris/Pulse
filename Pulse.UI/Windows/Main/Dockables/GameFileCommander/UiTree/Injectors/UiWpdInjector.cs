@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using Pulse.Core;
@@ -57,13 +57,13 @@ namespace Pulse.UI
                 MemoryInjectionSource memorySource = new MemoryInjectionSource();
                 if (_headers.IsValueCreated)
                 {
-                    ArchiveEntry entry = _listing.Accessor.XgrHeadersEntry;
+                    ArchiveEntry entry = _listing.Accessor.HeadersEntry;
                     entries.Add(entry);
                     memorySource.RegisterStream(entry.Name, _headers.Value);
                 }
                 if (_content.IsValueCreated)
                 {
-                    ArchiveEntry entry = _listing.Accessor.XgrContentEntry;
+                    ArchiveEntry entry = _listing.Accessor.ContentEntry;
                     entries.Add(entry);
                     memorySource.RegisterStream(entry.Name, _content.Value);
                 }
@@ -115,7 +115,7 @@ namespace Pulse.UI
 
         private Stream AcquireHeaders()
         {
-            int uncompressedSize = (int)_listing.Accessor.XgrHeadersEntry.UncompressedSize;
+            int uncompressedSize = (int)_listing.Accessor.HeadersEntry.UncompressedSize;
 
             MemoryStream result = new MemoryStream((int)(uncompressedSize * 1.3));
             using (Stream input = _listing.Accessor.ExtractHeaders())
@@ -126,7 +126,7 @@ namespace Pulse.UI
 
         private Stream AcquireContent()
         {
-            int uncompressedSize = (int)_listing.Accessor.XgrContentEntry.UncompressedSize;
+            int uncompressedSize = (int)_listing.Accessor.ContentEntry.UncompressedSize;
 
             MemoryStream result = new MemoryStream((int)(uncompressedSize * 1.3));
             using (Stream input = _listing.Accessor.ExtractContent())

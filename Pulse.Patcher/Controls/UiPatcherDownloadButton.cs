@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +10,8 @@ namespace Pulse.Patcher
 {
     public sealed class UiPatcherDownloadButton : UiProgressButton
     {
-        private const string DownloadLabel = "Обновить";
-        private const string DownloadingLabel = "Обновление...";
+        private const string DownloadLabel = "РћР±РЅРѕРІРёС‚СЊ";
+        private const string DownloadingLabel = "РћР±РЅРѕРІР»РµРЅРёРµ...";
 
         private readonly Lazy<HttpFileInfo> _latestTranslationInfo;
 
@@ -33,7 +33,7 @@ namespace Pulse.Patcher
                     if (value == null)
                     {
                         IsEnabled = false;
-                        SubLabel = "Сервер недоступен";
+                        SubLabel = "РЎРµСЂРІРµСЂ РЅРµРґРѕСЃС‚СѓРїРµРЅ";
                         return;
                     }
 
@@ -111,7 +111,7 @@ namespace Pulse.Patcher
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning(ex, "Не удалось получить информацию о файле: [{0}]", url);
+                    Log.Warning(ex, "РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ С„Р°Р№Р»Рµ: [{0}]", url);
                 }
             }
             

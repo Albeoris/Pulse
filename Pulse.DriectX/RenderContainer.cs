@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Pulse.Core;
 using SharpDX;
 using SharpDX.Direct2D1;
@@ -9,6 +9,7 @@ using SharpDX.Toolkit.Graphics;
 using SharpDX.Windows;
 using Color = System.Windows.Media.Color;
 using Device = SharpDX.Direct3D11.Device;
+using FeatureLevel = SharpDX.Direct3D.FeatureLevel;
 
 namespace Pulse.DirectX
 {

@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,7 +9,7 @@ namespace Pulse.Patcher
 {
     public sealed class UiPatcherTrackerButton : UiRoundButton
     {
-        private const string TrackerLabel = "Œ¯Ë·Í‡?";
+        private const string TrackerLabel = "–û—à–∏–±–∫–∞?";
 
         public UiPatcherTrackerButton()
         {

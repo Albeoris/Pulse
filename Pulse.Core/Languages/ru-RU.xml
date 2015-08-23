@@ -2,22 +2,27 @@
 <Data>
 
   <Measurement
-    Elapsed="Прошло"
-    Remaining="Осталось"
-    SecondAbbr="сек"
-    ByteAbbr="Б"
-    KByteAbbr="КБ"
-    MByteAbbr="МБ"
-    GByteAbbr="ГБ"
-    TByteAbbr="ТБ"
-    PByteAbbr="ПБ"
-    EByteAbbr="ЭБ"
+    Elapsed = "Прошло"
+    Remaining = "Осталось"
+    SecondAbbr = "сек"
+    ByteAbbr = "Б"
+    KByteAbbr = "КБ"
+    MByteAbbr = "МБ"
+    GByteAbbr = "ГБ"
+    TByteAbbr = "ТБ"
+    PByteAbbr = "ПБ"
+    EByteAbbr = "ЭБ"
     />
   
   <Button
-    OK="OK"
-    Cancel="Отмена"
-    Continue="Продолжить"
+    OK = "OK"
+    Cancel = "Отмена"
+    Continue = "Продолжить"
+    Clone = "Сдублировать"
+    Remove = "Удалить"
+    Rollback = "Откатить"
+    Inject = "Внедрить"
+    SaveAs = "Сохранить как..."
     />
 
   <InfoProvider>
@@ -84,8 +89,72 @@
 
     <GameFilePreview
       Header="Предпросмотр"
+      >
+      
+      <Ykd
+        ResourceRemovingTitle = "Удаление"
+        ConfirmResourceRemoving = "Вы уверены, что хотите удалить этот ресурс?"
+        />
+      
+    </GameFilePreview>
+  
+  </Dockable>
+
+  <EncodingEditor>
+
+    <Main
+      Before = "До:"
+      Width = "Ширина:"
+      After = "После:"
+      FromText = "Из текста:"
+      ToText = "В текст:"
       />
     
-  </Dockable>
+    <Extra
+      Row = "Ряд:"
+      Column = "Колонка:"
+      FromText = "Из текста:"
+      ToText = "В текст:"
+      />
+
+  </EncodingEditor>
+
+  <Dialogue>
+
+    <SaveAs
+      Title = "Сохранить как..."
+      />
+
+  </Dialogue>
+  
+  <Message>
+    
+    <Done
+      Title = "Готово!"
+      ExtractionCompleteFormat = "Распаковка завершена за {0:d\.hh\:mm\:ss}}."
+      InjectionCompleteFormat = "Упаковка завершена за {0:d\.hh\:mm\:ss}}."
+      />
+    
+    <Error
+      Title = "Ошибка!"
+      />
+    
+  </Message>
+  
+  <Error>
+    
+    <File
+      UnknownFormat = "Неизвестный формат файла."
+      />
+
+    <Process
+      CannotGetExecutablePath = "Не удаётся получить путь к исполняемому модулю процесса."
+      />
+
+    <Text
+      TooLongTagNameFormat = "Слишком длинное имя тэга: {0}"
+      />
+    
+  </Error>
 
 </Data>

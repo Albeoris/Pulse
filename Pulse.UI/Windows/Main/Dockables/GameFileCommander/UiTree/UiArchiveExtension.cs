@@ -1,4 +1,4 @@
-namespace Pulse.UI
+﻿namespace Pulse.UI
 {
     public enum UiArchiveExtension
     {
@@ -7,6 +7,7 @@ namespace Pulse.UI
         Xgr,
         Xwb,
         Xfv,
-        Trb
+        Trb,
+        Wdb
     }
 }

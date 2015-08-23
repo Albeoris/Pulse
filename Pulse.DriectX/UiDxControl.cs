@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Windows;
@@ -18,6 +18,7 @@ namespace Pulse.DirectX
     public class UiDxControl : WindowsFormsHost
     {
         public delegate void DrawSpritesDelegate(Device device, SpriteBatch spriteBatch, Rectangle clipRectangle);
+
         public delegate void DrawPrimitivesDelegate(Device device, RenderTarget target2D, Rectangle clipRectangle);
 
         public readonly RenderControl Control;
@@ -93,7 +94,7 @@ namespace Pulse.DirectX
             return new ModeDescription
             {
                 RefreshRate = new Rational(60, 1),
-                Format = Format.B8G8R8A8_UNorm,
+                Format = Format.B8G8R8A8_UNorm
             };
         }
     }

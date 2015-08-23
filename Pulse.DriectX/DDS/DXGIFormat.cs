@@ -1,4 +1,4 @@
-namespace Pulse.DirectX
+﻿namespace Pulse.DirectX
 {
     /// <summary>	
     /// Resource data formats which includes fully-typed and typeless formats. There is a list of format modifiers at the bottom of the page,  that more fully describes each format type.	

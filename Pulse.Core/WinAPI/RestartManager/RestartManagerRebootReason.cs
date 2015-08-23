@@ -1,4 +1,4 @@
-namespace Pulse.Core.WinAPI
+﻿namespace Pulse.Core.WinAPI
 {
     /// <summary>
     /// Describes the reasons a restart of the system is needed.

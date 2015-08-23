@@ -12,6 +12,7 @@ namespace Pulse.UI
     {
         public readonly string RootDirectory;
         public readonly string SystemDirectory;
+        public readonly string MovieDirectory;
         public readonly string UpdatesDirectory;
         public readonly string AreasDirectory;
 
@@ -25,6 +26,7 @@ namespace Pulse.UI
 
             string resourcePath = Path.Combine(RootDirectory, ResourceDirName);
             SystemDirectory = Path.Combine(resourcePath, "sys");
+            MovieDirectory = Path.Combine(resourcePath, "movie");
             AreasDirectory = Path.Combine(resourcePath, "zone");
             UpdatesDirectory = Path.Combine(resourcePath, "udp");
         }
@@ -53,6 +55,7 @@ namespace Pulse.UI
         public void Validate()
         {
             Exceptions.CheckDirectoryNotFoundException(SystemDirectory);
+            Exceptions.CheckDirectoryNotFoundException(MovieDirectory);
             Exceptions.CheckDirectoryNotFoundException(AreasDirectory);
         }
 

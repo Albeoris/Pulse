@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,9 +15,9 @@ namespace Pulse.Patcher
 {
     public sealed class UiPatcherInstallButton : UiProgressButton
     {
-        private const string InstallLabel = "Установить";
-        private const string InstallationLabel = "Установка...";
-        private const string DownloadingLabel = "Скачивание...";
+        private const string InstallLabel = "РЈСЃС‚Р°РЅРѕРІРёС‚СЊ";
+        private const string InstallationLabel = "РЈСЃС‚Р°РЅРѕРІРєР°...";
+        private const string DownloadingLabel = "РЎРєР°С‡РёРІР°РЅРёРµ...";
 
         public UiPatcherInstallButton()
         {
@@ -62,7 +62,7 @@ namespace Pulse.Patcher
 
                 HttpFileInfo latest = await GetLatestPatcherUrl(downloader);
                 if (latest == null)
-                    throw new Exception("Не удалось найти свежую версию программы установки. Проверьте файл конфигурации.");
+                    throw new Exception("РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё СЃРІРµР¶СѓСЋ РІРµСЂСЃРёСЋ РїСЂРѕРіСЂР°РјРјС‹ СѓСЃС‚Р°РЅРѕРІРєРё. РџСЂРѕРІРµСЂСЊС‚Рµ С„Р°Р№Р» РєРѕРЅС„РёРіСѓСЂР°С†РёРё.");
 
                 Maximum = latest.ContentLength;
 
@@ -91,7 +91,7 @@ namespace Pulse.Patcher
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning(ex, "Не удалось получить информацию о файле: [{0}]", url);
+                    Log.Warning(ex, "РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ С„Р°Р№Р»Рµ: [{0}]", url);
                 }
             }
             return latest;
@@ -139,7 +139,7 @@ namespace Pulse.Patcher
 
             if (currentInfo.IsIncompatible(typeof(App).Assembly.GetName().Version))
             {
-                if (MessageBox.Show(this.GetParentElement<Window>(), "Ваша версия программы установки несовместима с текущим перевод. Обновить?", "Ошибка!", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                if (MessageBox.Show(this.GetParentElement<Window>(), "Р’Р°С€Р° РІРµСЂСЃРёСЏ РїСЂРѕРіСЂР°РјРјС‹ СѓСЃС‚Р°РЅРѕРІРєРё РЅРµСЃРѕРІРјРµСЃС‚РёРјР° СЃ С‚РµРєСѓС‰РёРј РїРµСЂРµРІРѕРґ. РћР±РЅРѕРІРёС‚СЊ?", "РћС€РёР±РєР°!", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
                     return;
 
                 string path = await DownloadLatestPatcher();
@@ -216,7 +216,7 @@ namespace Pulse.Patcher
                         Check(child);
                     break;
                 }
-                case UiNodeType.DataTable:
+                case UiNodeType.FileTable:
                 {
                     if (PathComparer.Instance.Value.Equals(node.Name, @"system.win32.xgr") || node.Name.StartsWith("tutorial"))
                         foreach (UiNode child in node.GetChilds())
@@ -236,7 +236,7 @@ namespace Pulse.Patcher
                     }
                     break;
                 }
-                case UiNodeType.DataTableLeaf:
+                case UiNodeType.FileTableLeaf:
                 {
                     UiWpdTableLeaf leaf = (UiWpdTableLeaf)node;
                     switch (leaf.Entry.Extension)

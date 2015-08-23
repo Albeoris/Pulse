@@ -1,4 +1,4 @@
-using Pulse.Core;
+﻿using Pulse.Core;
 
 namespace Pulse.UI
 {

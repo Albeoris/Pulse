@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,8 +9,8 @@ namespace Pulse.Patcher
 {
     public sealed class UiPatcherExitButton : UiProgressButton
     {
-        private const string ExitLabel = "Выход";
-        private const string ExitingLabel = "Выход...";
+        private const string ExitLabel = "Р’С‹С…РѕРґ";
+        private const string ExitingLabel = "Р’С‹С…РѕРґ...";
 
         public UiPatcherExitButton()
         {

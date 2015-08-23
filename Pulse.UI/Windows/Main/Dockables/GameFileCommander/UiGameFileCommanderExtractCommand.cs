@@ -48,11 +48,11 @@ namespace Pulse.UI
                 
                 sw.Stop();
                 if (sw.ElapsedMilliseconds / 1000 > 2)
-                    MessageBox.Show($"Распаковка завершена за {sw.Elapsed.ToString(@"d\.hh\:mm\:ss")}.", "Готово!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Распаковка завершена за {sw.Elapsed.ToString(@"d\.hh\:mm\:ss")}.", Lang.Message.Done.Title, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), Lang.Message.Error.Title, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -42,11 +42,11 @@ namespace Pulse.UI.Encoding
 
             _ox = AddUiElement(new UiEncodingLabeledNumber("OX:", 60, 0, short.MaxValue, OXChanged));
             _oy = AddUiElement(new UiEncodingLabeledNumber("OY:", 60, 0, short.MaxValue, OYChanged));
-            _before = AddUiElement(new UiEncodingLabeledNumber("До:", 50, sbyte.MinValue, sbyte.MaxValue, BeforeChanged));
-            _width = AddUiElement(new UiEncodingLabeledNumber("Ширина:", 50, 0, sbyte.MaxValue, WidthChanged));
-            _after = AddUiElement(new UiEncodingLabeledNumber("После:", 50, sbyte.MinValue, sbyte.MaxValue, AfterChanged));
-            _output = AddUiElement(new UiEncodingLabeledWatermark("В текст:", "0x31->\"1\"", 50, OnOutputTextChanged));
-            _input = AddUiElement(new UiEncodingLabeledWatermark("Из текста:", "0x31<-\"1\"", 70, OnInputTextChanged));
+            _before = AddUiElement(new UiEncodingLabeledNumber(Lang.EncodingEditor.Main.Before, 50, sbyte.MinValue, sbyte.MaxValue, BeforeChanged));
+            _width = AddUiElement(new UiEncodingLabeledNumber(Lang.EncodingEditor.Main.Width, 50, 0, sbyte.MaxValue, WidthChanged));
+            _after = AddUiElement(new UiEncodingLabeledNumber(Lang.EncodingEditor.Main.After, 50, sbyte.MinValue, sbyte.MaxValue, AfterChanged));
+            _output = AddUiElement(new UiEncodingLabeledWatermark(Lang.EncodingEditor.Main.ToText, "0x31->\"1\"", 50, OnOutputTextChanged));
+            _input = AddUiElement(new UiEncodingLabeledWatermark(Lang.EncodingEditor.Main.FromText, "0x31<-\"1\"", 70, OnInputTextChanged));
 
             #endregion
         }

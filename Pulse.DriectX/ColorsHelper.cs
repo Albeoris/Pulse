@@ -1,4 +1,4 @@
-using SharpDX;
+﻿using SharpDX;
 using Color = System.Windows.Media.Color;
 
 namespace Pulse.DirectX

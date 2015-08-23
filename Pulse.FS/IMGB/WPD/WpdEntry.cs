@@ -3,13 +3,7 @@
     public sealed class WpdEntry : IArchiveEntry
     {
         public int Index { get; private set; }
-
-        public string Name
-        {
-            get { return NameWithoutExtension + '.' + Extension; }
-        }
-
-        public string NameWithoutExtension { get; private set; }
+        public string NameWithoutExtension { get; }
         public readonly string Extension;
         public int Offset;
         public int Length;
@@ -21,6 +15,17 @@
             Offset = offset;
             Length = length;
             Extension = extension;
+        }
+
+        public string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Extension))
+                    return NameWithoutExtension;
+
+                return NameWithoutExtension + '.' + Extension;
+            }
         }
     }
 }

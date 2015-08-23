@@ -1,4 +1,4 @@
-namespace Pulse.UI
+﻿namespace Pulse.UI
 {
     public enum UiProgressUnits
     {

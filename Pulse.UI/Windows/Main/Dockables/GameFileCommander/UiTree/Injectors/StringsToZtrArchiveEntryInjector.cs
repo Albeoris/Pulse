@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,7 +68,7 @@ namespace Pulse.UI
                 string newText;
                 if (!newEntries.TryGetValue(entry.Key, out newText))
                 {
-                    Log.Warning("[ArchiveEntryInjectorStringsToZtr] Пропущена неизвестная запись {0}={1}.", entry.Key, entry.Value);
+                    Log.Warning("[ArchiveEntryInjectorStringsToZtr] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {0}={1}.", entry.Key, entry.Value);
                     continue;
                 }
 
@@ -82,7 +82,7 @@ namespace Pulse.UI
                 int newLength = newText.Length - endingLength;
                 sb.Clear();
 
-                // Восстановление старых хвостов и тегов новой строки
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 bool cr = false;
                 for (int i = 0; i < newLength; i++)
                 {
@@ -184,7 +184,7 @@ namespace Pulse.UI
             }
 
             if (left != 0)
-                Log.Warning("[ArchiveEntryInjectorStringsToZtr.GetEndingTags] Неверная управляющая последовательность: {0}", text);
+                Log.Warning("[ArchiveEntryInjectorStringsToZtr.GetEndingTags] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {0}", text);
 
             return result;
         }
