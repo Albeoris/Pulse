@@ -62,6 +62,9 @@
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct2D1, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL" />
+    <Reference Include="SharpDX.Direct3D10">
+      <HintPath>$(SharpDXPackageBinDir)\SharpDX.Direct3D10.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX.Direct3D11">
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
@@ -112,6 +115,9 @@
     <Compile Include="DDS\DdsPixelFormatFourDescriptor.cs" />
     <Compile Include="DDS\DXGIFormat.cs" />
     <Compile Include="DepthBuffer.cs" />
+    <Compile Include="Framework\DX10\Dx10Device.cs" />
+    <Compile Include="Framework\DX11\Dx11ChainedDevice.cs" />
+    <Compile Include="Framework\DX11\Dx11Device.cs" />
     <Compile Include="DxRectangle.cs" />
     <Compile Include="GenericGraphicsDevice.cs" />
     <Compile Include="DxTexture.cs" />

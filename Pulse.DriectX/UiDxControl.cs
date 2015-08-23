@@ -58,10 +58,10 @@ namespace Pulse.DirectX
 
                     Rectangle clipRectangle = new Rectangle(e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.Width, e.ClipRectangle.Height);
 
-                    DrawSprites?.Invoke(RenderContainer.Device, RenderContainer.SpriteBatch, clipRectangle);
-                    DrawPrimitives?.Invoke(RenderContainer.Device, RenderContainer.BackBuffer.Target2D, clipRectangle);
+                    DrawSprites?.Invoke(RenderContainer.Device11.Device, RenderContainer.SpriteBatch, clipRectangle);
+                    DrawPrimitives?.Invoke(RenderContainer.Device11.Device, RenderContainer.BackBuffer.Target2D, clipRectangle);
 
-                    RenderContainer.SwapChain.Present(1, PresentFlags.None);
+                    RenderContainer.Device11.SwapChain.Present(1, PresentFlags.None);
                 }
             }
             catch (Exception ex)

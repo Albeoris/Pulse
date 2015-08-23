@@ -8,7 +8,7 @@ namespace Pulse.DirectX
 {
     public sealed class DepthBuffer : IDisposable
     {
-        private readonly Device _device;
+        private readonly Dx11ChainedDevice _device;
 
         private Texture2D _depthBuffer;
         private DepthStencilView _depthView;
@@ -16,12 +16,12 @@ namespace Pulse.DirectX
         public Texture2D Buffer => _depthBuffer;
         public DepthStencilView View => _depthView;
 
-        public DepthBuffer(Device device, int width, int height)
+        public DepthBuffer(Dx11ChainedDevice device, int width, int height)
         {
             try
             {
                 _device = device;
-                _depthBuffer = new Texture2D(_device, new Texture2DDescription
+                _depthBuffer = new Texture2D(_device.Device, new Texture2DDescription
                 {
                     Format = Format.D32_Float_S8X24_UInt,
                     ArraySize = 1,
@@ -35,7 +35,7 @@ namespace Pulse.DirectX
                     OptionFlags = ResourceOptionFlags.None
                 });
 
-                _depthView = new DepthStencilView(device, _depthBuffer);
+                _depthView = new DepthStencilView(device.Device, _depthBuffer);
             }
             catch
             {
@@ -55,7 +55,7 @@ namespace Pulse.DirectX
             if (_depthView == null)
                 return;
 
-            _device.ImmediateContext.ClearDepthStencilView(_depthView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1.0f, 0);
+            _device.Device.ImmediateContext.ClearDepthStencilView(_depthView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1.0f, 0);
         }
     }
 }

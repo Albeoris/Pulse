@@ -2,21 +2,19 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using Pulse.Core;
 using Pulse.FS;
 using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
-using Device = SharpDX.Direct3D11.Device;
 using Resource = SharpDX.Direct3D11.Resource;
 
 namespace Pulse.DirectX
 {
     public static class DxTextureReader
     {
-        private static readonly Device _device;
+        private static readonly Dx11Device _device;
         private static readonly CreateTextureIssueWorkaround _textureCreatingWorkaround;
 
         private delegate void CreateTextureIssueWorkaround(DeviceContext contextRef, Resource srcTextureRef, ImageFileFormat destFormat);
@@ -25,7 +23,7 @@ namespace Pulse.DirectX
         static DxTextureReader ()
         {
             Configuration.EnableObjectTracking = true;
-            _device = new Device(DriverType.Hardware, DeviceCreationFlags.Debug);
+            _device = Dx11Device.CreateDefaultAdapter();
             _textureCreatingWorkaround = InitializeWorkaround();
         }
 
@@ -110,10 +108,10 @@ namespace Pulse.DirectX
                     }
                 }
 
-                Texture2D texture = new Texture2D(_device, descriptor, rects);
+                Texture2D texture = new Texture2D(_device.Device, descriptor, rects);
 
                 // Workaround
-                _textureCreatingWorkaround(_device.ImmediateContext, texture, ImageFileFormat.Dds);
+                _textureCreatingWorkaround(_device.Device.ImmediateContext, texture, ImageFileFormat.Dds);
 
                 return new DxTexture(texture, descriptor);
             }
@@ -139,10 +137,10 @@ namespace Pulse.DirectX
                     }
                 }
                 
-                Texture2D texture = new Texture2D(_device, descriptor, rects);
+                Texture2D texture = new Texture2D(_device.Device, descriptor, rects);
 
                 // Workaround
-                _textureCreatingWorkaround(_device.ImmediateContext, texture, ImageFileFormat.Dds);
+                _textureCreatingWorkaround(_device.Device.ImmediateContext, texture, ImageFileFormat.Dds);
 
                 return new DxTexture(texture, descriptor);
             }
