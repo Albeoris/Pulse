@@ -77,6 +77,7 @@ namespace Pulse.Core
             chars[FFXIIIEncodingMap.ValueToIndex(0x8181)] = '＝';
             chars[FFXIIIEncodingMap.ValueToIndex(0x8183)] = '＜';
             chars[FFXIIIEncodingMap.ValueToIndex(0x8184)] = '＞';
+            chars[FFXIIIEncodingMap.ValueToIndex(0x8187)] = '∞';
             chars[FFXIIIEncodingMap.ValueToIndex(0x8193)] = '％';
             chars[FFXIIIEncodingMap.ValueToIndex(0x8195)] = '＆';
             chars[FFXIIIEncodingMap.ValueToIndex(0x819A)] = '★';
