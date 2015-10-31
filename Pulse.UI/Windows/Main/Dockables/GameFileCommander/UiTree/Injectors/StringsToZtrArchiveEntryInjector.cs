@@ -51,7 +51,10 @@ namespace Pulse.UI
                 targetEntries = unpacker.Unpack();
 
                 if (InteractionService.GamePart == FFXIIIGamePart.Part2)
-                    type = unpacker.Type;
+                {
+                    if (entry.Name.StartsWith("txtres/resident/system/txtres_", StringComparison.InvariantCultureIgnoreCase))
+                        type = ZtrFileType.BigEndianCompressedDictionary;
+                }
             }
 
             MergeEntries(sourceEntries, targetEntries);
