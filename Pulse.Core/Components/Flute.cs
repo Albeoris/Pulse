@@ -46,9 +46,6 @@ namespace Pulse.Core
             }
         }
 
-        /// <summary>
-        /// <remarks>Неверная длина потока.</remarks>
-        /// </summary>
         public Stream AcquireWriter()
         {
             return new FluteWriter(this);
@@ -67,9 +64,6 @@ namespace Pulse.Core
             throw new NotSupportedException(error);
         }
 
-        /// <summary>
-        /// <remarks>Неверная длина потока.</remarks>
-        /// </summary>
         public Stream AcquireReader()
         {
             return new FluteReader(this);
@@ -185,31 +179,16 @@ namespace Pulse.Core
                 _output.SetLength(value);
             }
 
-            public override long Length
-            {
-                get { return _output.Length; }
-            }
-
             public override long Position
             {
                 get { return _output.Position; }
                 set { throw new NotSupportedException("Поток не поддерживает поиск."); }
             }
 
-            public override bool CanRead
-            {
-                get { return false; }
-            }
-
-            public override bool CanSeek
-            {
-                get { return false; }
-            }
-
-            public override bool CanWrite
-            {
-                get { return _output.CanWrite; }
-            }
+            public override long Length => _output.Length;
+            public override bool CanRead => false;
+            public override bool CanSeek => false;
+            public override bool CanWrite => _output.CanWrite;
         }
 
         private sealed class FluteReader : Stream
@@ -281,31 +260,16 @@ namespace Pulse.Core
                 _input.SetLength(value);
             }
 
-            public override long Length
-            {
-                get { return _input.Length; }
-            }
-
             public override long Position
             {
                 get { return _input.Position; }
                 set { _input.Position = value; }
             }
 
-            public override bool CanRead
-            {
-                get { return _input.CanRead; }
-            }
-
-            public override bool CanSeek
-            {
-                get { return _input.CanSeek; }
-            }
-
-            public override bool CanWrite
-            {
-                get { return false; }
-            }
+            public override long Length => _input.Length;
+            public override bool CanRead => _input.CanRead;
+            public override bool CanSeek => _input.CanSeek;
+            public override bool CanWrite => false;
         }
     }
 }

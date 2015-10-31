@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using Pulse.Core;
 
 namespace Pulse.FS
@@ -9,74 +11,92 @@ namespace Pulse.FS
     {
         private readonly Stream _output;
         private readonly ZtrFileEntry[] _input;
-        private readonly ZtrFileHeader _header;
         private readonly FFXIIITextEncoding _encoding;
 
-        public ZtrFileTextPacker(Stream output, ZtrFileEntry[] input, ZtrFileHeader header, FFXIIITextEncoding encoding)
+        private int _blockOffset;
+        private byte _blockNumber;
+        private int _innerIndex;
+        private int _innerCount;
+
+        public ZtrFileTextPacker(Stream output, ZtrFileEntry[] input, FFXIIITextEncoding encoding)
         {
             _output = output;
             _input = input;
-            _header = header;
             _encoding = encoding;
         }
 
-        public void Pack()
+        public unsafe void Pack(ZtrFileHeader header)
         {
-            byte blockIndex = 0;
+            _blockOffset = 0;
+            _blockNumber = 0;
+            _innerIndex = 0;
+            _innerCount = 0;
+
             List<int> blockOffsets = new List<int>(256) {0};
-            ZtrFileHeaderLineInfo[] infos = new ZtrFileHeaderLineInfo[_input.Length];
+            ZtrFileHeaderLineInfo[] lines = new ZtrFileHeaderLineInfo[_input.Length];
+            ushort[] innerOffsets = new ushort[_input.Length];
 
-            //int offset = 0;
-            //for (int i = 0; i < _input.Length; i++)
-            //{
-            //    String value = _input[i].Value;
-            //    ZtrFileHeaderLineInfo info = new ZtrFileHeaderLineInfo();
-            //    info.Block = blockIndex;
-            //    info.BlockOffset = offset;
-            //}
+            ushort writeIndex = 0;
+            byte[] writeBuff = new byte[4096];
+            byte[] codeBuff = new byte[64 * 1024];
 
+            fixed (byte* writeBuffPtr = &writeBuff[0])
+            fixed (byte* codeBuffPtr = &codeBuff[0])
+            {
+                for (int e = 0; e < _input.Length; e++)
+                {
+                    _innerCount++;
+                    innerOffsets[e] = writeIndex;
 
-            //int index = 0, blockNumber = 0;
-            //using (MemoryStream io = new MemoryStream(32768))
-            //{
-            //    byte[] readBuff = new byte[4096];
-            //    while (compressedSize > 0)
-            //    {
-            //        int offset = 0;
-            //        ZtrFileEncoding tagsEncoding = ZtrFileEncoding.ReadFromStream(_output);
-            //        compressedSize = compressedSize - tagsEncoding.BlockSize - 4;
-            //        long blockOffset = _output.Position;
-            //        while (offset < 4096 && compressedSize > 0)
-            //        {
-            //            while (index < _offsets.Length && _offsets[index].Block == blockNumber && _output.Position - blockOffset == _offsets[index].PackedOffset)
-            //            {
-            //                _offsets[index].UnpackedOffset = (int)(io.Position + offset + _offsets[index].BlockOffset);
-            //                if (index > 0)
-            //                    _offsets[index - 1].UnpackedLength = _offsets[index].UnpackedOffset - _offsets[index - 1].UnpackedOffset;
-            //                index++;
-            //            }
+                    ZtrFileEntry entry = _input[e];
+                    int count = _encoding.GetBytes(entry.Value, 0, entry.Value.Length, codeBuff, 0);
+                    codeBuff[count++] = 0;
+                    codeBuff[count++] = 0;
 
-            //            int value = _output.ReadByte();
-            //            byte[] replace = tagsEncoding.Encoding[value];
+                    lines[e] = new ZtrFileHeaderLineInfo
+                    {
+                        Block = _blockNumber,
+                        BlockOffset = 0 // TODO: Continue previous block
+                    };
 
-            //            Array.Copy(replace, 0, readBuff, offset, replace.Length);
+                    for (int b = 0; b < count; b++)
+                    {
+                        writeBuffPtr[writeIndex++] = codeBuffPtr[b];
+                        if (writeIndex == writeBuff.Length)
+                            WriteBlock(writeBuff, ref writeIndex, innerOffsets, blockOffsets);
+                    }
+                }
+            }
 
-            //            offset += replace.Length;
-            //            compressedSize--;
-            //        }
+            if (writeIndex > 0)
+                WriteBlock(writeBuff, ref writeIndex, innerOffsets, blockOffsets);
 
-            //        io.Write(readBuff, 0, offset);
-            //        blockNumber++;
-            //    }
+            for (int i = 0; i < innerOffsets.Length; i++)
+                lines[i].PackedOffset = innerOffsets[i];
 
-            //    _offsets[index - 1].UnpackedLength = (int)(io.Position - _offsets[index - 1].UnpackedOffset);
-            //    for (int i = 0; i < _offsets.Length; i++)
-            //    {
-            //        io.SetPosition(_offsets[i].UnpackedOffset);
-            //        byte[] buff = io.EnsureRead(_offsets[i].UnpackedLength);
-            //        _input[i].Value = _encoding.GetString(buff, 0, buff.Length - 2);
-            //    }
-            //}
+            if (blockOffsets.Count > _blockNumber)
+                _blockNumber++;
+
+            header.TextBlocksCount = _blockNumber;
+            header.TextBlockTable = blockOffsets.ToArray();
+            header.TextLinesTable = lines;
+        }
+
+        private void WriteBlock(byte[] writeBuff, ref ushort engaged, ushort[] innerOffsets, List<int> blockOffsets)
+        {
+            byte[] encoding = ZtrFileEncoding.CompressZtrContent(writeBuff, 0, ref engaged, innerOffsets, _innerIndex, _innerCount);
+            _output.Write(encoding, 0, encoding.Length);
+            _output.Write(writeBuff, 0, engaged);
+
+            _blockOffset += encoding.Length;
+            _blockOffset += engaged;
+            _blockNumber++;
+
+            _innerIndex += _innerCount;
+            _innerCount = 0;
+
+            blockOffsets.Add(_blockOffset);
+            engaged = 0;
         }
     }
 }

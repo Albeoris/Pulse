@@ -4,7 +4,7 @@
     {
         BigEndianCompressedDictionary = 0,
         LittleEndianUncompressedPair = 1,
-        
+
         LittleEndianUncompressedDictionary // > 1
     }
 }

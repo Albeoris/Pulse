@@ -46,6 +46,7 @@ namespace Pulse.FS
                 case WflHeader.ColorTable460:
                     colorsCount = 0x460 / 4;
                     break;
+                case WflHeader.ColorTableFF23:
                 case WflHeader.ColorTable530:
                     colorsCount = 0x530 / 4;
                     break;

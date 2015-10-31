@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using Pulse.Core;
 
 namespace Pulse.FS
@@ -77,16 +77,21 @@ namespace Pulse.FS
             }
         }
 
-        public unsafe static ZtrFileEncoding CompressZtrContent(byte[] data, ref int dataSize)
+        public static byte[] CompressZtrContent([In, Out] byte[] data, int dataIndex, ref ushort dataSize)
+        {
+            return CompressZtrContent(data, dataIndex, ref dataSize, new ushort[0], 0, 0);
+        }
+
+        public static unsafe byte[] CompressZtrContent([In, Out] byte[] data, int dataIndex, ref ushort dataSize, [In, Out] ushort[] innerOffsets, int innerIndex, int innerCount)
         {
             ushort maxValue = 0;
-            int maxCounter = 0;
             int[] singleCounter = new int[byte.MaxValue + 1];
             int[] pairCounter = new int[ushort.MaxValue + 1];
             byte[,] encoding = new byte[256, 2];
 
             List<byte> unused = new List<byte>(256);
-            fixed (byte* dataPtr = data)
+            List<byte> used = new List<byte>(256);
+            fixed (byte* dataPtr = &data[dataIndex])
             fixed (int* pairCounterPtr = pairCounter)
             fixed (int* singleCounterPtr = singleCounter)
             {
@@ -110,7 +115,7 @@ namespace Pulse.FS
                 for (int unusedIndex = 0; unusedIndex < unused.Count; unusedIndex++)
                 {
                     byte value = unused[unusedIndex];
-                    maxCounter = 0;
+                    int maxCounter = 0;
 
                     for (int i = 0; i < 256; i++)
                     {
@@ -157,6 +162,7 @@ namespace Pulse.FS
                     right = (byte)(maxValue & 0xFF);
                     encoding[value, 0] = left;
                     encoding[value, 1] = right;
+                    used.Add(value);
 
                     for (int b = 0; b < dataSize - 1; b++)
                     {
@@ -164,14 +170,39 @@ namespace Pulse.FS
                             continue;
 
                         dataPtr[b] = value;
+
                         for (int m = b + 1; m < dataSize - 1; m++)
                             dataPtr[m] = dataPtr[m + 1];
+
+                        for (int i = 0; i < innerCount; i++)
+                        {
+                            if (innerOffsets[i + innerIndex] > b)
+                                innerOffsets[i + innerIndex]--;
+                        }
 
                         dataSize--;
                     }
                 }
             }
-            return null;
+
+            int blockSize = used.Count * 3;
+            byte[] result = new byte[blockSize + 4];
+            fixed (byte* arrayPtr = &result[0])
+            {
+                BinaryWriterExm.WriteBig(arrayPtr, blockSize);
+                byte* ptr = arrayPtr + 4;
+
+                for (int index = 0; index < used.Count; index++)
+                {
+                    byte value = used[index];
+                    ptr[0] = value;
+                    ptr[1] = encoding[value, 0];
+                    ptr[2] = encoding[value, 1];
+                    ptr += 3;
+                }
+            }
+
+            return result;
         }
     }
 }

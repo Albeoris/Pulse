@@ -131,8 +131,8 @@
 
     <Done
       Title = "Done!"
-      ExtractionCompleteFormat = "Extraction complete for {0:d\.hh\:mm\:ss}}."
-      InjectionCompleteFormat = "Injection complete for {0:d\.hh\:mm\:ss}}."
+      ExtractionCompleteFormat = "Extraction complete for {0:hh\:mm\:ss}."
+      InjectionCompleteFormat = "Injection complete for {0:hh\:mm\:ss}."
       />
 
     <Error

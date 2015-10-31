@@ -18,7 +18,7 @@ namespace Pulse.FS
             _offsets = offsets;
             _encoding = encoding;
         }
-
+        
         public void Unpack(int compressedSize)
         {
             if (compressedSize < 1)

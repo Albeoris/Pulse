@@ -11,6 +11,7 @@ namespace Pulse.FS
         public const int ColorTable40C = 0x12;
         public const int ColorTable460 = 0x13;
         public const int ColorTable530 = 0x1E;
+        public const int ColorTableFF23 = 0x20;
 
         public int TableType; // ?
         public int LineSpacing;

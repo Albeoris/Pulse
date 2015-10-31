@@ -131,8 +131,8 @@
     
     <Done
       Title = "Готово!"
-      ExtractionCompleteFormat = "Распаковка завершена за {0:d\.hh\:mm\:ss}}."
-      InjectionCompleteFormat = "Упаковка завершена за {0:d\.hh\:mm\:ss}}."
+      ExtractionCompleteFormat = "Распаковка завершена за {0:hh\:mm\:ss}."
+      InjectionCompleteFormat = "Упаковка завершена за {0:hh\:mm\:ss}."
       />
     
     <Error

@@ -14,15 +14,8 @@ namespace Pulse.UI
     {
         private TextEncodingInfo _oldEncoding;
 
-        public string Title
-        {
-            get { return Lang.InfoProvider.TextEncoding.UserTitle; }
-        }
-
-        public string Description
-        {
-            get { return Lang.InfoProvider.TextEncoding.UserDescription; }
-        }
+        public string Title => Lang.InfoProvider.TextEncoding.UserTitle;
+        public string Description => Lang.InfoProvider.TextEncoding.UserDescription;
 
         public TextEncodingInfo Provide()
         {
@@ -234,7 +227,10 @@ namespace Pulse.UI
             pathBuilder.Add(UiNodeType.Group, new Wildcard(UiArchiveExtension.Xgr.ToString()));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("gui"));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("resident"));
-            pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system.win32.xgr"));
+            if (InteractionService.GamePart == FFXIIIGamePart.Part1)
+                pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system.win32.xgr"));
+            else
+                pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system_jp.win32.xgr"));
             UiNodePath path = pathBuilder.Build();
 
             foreach (UiContainerNode archive in archives)

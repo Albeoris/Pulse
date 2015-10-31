@@ -279,17 +279,13 @@ namespace Pulse.UI
 
             // Binding
             [Browsable(false)]
-            public IEnumerable<View> BindableChilds
-            {
-                get { return EnumerateChilds(); }
-            }
+            public IEnumerable<View> BindableChilds => EnumerateChilds();
 
             protected abstract IEnumerable<View> EnumerateChilds();
 
-
             protected delegate Boolean StringToValueConverter<T>(String value, out T result);
 
-            protected String ReadArrayAsString<T>(T[] array, Func<T, String> valueToString)
+            private String ReadArrayAsString<T>(T[] array, Func<T, String> valueToString)
             {
                 if (array == null)
                     return null;

@@ -12,10 +12,7 @@ namespace Pulse.UI
     {
         public static bool ReplaceAnimatedText = false;
 
-        public string SourceExtension
-        {
-            get { return ".strings"; }
-        }
+        public string SourceExtension => ".strings";
 
         public bool TryInject(IUiInjectionSource source, string sourceFullPath, ArchiveEntryInjectionData data, ArchiveEntry entry)
         {
@@ -46,16 +43,20 @@ namespace Pulse.UI
 
         private void Inject(ArchiveListing listing, ArchiveEntry entry, Dictionary<String, String> sourceEntries, Stream output)
         {
+            ZtrFileType type = ZtrFileType.LittleEndianUncompressedDictionary;
             ZtrFileEntry[] targetEntries;
             using (Stream original = listing.Accessor.ExtractBinary(entry))
             {
                 ZtrFileUnpacker unpacker = new ZtrFileUnpacker(original, InteractionService.TextEncoding.Provide().Encoding);
                 targetEntries = unpacker.Unpack();
+
+                if (InteractionService.GamePart == FFXIIIGamePart.Part2)
+                    type = unpacker.Type;
             }
 
             MergeEntries(sourceEntries, targetEntries);
 
-            ZtrFilePacker packer = new ZtrFilePacker(output, InteractionService.TextEncoding.Provide().Encoding);
+            ZtrFilePacker packer = new ZtrFilePacker(output, InteractionService.TextEncoding.Provide().Encoding, type);
             packer.Pack(targetEntries);
         }
 
@@ -68,7 +69,7 @@ namespace Pulse.UI
                 string newText;
                 if (!newEntries.TryGetValue(entry.Key, out newText))
                 {
-                    Log.Warning("[ArchiveEntryInjectorStringsToZtr] ��������� ����������� ������ {0}={1}.", entry.Key, entry.Value);
+                    Log.Warning("[ArchiveEntryInjectorStringsToZtr] Unknown entry was skipped {0}={1}.", entry.Key, entry.Value);
                     continue;
                 }
 
@@ -82,7 +83,7 @@ namespace Pulse.UI
                 int newLength = newText.Length - endingLength;
                 sb.Clear();
 
-                // �������������� ������ ������� � ����� ����� ������
+                // Restore an old tails and new line tags
                 bool cr = false;
                 for (int i = 0; i < newLength; i++)
                 {

@@ -20,7 +20,7 @@ namespace Pulse.FS
         {
             int uncompressedSize = 0;
 
-            int index = 0;
+            ushort index = 0;
             byte[] writeBuff = new byte[4096];
             byte[] codeBuff = new byte[256];
 
@@ -31,6 +31,7 @@ namespace Pulse.FS
                 {
                     ZtrFileEntry entry = _input[e];
                     int count = Encoding.ASCII.GetBytes(entry.Key, 0, entry.Key.Length, codeBuff, 0);
+                    codeBuff[count++] = 0;
 
                     for (int b = 0; b < count; b++)
                     {
@@ -47,13 +48,15 @@ namespace Pulse.FS
             header.KeysUnpackedSize = uncompressedSize;
         }
 
-        private void WriteBlock(byte[] writeBuff, ref int index, ref int uncompressedSize)
+        private void WriteBlock(byte[] writeBuff, ref ushort engaged, ref int uncompressedSize)
         {
-            //ZtrFileEncoding tagsEncoding = ZtrFileEncoding.CreateFake();
-            //tagsEncoding.WriteToStream(_output);
-            //_output.Write(writeBuff, 0, index);
-            //uncompressedSize += index;
-            //index = 0;
+            uncompressedSize += engaged;
+
+            byte[] encoding = ZtrFileEncoding.CompressZtrContent(writeBuff, 0, ref engaged);
+            _output.Write(encoding, 0, encoding.Length);
+            _output.Write(writeBuff, 0, engaged);
+
+            engaged = 0;
         }
     }
 }

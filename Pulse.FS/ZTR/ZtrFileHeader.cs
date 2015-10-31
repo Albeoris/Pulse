@@ -53,5 +53,31 @@ namespace Pulse.FS
                 }
             }
         }
+
+        public void WriteToStream(Stream output)
+        {
+            if (Version != 1)
+                throw new NotImplementedException();
+            if (TextBlockTable.Length != TextBlocksCount)
+                throw new InvalidDataException();
+            if (TextLinesTable.Length != Count)
+                throw new InvalidDataException();
+
+            BinaryWriter bw = new BinaryWriter(output);
+            bw.WriteBig(Version);
+            bw.WriteBig(Count);
+            bw.WriteBig(KeysUnpackedSize);
+            bw.WriteBig(TextBlocksCount);
+
+            foreach (int value in TextBlockTable)
+                bw.WriteBig(value);
+
+            foreach (ZtrFileHeaderLineInfo value in TextLinesTable)
+            {
+                bw.Write(value.Block);
+                bw.Write(value.BlockOffset);
+                bw.WriteBig(value.PackedOffset);
+            }
+        }
     }
 }

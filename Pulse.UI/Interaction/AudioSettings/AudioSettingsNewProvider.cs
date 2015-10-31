@@ -9,14 +9,8 @@ namespace Pulse.UI
             return new AudioSettingsInfo();
         }
 
-        public string Title
-        {
-            get { return Lang.InfoProvider.AudioSettings.NewTitle; }
-        }
+        public string Title => Lang.InfoProvider.AudioSettings.NewTitle;
 
-        public string Description
-        {
-            get { return Lang.InfoProvider.AudioSettings.NewDescription; }
-        }
+        public string Description => Lang.InfoProvider.AudioSettings.NewDescription;
     }
 }

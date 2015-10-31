@@ -10,17 +10,19 @@ namespace Pulse.FS
         private readonly FFXIIITextEncoding _encoding;
         private readonly Stream _output;
         private readonly BinaryWriter _bw;
+        private readonly ZtrFileType? _type;
 
-        public ZtrFilePacker(Stream output, FFXIIITextEncoding encoding)
+        public ZtrFilePacker(Stream output, FFXIIITextEncoding encoding, ZtrFileType? type)
         {
             _encoding = encoding;
             _output = output;
             _bw = new BinaryWriter(_output);
+            _type = type;
         }
 
         public void Pack(ZtrFileEntry[] entries)
         {
-            if (entries.Length == 0)
+            if (entries.Length == 0 || _type == ZtrFileType.BigEndianCompressedDictionary)
                 PackBigEndianCompressedDictionary(entries);
             else if (entries.Length == 1)
                 PackLittleEndianUncompressedPair(entries[0]);
@@ -78,33 +80,26 @@ namespace Pulse.FS
 
         private void PackBigEndianCompressedDictionary(ZtrFileEntry[] entries)
         {
-            if (entries.Length > 0)
-                throw new NotImplementedException();
-
             _bw.Write((int)ZtrFileType.BigEndianCompressedDictionary);
 
-            ZtrFileHeader header = new ZtrFileHeader();
-            header.Version = 1;
-            header.Count = entries.Length;
+            ZtrFileHeader header = new ZtrFileHeader
+            {
+                Version = 1,
+                Count = entries.Length
+            };
 
             using (MemoryStream ms = new MemoryStream(32 * 1024))
             {
                 ZtrFileKeysPacker keyPacker = new ZtrFileKeysPacker(ms, entries);
                 keyPacker.Pack(header);
 
-                ZtrFileTextPacker textPacker = new ZtrFileTextPacker(ms, entries, header, _encoding);
-                textPacker.Pack();
+                ZtrFileTextPacker textPacker = new ZtrFileTextPacker(ms, entries, _encoding);
+                textPacker.Pack(header);
+
+                header.WriteToStream(_output);
+                ms.Position = 0;
+                ms.CopyTo(_output);
             }
-
-            long headerPosition = _output.Position;
-
-            
-
-            //_output.Seek(entries.Length * 8)
-
-
-
-            
         }
     }
 }

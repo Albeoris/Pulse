@@ -259,7 +259,7 @@ namespace Pulse.UI
             {
                 if (CheckAccess())
                 {
-                    _treeNodes = await InteractionService.GameLocation.Provide().ArchivesTree;
+                    _treeNodes = await obj.ArchivesTree;
                     _treeView.ItemsSource = _treeNodes;
 
                     SelectNode();
