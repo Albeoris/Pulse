@@ -116,7 +116,7 @@
     <Compile Include="Encoding\FFXIIITextEncoder.cs" />
     <Compile Include="Encoding\FFXIIITextEncoding.cs" />
     <Compile Include="Encoding\FFXIIITextEncodingFactory.cs" />
-    <Compile Include="Encoding\Tags\FFXIIITextTag - Копировать.cs" />
+    <Compile Include="Encoding\Tags\FFXIIITextReference.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTagColor.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTagParam.cs" />
     <Compile Include="Encoding\Tags\FFXIIITextTag.cs" />
