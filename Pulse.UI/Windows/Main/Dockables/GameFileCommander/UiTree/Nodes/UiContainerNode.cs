@@ -91,8 +91,8 @@ namespace Pulse.UI
                 if (!parentChecked && node.IsChecked == false)
                     continue;
 
-                // ������������ ��������� ����� ���� �������, � ��������� ���
-                // ��� ������� ���������� ��� ���������� �������� ��������� ���������
+                // Родительский контейнер может быть помечен, а вложенный нет
+                // Это сделано специально для отложенной загрузки вложенных элементов
                 bool isChecked = parentChecked || node.IsChecked == true;
 
                 UiContainerNode container = node as UiContainerNode;

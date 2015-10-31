@@ -188,7 +188,7 @@ namespace Pulse.UI
             }
 
             if (left != 0)
-                Log.Warning("[ArchiveEntryInjectorStringsToZtr.GetEndingTags] �������� ����������� ������������������: {0}", text);
+                Log.Warning("[ArchiveEntryInjectorStringsToZtr.GetEndingTags] Unexpected escape sequence: {0}", text);
 
             return result;
         }

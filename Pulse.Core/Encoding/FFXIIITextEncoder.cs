@@ -26,20 +26,26 @@
                 {
                     int offset = 0;
                     result += tag.Write(buff, ref offset);
+                    continue;
                 }
-                else
+
+                FFXIIITextReference reference = FFXIIITextReference.TryRead(chars, ref index, ref count);
+                if (reference != null)
                 {
-                    short value = _codepage[chars[index++]];
-
-                    int hight, low;
-                    FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
-
-                    if (hight != 0)
-                        result++;
-
-                    result++;
-                    count--;
+                    result += reference.SizeInBytes;
+                    continue;
                 }
+
+                short value = _codepage[chars[index++]];
+
+                int hight, low;
+                FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
+
+                if (hight != 0)
+                    result++;
+
+                result++;
+                count--;
             }
 
             return result;
@@ -55,24 +61,30 @@
                 if (tag != null)
                 {
                     result += tag.Write(bytes, ref byteIndex);
+                    continue;
                 }
-                else
+
+                FFXIIITextReference reference = FFXIIITextReference.TryRead(chars, ref charIndex, ref charCount);
+                if (reference != null)
                 {
-                    short value = _codepage[chars[charIndex++]];
+                    result += reference.Write(bytes, ref byteIndex);
+                    continue;
+                }
 
-                    int hight, low;
-                    FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
+                short value = _codepage[chars[charIndex++]];
 
-                    if (hight != 0)
-                    {
-                        bytes[byteIndex++] = (byte)hight;
-                        result++;
-                    }
+                int hight, low;
+                FFXIIIEncodingMap.IndexToValue(value, out hight, out low);
 
-                    bytes[byteIndex++] = (byte)low;
-                    charCount--;
+                if (hight != 0)
+                {
+                    bytes[byteIndex++] = (byte)hight;
                     result++;
                 }
+
+                bytes[byteIndex++] = (byte)low;
+                charCount--;
+                result++;
             }
 
             return result;

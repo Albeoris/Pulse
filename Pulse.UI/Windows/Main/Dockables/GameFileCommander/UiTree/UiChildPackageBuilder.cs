@@ -25,10 +25,6 @@ namespace Pulse.UI
             if (TryAddZoneListing(listing, entry, entryPath))
                 return true;
 
-            // ������ ��� ������ ��� ����������� �� �������
-            //if (TryAddSoundListing(listing, entry, entryName))
-            //    return true;
-
             if (TryAddMoviesListing(listing, entry, entryName))
                 return true;
 
@@ -122,7 +118,7 @@ namespace Pulse.UI
             if (!entryPath.StartsWith("zone/filelist"))
                 return false;
 
-            // ���������� ������ ������
+            // Slip an empty archives
             if (entryPath.EndsWith("2"))
                 return false;
 

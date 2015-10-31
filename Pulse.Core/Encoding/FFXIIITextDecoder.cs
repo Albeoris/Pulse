@@ -26,20 +26,26 @@
                 {
                     int offset = 0;
                     result += tag.Write(buff, ref offset);
+                    continue;
                 }
-                else
+
+                FFXIIITextReference reference = FFXIIITextReference.TryRead(bytes, ref index, ref count);
+                if (reference != null)
                 {
-                    byte value = bytes[index++];
-                    count--;
-
-                    if (value >= 0x80)
-                    {
-                        index++;
-                        count--;
-                    }
-
-                    result++;
+                    result += reference.SizeInChars;
+                    continue;
                 }
+
+                byte value = bytes[index++];
+                count--;
+
+                if (value >= 0x80)
+                {
+                    index++;
+                    count--;
+                }
+
+                result++;
             }
 
             return result;
@@ -55,20 +61,25 @@
                 if (tag != null)
                 {
                     result += tag.Write(chars, ref charIndex);
+                    continue;
                 }
-                else
-                {
-                    int value = bytes[byteIndex++];
-                    byteCount--;
-                    if (value >= 0x80)
-                    {
-                        value = FFXIIIEncodingMap.ValueToIndex(value, bytes[byteIndex++]);
-                        byteCount--;
-                    }
-                    chars[charIndex++] = _codepage[(short)value];
-                    result++;
 
+                FFXIIITextReference reference = FFXIIITextReference.TryRead(bytes, ref byteIndex, ref byteCount);
+                if (reference != null)
+                {
+                    result += reference.Write(chars, ref charIndex);
+                    continue;
                 }
+
+                int value = bytes[byteIndex++];
+                byteCount--;
+                if (value >= 0x80)
+                {
+                    value = FFXIIIEncodingMap.ValueToIndex(value, bytes[byteIndex++]);
+                    byteCount--;
+                }
+                chars[charIndex++] = _codepage[(short)value];
+                result++;
             }
 
             return result;

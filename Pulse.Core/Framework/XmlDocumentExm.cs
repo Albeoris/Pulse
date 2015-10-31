@@ -11,7 +11,7 @@ namespace Pulse.Core
 
             XmlElement element = self.DocumentElement;
             if (element == null)
-                throw new ArgumentException("XmlElement �� ������.", nameof(self));
+                throw new ArgumentException("XmlElement was not found.", nameof(self));
 
             return element;
         }

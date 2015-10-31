@@ -8,7 +8,7 @@
         public readonly WflHeader Header;
         public readonly int[] Sizes;
         public readonly int[] Offsets;
-        public readonly int[] Colors; // �� ������������?
+        public readonly int[] Colors; // Unknown
         public readonly short[] AdditionalTable;
 
         public WflContent(WflHeader header, int[] sizes, int[] offsets, int[] colors, short[] additionalTable)
