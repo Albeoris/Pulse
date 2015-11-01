@@ -34,7 +34,7 @@ namespace Pulse.FS
 
             List<int> blockOffsets = new List<int>(256) {0};
             ZtrFileHeaderLineInfo[] lines = new ZtrFileHeaderLineInfo[_input.Length];
-            ushort[] innerOffsets = new ushort[_input.Length];
+            ushort[,] innerOffsets = new ushort[_input.Length, 2];
 
             ushort writeIndex = 0;
             byte[] writeBuff = new byte[4096];
@@ -46,7 +46,7 @@ namespace Pulse.FS
                 for (int e = 0; e < _input.Length; e++)
                 {
                     _innerCount++;
-                    innerOffsets[e] = writeIndex;
+                    innerOffsets[e, 0] = writeIndex;
 
                     ZtrFileEntry entry = _input[e];
                     int count = _encoding.GetBytes(entry.Value, 0, entry.Value.Length, codeBuff, 0);
@@ -56,7 +56,7 @@ namespace Pulse.FS
                     lines[e] = new ZtrFileHeaderLineInfo
                     {
                         Block = _blockNumber,
-                        BlockOffset = 0 // TODO: Continue previous block
+                        BlockOffset = 0 // See below: lines[i].BlockOffset = checked ((byte)innerOffsets[i, 1]);
                     };
 
                     for (int b = 0; b < count; b++)
@@ -71,8 +71,11 @@ namespace Pulse.FS
             if (writeIndex > 0)
                 WriteBlock(writeBuff, ref writeIndex, innerOffsets, blockOffsets);
 
-            for (int i = 0; i < innerOffsets.Length; i++)
-                lines[i].PackedOffset = innerOffsets[i];
+            for (int i = 0; i < innerOffsets.Length / 2; i++)
+            {
+                lines[i].PackedOffset = innerOffsets[i, 0];
+                lines[i].BlockOffset = checked ((byte)innerOffsets[i, 1]);
+            }
 
             if (blockOffsets.Count > _blockNumber)
                 _blockNumber++;
@@ -82,15 +85,15 @@ namespace Pulse.FS
             header.TextLinesTable = lines;
         }
 
-        private void WriteBlock(byte[] writeBuff, ref ushort engaged, ushort[] innerOffsets, List<int> blockOffsets)
+        private void WriteBlock(byte[] writeBuff, ref ushort engaged, ushort[,] innerOffsets, List<int> blockOffsets)
         {
-            byte[] encoding = ZtrFileEncoding.CompressZtrContent(writeBuff, 0, ref engaged, innerOffsets, _innerIndex, _innerCount);
+            byte[] encoding = ZtrFileEncoding.FakeCompression(writeBuff, 0, ref engaged, innerOffsets, _innerIndex, _innerCount);
             _output.Write(encoding, 0, encoding.Length);
             _output.Write(writeBuff, 0, engaged);
 
             _blockOffset += encoding.Length;
             _blockOffset += engaged;
-            _blockNumber++;
+            _blockNumber = checked((byte)(_blockNumber + 1));
 
             _innerIndex += _innerCount;
             _innerCount = 0;

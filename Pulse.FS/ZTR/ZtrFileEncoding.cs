@@ -79,10 +79,12 @@ namespace Pulse.FS
 
         public static byte[] CompressZtrContent([In, Out] byte[] data, int dataIndex, ref ushort dataSize)
         {
-            return CompressZtrContent(data, dataIndex, ref dataSize, new ushort[0], 0, 0);
+            return CompressZtrContent(data, dataIndex, ref dataSize, new ushort[0,0], 0, 0);
         }
 
-        public static unsafe byte[] CompressZtrContent([In, Out] byte[] data, int dataIndex, ref ushort dataSize, [In, Out] ushort[] innerOffsets, int innerIndex, int innerCount)
+        // WARNING BUG: Don't use it for text packing or fix BlockOffset first!
+        // It should be contains offset if the begining of the entry was mixed with a previous tail.
+        public static unsafe byte[] CompressZtrContent([In, Out] byte[] data, int dataIndex, ref ushort dataSize, [In, Out] ushort[,] innerOffsets, int innerIndex, int innerCount)
         {
             ushort maxValue = 0;
             int[] singleCounter = new int[byte.MaxValue + 1];
@@ -169,15 +171,30 @@ namespace Pulse.FS
                         if (dataPtr[b] != left || dataPtr[b + 1] != right)
                             continue;
 
+                        // BlockOffset, (bug -_-)!
+                        for (int i = 0; i < innerCount - 1; i++)
+                        {
+                            ushort offset = innerOffsets[i + innerIndex, 0];
+                            if (offset > b + 1)
+                                break;
+
+                            if (offset == b + 1)
+                            {
+                                innerOffsets[i + innerIndex + 1, 1]++;
+                                break;
+                            }
+                        }
+
                         dataPtr[b] = value;
 
                         for (int m = b + 1; m < dataSize - 1; m++)
                             dataPtr[m] = dataPtr[m + 1];
 
+                        // PackedOffset
                         for (int i = 0; i < innerCount; i++)
                         {
-                            if (innerOffsets[i + innerIndex] > b)
-                                innerOffsets[i + innerIndex]--;
+                            if (innerOffsets[i + innerIndex, 0] > b)
+                                innerOffsets[i + innerIndex, 0]--;
                         }
 
                         dataSize--;
@@ -201,6 +218,16 @@ namespace Pulse.FS
                     ptr += 3;
                 }
             }
+
+            return result;
+        }
+
+        public static unsafe byte[] FakeCompression([In, Out] byte[] data, int dataIndex, ref ushort dataSize, [In, Out] ushort[,] innerOffsets, int innerIndex, int innerCount)
+        {
+            const int blockSize = 0;
+            byte[] result = new byte[blockSize + 4];
+            fixed (byte* arrayPtr = &result[0])
+                BinaryWriterExm.WriteBig(arrayPtr, blockSize);
 
             return result;
         }
