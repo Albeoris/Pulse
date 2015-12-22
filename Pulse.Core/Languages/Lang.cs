@@ -25,7 +25,7 @@ namespace Pulse.Core
                 FileInfo[] files = dir.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
                 foreach (FileInfo file in files)
                 {
-                    if (file.Name.StartsWith(CultureInfo.CurrentCulture.Name, StringComparison.InvariantCultureIgnoreCase))
+                    if (file.Name.StartsWith(CultureInfo.CurrentCulture.Name, StringComparison.InvariantCultureIgnoreCase)) //CultureInfo.CurrentCulture.Name
                     {
                         currentLang = file;
                         break;
@@ -37,9 +37,9 @@ namespace Pulse.Core
                     }
                 }
 
-                string pathCombine = Path.Combine(dir.FullName, "ru-RU.xml");
+                string pathCombine = Path.Combine(dir.FullName, "en.xml");
 
-                using (Stream input = Assembly.GetExecutingAssembly().GetManifestResourceStream("Pulse.Core.Languages.ru-RU.xml"))
+                using (Stream input = Assembly.GetExecutingAssembly().GetManifestResourceStream("Pulse.Core.Languages.en.xml"))
                 using (Stream output = File.Create(pathCombine))
                     input.CopyTo(output);
 

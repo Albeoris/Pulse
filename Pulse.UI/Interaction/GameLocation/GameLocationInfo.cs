@@ -18,6 +18,7 @@ namespace Pulse.UI
 
         private const string Part1ResourceDirName = "white_data";
         private const string Part2ResourceDirName = "alba_data";
+        private const string Part3ResourceDirName = "weiss_data";
         private const string ExecutableRelativePath = @"prog\win\bin\ffxiiiimg.exe";
 
         public GameLocationInfo(string rootDirectory)
@@ -41,6 +42,8 @@ namespace Pulse.UI
                         return Part1ResourceDirName;
                     case FFXIIIGamePart.Part2:
                         return Part2ResourceDirName;
+                        case FFXIIIGamePart.Part3:
+                            return Part3ResourceDirName;
                     default:
                         throw new NotImplementedException();
                 }

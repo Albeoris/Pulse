@@ -40,6 +40,9 @@ namespace Pulse.UI
                 case FFXIIIGamePart.Part2:
                     writer = ArchiveListingWriterV2.Write;
                     break;
+                case FFXIIIGamePart.Part3:
+                    writer = ArchiveListingWriterV3.Write;
+                    break;
                 default:
                     throw new NotSupportedException(InteractionService.GamePart.ToString());
             }

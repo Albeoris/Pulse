@@ -227,10 +227,12 @@ namespace Pulse.UI
             pathBuilder.Add(UiNodeType.Group, new Wildcard(UiArchiveExtension.Xgr.ToString()));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("gui"));
             pathBuilder.Add(UiNodeType.Directory, new Wildcard("resident"));
+
             if (InteractionService.GamePart == FFXIIIGamePart.Part1)
                 pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system.win32.xgr"));
-            else
+            else 
                 pathBuilder.Add(UiNodeType.FileTable, new Wildcard("system_jp.win32.xgr"));
+
             UiNodePath path = pathBuilder.Build();
 
             foreach (UiContainerNode archive in archives)
@@ -245,6 +247,8 @@ namespace Pulse.UI
                     return CreateAccessorV1();
                 case FFXIIIGamePart.Part2:
                     return CreateAccessorV2();
+                case FFXIIIGamePart.Part3:
+                    return CreateAccessorV3();
                 default:
                     throw new NotSupportedException(InteractionService.GamePart.ToString());
             }
@@ -269,6 +273,20 @@ namespace Pulse.UI
             GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
             string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imgc.win32.bin");
             string listingPath = Path.Combine(gameLocation.SystemDirectory, "filelistc.win32.bin");
+
+            ArchiveAccessor accessor = new ArchiveAccessor(binaryPath, listingPath);
+            ArchiveListing listing = ArchiveListingReaderV1.Read(accessor, null, null);
+            ArchiveEntry xgrEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.xgr"));
+            ArchiveEntry imgbEntry = listing.Single(n => n.Name.EndsWith(@"gui/resident/system.win32.imgb"));
+
+            return new ImgbArchiveAccessor(listing, xgrEntry, imgbEntry);
+        }
+
+        private ImgbArchiveAccessor CreateAccessorV3()
+        {
+            GameLocationInfo gameLocation = InteractionService.GameLocation.Provide();
+            string binaryPath = Path.Combine(gameLocation.SystemDirectory, "white_imga.win32.bin");
+            string listingPath = Path.Combine(gameLocation.SystemDirectory, "filelista.win32.bin");
 
             ArchiveAccessor accessor = new ArchiveAccessor(binaryPath, listingPath);
             ArchiveListing listing = ArchiveListingReaderV1.Read(accessor, null, null);

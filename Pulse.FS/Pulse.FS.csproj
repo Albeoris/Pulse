@@ -125,6 +125,11 @@
     <Compile Include="ArchiveListing\IArchiveEntry.cs" />
     <Compile Include="ArchiveListing\IArchiveListing.cs" />
     <Compile Include="ArchiveListing\IArchiveListingHeader.cs" />
+    <Compile Include="ArchiveListing\XIII-3\ArchiveListingEntryInfoV3.cs" />
+    <Compile Include="ArchiveListing\XIII-3\ArchiveListingHeaderV3.cs" />
+    <Compile Include="ArchiveListing\XIII-3\ArchiveListingReaderV3.cs" />
+    <Compile Include="ArchiveListing\XIII-3\ArchiveListingTextWriterV3.cs" />
+    <Compile Include="ArchiveListing\XIII-3\ArchiveListingWriterV3.cs" />
     <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieArchiveListingReader.cs" />
     <Compile Include="IMGB\WPD\WDB\Movies\WdbMovieArchiveListing.cs" />
     <Compile Include="IMGB\WPD\WDB\DbArchiveAccessor.cs" />

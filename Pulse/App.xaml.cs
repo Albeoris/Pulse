@@ -15,7 +15,7 @@ namespace Pulse
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Log.Message("Приложение запущено.");
+            Log.Message("The app launched.");
 
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             DispatcherUnhandledException += OnDispatcherUnhandledException;

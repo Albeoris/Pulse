@@ -10,7 +10,7 @@
         <Button Background="White" Click="OnPart2ButtonClick">
             <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-2.png"/>
         </Button>
-        <Button Background="White" Click="OnPart3ButtonClick" IsEnabled="False">
+        <Button Background="White" Click="OnPart3ButtonClick">
             <Image Source="pack://application:,,,/Pulse.UI;component/Resources/Pictures/LogoXIII-3.png"/>
         </Button>
     </StackPanel>

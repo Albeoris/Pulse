@@ -18,7 +18,7 @@ namespace Pulse.Patcher
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Log.Message("Приложение запущено.");
+            Log.Message("The app launched.");
 
             try
             {
@@ -49,7 +49,7 @@ namespace Pulse.Patcher
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Не удалось запустить приложение.");
+                Log.Error(ex, "Unable to launch the application.");
             }
         }
 
@@ -69,7 +69,7 @@ namespace Pulse.Patcher
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Не удалось очистить каталог: [{0}]", destination);
+                Log.Error(ex, "Failed to clean up the directory: [{0}]", destination);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Pulse.Patcher
                     if (!processes.IsNullOrEmpty())
                     {
                         StringBuilder sb = new StringBuilder(512);
-                        sb.AppendLine("Следующие процессы блокируют обновление. Уничтожить их?");
+                        sb.AppendLine("The following processes are blocking the update. destroy them?");
                         foreach (Process locker in processes)
                         {
                             sb.Append(locker.ProcessName);
@@ -107,7 +107,7 @@ namespace Pulse.Patcher
                             sb.AppendLine(locker.GetExecutablePath());
                         }
 
-                        if (MessageBox.Show(sb.ToString(), "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                        if (MessageBox.Show(sb.ToString(), "Attention!", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
                             throw new OperationCanceledException();
 
                         foreach (Process locker in processes)
@@ -131,16 +131,16 @@ namespace Pulse.Patcher
             {
                 Log.Error(ex);
                 StringBuilder sb = new StringBuilder(512);
-                sb.AppendLine("Не удалось установить обновление программы установки.");
-                sb.AppendLine("Пожалуйста, скопируйте содержимое каталога:");
+                sb.AppendLine("Unable to install the update program installation.");
+                sb.AppendLine("Please copy the contents of a directory:");
                 sb.AppendLine(source);
-                sb.AppendLine("В каталог:");
+                sb.AppendLine("In the catalog:");
                 sb.AppendLine(destination);
-                sb.AppendLine("С заменой всех файлов. Приносим извинения за доставленные неудобства.");
+                sb.AppendLine("With the replacement of all the files . We apologize for any inconvenience caused.");
                 sb.AppendLine();
-                sb.AppendLine("Принична ошибки:");
+                sb.AppendLine("Prinichna error:");
                 sb.AppendLine(ex.ToString());
-                MessageBox.Show(sb.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(sb.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
